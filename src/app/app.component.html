@@ -1,0 +1,90 @@
+<div class="background-normal text-color-normal max-size" style="padding: 20px">
+
+  <router-outlet></router-outlet>
+
+  <mat-grid-list cols="1" rowHeight="120px">
+    <mat-grid-tile>
+
+      <mat-card (click)="click();" class="hover-bright">
+        <mat-card-title>Parser Expression Grammar</mat-card-title>
+        <mat-card-subtitle>by Pierre Roux</mat-card-subtitle>
+      </mat-card>
+
+    </mat-grid-tile>
+    <mat-grid-tile>
+
+      <mat-card (click)="click();" class="hover-bright">
+        <mat-card-title>Annotations in TypeScript</mat-card-title>
+        <mat-card-subtitle>by Pierre Roux</mat-card-subtitle>
+      </mat-card>
+
+    </mat-grid-tile>
+    <mat-grid-tile>
+
+      <mat-card (click)="click();" class="hover-bright">
+        <mat-card-title>AutoHotkey</mat-card-title>
+        <mat-card-subtitle>by Pierre Roux</mat-card-subtitle>
+      </mat-card>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+</div>
+
+
+
+
+
+<div>
+  <h1 [class.black]="isYellow"
+      [class.yellow]="!isYellow">
+    <span class="border">█</span>
+  </h1>
+  <button (click)="onYellowClick()">
+    &
+  </button>
+</div>
+
+<div>
+  <h1 [class.black]="isRed"
+      [class.red]="!isRed">
+    <span class="border">█</span>
+  </h1>
+  <button (click)="onRedClick()">
+    ↓
+  </button>
+</div>
+
+<div>
+  <br>
+  <br>
+  <input type="number"
+         [(ngModel)]="numberA"/>
+  <input type="number"
+         [(ngModel)]="numberB"/>
+  <div>sumOfNumbers is {{sumOfNumbers(numberA, numberB, true)}}</div>
+</div>
+
+
+
+<!--&lt;!&ndash;The content below is only a placeholder and can be replaced.&ndash;&gt;-->
+<!--<div style="text-align:center">-->
+<!--<h1>-->
+<!--Welcome to {{ title }}!-->
+<!--</h1>-->
+<!--<img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
+<!--</div>-->
+<!--<h2>Here are some links to help you start: </h2>-->
+<!--<ul>-->
+<!--<li>-->
+<!--<h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>-->
+<!--</li>-->
+<!--<li>-->
+<!--<h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>-->
+<!--</li>-->
+<!--<li>-->
+<!--<h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>-->
+<!--</li>-->
+<!--</ul>-->
+
