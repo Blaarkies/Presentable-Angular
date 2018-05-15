@@ -13,7 +13,34 @@
 }
 
 .max-size {
-  height: 100%;
-  width: 100%;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
 }
+
+mat-card {
+  background-color: #3C3F41;
+  width: 600px;
+}
+
+mat-card-title {
+  color: #BBBBBB;
+}
+
+mat-card-subtitle {
+  color: #BBBBBB;
+}
+
+mat-grid-tile {
+
+}
+
+.hover-bright:hover {
+  filter: brightness(1.2);
+}
+
+mat-toolbar {
+  color: #BBBBBB;
+  background-color: #3C3F41;
+}
+
 

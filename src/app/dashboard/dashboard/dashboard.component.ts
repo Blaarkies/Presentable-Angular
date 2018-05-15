@@ -1,25 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-
-interface RouteCard {
-  title: string;
-  subtitle: string;
-  route: string;
-}
+import {InfoCard} from "../../common/interface";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css',
+    '../../app.component.css']
 })
 export class DashboardComponent implements OnInit {
 
-  public options = <RouteCard[]>[];
+  public cards = <InfoCard[]>[];
 
   constructor(private router: Router) {
-    this.options.push({title: 'Parser Expression Grammar', subtitle: 'by Pierre Roux', route: ''});
-    this.options.push({title: 'Annotations in TypeScript', subtitle: 'by Pierre Roux', route: 'annotations-in-typescript'});
-    this.options.push({title: 'AutoHotkey', subtitle: 'by Pierre Roux', route: ''});
+    this.cards.push({title: 'Parser Expression Grammar', subtitle: 'by Pierre Roux', data: ''});
+    this.cards.push({title: 'Annotations in TypeScript', subtitle: 'by Pierre Roux', data: 'annotations-in-typescript'});
+    this.cards.push({title: 'AutoHotkey', subtitle: 'by Pierre Roux', data: ''});
   }
 
   ngOnInit() {
