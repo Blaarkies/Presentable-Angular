@@ -1,0 +1,20 @@
+mat-card {
+  background-color: #3C3F41;
+  width: 600px;
+}
+
+mat-card-title {
+  color: #BBBBBB;
+}
+
+mat-card-subtitle {
+  color: #BBBBBB;
+}
+
+mat-grid-tile {
+  padding: 20px;
+}
+
+.hover-bright:hover {
+  filter: brightness(1.2);
+}

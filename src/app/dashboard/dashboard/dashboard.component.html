@@ -1,3 +1,11 @@
-<p>
-  dashboard works!
-</p>
+<mat-grid-list cols="1" rowHeight="120px">
+
+  <mat-grid-tile *ngFor="let option of options">
+    <mat-card (click)="goToRoute(option.route);" class="hover-bright">
+      <mat-card-title>{{option.title}}</mat-card-title>
+      <mat-card-subtitle>{{option.subtitle}}</mat-card-subtitle>
+    </mat-card>
+
+  </mat-grid-tile>
+
+</mat-grid-list>

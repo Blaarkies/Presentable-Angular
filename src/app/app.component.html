@@ -2,32 +2,6 @@
 
   <router-outlet></router-outlet>
 
-  <mat-grid-list cols="1" rowHeight="120px">
-    <mat-grid-tile>
-
-      <mat-card (click)="click();" class="hover-bright">
-        <mat-card-title>Parser Expression Grammar</mat-card-title>
-        <mat-card-subtitle>by Pierre Roux</mat-card-subtitle>
-      </mat-card>
-
-    </mat-grid-tile>
-    <mat-grid-tile>
-
-      <mat-card (click)="click();" class="hover-bright">
-        <mat-card-title>Annotations in TypeScript</mat-card-title>
-        <mat-card-subtitle>by Pierre Roux</mat-card-subtitle>
-      </mat-card>
-
-    </mat-grid-tile>
-    <mat-grid-tile>
-
-      <mat-card (click)="click();" class="hover-bright">
-        <mat-card-title>AutoHotkey</mat-card-title>
-        <mat-card-subtitle>by Pierre Roux</mat-card-subtitle>
-      </mat-card>
-
-    </mat-grid-tile>
-  </mat-grid-list>
 
 
 </div>
@@ -36,35 +10,35 @@
 
 
 
-<div>
-  <h1 [class.black]="isYellow"
-      [class.yellow]="!isYellow">
-    <span class="border">█</span>
-  </h1>
-  <button (click)="onYellowClick()">
-    &
-  </button>
-</div>
+<!--<div>-->
+  <!--<h1 [class.black]="isYellow"-->
+      <!--[class.yellow]="!isYellow">-->
+    <!--<span class="border">█</span>-->
+  <!--</h1>-->
+  <!--<button (click)="onYellowClick()">-->
+    <!--&-->
+  <!--</button>-->
+<!--</div>-->
 
-<div>
-  <h1 [class.black]="isRed"
-      [class.red]="!isRed">
-    <span class="border">█</span>
-  </h1>
-  <button (click)="onRedClick()">
-    ↓
-  </button>
-</div>
+<!--<div>-->
+  <!--<h1 [class.black]="isRed"-->
+      <!--[class.red]="!isRed">-->
+    <!--<span class="border">█</span>-->
+  <!--</h1>-->
+  <!--<button (click)="onRedClick()">-->
+    <!--↓-->
+  <!--</button>-->
+<!--</div>-->
 
-<div>
-  <br>
-  <br>
-  <input type="number"
-         [(ngModel)]="numberA"/>
-  <input type="number"
-         [(ngModel)]="numberB"/>
-  <div>sumOfNumbers is {{sumOfNumbers(numberA, numberB, true)}}</div>
-</div>
+<!--<div>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<input type="number"-->
+         <!--[(ngModel)]="numberA"/>-->
+  <!--<input type="number"-->
+         <!--[(ngModel)]="numberB"/>-->
+  <!--<div>sumOfNumbers is {{sumOfNumbers(numberA, numberB, true)}}</div>-->
+<!--</div>-->
 
 
 

@@ -5,6 +5,8 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule, MatGridListModule} from '@angular/material';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {DashboardModule} from './dashboard/dashboard.module'
+import {AnnotationsInTypescriptModule} from "./annotations-in-typescript/annotations-in-typescript.module";
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    DashboardModule,
+    AnnotationsInTypescriptModule,
     MatCardModule,
     MatGridListModule
   ],
