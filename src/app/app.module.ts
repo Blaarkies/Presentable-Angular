@@ -7,6 +7,8 @@ import {MatCardModule, MatGridListModule} from '@angular/material';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {DashboardModule} from './dashboard/dashboard.module'
 import {AnnotationsInTypescriptModule} from "./annotations-in-typescript/annotations-in-typescript.module";
+import {ImpressiveCompressionModule} from "./impressive-compression/impressive-compression.module";
+import {MatComponentsModule} from "./common/mat-components.module";
 
 @NgModule({
   declarations: [
@@ -18,8 +20,10 @@ import {AnnotationsInTypescriptModule} from "./annotations-in-typescript/annotat
     AppRoutingModule,
     DashboardModule,
     AnnotationsInTypescriptModule,
-    MatCardModule,
-    MatGridListModule
+    ImpressiveCompressionModule,
+    // MatCardModule,
+    // MatGridListModule
+    MatComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
