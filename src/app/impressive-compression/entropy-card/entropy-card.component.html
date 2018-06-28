@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>{{data.name}} ♣ <h5 style="display:inline;">{{data.artist}}</h5></mat-card-title>
+  <mat-card-subtitle>
+    <div *ngFor="let line of data.lines">{{line}}</div>
+  </mat-card-subtitle>
+
+</mat-card>
+
+<mat-grid-tile-footer>
+  <div>
+    <table>
+      <tr>
+        <td>
+          Data:
+        </td>
+        <td>
+          {{charLimit}} bytes
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Information:
+        </td>
+        <td>
+          {{data.entropyScore}} bytes
+        </td>
+      </tr>
+    </table>
+
+    <!--<div>Data: {{charLimit}} bytes</div>-->
+    <!--<div>Information: {{data.entropyScore}} bytes</div>-->
+  </div>
+
+</mat-grid-tile-footer>

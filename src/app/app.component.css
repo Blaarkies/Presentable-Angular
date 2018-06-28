@@ -1,5 +1,4 @@
 
-
 .text-center {
   text-align: center;
 }
@@ -43,4 +42,6 @@ mat-toolbar {
   background-color: #3C3F41;
 }
 
-
+.float-left {
+  float: left;
+}

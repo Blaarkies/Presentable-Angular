@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {EntropyExample, JsonAsset} from "../../common/interface";
-import {map} from "rxjs/operators";
+import {CompressionProcessorService} from "../compression-processor.service";
 
 @Component({
   selector: 'app-explanation',
@@ -12,28 +12,41 @@ import {map} from "rxjs/operators";
 export class CompressionShowcaseComponent implements OnInit {
 
   masterText: string;
-  lowEntropy: EntropyExample;
-  mediumEntropy: EntropyExample;
+  lowEntropy: EntropyExample = this.newEntropy();
+  mediumEntropy: EntropyExample = this.newEntropy();
 
   charLimit = 400;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private compression: CompressionProcessorService) {
   }
 
   ngOnInit() {
-
     this.http.get("assets/compression-data.json")
-      .pipe(map((data: JsonAsset) => {
-        data.low.lines = data.low.text.substring(0, this.charLimit).split('\n');
-        data.medium.lines = data.medium.text.substring(0, this.charLimit).split('\n');
-        return data;
-      }))
-      .subscribe(data => {
-        this.lowEntropy = data.low;
-        this.mediumEntropy = data.medium;
+      .subscribe((data: JsonAsset) => {
+        this.lowEntropy = this.getProcessedEntropy(data.low);
+        this.mediumEntropy = this.getProcessedEntropy(data.medium);
       });
 
 
+  }
+
+  getSplitText(text: string): string[] {
+    return text.substring(0, this.charLimit).split('\n');
+  }
+
+  newEntropy(): EntropyExample {
+    return {
+      text: '',
+      artist: '',
+      name: '',
+    };
+  }
+
+  getProcessedEntropy(data: EntropyExample): EntropyExample {
+    data.lines = this.getSplitText(data.text);
+    data.entropyScore = this.compression.getEntropyScore(data.text);
+    return data;
   }
 
 }

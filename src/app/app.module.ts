@@ -9,6 +9,7 @@ import {AnnotationsInTypescriptModule} from "./annotations-in-typescript/annotat
 import {ImpressiveCompressionModule} from "./impressive-compression/impressive-compression.module";
 import {MatComponentsModule} from "./common/mat-components.module";
 import {HttpClientModule} from "@angular/common/http";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HttpClientModule} from "@angular/common/http";
     AnnotationsInTypescriptModule,
     ImpressiveCompressionModule,
     MatComponentsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,28 +1,9 @@
-<mat-toolbar style="margin-bottom: 50px">
-
-  <img width="64px" alt="Typescript Logo" src="../../../assets/logo-compression.gif"
-       style="zoom: 2.1;
-              position: absolute;
-              clip: rect(8px,62px,40px,2px);"/>
-  <span style="padding-left: 144px">Impressive compression</span>
-</mat-toolbar>
-
-<mat-grid-list [cols]="2" gutterSize="100">
+<mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
   <mat-grid-tile>
-    <mat-card>
-      <mat-card-title>{{mediumEntropy.name}} -{{mediumEntropy.artist}}</mat-card-title>
-      <mat-card-subtitle>
-          <div *ngFor="let line of mediumEntropy.lines">{{line}}</div>
-      </mat-card-subtitle>
-    </mat-card>
+    <app-entropy-card [data]="mediumEntropy" [charLimit]="charLimit"></app-entropy-card>
   </mat-grid-tile>
 
   <mat-grid-tile>
-    <mat-card>
-      <mat-card-title>{{lowEntropy.name}} -{{lowEntropy.artist}}</mat-card-title>
-      <mat-card-subtitle>
-        <div *ngFor="let line of lowEntropy.lines">{{line}}</div>
-      </mat-card-subtitle>
-    </mat-card>
+    <app-entropy-card [data]="lowEntropy" [charLimit]="charLimit"></app-entropy-card>
   </mat-grid-tile>
 </mat-grid-list>
