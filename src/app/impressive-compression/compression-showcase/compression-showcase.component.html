@@ -10,76 +10,18 @@
 <mat-grid-list [cols]="2" gutterSize="100">
   <mat-grid-tile>
     <mat-card>
-      <mat-card-title>Sonnet CXXXVII -William Shakespeare</mat-card-title>
+      <mat-card-title>{{mediumEntropy.name}} -{{mediumEntropy.artist}}</mat-card-title>
       <mat-card-subtitle>
-        <br/>Thou blind fool, Love, what dost thou to mine eyes,
-        <br/>That they behold, and see not what they see?
-        <br/>They know what beauty is, see where it lies,
-        <br/>Yet what the best is take the worst to be.
-        <br/>If eyes corrupt by over-partial looks
-        <br/>Be anchor'd in the bay where all men ride,
-        <br/>Why of eyes' falsehood hast thou forged hooks,
-        <br/>Whereto the judgment of my heart is tied?
-        <br/>Why should my heart think that a several plot
-        <br/>Which my heart knows the wide world's common place?
-        <br/>Or mine eyes seeing this, say this is not,
-        <br/>To put fair truth upon so foul a face?
-        <br/>In things right true my heart and eyes have erred,
-        <br/>And to this false plague are they now transferr'd.
+          <div *ngFor="let line of mediumEntropy.lines">{{line}}</div>
       </mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>
 
   <mat-grid-tile>
     <mat-card>
-      <mat-card-title>Say -John Mayer</mat-card-title>
+      <mat-card-title>{{lowEntropy.name}} -{{lowEntropy.artist}}</mat-card-title>
       <mat-card-subtitle>
-        <br/>Take all of your wasted honor
-        <br/>Every little past frustration
-        <br/>Take all of your so-called problems,
-        <br/>Better put 'em in quotations
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Walking like a one man army
-        <br/>Fighting with the shadows in your head
-        <br/>Living out the same old moment
-        <br/>Knowing you'd be better off instead,
-        <br/>If you could only
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Say what you need to say
-        <br/>Have no fear for giving in
-        <br/>Have no fear for giving over
-        <br/>You'd better know that in the end
-        <br/>Its better to say too much
-        <br/>Then never say what you need to say again
-        <br/>Even if your hands are shaking
-        <br/>And your faith is broken
-        <br/>Even as the eyes are closing
-        <br/>Do it with a heart wide open
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
-        <br/>Say what you need to say, say what you need to say
+        <div *ngFor="let line of lowEntropy.lines">{{line}}</div>
       </mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>

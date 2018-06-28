@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {EntropyExample, JsonAsset} from "../../common/interface";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-explanation',
@@ -10,21 +12,28 @@ import {Observable} from "rxjs";
 export class CompressionShowcaseComponent implements OnInit {
 
   masterText: string;
+  lowEntropy: EntropyExample;
+  mediumEntropy: EntropyExample;
 
-  constructor() {
+  charLimit = 400;
+
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    new Observable().
 
-    Observable.create().of('a').map(i => console.log(i));
+    this.http.get("assets/compression-data.json")
+      .pipe(map((data: JsonAsset) => {
+        data.low.lines = data.low.text.substring(0, this.charLimit).split('\n');
+        data.medium.lines = data.medium.text.substring(0, this.charLimit).split('\n');
+        return data;
+      }))
+      .subscribe(data => {
+        this.lowEntropy = data.low;
+        this.mediumEntropy = data.medium;
+      });
 
-    /*    this.http.get("assets/compression-data.json")
-          .map(res => res.json())
-          .subscribe(data => {
-            // this.cache['config.json'] = new ConfigData(data.json());
-            // resolve(true);
-          });*/
+
   }
 
 }
