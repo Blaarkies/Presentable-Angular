@@ -1,3 +1,20 @@
 mat-card-subtitle {
   font-size: 22px;
 }
+
+.text-style-data {
+  font-family: monospace;
+  font-size: 18px;
+  font-style: oblique;
+}
+
+.highlight {
+  background-color: greenyellow;
+  color: black;
+}
+
+.text-title-green {
+  padding: 12px;
+  font-size: 26px;
+  color: yellowgreen !important;
+}

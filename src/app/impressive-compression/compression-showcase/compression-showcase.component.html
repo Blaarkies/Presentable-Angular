@@ -1,9 +1,48 @@
-<mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
-  <mat-grid-tile>
-    <app-entropy-card [data]="mediumEntropy" [charLimit]="charLimit"></app-entropy-card>
-  </mat-grid-tile>
+<div *ngIf="currentPage === 1"
+     class="transition"
+     [ngClass]="startBlur ? 'transition-blur' : 'transition-no-blur'">
 
-  <mat-grid-tile>
-    <app-entropy-card [data]="lowEntropy" [charLimit]="charLimit"></app-entropy-card>
-  </mat-grid-tile>
-</mat-grid-list>
+  <h1 class="text-tile-center">Data vs Information</h1>
+  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+    <mat-grid-tile>
+      <app-entropy-card [data]="mediumEntropy" [charLimit]="charLimit"></app-entropy-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <app-entropy-card [data]="lowEntropy" [charLimit]="charLimit"></app-entropy-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div *ngIf="currentPage === 2"
+     class="transition"
+     [ngClass]="startBlur ? 'transition-blur' : 'transition-no-blur'">
+
+  <h1 class="text-tile-center">Patternless Data</h1>
+  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+    <mat-grid-tile>
+      <app-entropy-card [data]="highEntropy" [charLimit]="charLimit"></app-entropy-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div *ngIf="currentPage === 3"
+     class="transition"
+     [ngClass]="startBlur ? 'transition-blur' : 'transition-no-blur'">
+
+  <h1 class="text-tile-center">Run-length Encoding</h1>
+  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+    <mat-grid-tile>
+      1111111110111111100000001011111111100001101
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      241304025
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>
+
+
+<button mat-flat-button (click)="switchPage(false)">Back</button>
+<button mat-flat-button (click)="switchPage(true)">Next</button>

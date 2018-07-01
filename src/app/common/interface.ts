@@ -10,6 +10,7 @@ export interface EntropyExample {
   name: string;
   lines?: string[];
   entropyScore?: number;
+  entropyFraction?: number;
 }
 
 export interface JsonAsset {
@@ -23,3 +24,4 @@ export enum Routes {
   decorators,
   compression,
 }
+

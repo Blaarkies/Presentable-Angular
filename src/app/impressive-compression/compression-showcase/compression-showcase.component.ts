@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {EntropyExample, JsonAsset} from "../../common/interface";
 import {CompressionProcessorService} from "../compression-processor.service";
+import {roundToDecimalPlace} from "../../common/utils";
 
 @Component({
   selector: 'app-explanation',
@@ -11,11 +12,14 @@ import {CompressionProcessorService} from "../compression-processor.service";
 })
 export class CompressionShowcaseComponent implements OnInit {
 
-  masterText: string;
+  currentPage: number = 3;
+
   lowEntropy: EntropyExample = this.newEntropy();
   mediumEntropy: EntropyExample = this.newEntropy();
+  highEntropy: EntropyExample = this.newEntropy();
 
   charLimit = 400;
+  startBlur: boolean;
 
   constructor(private http: HttpClient,
               private compression: CompressionProcessorService) {
@@ -28,7 +32,12 @@ export class CompressionShowcaseComponent implements OnInit {
         this.mediumEntropy = this.getProcessedEntropy(data.medium);
       });
 
-
+    this.highEntropy = {
+      artist: 'Math',
+      name: '.random()',
+      text: this.compression.getHighEntropyText(this.charLimit)
+    };
+    this.highEntropy = this.getProcessedEntropy(this.highEntropy);
   }
 
   getSplitText(text: string): string[] {
@@ -45,8 +54,24 @@ export class CompressionShowcaseComponent implements OnInit {
 
   getProcessedEntropy(data: EntropyExample): EntropyExample {
     data.lines = this.getSplitText(data.text);
-    data.entropyScore = this.compression.getEntropyScore(data.text);
+    data.entropyScore = this.compression.getEntropyScore(data.text.slice(0, this.charLimit));
+    data.entropyFraction = roundToDecimalPlace(100 * data.entropyScore / this.charLimit, 2);
     return data;
   }
+
+  switchPage(forward: boolean) {
+    this.startBlur = true;
+
+    setTimeout(() => {
+        this.startBlur = false;
+        if (forward) {
+          this.currentPage++;
+          return;
+        }
+        this.currentPage--;
+      },
+      1000);
+  }
+
 
 }

@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {getArrayRange, getRandomFromArray} from "../common/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,25 @@ export class CompressionProcessorService {
       },
       0);
 
-    return Math.ceil(bits * sumOfFrequencies / 8);
+    return Math.ceil((bits * sumOfFrequencies) / 8);
   }
 
-
+  getHighEntropyText(charLimit: number) {
+    let alphaNumericalList = [].concat(
+      getArrayRange(64).slice(32),
+      getArrayRange(126).slice(90),
+      getArrayRange(255).slice(191)
+    );
+    return getArrayRange(charLimit)
+      .map((n, i) => {
+        if (i && i % 50 === 0) {
+          return String.fromCharCode(10);
+        }
+        if (Math.random() > 0.8) {
+          return ' ';
+        }
+        return String.fromCharCode(getRandomFromArray(alphaNumericalList));
+      })
+      .join('');
+  }
 }
