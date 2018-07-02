@@ -13,10 +13,12 @@ const routes: Routes = [
   {
     path: 'annotations-in-typescript',
     component: DecoratorShowcaseComponent,
+    data: {title: "Annotations in TypeScript", image: '../assets/logo-typescript.png'}
   },
   {
     path: 'impressive-compression',
     component: CompressionShowcaseComponent,
+    data: {title: "Impressive compression", image: '../assets/logo-compression.gif'}
   },
 ];
 

@@ -8,7 +8,7 @@ import {Immutable, LogProperty, ReadOnly} from "../annotation-decorators/propert
   selector: 'app-decorator-showcase',
   templateUrl: './decorator-showcase.component.html',
   styleUrls: ['./decorator-showcase.component.css',
-    '../../app.component.css']
+    '../../app.component.scss']
 })
 export class DecoratorShowcaseComponent implements OnInit {
 

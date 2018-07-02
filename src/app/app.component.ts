@@ -1,36 +1,34 @@
 import {Component} from '@angular/core';
-import {NavigationStart, Router} from "@angular/router";
+import {ActivatedRoute, Router, RoutesRecognized} from "@angular/router";
 import {filter, map} from "rxjs/operators";
-import {Routes} from "./common/interface";
+import {DomSanitizer, SafeStyle} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-  currentRoute = Routes.main;
-  urlRoutes = Routes;
+  currentRoute: string;
+  currentImage: SafeStyle;
 
-  constructor(private router: Router) {
-    router.events
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private sanitizer: DomSanitizer) {
+
+    this.router.events
       .pipe(
-        filter(e => e instanceof NavigationStart),
-        map(e => e as NavigationStart)
+        filter(event => event instanceof RoutesRecognized),
+        map((event: RoutesRecognized) => {
+          return event.state.root.firstChild.data;
+        })
       )
-      .subscribe(val => this.currentRoute = this.getRouteByUrl(val.url));
+      .subscribe(customData => {
+        this.currentRoute = customData['title'];
+        this.currentImage = this.sanitizer.bypassSecurityTrustStyle(`url(${customData['image']})`);
+      });
   }
 
-  private getRouteByUrl(url: string) {
-    switch (url) {
-      case '/annotations-in-typescript':
-        return Routes.decorators;
-      case '/impressive-compression':
-        return Routes.compression;
-      case '/':
-        return Routes.main;
-    }
-  }
 
 }

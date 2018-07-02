@@ -8,7 +8,7 @@ import {roundToDecimalPlace} from "../../common/utils";
   selector: 'app-explanation',
   templateUrl: './compression-showcase.component.html',
   styleUrls: ['./compression-showcase.component.css',
-    '../../app.component.css']
+    '../../app.component.scss']
 })
 export class CompressionShowcaseComponent implements OnInit {
 

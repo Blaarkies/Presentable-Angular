@@ -1,16 +1,13 @@
-<mat-toolbar *ngIf="currentRoute == urlRoutes.decorators" class="float-left">
-  <img width="64px" alt="Typescript Logo" src="../../../assets/logo-typescript.png">
-  <span style="padding-left: 14px">Annotations in TypeScript</span>
+<mat-toolbar class="app-toolbar">
+  <div style="width: 100px;
+              height: 100%;
+              background: no-repeat center;
+              background-size: contain;
+              content:' '"
+       [style.background-image]="currentImage"></div>
+  <span style="padding-left: 24px">{{currentRoute}}</span>
 </mat-toolbar>
 
-<mat-toolbar *ngIf="currentRoute == urlRoutes.compression" class="float-left">
-  <img width="64px" alt="Compression Logo" src="../../../assets/logo-compression.gif"
-       style="zoom: 2.1;
-              position: absolute;
-              clip: rect(9px,62px,39px,2px);"/>
-  <span style="padding-left: 144px">Impressive compression</span>
-</mat-toolbar>
-
-<div class="background-normal text-color-normal max-size" style="padding: 20px;">
+<div class="app-body background-normal text-color-normal max-size">
   <router-outlet></router-outlet>
 </div>

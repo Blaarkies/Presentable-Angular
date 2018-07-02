@@ -10,7 +10,7 @@ interface EncodedWord {
   selector: 'app-entropy-card',
   templateUrl: './entropy-card.component.html',
   styleUrls: ['./entropy-card.component.css',
-    '../../app.component.css']
+    '../../app.component.scss']
 })
 export class EntropyCardComponent implements OnInit {
 
