@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {EntropyExample, JsonAsset} from "../../common/interface";
+import {AsciiImage, EntropyExample, JsonAsset} from "../../common/interface";
 import {CompressionProcessorService} from "../compression-processor.service";
 import {roundToDecimalPlace} from "../../common/utils";
 
@@ -21,6 +21,8 @@ export class CompressionShowcaseComponent implements OnInit {
   charLimit = 400;
   startBlur: boolean;
 
+  runLengthImage: AsciiImage = this.newAsciiImage();
+
   constructor(private http: HttpClient,
               private compression: CompressionProcessorService) {
   }
@@ -30,6 +32,8 @@ export class CompressionShowcaseComponent implements OnInit {
       .subscribe((data: JsonAsset) => {
         this.lowEntropy = this.getProcessedEntropy(data.low);
         this.mediumEntropy = this.getProcessedEntropy(data.medium);
+        this.runLengthImage = this.getRunLengthEncoding(data.asciiImage);
+
       });
 
     this.highEntropy = {
@@ -38,6 +42,15 @@ export class CompressionShowcaseComponent implements OnInit {
       text: this.compression.getHighEntropyText(this.charLimit)
     };
     this.highEntropy = this.getProcessedEntropy(this.highEntropy);
+  }
+
+  getRunLengthEncoding(image: AsciiImage): AsciiImage {
+    image.lines = this.getTextSplitByNumberOfCharacter(image.text, image.width);
+    let encoded = this.compression.getRunLengthEncoded(image.text);
+    image.encoded = this.getTextSplitByNumberOfCharacter(encoded, 30);
+    image.entropyScore = this.compression.getEntropyScore(image.text.slice(0, this.charLimit));
+    image.entropyFraction = roundToDecimalPlace(100 * image.entropyScore / this.charLimit, 2);
+    return image;
   }
 
   getSplitText(text: string): string[] {
@@ -49,6 +62,13 @@ export class CompressionShowcaseComponent implements OnInit {
       text: '',
       artist: '',
       name: '',
+    };
+  }
+
+  newAsciiImage(): AsciiImage {
+    return {
+      text: '',
+      width: 0
     };
   }
 
@@ -73,5 +93,21 @@ export class CompressionShowcaseComponent implements OnInit {
       1000);
   }
 
+  getTextSplitByNumberOfCharacter(text: string, width: number) {
+    return text
+      .split('')
+      .reduce((sum, c) => {
+          let newestLineIndex = sum.findIndex(line => line.length < width);
+
+          if (newestLineIndex > -1) {
+            sum[newestLineIndex] = sum[newestLineIndex] + c;
+          } else {
+            sum.push(c);
+          }
+          return sum;
+        },
+        ['']
+      );
+  }
 
 }

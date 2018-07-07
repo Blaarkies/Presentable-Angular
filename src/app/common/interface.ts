@@ -17,6 +17,16 @@ export interface JsonAsset {
   low: EntropyExample;
   medium: EntropyExample;
   high: EntropyExample;
+  asciiImage: AsciiImage
+}
+
+export interface AsciiImage {
+  width: number;
+  text: string;
+  lines?: string[];
+  encoded?: string[];
+  entropyScore?: number;
+  entropyFraction?: number;
 }
 
 export enum Routes {

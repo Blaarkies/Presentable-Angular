@@ -33,11 +33,59 @@
   <h1 class="text-tile-center">Run-length Encoding</h1>
   <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
     <mat-grid-tile>
-      1111111110111111100000001011111111100001101
+      <mat-card>
+        <mat-card-subtitle class="text-to-pixel">
+          <div *ngFor="let line of runLengthImage.lines"
+               class="font-pixel">
+            {{line}}
+          </div>
+
+        </mat-card-subtitle>
+      </mat-card>
     </mat-grid-tile>
 
     <mat-grid-tile>
-      241304025
+      <mat-card>
+        <mat-card-subtitle class="text-to-pixel">
+          <div *ngFor="let line of runLengthImage.encoded">
+            {{line}}
+          </div>
+        </mat-card-subtitle>
+
+        <mat-card-footer>
+          <div>
+            <table class="text-color-normal text-style-data">
+              <tr>
+                <td>
+                  Data:
+                </td>
+                <td>
+                  {{runLengthImage.text.length}} bytes
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  Information:
+                </td>
+                <td>
+                  {{runLengthImage.entropyScore}} bytes
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  Compression limit:
+                </td>
+                <td>
+                  {{runLengthImage.entropyFraction}}%
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-footer>
+
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 

@@ -60,4 +60,22 @@ export class CompressionProcessorService {
       })
       .join('');
   }
+
+  getRunLengthEncoded(text: string) {
+    return text.split('')
+      .reduce((sum, c, i) => {
+          let newestLineIndex = sum.length - 1;
+          let lastChar = sum[newestLineIndex].slice(-1);
+          if (lastChar === c || i === 0) {
+            sum[newestLineIndex] = sum[newestLineIndex] + c;
+          } else {
+            sum.push(c);
+          }
+          return sum;
+        },
+        ['']
+      )
+      .map(run => '' + run.length + run.slice(-1))
+      .reduce((sum, run) => sum + run, '');
+  }
 }
