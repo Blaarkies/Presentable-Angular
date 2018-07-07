@@ -1,13 +1,21 @@
-<mat-toolbar class="app-toolbar">
-  <div style="width: 100px;
+<div fxLayout="column"
+     fxFill>
+  <mat-toolbar class="app-toolbar"
+               [hidden]="!currentImage">
+    <div style="width: 100px;
               height: 100%;
               background: no-repeat center;
               background-size: contain;
               content:' '"
-       [style.background-image]="currentImage"></div>
-  <span style="padding-left: 24px">{{currentRoute}}</span>
-</mat-toolbar>
+         [style.background-image]="currentImage">
+    </div>
+    <span style="padding-left: 24px">{{currentRoute}}</span>
+  </mat-toolbar>
 
-<div class="app-body background-normal text-color-normal max-size">
-  <router-outlet></router-outlet>
+  <div fxFlex="64px"></div>
+
+  <div class="background-normal text-color-normal █max-size █app-body"
+       fxFlex>
+    <router-outlet></router-outlet>
+  </div>
 </div>

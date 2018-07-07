@@ -1,6 +1,9 @@
-<div *ngIf="currentPage === 1"
-     class="transition"
-     [ngClass]="startBlur ? 'transition-blur' : 'transition-no-blur'">
+<button mat-flat-button (click)="switchPage(false)">Back</button>
+<button mat-flat-button (click)="switchPage(true)">Next</button>
+
+
+
+<div *ngIf="currentPage === 1" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Data vs Information</h1>
   <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
@@ -14,9 +17,7 @@
   </mat-grid-list>
 </div>
 
-<div *ngIf="currentPage === 2"
-     class="transition"
-     [ngClass]="startBlur ? 'transition-blur' : 'transition-no-blur'">
+<div *ngIf="currentPage === 2" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Patternless Data</h1>
   <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
@@ -26,9 +27,7 @@
   </mat-grid-list>
 </div>
 
-<div *ngIf="currentPage === 3"
-     class="transition"
-     [ngClass]="startBlur ? 'transition-blur' : 'transition-no-blur'">
+<div *ngIf="currentPage === 3" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Run-length Encoding</h1>
   <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
@@ -91,6 +90,14 @@
 
 </div>
 
+<div *ngIf="currentPage === 4" [@visibilityChanged]>
 
-<button mat-flat-button (click)="switchPage(false)">Back</button>
-<button mat-flat-button (click)="switchPage(true)">Next</button>
+  <h1 class="text-tile-center">Huffman coding</h1>
+  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+    <mat-grid-tile>
+      <app-entropy-card [data]="highEntropy" [charLimit]="charLimit"></app-entropy-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+

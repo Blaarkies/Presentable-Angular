@@ -2,24 +2,36 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AsciiImage, EntropyExample, JsonAsset} from "../../common/interface";
 import {CompressionProcessorService} from "../compression-processor.service";
-import {roundToDecimalPlace} from "../../common/utils";
+import {getTextSplitByNumberOfCharacter, roundToDecimalPlace} from "../../common/utils";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-explanation',
   templateUrl: './compression-showcase.component.html',
   styleUrls: ['./compression-showcase.component.css',
-    '../../app.component.scss']
+    '../../app.component.scss'],
+  animations: [
+    trigger('visibilityChanged', [
+      transition(':enter', [
+        style({opacity: 0, transform: 'translateX(-40px)'}),
+        animate(600, style({opacity: 1, transform: 'translateX(0)'}))
+      ]),
+      transition(':leave', [
+        style({opacity: 1, transform: 'translateX(0)'}),
+        animate(600, style({opacity: 0, transform: 'translateX(-40px)'}))
+      ])
+    ])
+  ]
 })
 export class CompressionShowcaseComponent implements OnInit {
 
-  currentPage: number = 3;
+  currentPage: number = 1;
 
   lowEntropy: EntropyExample = this.newEntropy();
   mediumEntropy: EntropyExample = this.newEntropy();
   highEntropy: EntropyExample = this.newEntropy();
 
   charLimit = 400;
-  startBlur: boolean;
 
   runLengthImage: AsciiImage = this.newAsciiImage();
 
@@ -45,16 +57,12 @@ export class CompressionShowcaseComponent implements OnInit {
   }
 
   getRunLengthEncoding(image: AsciiImage): AsciiImage {
-    image.lines = this.getTextSplitByNumberOfCharacter(image.text, image.width);
+    image.lines = getTextSplitByNumberOfCharacter(image.text, image.width);
     let encoded = this.compression.getRunLengthEncoded(image.text);
-    image.encoded = this.getTextSplitByNumberOfCharacter(encoded, 30);
+    image.encoded = getTextSplitByNumberOfCharacter(encoded, 30);
     image.entropyScore = this.compression.getEntropyScore(image.text.slice(0, this.charLimit));
     image.entropyFraction = roundToDecimalPlace(100 * image.entropyScore / this.charLimit, 2);
     return image;
-  }
-
-  getSplitText(text: string): string[] {
-    return text.substring(0, this.charLimit).split('\n');
   }
 
   newEntropy(): EntropyExample {
@@ -73,41 +81,23 @@ export class CompressionShowcaseComponent implements OnInit {
   }
 
   getProcessedEntropy(data: EntropyExample): EntropyExample {
-    data.lines = this.getSplitText(data.text);
+    data.lines = data.text.substring(0, this.charLimit).split('\n');
     data.entropyScore = this.compression.getEntropyScore(data.text.slice(0, this.charLimit));
     data.entropyFraction = roundToDecimalPlace(100 * data.entropyScore / this.charLimit, 2);
     return data;
   }
 
   switchPage(forward: boolean) {
-    this.startBlur = true;
+    if ((this.currentPage - 1 === 0 && !forward)
+      || this.currentPage + 1 === 5 && forward) {
+      return;
+    }
 
-    setTimeout(() => {
-        this.startBlur = false;
-        if (forward) {
-          this.currentPage++;
-          return;
-        }
-        this.currentPage--;
-      },
-      1000);
-  }
-
-  getTextSplitByNumberOfCharacter(text: string, width: number) {
-    return text
-      .split('')
-      .reduce((sum, c) => {
-          let newestLineIndex = sum.findIndex(line => line.length < width);
-
-          if (newestLineIndex > -1) {
-            sum[newestLineIndex] = sum[newestLineIndex] + c;
-          } else {
-            sum.push(c);
-          }
-          return sum;
-        },
-        ['']
-      );
+    if (forward) {
+      this.currentPage++;
+      return;
+    }
+    this.currentPage--;
   }
 
 }

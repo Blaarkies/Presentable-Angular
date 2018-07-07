@@ -1,3 +1,26 @@
+
+
+
+
+
+
+export function getTextSplitByNumberOfCharacter(text: string, width: number) {
+  return text
+    .split('')
+    .reduce((sum, c) => {
+        let newestLineIndex = sum.findIndex(line => line.length < width);
+
+        if (newestLineIndex > -1) {
+          sum[newestLineIndex] = sum[newestLineIndex] + c;
+        } else {
+          sum.push(c);
+        }
+        return sum;
+      },
+      ['']
+    );
+}
+
 export function roundToDecimalPlace(unrounded: number, decimalPlaces: number = 0) {
   let multiplier = Math.pow(10, decimalPlaces);
   return Math.round(multiplier * unrounded) / multiplier;

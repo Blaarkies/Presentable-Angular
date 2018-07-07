@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    data: {title: "Presentable Angular and Knowledge Repositories", image: '../assets/logo-dashboard.jpg'}
   },
   {
     path: 'annotations-in-typescript',
