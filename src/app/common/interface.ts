@@ -29,6 +29,13 @@ export interface AsciiImage {
   entropyFraction?: number;
 }
 
+export interface HuffmanCode {
+  char: string;
+  index: string;
+  path: string;
+  usages: number;
+}
+
 export enum Routes {
   main,
   decorators,

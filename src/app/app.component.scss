@@ -1,19 +1,10 @@
 
-.text-center {
-  text-align: center;
-}
-
 .background-normal {
   background-color: #2B2B2B;
 }
 
 .text-color-normal {
   color: #BBBBBB;
-}
-
-.max-size {
-  height: 100%;
-  overflow: auto;
 }
 
 mat-card {
@@ -25,7 +16,8 @@ mat-card-title {
   color: #BBBBBB;
 }
 
-mat-card-subtitle {
+mat-card-subtitle,
+mat-card-content {
   color: #BBBBBB;
 }
 
@@ -43,6 +35,14 @@ mat-toolbar {
   z-index: 100;
 }
 
-.app-body {
-  padding: 84px 20px 20px;
+.card-big-font {
+  font-size: 22px;
+}
+
+.card-medium-font {
+  font-size: 18px;
+}
+
+.font-monospace {
+  font-family: monospace;
 }

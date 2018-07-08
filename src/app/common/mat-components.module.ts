@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDividerModule,
   MatGridListModule,
   MatSnackBarModule,
   MatStepperModule,
@@ -25,6 +26,7 @@ import {BrowserModule} from "@angular/platform-browser";
     MatButtonModule,
     MatStepperModule,
     MatTabsModule,
+    MatDividerModule
   ],
   exports: [
     CommonModule,
@@ -38,6 +40,7 @@ import {BrowserModule} from "@angular/platform-browser";
     MatButtonModule,
     MatStepperModule,
     MatTabsModule,
+    MatDividerModule
   ],
   declarations: []
 })

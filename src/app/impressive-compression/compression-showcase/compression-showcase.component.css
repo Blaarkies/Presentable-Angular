@@ -10,8 +10,10 @@
   filter: blur(0);
 }
 
+/*header-title for each page, they don't take up space*/
 .text-tile-center {
   float: left;
+  margin-top: -10px;
   text-align: center;
   width: 100%;
   font-family: lucida console, monospace;
@@ -24,4 +26,9 @@
 .text-to-pixel {
   transform: scale(2,1);
   margin-left: 186px;
+}
+
+.huffman-code-viewing {
+  color: greenyellow;
+  outline: 1px solid white;
 }

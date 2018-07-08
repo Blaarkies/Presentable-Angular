@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {getArrayRange, getRandomFromArray} from "../common/utils";
+import {HuffmanCode} from "../common/interface";
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +76,105 @@ export class CompressionProcessorService {
         },
         ['']
       )
-      .map(run => '' + run.length + run.slice(-1))
-      .reduce((sum, run) => sum + run, '');
+      .map(run => '' + run.length + run.slice(-1));
+      // .reduce((sum, run) => sum + run, '');
+  }
+
+  getHuffmanTree(text: string): any[] {
+    let data = text.split('')
+      .map(c => c.charCodeAt(0));
+
+    let allFrequencies = {};
+    data.forEach(d => {
+      if (allFrequencies[d] === undefined) {
+        allFrequencies[d] = 1;
+      } else {
+        allFrequencies[d]++;
+      }
+    });
+    let tree = Object.keys(allFrequencies)
+      .map(k => ({
+        usages: allFrequencies[k],
+        index: k,
+        char: String.fromCharCode(Number.parseInt(k)),
+      }))
+      .sort((a, b) => a.usages - b.usages);
+
+    getArrayRange(tree.length * 2)
+      .forEach(() => {
+        if (tree.length <= 2) {
+          return;
+        }
+
+        let char1 = tree[0];
+        let char2 = tree[1];
+        let node = {
+          usages: char1.usages + char2.usages,
+          1: char1,
+          0: char2,
+          index: `${char1.index} ${char2.index}`,
+          char: `${char1.char} ${char2.char}`
+        };
+
+        tree.push(node);
+        tree = tree
+          .filter(n => n.index !== char1.index && n.index !== char2.index)
+          .sort((a, b) => a.usages - b.usages);
+
+      });
+
+    return tree;
+  }
+
+  getHuffmanDictionary(tree: any): HuffmanCode[] {
+    this.setPaths(tree);
+    let dictionary: HuffmanCode[] = [];
+    this.getEndNodes(tree, dictionary);
+    return dictionary.sort((a, b) => b.usages - a.usages);
+  }
+
+  getHuffmanEncoded(text: string, tree: any): string[] {
+    let dictionary = this.getHuffmanDictionary(tree);
+
+    return text.split('')
+      .map(char => char.charCodeAt(0))
+      .map(code =>
+        dictionary
+          .find(hc => hc.index === code.toString())
+          .path);
+  }
+
+  setPaths(tree: any, path: string = ''): any {
+    let prop0 = tree[0];
+    let prop1 = tree[1];
+
+    if (prop0 === undefined && prop1 === undefined) {
+      tree.path = path;
+      return;
+    }
+
+    this.setPaths(prop0, path + '0');
+    this.setPaths(prop1, path + '1');
+  }
+
+  getEndNodes(tree: any, list: any[]) {
+    let prop0 = tree[0];
+    let prop1 = tree[1];
+
+    if (prop0 === undefined && prop1 === undefined) {
+      list.push(tree);
+      return;
+    }
+
+    this.getEndNodes(prop0, list);
+    this.getEndNodes(prop1, list);
+  }
+
+  textToBinary(text: string): string {
+    return text.split('')
+      .map(char => char.charCodeAt(0).toString(2))
+      .map(bin => bin.padStart(8, '0'))
+      .map(bin => bin + ' ')
+      .join('');
   }
 }

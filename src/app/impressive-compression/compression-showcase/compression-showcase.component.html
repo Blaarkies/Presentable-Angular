@@ -2,11 +2,10 @@
 <button mat-flat-button (click)="switchPage(true)">Next</button>
 
 
-
 <div *ngIf="currentPage === 1" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Data vs Information</h1>
-  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+  <mat-grid-list [cols]="2">
     <mat-grid-tile>
       <app-entropy-card [data]="mediumEntropy" [charLimit]="charLimit"></app-entropy-card>
     </mat-grid-tile>
@@ -20,7 +19,7 @@
 <div *ngIf="currentPage === 2" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Patternless Data</h1>
-  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+  <mat-grid-list [cols]="2">
     <mat-grid-tile>
       <app-entropy-card [data]="highEntropy" [charLimit]="charLimit"></app-entropy-card>
     </mat-grid-tile>
@@ -30,26 +29,31 @@
 <div *ngIf="currentPage === 3" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Run-length Encoding</h1>
-  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+  <mat-grid-list [cols]="2">
     <mat-grid-tile>
       <mat-card>
-        <mat-card-subtitle class="text-to-pixel">
-          <div *ngFor="let line of runLengthImage.lines"
-               class="font-pixel">
-            {{line}}
-          </div>
+        <mat-card-content class="text-to-pixel">
+          <ng-container *ngFor="let line of runLengthImage.lines">
+            <span class="font-pixel"
+                  *ngFor="let code of line.split('');
+                  let i = index"
+                  [class.huffman-code-viewing]="code === selectedRunLengthCode">{{code}}<br
+              *ngIf="(i+1)%17==0"></span>
+          </ng-container>
 
-        </mat-card-subtitle>
+        </mat-card-content>
       </mat-card>
     </mat-grid-tile>
 
     <mat-grid-tile>
       <mat-card>
-        <mat-card-subtitle class="text-to-pixel">
-          <div *ngFor="let line of runLengthImage.encoded">
-            {{line}}
-          </div>
-        </mat-card-subtitle>
+        <mat-card-content class="text-to-pixel">
+          <span class="font-pixel"
+                *ngFor="let code of runLengthImage.encoded;
+                let i = index"
+                (click)="selectedRunLengthCode = code.charAt(code.length-1);">{{code}}<br *ngIf="(i+1)%9==0"></span>
+
+        </mat-card-content>
 
         <mat-card-footer>
           <div>
@@ -90,14 +94,133 @@
 
 </div>
 
-<div *ngIf="currentPage === 4" [@visibilityChanged]>
+<div *ngIf="currentPage === 4" [@visibilityChanged] style="text-align: center;">
 
   <h1 class="text-tile-center">Huffman coding</h1>
-  <mat-grid-list [cols]="2" gutterSize="100" fxLayout="start">
+  <app-huffman-tree></app-huffman-tree>
+  <!--<mat-grid-list [cols]="1">-->
+  <!--<mat-grid-tile>-->
+  <!--<app-huffman-tree [tree]="huffmanCoding.tree"></app-huffman-tree>-->
+  <!--</mat-grid-tile>-->
+  <!--</mat-grid-list>-->
+</div>
+
+<div *ngIf="currentPage === 5" [@visibilityChanged]>
+
+  <h1 class="text-tile-center">Huffman coding</h1>
+  <mat-grid-list [cols]="3" gutterSize="10px">
     <mat-grid-tile>
-      <app-entropy-card [data]="highEntropy" [charLimit]="charLimit"></app-entropy-card>
+      <mat-card>
+        <mat-card-title></mat-card-title>
+        <mat-card-content class="card-medium-font">
+          <div *ngFor="let line of huffmanCoding.lines">
+            {{line}}
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <div>
+            <table class="text-color-normal text-style-data">
+              <tr>
+                <td>
+                  Data:
+                </td>
+                <td>
+                  {{huffmanCoding.text.length}} bytes
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  Information:
+                </td>
+                <td>
+                  {{huffmanCoding.entropyScore}} bytes
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  Compression limit:
+                </td>
+                <td>
+                  {{huffmanCoding.entropyFraction}}%
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title></mat-card-title>
+        <mat-card-content class="card-medium-font">
+          <div class="font-monospace"
+               *ngFor="let line of huffmanCoding.binary">
+            {{line}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-content class="card-medium-font">
+          <span class="font-monospace"
+                *ngFor="let code of huffmanCoding.encodedArray;
+                let i = index"
+                [class.huffman-code-viewing]="code === selectedHuffmanCode">{{code}}<br *ngIf="(i+1)%10==0"></span>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+  <mat-grid-list [cols]="18">
+    <mat-grid-tile>
+      <mat-card (mouseenter)="selectedHuffmanCode = null">
+        <mat-card-content class="text-tile-center">
+          <div>Char</div>
+          <div>----</div>
+          <div>Code</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngFor="let col of huffmanCoding.table">
+      <mat-card class="hover-bright"
+                (mouseenter)="selectedHuffmanCode = col.path">
+        <mat-card-content class="text-tile-center">
+          <div>{{col.char}}</div>
+          <div>----</div>
+          <div class="font-monospace">{{col.path}}</div>
+        </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+
+</div>
+
+<div *ngIf="currentPage === 6" [@visibilityChanged]>
+
+  <h1 class="text-tile-center">LZW - Lempel–Ziv–Welch</h1>
+  <h3>{{lzwEncoding.text}}</h3>
+  <table style="text-align: center;">
+    <tr>
+      <th>Current</th>
+      <th>Next</th>
+      <th>Output</th>
+      <th>Add to Dictionary</th>
+    </tr>
+    <tr *ngFor="let row of lzwEncoding.rows">
+      <td>{{row.current}}</td>
+      <td>{{row.next}}</td>
+      <td>{{row.output}}</td>
+      <td>{{row.add}}</td>
+    </tr>
+  </table>
+
 </div>
 
 

@@ -1,17 +1,19 @@
+export function replaceAll(text: string, search: string, replacement: string) {
+  return text.split(search).join(replacement);
+}
 
-
-
-
-
+export function clone(obj: any): any {
+  return JSON.parse(JSON.stringify(obj));
+}
 
 export function getTextSplitByNumberOfCharacter(text: string, width: number) {
   return text
     .split('')
     .reduce((sum, c) => {
-        let newestLineIndex = sum.findIndex(line => line.length < width);
+        let newestLineIndex = sum.length - 1;
 
-        if (newestLineIndex > -1) {
-          sum[newestLineIndex] = sum[newestLineIndex] + c;
+        if (sum[newestLineIndex].length < width && c.charCodeAt(0) !== 10) {
+          sum[newestLineIndex] += c;
         } else {
           sum.push(c);
         }
