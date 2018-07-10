@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AsciiImage, EntropyExample, JsonAsset} from "../../common/interface";
 import {CompressionProcessorService} from "../compression-processor.service";
-import {clone, getTextSplitByNumberOfCharacter, replaceAll, roundToDecimalPlace} from "../../common/utils";
+import {clone, getTextSplitByNumber, replaceAll, roundToDecimalPlace} from "../../common/utils";
 import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -25,7 +25,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class CompressionShowcaseComponent implements OnInit {
 
-  currentPage: number = 5;
+  currentPage: number = 4;
   private maxPage: number = 6;
 
   charLimit = 400;
@@ -39,7 +39,7 @@ export class CompressionShowcaseComponent implements OnInit {
 
   lzwEncoding: any = {};
   selectedHuffmanCode: string;
-  selectedRunLengthCode: string;
+  selectedRunLengthId: number;
 
   constructor(private http: HttpClient,
               private compression: CompressionProcessorService) {
@@ -55,7 +55,7 @@ export class CompressionShowcaseComponent implements OnInit {
         this.huffmanCoding = clone(this.mediumEntropy);
         this.huffmanCoding.text = this.huffmanCoding.text.substring(0, 96);
         this.huffmanCoding.binary = this.compression.textToBinary(this.huffmanCoding.text);
-        this.huffmanCoding.binary = getTextSplitByNumberOfCharacter(this.huffmanCoding.binary, 40 + 5);
+        this.huffmanCoding.binary = getTextSplitByNumber(this.huffmanCoding.binary, 40 + 5);
         this.huffmanCoding = this.getProcessedEntropy(this.huffmanCoding);
         this.huffmanCoding.tree = this.compression.getHuffmanTree(this.huffmanCoding.text.toLowerCase());
         this.huffmanCoding.encodedArray = this.compression.getHuffmanEncoded(this.huffmanCoding.text.toLowerCase(), this.huffmanCoding.tree);
@@ -72,7 +72,7 @@ export class CompressionShowcaseComponent implements OnInit {
             }
             return hc;
           });
-        this.huffmanCoding.lines = getTextSplitByNumberOfCharacter(this.huffmanCoding.text, 60);
+        this.huffmanCoding.lines = getTextSplitByNumber(this.huffmanCoding.text, 60);
 
         this.lzwEncoding.text = data.low.text.substring(48, 81).toLowerCase();
         this.lzwEncoding.text = replaceAll(this.lzwEncoding.text, ' ', '_');
@@ -169,8 +169,8 @@ export class CompressionShowcaseComponent implements OnInit {
   }
 
   getRunLengthEncoding(image: AsciiImage): AsciiImage {
-    image.lines = getTextSplitByNumberOfCharacter(image.text, image.width);
-    image.encoded = this.compression.getRunLengthEncoded(image.text);
+    image.lines = this.compression.getRunLengthFlaggedAndSplit(image.text, image.width);
+    image.encoded = this.compression.getRunLengthFlaggedEncoded(image.text);
     image.entropyScore = this.compression.getEntropyScore(image.text.slice(0, this.charLimit));
     image.entropyFraction = roundToDecimalPlace(100 * image.entropyScore / this.charLimit, 2);
     return image;

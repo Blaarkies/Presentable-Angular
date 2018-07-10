@@ -3,6 +3,10 @@
   background-color: #2B2B2B;
 }
 
+.background-light {
+  background-color: #535759
+}
+
 .text-color-normal {
   color: #BBBBBB;
 }
@@ -45,4 +49,15 @@ mat-toolbar {
 
 .font-monospace {
   font-family: monospace;
+}
+
+.divider-normal {
+  position: initial !important;
+  left: auto !important;
+  width: auto !important;
+}
+
+.highlight-code-viewing {
+  color: greenyellow;
+  outline: 1px solid white;
 }

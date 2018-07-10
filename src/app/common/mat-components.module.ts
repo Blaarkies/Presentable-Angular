@@ -5,8 +5,10 @@ import {
   MatCardModule,
   MatDividerModule,
   MatGridListModule,
+  MatListModule,
   MatSnackBarModule,
   MatStepperModule,
+  MatTableModule,
   MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
@@ -26,7 +28,9 @@ import {BrowserModule} from "@angular/platform-browser";
     MatButtonModule,
     MatStepperModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule,
+    MatTableModule,
   ],
   exports: [
     CommonModule,
@@ -40,7 +44,9 @@ import {BrowserModule} from "@angular/platform-browser";
     MatButtonModule,
     MatStepperModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule,
+    MatTableModule,
   ],
   declarations: []
 })

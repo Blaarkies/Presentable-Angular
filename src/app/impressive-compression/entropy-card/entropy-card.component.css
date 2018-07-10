@@ -4,13 +4,7 @@
   font-style: oblique;
 }
 
-.highlight {
-  background-color: greenyellow;
-  color: black;
-}
-
-.text-title-green {
-  padding: 12px;
-  font-size: 26px;
-  color: yellowgreen !important;
+.list-small {
+  height: 200px;
+  overflow-y: scroll;
 }

@@ -6,7 +6,7 @@ export function clone(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
 }
 
-export function getTextSplitByNumberOfCharacter(text: string, width: number) {
+export function getTextSplitByNumber(text: string, width: number) {
   return text
     .split('')
     .reduce((sum, c) => {
@@ -20,6 +20,22 @@ export function getTextSplitByNumberOfCharacter(text: string, width: number) {
         return sum;
       },
       ['']
+    );
+}
+
+export function getArraySplitByNumber(array: any[], width: number) {
+  return array
+    .reduce((sum, c) => {
+        let newestLineIndex = sum.length - 1;
+
+        if (sum[newestLineIndex].length < width) {
+          sum[newestLineIndex].push(c);
+        } else {
+          sum.push([c]);
+        }
+        return sum;
+      },
+      [[]]
     );
 }
 

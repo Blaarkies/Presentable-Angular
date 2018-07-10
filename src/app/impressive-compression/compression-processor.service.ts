@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {getArrayRange, getRandomFromArray} from "../common/utils";
-import {HuffmanCode} from "../common/interface";
+import {getArrayRange, getArraySplitByNumber, getRandomFromArray, roundToDecimalPlace} from "../common/utils";
+import {FlaggedText, HuffmanCode} from "../common/interface";
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +77,56 @@ export class CompressionProcessorService {
         ['']
       )
       .map(run => '' + run.length + run.slice(-1));
-      // .reduce((sum, run) => sum + run, '');
+  }
+
+  getRunLengthFlaggedEncoded(text: string) {
+    let lastId = 0;
+    return text.split('')
+      .reduce((sum, c, i) => {
+          let newestLineIndex = sum.length - 1;
+          let lastChar = sum[newestLineIndex].slice(-1);
+          if (lastChar === c || i === 0) {
+            sum[newestLineIndex] = sum[newestLineIndex] + c;
+          } else {
+            sum.push(c);
+          }
+          return sum;
+        },
+        ['']
+      )
+      .map(run => ({
+        text: '' + run.length + run.slice(-1),
+        id: lastId++
+      }));
+  }
+
+  getRunLengthFlagged(text: string): FlaggedText[] {
+    let lastChar;
+    let lastId = 0;
+    return text.split('')
+      .map(char => {
+        if (lastChar === undefined) {
+          lastChar = char;
+        }
+
+        if (char !== lastChar) {
+          lastChar = char;
+          return <FlaggedText>{
+            text: char,
+            id: ++lastId
+          };
+        }
+
+        return <FlaggedText>{
+          text: char,
+          id: lastId
+        } as FlaggedText;
+      });
+  }
+
+  getRunLengthFlaggedAndSplit(text: string, width: number): FlaggedText[] {
+    let flaggedText = this.getRunLengthFlagged(text);
+    return getArraySplitByNumber(flaggedText, width);
   }
 
   getHuffmanTree(text: string): any[] {
@@ -177,4 +226,6 @@ export class CompressionProcessorService {
       .map(bin => bin + ' ')
       .join('');
   }
+
+
 }

@@ -4,13 +4,14 @@ import {CompressionShowcaseComponent} from './compression-showcase/compression-s
 import {MatComponentsModule} from "../common/mat-components.module";
 import {EntropyCardComponent} from './entropy-card/entropy-card.component';
 import { HuffmanTreeComponent } from './huffman-tree/huffman-tree.component';
+import { EntropyInfoComponent } from './entropy-info/entropy-info.component';
 
 @NgModule({
   imports: [
     CommonModule,
     MatComponentsModule,
   ],
-  declarations: [CompressionShowcaseComponent, EntropyCardComponent, HuffmanTreeComponent]
+  declarations: [CompressionShowcaseComponent, EntropyCardComponent, HuffmanTreeComponent, EntropyInfoComponent]
 })
 export class ImpressiveCompressionModule {
 }

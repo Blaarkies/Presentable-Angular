@@ -23,10 +23,15 @@ export interface JsonAsset {
 export interface AsciiImage {
   width: number;
   text: string;
-  lines?: string[];
-  encoded?: string[];
+  lines?: FlaggedText[];
+  encoded?: FlaggedText[];
   entropyScore?: number;
   entropyFraction?: number;
+}
+
+export interface FlaggedText {
+  text: string;
+  id: number;
 }
 
 export interface HuffmanCode {
