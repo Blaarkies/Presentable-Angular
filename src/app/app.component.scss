@@ -61,3 +61,26 @@ mat-toolbar {
   color: greenyellow;
   outline: 1px solid white;
 }
+
+.align-padding {
+  padding-left: 10px;
+  width: 80px;
+}
+
+.descriptive {
+  font-style: oblique;
+  color: gray;
+}
+
+.rotate-question {
+  text-align: center;
+  font-size: 420px;
+  animation: spin 15s cubic-bezier(0.21, 0.74, 0.86, 0.57) infinite;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

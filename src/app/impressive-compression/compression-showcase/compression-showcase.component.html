@@ -20,8 +20,23 @@
 
   <h1 class="text-tile-center">Patternless Data</h1>
   <mat-grid-list [cols]="2">
-    <mat-grid-tile [colspan]="2">
+    <mat-grid-tile>
       <app-entropy-card [data]="highEntropy" [charLimit]="charLimit"></app-entropy-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title>Characters Used</mat-card-title>
+        <mat-card-content class="card-medium-font">
+          <div *ngFor="let line of highEntropy.charsUsed" style="text-align: left">
+            {{line}}
+          </div>
+        </mat-card-content>
+        <mat-card-footer class="text-color-normal text-style-data">
+          <div>Count: {{highEntropy.charsUsedLength}}</div>
+          <div>Fraction of ASCII table in use: {{highEntropy.asciiFraction}}%</div>
+        </mat-card-footer>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
@@ -94,14 +109,19 @@
           </mat-card>
         </tr>
 
+        <tr></tr>
+
         <tr>
           <mat-card>
             <mat-card-title>Frequency Table</mat-card-title>
             <mat-card-content>
               <table style="margin: auto;
-              width: 50%;
-              font-size: larger;
-              font-family: monospace;" border=1 frame=void rules=rows>
+                            width: 50%;
+                            font-size: larger;
+                            font-family: monospace;"
+                     border=1
+                     frame=void
+                     rules=rows>
                 <tr>
                   <th>Char</th>
                   <th>Usages</th>
@@ -123,12 +143,6 @@
       <app-huffman-tree></app-huffman-tree>
     </mat-grid-tile>
   </mat-grid-list>
-
-  <!--<mat-grid-list [cols]="1">-->
-  <!--<mat-grid-tile>-->
-  <!--<app-huffman-tree [tree]="huffmanCoding.tree"></app-huffman-tree>-->
-  <!--</mat-grid-tile>-->
-  <!--</mat-grid-list>-->
 </div>
 
 <div *ngIf="currentPage === 5" [@visibilityChanged]>
@@ -209,22 +223,118 @@
 <div *ngIf="currentPage === 6" [@visibilityChanged]>
 
   <h1 class="text-tile-center">LZW - Lempel–Ziv–Welch</h1>
-  <h3>{{lzwEncoding.text}}</h3>
-  <table style="text-align: center;">
-    <tr>
-      <th>Current</th>
-      <th>Next</th>
-      <th>Output</th>
-      <th>Add to Dictionary</th>
-    </tr>
-    <tr *ngFor="let row of lzwEncoding.rows">
-      <td>{{row.current}}</td>
-      <td>{{row.next}}</td>
-      <td>{{row.output}}</td>
-      <td>{{row.add}}</td>
-    </tr>
-  </table>
+
+  <mat-grid-list [cols]="2" rowHeight="800px">
+
+    <mat-grid-tile>
+
+      <!--Instead use fxFlex...or anything that doesn't hate nice layouts-->
+      <table>
+        <tr>
+          <mat-card>
+            <mat-card-title>Not Encoded</mat-card-title>
+            <mat-card-content style="font-family: monospace;
+                                    font-size: x-large;
+                                    margin-top: 60px;"
+                              class="card-medium-font">
+              <div>{{lzwEncoding.text}}</div>
+              <br>
+              <div class="descriptive">Transmission Length</div>
+              <span *ngFor="let number of lzwEncoding.textNumbers"> {{number}} </span>
+            </mat-card-content>
+
+            <mat-card-footer>
+              <app-entropy-info
+                [bytes]="lzwEncoding.text?.length"
+                [entropyScore]="lzwEncoding.entropyScore"
+                [entropyFraction]="lzwEncoding.entropyFraction">
+              </app-entropy-info>
+            </mat-card-footer>
+          </mat-card>
+        </tr>
+
+        <tr></tr>
+
+        <tr>
+          <mat-card>
+            <mat-card-title>Encoded Representation</mat-card-title>
+            <mat-card-content style="font-family: monospace;
+                                    font-size: x-large;">
+              <div style="line-height: 3;">
+                <ng-container *ngFor="let e of lzwEncoding.encodedTableFiltered; let i = index;">
+                <span [class.highlight-code-viewing]="selectedLzwEntry.code == e.code
+                                                        && selectedLzwEntry.next == e.next"
+                      style="outline: none !important;">
+                  {{e.output}}
+                  <span style="position: relative;
+                                left: -32px;
+                                top: 22px;">{{e.code}}</span>
+                  </span>
+                  <br *ngIf="(i+1)%7==0">
+                </ng-container>
+              </div>
+
+              <div style="font-family: monospace;
+                          font-size: x-large;
+                          margin-top: 60px;"
+                   class="text-color-normal">
+                <div class="descriptive">Transmission Length</div>
+                <span *ngFor="let e of lzwEncoding.encodedTableFiltered; let i = index;"> {{e.code}} </span>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </tr>
+      </table>
+      <!--Instead use fxFlex...or anything that doesn't hate nice layouts-->
+
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1">
+
+      <mat-list style="height: 800px; overflow-y: scroll;"
+                (mouseleave)="selectedLzwEntry = {}">
+        <h3 matSubheader class="text-color-normal">
+          <span class="align-padding">Current</span>
+          <span class="align-padding">Next</span>
+          <span class="align-padding">Output</span>
+          <span class="align-padding">Add</span>
+        </h3>
+        <mat-divider class="divider-normal"></mat-divider>
+        <ng-container *ngFor="let row of lzwEncoding.encodedTable">
+          <mat-list-item class="background-light text-color-normal hover-bright"
+                         style="height: 32px;"
+                         (mouseenter)="selectedLzwEntry.code = row.code;
+                                        selectedLzwEntry.next = row.next;">
+            <span class="align-padding">{{row.current}}</span>
+            <span class="align-padding">{{row.next}}</span>
+            <span class="align-padding">{{row.output}}</span>
+            <span class="align-padding">{{row.add}}</span>
+          </mat-list-item>
+          <mat-divider class="divider-normal"></mat-divider>
+        </ng-container>
+      </mat-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 
 </div>
+
+<div *ngIf="currentPage === 7" [@visibilityChanged]>
+
+  <h1 class="text-tile-center">Questions</h1>
+
+  <mat-grid-list [cols]="2">
+    <mat-grid-tile [colspan]="2">
+
+      <mat-card>
+        <mat-card-content>
+          <h1 class="rotate-question">¿</h1>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>
+
 
 

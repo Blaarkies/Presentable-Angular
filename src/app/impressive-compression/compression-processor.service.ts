@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {getArrayRange, getArraySplitByNumber, getRandomFromArray, roundToDecimalPlace} from "../common/utils";
+import {getArrayRange, getArraySplitByNumber, getRandomFromArray} from "../common/utils";
 import {FlaggedText, HuffmanCode} from "../common/interface";
 
 @Injectable({
@@ -44,11 +44,7 @@ export class CompressionProcessorService {
   }
 
   getHighEntropyText(charLimit: number) {
-    let alphaNumericalList = [].concat(
-      getArrayRange(64).slice(32),
-      getArrayRange(126).slice(90),
-      getArrayRange(255).slice(191)
-    );
+    let alphaNumericalList = this.getVisibleFontList();
     return getArrayRange(charLimit)
       .map((n, i) => {
         if (i && i % 50 === 0) {
@@ -60,6 +56,15 @@ export class CompressionProcessorService {
         return String.fromCharCode(getRandomFromArray(alphaNumericalList));
       })
       .join('');
+  }
+
+  getVisibleFontList() {
+    // return [].concat(
+    //   getArrayRange(64).slice(32),
+    //   getArrayRange(126).slice(90),
+    //   getArrayRange(255).slice(191)
+    // );
+    return getArrayRange(256);
   }
 
   getRunLengthEncoded(text: string) {
@@ -228,4 +233,60 @@ export class CompressionProcessorService {
   }
 
 
+  getLzwEncoded(text: string) {
+    let dictionary = [];
+    let lastCode = 255;
+    let nowString = '';
+
+    return text.split('')
+      .map((char, i, a) => {
+        nowString += char;
+        let encodedWord = dictionary.find(e => e.string === nowString);
+
+        let next = a.slice(i + 1)[0];
+        if (next === undefined) {
+
+          return {
+            current: nowString,
+            next: '',
+            output: nowString,
+            add: '',
+            code: encodedWord ? encodedWord.code : nowString.charCodeAt(0)
+          };
+        }
+
+        let forward = nowString + next;
+        let entry = dictionary.find(e => e.string === forward);
+        if (entry) {
+          return {
+            current: nowString,
+            next: next,
+            output: '',
+            add: ''
+          };
+        }
+
+        let output = encodedWord ? encodedWord.string : nowString;
+        let nowStringClone = nowString;
+        if (output) {
+          nowString = '';
+        }
+
+        lastCode++;
+        let charToAdd = `${output}${next}`;
+        dictionary.push({
+          string: charToAdd,
+          code: lastCode
+        });
+        let add = `${charToAdd} = ${lastCode}`;
+
+        return {
+          current: nowStringClone,
+          next: next,
+          output: output,
+          add: add,
+          code: encodedWord ? encodedWord.code : output.charCodeAt(0)
+        };
+      });
+  }
 }

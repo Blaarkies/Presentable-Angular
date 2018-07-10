@@ -25,8 +25,8 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class CompressionShowcaseComponent implements OnInit {
 
-  currentPage: number = 4;
-  private maxPage: number = 6;
+  currentPage: number = 1;
+  private maxPage: number = 7;
 
   charLimit = 400;
   lowEntropy: EntropyExample = this.newEntropy();
@@ -40,6 +40,7 @@ export class CompressionShowcaseComponent implements OnInit {
   lzwEncoding: any = {};
   selectedHuffmanCode: string;
   selectedRunLengthId: number;
+  selectedLzwEntry = {};
 
   constructor(private http: HttpClient,
               private compression: CompressionProcessorService) {
@@ -74,8 +75,12 @@ export class CompressionShowcaseComponent implements OnInit {
           });
         this.huffmanCoding.lines = getTextSplitByNumber(this.huffmanCoding.text, 60);
 
-        this.lzwEncoding.text = data.low.text.substring(48, 81).toLowerCase();
+        this.lzwEncoding.text = data.low.text.substring(49, 81).toLowerCase();
         this.lzwEncoding.text = replaceAll(this.lzwEncoding.text, ' ', '_');
+        this.lzwEncoding = this.getProcessedEntropy(this.lzwEncoding);
+        this.lzwEncoding.textNumbers = this.lzwEncoding.text.split('').map(char => char.charCodeAt(0));
+        this.lzwEncoding.encodedTable = this.compression.getLzwEncoded(this.lzwEncoding.text);
+        this.lzwEncoding.encodedTableFiltered = this.lzwEncoding.encodedTable.filter(e => e.output);
       });
 
     this.highEntropy = {
@@ -84,88 +89,12 @@ export class CompressionShowcaseComponent implements OnInit {
       text: this.compression.getHighEntropyText(this.charLimit)
     };
     this.highEntropy = this.getProcessedEntropy(this.highEntropy);
-
-    // Gucci gang Gucci gang Gucci gang
-    this.lzwEncoding.rows = [
-      {
-        current: 'g',
-        next: 'u',
-        output: 'g',
-        add: 'gu = 256'
-      },
-      {
-        current: 'u',
-        next: 'c',
-        output: 'u',
-        add: 'uc = 257'
-      },
-      {
-        current: 'c',
-        next: 'c',
-        output: 'c',
-        add: 'cc = 258'
-      },
-      {
-        current: 'c',
-        next: 'i',
-        output: 'c',
-        add: 'ci = 259'
-      },
-      {
-        current: 'i',
-        next: '_',
-        output: 'i',
-        add: '_i = 260'
-      },
-      {
-        current: '_',
-        next: 'g',
-        output: '_',
-        add: '_g = 261'
-      },
-      {
-        current: 'g',
-        next: 'a',
-        output: 'g',
-        add: 'ga = 262'
-      },
-      {
-        current: 'a',
-        next: 'n',
-        output: 'a',
-        add: 'an = 263'
-      },
-      {
-        current: 'n',
-        next: 'g',
-        output: 'n',
-        add: 'ng = 264'
-      },
-      {
-        current: 'g',
-        next: '_',
-        output: 'g',
-        add: 'g_ = 265'
-      },
-      {
-        current: '_',
-        next: 'g',
-        output: '_g',
-        add: '_gu = 266'
-      },
-      {
-        current: 'u',
-        next: 'c',
-        output: 'uc',
-        add: 'ucc = 267'
-      },
-      {
-        current: 'c',
-        next: 'i',
-        output: 'ci',
-        add: 'ci_ = 268'
-      }
-    ];
+    this.highEntropy.charsUsed = this.compression.getVisibleFontList()
+      .map(vf => String.fromCharCode(vf))
+      .join('');
+    this.highEntropy.charsUsedLength = this.highEntropy.charsUsed.length;
+    this.highEntropy.asciiFraction = roundToDecimalPlace(this.highEntropy.charsUsed.length / 256, 2) * 100;
+    this.highEntropy.charsUsed = getTextSplitByNumber(this.highEntropy.charsUsed, 50);
   }
 
   getRunLengthEncoding(image: AsciiImage): AsciiImage {
