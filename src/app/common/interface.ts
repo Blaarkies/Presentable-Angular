@@ -11,6 +11,9 @@ export interface EntropyExample {
   lines?: string[];
   entropyScore?: number;
   entropyFraction?: number;
+  charsUsed?: string[];
+  charsUsedLength?: number;
+  asciiFraction?: number;
 }
 
 export interface JsonAsset {

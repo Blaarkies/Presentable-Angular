@@ -90,11 +90,10 @@ export class CompressionShowcaseComponent implements OnInit {
     };
     this.highEntropy = this.getProcessedEntropy(this.highEntropy);
     this.highEntropy.charsUsed = this.compression.getVisibleFontList()
-      .map(vf => String.fromCharCode(vf))
-      .join('');
+      .map(vf => String.fromCharCode(vf));
     this.highEntropy.charsUsedLength = this.highEntropy.charsUsed.length;
     this.highEntropy.asciiFraction = roundToDecimalPlace(this.highEntropy.charsUsed.length / 256, 2) * 100;
-    this.highEntropy.charsUsed = getTextSplitByNumber(this.highEntropy.charsUsed, 50);
+    this.highEntropy.charsUsed = getTextSplitByNumber(this.highEntropy.charsUsed.join(''), 50);
   }
 
   getRunLengthEncoding(image: AsciiImage): AsciiImage {
