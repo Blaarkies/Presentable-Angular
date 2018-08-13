@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: repeat(5, 120px);
+  grid-row-gap: .5em;
+  grid-column-gap: 1em;
+  padding-top: 28px;
+
+  .item {
+    grid-column: 2;
+    text-align: center;
+  }
+}
+

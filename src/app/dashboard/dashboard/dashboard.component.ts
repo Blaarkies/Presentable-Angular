@@ -5,7 +5,7 @@ import {InfoCard} from "../../common/interface";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css',
+  styleUrls: ['./dashboard.component.scss',
     '../../app.component.scss']
 })
 export class DashboardComponent implements OnInit {

@@ -9,7 +9,7 @@ interface EncodedWord {
 @Component({
   selector: 'app-entropy-card',
   templateUrl: './entropy-card.component.html',
-  styleUrls: ['./entropy-card.component.css',
+  styleUrls: ['./entropy-card.component.scss',
     '../../app.component.scss']
 })
 export class EntropyCardComponent implements OnInit {
@@ -32,13 +32,13 @@ export class EntropyCardComponent implements OnInit {
     if (this.encodedWords.some(ew => ew.normal === word)) {
       this.encodedWords = this.encodedWords
         .filter(ew => ew.normal !== word)
-        .map((ew, i) => ({normal: ew.normal, encoded: '\\' + i}));
+        .map((ew, i) => ({normal: ew.normal, encoded: i.toString()}));
       return;
     }
 
     this.encodedWords.push({
       normal: word,
-      encoded: '\\' + this.encodedWords.length
+      encoded: this.encodedWords.length.toString()
     });
   }
 

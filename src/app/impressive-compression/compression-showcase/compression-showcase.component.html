@@ -5,26 +5,26 @@
 <div *ngIf="currentPage === 1" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Data vs Information</h1>
-  <mat-grid-list [cols]="2">
-    <mat-grid-tile>
+  <div class="container">
+    <div class="item">
       <app-entropy-card [data]="mediumEntropy" [charLimit]="charLimit"></app-entropy-card>
-    </mat-grid-tile>
+    </div>
 
-    <mat-grid-tile>
+    <div class="item">
       <app-entropy-card [data]="lowEntropy" [charLimit]="charLimit"></app-entropy-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="currentPage === 2" [@visibilityChanged]>
 
   <h1 class="text-tile-center">Patternless Data</h1>
-  <mat-grid-list [cols]="2">
-    <mat-grid-tile>
+  <div class="container">
+    <div class="item">
       <app-entropy-card [data]="highEntropy" [charLimit]="charLimit"></app-entropy-card>
-    </mat-grid-tile>
+    </div>
 
-    <mat-grid-tile>
+    <div class="item">
       <mat-card>
         <mat-card-title>Characters Used</mat-card-title>
         <mat-card-content class="card-medium-font">
@@ -37,8 +37,8 @@
           <div>Fraction of ASCII table in use: {{highEntropy.asciiFraction}}%</div>
         </mat-card-footer>
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="currentPage === 3" [@visibilityChanged]>
@@ -207,7 +207,7 @@
     </mat-grid-tile>
 
     <mat-grid-tile *ngFor="let col of huffmanCoding.table">
-      <mat-card class="hover-bright"
+      <mat-card class="hover-dark"
                 (mouseenter)="selectedHuffmanCode = col.path">
         <mat-card-content class="text-tile-center font-monospace">
           <div>{{col.char}}</div>
@@ -302,7 +302,7 @@
         </h3>
         <mat-divider class="divider-normal"></mat-divider>
         <ng-container *ngFor="let row of lzwEncoding.encodedTable">
-          <mat-list-item class="background-light text-color-normal hover-bright"
+          <mat-list-item class="background-light text-color-normal hover-dark"
                          style="height: 32px;"
                          (mouseenter)="selectedLzwEntry.code = row.code;
                                         selectedLzwEntry.next = row.next;">

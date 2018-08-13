@@ -1,0 +1,125 @@
+/* You can add global styles to this file, and also import other style files */
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+@include mat-core();
+
+$candy-app-primary: mat-palette($mat-green, 600, 100, 800);
+$candy-app-accent: mat-palette($mat-amber);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn: mat-palette($mat-pink);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+.highlight-code-viewing {
+  color: black;
+  outline: 1px solid green;
+  background-color: greenyellow;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: lightgrey;
+  //padding: 0;
+  //height: 100%;
+  //width: 100%;
+}
+
+html * {
+  //box-sizing: border-box;
+}
+
+[hidden] {
+  display: none;
+}
+
+//
+//.background-normal {
+//  background-color: #2B2B2B;
+//}
+//
+//.background-light {
+//  background-color: #535759
+//}
+//
+//.text-color-normal {
+//  color: #BBBBBB;
+//}
+//
+//mat-card {
+//  background-color: #3C3F41;
+//  width: 600px;
+//}
+//
+//mat-card-title {
+//  color: #BBBBBB;
+//}
+//
+//mat-card-subtitle,
+//mat-card-content {
+//  color: #BBBBBB;
+//}
+
+.hover-bright:hover {
+  filter: brightness(1.2);
+}
+
+.hover-dark:hover {
+  box-shadow: 0 0 20px 4px floralwhite;
+}
+
+//mat-toolbar {
+//  color: #BBBBBB;
+//  background-color: #3C3F41;
+//}
+
+.card-big-font {
+  font-size: 22px;
+}
+
+.card-medium-font {
+  font-size: 18px;
+}
+
+.font-monospace {
+  font-family: monospace;
+}
+
+.divider-normal {
+  position: initial !important;
+  left: auto !important;
+  width: auto !important;
+}
+
+
+
+.align-padding {
+  padding-left: 10px;
+  width: 80px;
+}
+
+.descriptive {
+  font-style: oblique;
+  //color: gray;
+}
+
+.rotate-question {
+  text-align: center;
+  font-size: 420px;
+  animation: spin 15s cubic-bezier(0.21, 0.74, 0.86, 0.57) infinite;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

@@ -1,30 +1,27 @@
-<div>
-  <table class="text-color-normal text-style-data">
-    <tr>
-      <td>
-        Data:
-      </td>
-      <td>
-        {{bytes}} bytes
-      </td>
-    </tr>
+<div class="container">
 
-    <tr>
-      <td>
-        Information:
-      </td>
-      <td>
-        {{entropyScore}} bytes
-      </td>
-    </tr>
+  <div class="item">
+    Data:
+  </div>
+  <div class="item">
+    {{bytes}} bytes
+  </div>
 
-    <tr>
-      <td>
-        Compression limit:
-      </td>
-      <td>
-        {{entropyFraction}}%
-      </td>
-    </tr>
-  </table>
+  <div class="item">
+    Information:
+  </div>
+  <div class="item">
+    {{entropyScore}} bytes
+  </div>
+
+  <div class="item">
+    Ratio:
+  </div>
+  <div class="item justify-center progress-bar-constrain-height">
+    <mat-progress-bar class="progress-bar-rounded-corners"
+                      [value]="entropyFraction">
+    </mat-progress-bar>
+    <span class="progress-bar-text">{{entropyFraction}}%</span>
+  </div>
+
 </div>

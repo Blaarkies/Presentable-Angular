@@ -1,5 +1,7 @@
-<mat-card *ngIf="encodeMode">
-  <mat-card-content>
+<mat-accordion>
+  <mat-expansion-panel
+    class="remove-expansion-panel-padding"
+    [expanded]="encodeMode">
 
     <mat-list class="list-small">
       <mat-divider class="divider-normal"></mat-divider>
@@ -12,11 +14,14 @@
         <mat-divider class="divider-normal"></mat-divider>
       </ng-container>
     </mat-list>
-  </mat-card-content>
-</mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
 
 <mat-card>
-  <mat-card-title>{{data.name}} ♣ <h5 style="display:inline;">{{data.artist}}</h5></mat-card-title>
+  <mat-card-title>
+    <span class="text-song-name">{{data.name}}</span>
+    ♣
+    <span class="text-artist-name">{{data.artist}}</span></mat-card-title>
   <mat-card-subtitle class="card-big-font">
     <div *ngFor="let line of data.lines">
 
@@ -31,25 +36,23 @@
   </mat-card-subtitle>
 
   <mat-card-footer>
+    <div class="container">
 
-    <mat-grid-list [cols]="2" [rowHeight]="100">
-
-      <mat-grid-tile>
+      <div class="item">
         <app-entropy-info
           [bytes]="charLimit"
           [entropyScore]="data.entropyScore"
           [entropyFraction]="data.entropyFraction">
         </app-entropy-info>
-      </mat-grid-tile>
+      </div>
 
-      <mat-grid-tile>
+      <div class="item justify-bottom-right">
         <button mat-flat-button
                 (click)="encodeMode = !encodeMode">
-          Encode
+          {{encodeMode ? 'Decode' : 'Encode'}}
         </button>
-      </mat-grid-tile>
-    </mat-grid-list>
-
+      </div>
+    </div>
   </mat-card-footer>
 
 </mat-card>

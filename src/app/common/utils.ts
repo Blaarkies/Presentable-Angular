@@ -68,7 +68,7 @@ export function getRandomInteger(max: number = 9) {
  * @returns {number[]}
  */
 export function getArrayRange(count: number = 1) {
-  return Array.from({length: count}, (v, i) => i);
+  return [...Array(count).keys()];
 }
 
 /**

@@ -1,14 +1,12 @@
-<div style="padding: 20px;">
-  <mat-grid-list [cols]="1" rowHeight="120px">
+<div class="container">
 
-    <mat-grid-tile *ngFor="let card of cards">
+  <div class="item"
+       *ngFor="let card of cards">
 
-      <mat-card (click)="goToRoute(card.data);" class="hover-bright">
-        <mat-card-title>{{card.title}}</mat-card-title>
-        <mat-card-subtitle>{{card.subtitle}}</mat-card-subtitle>
-      </mat-card>
-
-    </mat-grid-tile>
-
-  </mat-grid-list>
+    <mat-card (click)="goToRoute(card.data);"
+              class="hover-dark mat-elevation-z0">
+      <mat-card-title>{{card.title}}</mat-card-title>
+      <mat-card-subtitle>{{card.subtitle}}</mat-card-subtitle>
+    </mat-card>
+  </div>
 </div>

@@ -8,7 +8,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 @Component({
   selector: 'app-explanation',
   templateUrl: './compression-showcase.component.html',
-  styleUrls: ['./compression-showcase.component.css',
+  styleUrls: ['./compression-showcase.component.scss',
     '../../app.component.scss'],
   animations: [
     trigger('visibilityChanged', [
@@ -26,7 +26,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 export class CompressionShowcaseComponent implements OnInit {
 
   currentPage: number = 1;
-  private maxPage: number = 7;
+  maxPage: number = 7;
 
   charLimit = 400;
   lowEntropy: EntropyExample = this.newEntropy();

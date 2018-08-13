@@ -1,3 +1,14 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .item {
+    width: max-content;
+    margin: auto;
+  }
+}
+
 .transition {
   transition: 1.4s -webkit-filter cubic-bezier(0.65, 0.05, 0.36, 1);
 }
@@ -10,10 +21,7 @@
   filter: blur(0);
 }
 
-/*header-title for each page, they don't take up space*/
 .text-tile-center {
-  float: left;
-  margin-top: -10px;
   text-align: center;
   width: 100%;
   font-family: lucida console, monospace;
@@ -24,6 +32,6 @@
 }
 
 .text-to-pixel {
-  transform: scale(2,1);
+  transform: scale(2, 1);
   margin-left: 186px;
 }
