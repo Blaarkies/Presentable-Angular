@@ -1,0 +1,9 @@
+<div class="meter">
+  <span [style.width.%]="value">
+
+    <span *ngIf="title === undefined; then percentage else text"></span>
+    <ng-template #percentage>{{value}}%</ng-template>
+    <ng-template #text>{{title}}</ng-template>
+
+  </span>
+</div>

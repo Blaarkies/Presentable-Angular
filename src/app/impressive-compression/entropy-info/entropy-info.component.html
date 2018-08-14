@@ -1,27 +1,27 @@
 <div class="container">
 
   <div class="item">
-    Data:
+    Data
   </div>
   <div class="item">
     {{bytes}} bytes
   </div>
 
   <div class="item">
-    Information:
+    Information
   </div>
   <div class="item">
     {{entropyScore}} bytes
   </div>
 
   <div class="item">
-    Ratio:
+    Ratio
   </div>
-  <div class="item justify-center progress-bar-constrain-height">
-    <mat-progress-bar class="progress-bar-rounded-corners"
-                      [value]="entropyFraction">
-    </mat-progress-bar>
-    <span class="progress-bar-text">{{entropyFraction}}%</span>
+  <div class="item">
+    <app-progress-bar [value]="entropyFraction"></app-progress-bar>
   </div>
 
 </div>
+
+
+

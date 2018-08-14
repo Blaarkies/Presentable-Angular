@@ -6,15 +6,18 @@ import {
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
-  MatListModule, MatProgressBarModule,
+  MatListModule,
+  MatProgressBarModule,
   MatSnackBarModule,
   MatStepperModule,
   MatTableModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BrowserModule} from "@angular/platform-browser";
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
   imports: [
@@ -34,6 +37,7 @@ import {BrowserModule} from "@angular/platform-browser";
     MatTableModule,
     MatExpansionModule,
     MatProgressBarModule,
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -52,8 +56,10 @@ import {BrowserModule} from "@angular/platform-browser";
     MatTableModule,
     MatExpansionModule,
     MatProgressBarModule,
+    MatTooltipModule,
+    ProgressBarComponent
   ],
-  declarations: []
+  declarations: [ProgressBarComponent]
 })
 export class MatComponentsModule {
 }
