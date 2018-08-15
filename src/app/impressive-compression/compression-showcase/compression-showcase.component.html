@@ -1,10 +1,10 @@
-<button mat-flat-button (click)="switchPage(false)">Back</button>
-<button mat-flat-button (click)="switchPage(true)">Next</button>
+<div style="position: absolute; top: 0; right: 50px;">
+  <button mat-flat-button (click)="switchPage(false)">Back</button>
+  <button mat-flat-button (click)="switchPage(true)">Next</button>
+</div>
 
+<div [hidden]="currentPage !== 1">
 
-<div *ngIf="currentPage === 1" [@visibilityChanged]>
-
-  <h1 class="text-tile-center">Data vs Information</h1>
   <div class="container">
     <div class="item">
       <app-entropy-card [data]="mediumEntropy" [charLimit]="charLimit"></app-entropy-card>
@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div *ngIf="currentPage === 2" [@visibilityChanged]>
+<div *ngIf="currentPage === 2">
 
   <h1 class="text-tile-center">Patternless Data</h1>
   <div class="container">
@@ -32,48 +32,63 @@
             {{line}}
           </div>
         </mat-card-content>
-        <mat-card-footer class="text-color-normal text-style-data">
-          <div>Count: {{highEntropy.charsUsedLength}}</div>
-          <div>Fraction of ASCII table in use: {{highEntropy.asciiFraction}}%</div>
+
+        <mat-card-footer class="text-style-data footer-padding">
+          <div class="footer-container">
+
+            <div class="footer-item">Characters used</div>
+            <div class="footer-item">{{highEntropy.charsUsedLength}}</div>
+
+            <div class="footer-item">Fraction of ASCII table</div>
+            <div class="footer-item">
+              <app-progress-bar [value]="highEntropy.asciiFraction"></app-progress-bar>
+            </div>
+          </div>
+
         </mat-card-footer>
       </mat-card>
     </div>
   </div>
 </div>
 
-<div *ngIf="currentPage === 3" [@visibilityChanged]>
+<div *ngIf="currentPage === 3">
 
-  <h1 class="text-tile-center">Run-length Encoding</h1>
-  <mat-grid-list [cols]="2">
-
-    <mat-grid-tile>
+  <div class="container">
+    <div class="item">
       <mat-card>
         <mat-card-title>Not Encoded</mat-card-title>
-        <mat-card-content class="text-to-pixel">
-          <div *ngFor="let line of runLengthImage.lines">
-            <span class="font-pixel"
-                  *ngFor="let flaggedChar of line;
-                  let i = index"
-                  [class.highlight-code-viewing]="flaggedChar.id === selectedRunLengthId">{{flaggedChar.text}}</span>
-          </div>
+        <mat-card-content>
 
+          <div class="pixels-container">
+            <ng-container *ngFor="let line of runLengthImage.lines">
+              <div class="pixels-item pixel-color"
+                   *ngFor="let flaggedChar of line"
+                   [ngClass]="[
+                   flaggedChar.text === '▓' ? 'pixels-on' : 'pixels-off',
+                   flaggedChar.id === selectedRunLengthId ? 'pixels-highlight' : ''
+                   ]">
+              </div>
+            </ng-container>
+          </div>
         </mat-card-content>
       </mat-card>
-    </mat-grid-tile>
+    </div>
 
-    <mat-grid-tile>
+    <div class="item pixels-encoded-card-size">
+
       <mat-card (mouseleave)="selectedRunLengthId = null">
         <mat-card-title>Encoded</mat-card-title>
-        <mat-card-content class="text-to-pixel">
-          <span class="font-pixel"
+        <mat-card-content class="pixels-encoded-card-padding">
+          <span class="pixels-text-scale pixels-font cursor-pointer"
                 *ngFor="let flaggedChar of runLengthImage.encoded;
                 let i = index"
                 (mouseenter)="selectedRunLengthId = flaggedChar.id"
-                [class.highlight-code-viewing]="flaggedChar.id === selectedRunLengthId">{{flaggedChar.text}}<br
-            *ngIf="(i+1)%9==0"></span>
+                [class.highlight-code-viewing]="flaggedChar.id === selectedRunLengthId">
+            {{flaggedChar.text}}<br *ngIf="(i+1)%9==0">
+          </span>
         </mat-card-content>
 
-        <mat-card-footer>
+        <mat-card-footer class="footer-padding">
           <app-entropy-info
             [bytes]="runLengthImage.text.length"
             [entropyScore]="runLengthImage.entropyScore"
@@ -82,72 +97,62 @@
         </mat-card-footer>
 
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
 
+  </div>
 </div>
 
-<div *ngIf="currentPage === 4" [@visibilityChanged] style="text-align: center;">
+<div *ngIf="currentPage === 4">
 
-  <h1 class="text-tile-center">Huffman coding</h1>
+  <div class="huffman-container">
 
-  <mat-grid-list [cols]="4" rowHeight="800px">
+    <div class="text-to-encode">
 
-    <mat-grid-tile>
+      <mat-card>
+        <mat-card-title>Example Text</mat-card-title>
+        <mat-card-content class="card-medium-font">
+          <div *ngFor="let line of huffmanCoding.lines">
+            {{line}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-      <!--Instead use fxFlex...or anything that doesn't hate nice layouts-->
-      <table>
-        <tr>
-          <mat-card>
-            <mat-card-title>Example Text</mat-card-title>
-            <mat-card-content style="padding-left: 70px;"
-                              class="card-medium-font">
-              <div *ngFor="let line of huffmanCoding.lines" style="text-align: left">
-                {{line}}
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </tr>
+    <div class="huffman-table">
 
-        <tr></tr>
-
-        <tr>
-          <mat-card>
-            <mat-card-title>Frequency Table</mat-card-title>
-            <mat-card-content>
-              <table style="margin: auto;
+      <mat-card>
+        <mat-card-title>Frequency Table</mat-card-title>
+        <mat-card-content>
+          <table style="margin: auto;
                             width: 50%;
                             font-size: larger;
                             font-family: monospace;"
-                     border=1
-                     frame=void
-                     rules=rows>
-                <tr>
-                  <th>Char</th>
-                  <th>Usages</th>
-                </tr>
-                <tr *ngFor="let hc of huffmanCoding.table; let i = index;">
-                  <td>{{hc.char}}</td>
-                  <td>{{hc.usages}}</td>
-                </tr>
-              </table>
-            </mat-card-content>
-          </mat-card>
-        </tr>
-      </table>
-      <!--Instead use fxFlex...or anything that doesn't hate nice layouts-->
+                 border=1
+                 frame=void
+                 rules=rows>
+            <tr>
+              <th>Char</th>
+              <th>Usages</th>
+            </tr>
+            <tr *ngFor="let hc of huffmanCoding.table; let i = index;">
+              <td>{{hc.char}}</td>
+              <td>{{hc.usages}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-    </mat-grid-tile>
+    <div class="huffman-tree">
 
-    <mat-grid-tile [colspan]="3">
       <app-huffman-tree></app-huffman-tree>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
+
+
 </div>
 
-<div *ngIf="currentPage === 5" [@visibilityChanged]>
-
-  <h1 class="text-tile-center">Huffman coding</h1>
+<div *ngIf="currentPage === 5">
 
   <mat-grid-list [cols]="3" gutterSize="10px">
     <mat-grid-tile>
@@ -220,9 +225,7 @@
 
 </div>
 
-<div *ngIf="currentPage === 6" [@visibilityChanged]>
-
-  <h1 class="text-tile-center">LZW - Lempel–Ziv–Welch</h1>
+<div *ngIf="currentPage === 6">
 
   <mat-grid-list [cols]="2" rowHeight="800px">
 
@@ -319,9 +322,7 @@
 
 </div>
 
-<div *ngIf="currentPage === 7" [@visibilityChanged]>
-
-  <h1 class="text-tile-center">Questions</h1>
+<div *ngIf="currentPage === 7">
 
   <mat-grid-list [cols]="2">
     <mat-grid-tile [colspan]="2">

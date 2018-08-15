@@ -1,13 +1,14 @@
 <div class="app-page">
 
-  <mat-toolbar class="toolbar"
-               [hidden]="!currentImage">
+  <mat-toolbar class="toolbar-container"
+                [hidden]="!currentImage">
     <div class="page-avatar"
          [style.background-image]="currentImage"></div>
     <span>{{currentRoute}}</span>
+    <h1 class="text-tile-center">{{pageTitle}}</h1>
   </mat-toolbar>
 
-  <div class="router background-normal text-color-normal">
+  <div class="background-normal text-color-normal">
     <router-outlet></router-outlet>
   </div>
 </div>

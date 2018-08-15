@@ -50,7 +50,7 @@ export class CompressionProcessorService {
         if (i && i % 50 === 0) {
           return String.fromCharCode(10);
         }
-        if (Math.random() > 0.8) {
+        if (Math.random() > 0.90) {
           return ' ';
         }
         return String.fromCharCode(getRandomFromArray(alphaNumericalList));

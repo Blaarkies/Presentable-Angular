@@ -4,6 +4,7 @@ import {AsciiImage, EntropyExample, JsonAsset} from "../../common/interface";
 import {CompressionProcessorService} from "../compression-processor.service";
 import {clone, getTextSplitByNumber, replaceAll, roundToDecimalPlace} from "../../common/utils";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {TitleService} from "../../title.service";
 
 @Component({
   selector: 'app-explanation',
@@ -14,18 +15,18 @@ import {animate, style, transition, trigger} from "@angular/animations";
     trigger('visibilityChanged', [
       transition(':enter', [
         style({opacity: 0, transform: 'translateX(-400px)'}),
-        animate(600, style({opacity: 1, transform: 'translateX(0)'}))
+        animate(6, style({opacity: 1, transform: 'translateX(0)'}))
       ]),
       transition(':leave', [
         style({opacity: 1, transform: 'translateX(0)'}),
-        animate(600, style({opacity: 0, transform: 'translateX(-400px)'}))
+        animate(6, style({opacity: 0, transform: 'translateX(-400px)'}))
       ])
     ])
   ]
 })
 export class CompressionShowcaseComponent implements OnInit {
 
-  currentPage: number = 1;
+  currentPage: number = 4;
   maxPage: number = 7;
 
   charLimit = 400;
@@ -43,7 +44,8 @@ export class CompressionShowcaseComponent implements OnInit {
   selectedLzwEntry = {};
 
   constructor(private http: HttpClient,
-              private compression: CompressionProcessorService) {
+              private compression: CompressionProcessorService,
+              private titleService: TitleService) {
   }
 
   ngOnInit() {
@@ -135,9 +137,24 @@ export class CompressionShowcaseComponent implements OnInit {
 
     if (forward) {
       this.currentPage++;
+      this.getPageName();
       return;
     }
     this.currentPage--;
+    this.getPageName();
+  }
+
+  getPageName() {
+    this.titleService.titleChange$.next(
+      ['Data vs Information',
+        'Patternless Data',
+        'Run-length Encoding',
+        'Huffman coding',
+        'Huffman coding',
+        'LZW - Lempel–Ziv–Welch',
+        'Questions']
+        [this.currentPage - 1]
+    );
   }
 
 }

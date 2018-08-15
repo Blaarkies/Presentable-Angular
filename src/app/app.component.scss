@@ -3,16 +3,6 @@
   grid-template-rows: 64px auto;
   grid-template-columns: 1fr;
   height: 100vh;
-
-  .toolbar {
-    grid-row-start: 1;
-    grid-row-end: 1;
-  }
-
-  .router {
-    grid-row-start: 2;
-    grid-row-end: 2;
-  }
 }
 
 .page-avatar {
@@ -23,3 +13,15 @@
   content: ' ';
   margin-right: 16px;
 }
+
+.toolbar-container {
+  display: grid;
+  grid-template-columns: 1fr 10fr 20fr 11fr;
+}
+
+.text-tile-center {
+  text-align: center;
+  font-family: lucida console, monospace;
+  font-size: 2em;
+}
+
