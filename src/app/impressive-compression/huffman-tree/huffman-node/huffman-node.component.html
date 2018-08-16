@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="item" *ngIf="leftNode">
+    <app-node-connecter [direction]="BiDirectionEnum.LEFT"
+                        [pathText]="0"></app-node-connecter>
+
+    <div *ngIf="hasNestedLeftNode;else left_leaf">
+      <app-huffman-node [treePart]="leftNode"></app-huffman-node>
+    </div>
+
+    <ng-template #left_leaf>
+      <div class="character-icon">
+        {{leftNode.char}}
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="item" *ngIf="rightNode">
+    <app-node-connecter [direction]="BiDirectionEnum.RIGHT"
+                        [pathText]="1"></app-node-connecter>
+
+    <div *ngIf="hasNestedRightNode;else right_leaf">
+      <app-huffman-node [treePart]="rightNode"></app-huffman-node>
+    </div>
+
+    <ng-template #right_leaf>
+      <div class="character-icon">
+        {{rightNode.char}}
+      </div>
+    </ng-template>
+  </div>
+</div>

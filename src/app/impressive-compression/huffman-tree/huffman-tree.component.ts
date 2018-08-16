@@ -1,29 +1,19 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-huffman-tree',
   templateUrl: './huffman-tree.component.html',
-  styleUrls: ['./huffman-tree.component.css',
+  styleUrls: ['./huffman-tree.component.scss',
     '../../app.component.scss'],
 })
 export class HuffmanTreeComponent implements OnInit {
 
-  // @Input('tree') tree: any = [];
-  // @Input('tilt') tilt: number;
-
-  // notEnd = false;
+  @Input() tree: any;
 
   constructor() {
   }
 
   ngOnInit() {
   }
-
-  // ngAfterViewInit(): void {
-  //   setTimeout(() => {
-  //       this.notEnd = this.tree && this.tree.length !== undefined;
-  //     },
-  //     100);
-  // }
 
 }

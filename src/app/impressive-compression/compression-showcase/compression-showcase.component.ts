@@ -11,18 +11,18 @@ import {TitleService} from "../../title.service";
   templateUrl: './compression-showcase.component.html',
   styleUrls: ['./compression-showcase.component.scss',
     '../../app.component.scss'],
-  animations: [
-    trigger('visibilityChanged', [
-      transition(':enter', [
-        style({opacity: 0, transform: 'translateX(-400px)'}),
-        animate(6, style({opacity: 1, transform: 'translateX(0)'}))
-      ]),
-      transition(':leave', [
-        style({opacity: 1, transform: 'translateX(0)'}),
-        animate(6, style({opacity: 0, transform: 'translateX(-400px)'}))
-      ])
-    ])
-  ]
+  // animations: [
+  //   trigger('visibilityChanged', [
+  //     transition(':enter', [
+  //       style({opacity: 0, transform: 'translateX(-400px)'}),
+  //       animate(6, style({opacity: 1, transform: 'translateX(0)'}))
+  //     ]),
+  //     transition(':leave', [
+  //       style({opacity: 1, transform: 'translateX(0)'}),
+  //       animate(6, style({opacity: 0, transform: 'translateX(-400px)'}))
+  //     ])
+  //   ])
+  // ]
 })
 export class CompressionShowcaseComponent implements OnInit {
 
@@ -49,6 +49,8 @@ export class CompressionShowcaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getPageName();
+
     this.http.get("assets/compression-data.json")
       .subscribe((data: JsonAsset) => {
         this.lowEntropy = this.getProcessedEntropy(data.low);
@@ -67,11 +69,8 @@ export class CompressionShowcaseComponent implements OnInit {
             if (hc.char === ' ') {
               hc.char = 'space';
             }
-            if (hc.char === ',') {
-              hc.char = 'comma';
-            }
             if (hc.index === '10') {
-              hc.char = 'EOL';
+              hc.char = 'cr';
             }
             return hc;
           });
@@ -146,14 +145,15 @@ export class CompressionShowcaseComponent implements OnInit {
 
   getPageName() {
     this.titleService.titleChange$.next(
-      ['Data vs Information',
+      [
+        'Data vs Information',
         'Patternless Data',
         'Run-length Encoding',
         'Huffman coding',
         'Huffman coding',
         'LZW - Lempel–Ziv–Welch',
-        'Questions']
-        [this.currentPage - 1]
+        'Questions'
+      ][this.currentPage - 1]
     );
   }
 

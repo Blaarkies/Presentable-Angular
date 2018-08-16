@@ -18,11 +18,19 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // that you are using.
 @include angular-material-theme($candy-app-theme);
 
+
+
+$primary: $mat-green;
+$accent: $mat-cyan;
+$warn: $mat-orange;
+$danger: $mat-red;
+
 .highlight-code-viewing {
   color: black;
   outline: 1px solid green;
   background-color: greenyellow;
 }
+
 
 html,
 body {

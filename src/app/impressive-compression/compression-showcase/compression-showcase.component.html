@@ -124,9 +124,9 @@
         <mat-card-title>Frequency Table</mat-card-title>
         <mat-card-content>
           <table style="margin: auto;
-                            width: 50%;
-                            font-size: larger;
-                            font-family: monospace;"
+                        width: 50%;
+                        font-size: larger;
+                        font-family: monospace;"
                  border=1
                  frame=void
                  rules=rows>
@@ -145,7 +145,7 @@
 
     <div class="huffman-tree">
 
-      <app-huffman-tree></app-huffman-tree>
+      <app-huffman-tree [tree]="huffmanCoding.tree"></app-huffman-tree>
     </div>
   </div>
 
