@@ -1,6 +1,6 @@
 .app-page {
   display: grid;
-  grid-template-rows: 64px auto;
+  grid-template-rows: 64px 1fr;
   grid-template-columns: 1fr;
   height: 100vh;
 }

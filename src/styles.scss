@@ -18,8 +18,6 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // that you are using.
 @include angular-material-theme($candy-app-theme);
 
-
-
 $primary: $mat-green;
 $accent: $mat-cyan;
 $warn: $mat-orange;
@@ -31,11 +29,11 @@ $danger: $mat-red;
   background-color: greenyellow;
 }
 
-
 html,
 body {
   margin: 0;
   background-color: lightgrey;
+
   //padding: 0;
   //height: 100%;
   //width: 100%;
@@ -46,42 +44,16 @@ html * {
 }
 
 [hidden] {
-  display: none;
+  display: none !important;;
 }
 
-//
-//.background-normal {
-//  background-color: #2B2B2B;
-//}
-//
-//.background-light {
-//  background-color: #535759
-//}
-//
-//.text-color-normal {
-//  color: #BBBBBB;
-//}
-//
-//mat-card {
-//  background-color: #3C3F41;
-//  width: 600px;
-//}
-//
-//mat-card-title {
-//  color: #BBBBBB;
-//}
-//
-//mat-card-subtitle,
-//mat-card-content {
-//  color: #BBBBBB;
-//}
-
 .hover-bright:hover {
+  box-shadow: 0 0 20px 4px floralwhite !important;
   filter: brightness(1.2);
 }
 
-.hover-dark:hover {
-  box-shadow: 0 0 20px 4px floralwhite;
+.hover-code-highlight:hover {
+  @extend .highlight-code-viewing;
 }
 
 //mat-toolbar {
@@ -101,33 +73,23 @@ html * {
   font-family: monospace;
 }
 
+.block-font {
+  font-family: monospace;
+  font-size: x-large;
+}
+
+.descriptive {
+  font-style: oblique;
+}
+
 .divider-normal {
   position: initial !important;
   left: auto !important;
   width: auto !important;
 }
 
-
-
 .align-padding {
   padding-left: 10px;
   width: 80px;
 }
 
-.descriptive {
-  font-style: oblique;
-  //color: gray;
-}
-
-.rotate-question {
-  text-align: center;
-  font-size: 420px;
-  animation: spin 15s cubic-bezier(0.21, 0.74, 0.86, 0.57) infinite;
-}
-
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}

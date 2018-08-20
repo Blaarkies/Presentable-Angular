@@ -1,0 +1,30 @@
+
+.question-center {
+  color: green;
+}
+
+
+.big-font {
+  text-align: center;
+  font-size: 420px;
+}
+
+.rotate-question {
+  animation: spin 15s cubic-bezier(0.21, 0.74, 0.86, 0.57) infinite;
+  //transform-origin: 100px;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.round-card {
+  //width: max-content;
+  margin: auto;
+  //border-radius: 50%;
+  width: 500px;
+  height: 500px;
+}

@@ -6,10 +6,9 @@
     <mat-list class="list-small">
       <mat-divider class="divider-normal"></mat-divider>
       <ng-container *ngFor="let rule of encodedWords">
-        <mat-list-item class="background-light">
-          <span class="text-color-normal">
-            {{rule.normal}} = {{rule.encoded}}
-          </span>
+
+        <mat-list-item>
+          <span>{{rule.normal}} = {{rule.encoded}}</span>
         </mat-list-item>
         <mat-divider class="divider-normal"></mat-divider>
       </ng-container>
@@ -19,13 +18,14 @@
 
 <mat-card>
   <mat-card-title>
-    <span class="text-song-name">{{data.name}}</span>
+    <span>{{datebook?.name}}</span>
     ♣
-    <span class="text-artist-name">{{data.artist}}</span></mat-card-title>
+    <span class="text-artist-name">{{datebook?.artist}}</span></mat-card-title>
   <mat-card-subtitle class="card-big-font">
-    <div *ngFor="let line of data.lines">
+    <div *ngFor="let line of datebook?.lines">
 
-      <span *ngFor="let word of line.split(' ')"
+      <span class="hover-code-highlight cursor-pointer"
+            *ngFor="let word of line.split(' ')"
             [class.highlight-code-viewing]="getEncoded(word)"
             (click)="selectWordToEncode(word)">
         {{encodeMode && getEncoded(word) ? getEncoded(word).encoded : word }}
@@ -39,16 +39,18 @@
     <div class="container">
 
       <div class="item">
+        <!--TODO: should length-->
         <app-entropy-info
-          [bytes]="charLimit"
-          [entropyScore]="data.entropyScore"
-          [entropyFraction]="data.entropyFraction">
+          [bytes]="datebook?.text.length"
+          [entropyScore]="datebook?.entropyScore"
+          [entropyFraction]="datebook?.entropyFraction">
         </app-entropy-info>
       </div>
 
       <div class="item justify-bottom-right">
         <button mat-flat-button
-                (click)="encodeMode = !encodeMode">
+                (click)="encodeMode = !encodeMode"
+                [hidden]="encodedWords.length === 0">
           {{encodeMode ? 'Decode' : 'Encode'}}
         </button>
       </div>

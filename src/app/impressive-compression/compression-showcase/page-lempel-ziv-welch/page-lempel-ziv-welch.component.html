@@ -1,0 +1,78 @@
+<div class="lzw-container">
+
+  <div class="text-to-encode">
+    <mat-card>
+      <mat-card-title>Not Encoded</mat-card-title>
+      <mat-card-content class="block-font">
+
+        <div>{{lzwEncoding.text}}</div>
+
+        <br>
+        <div class="descriptive">Transmission</div>
+        <div>{{lzwEncoding.notEncodedTransmission}}</div>
+      </mat-card-content>
+
+      <mat-card-footer class="footer-padding">
+        <app-entropy-info
+          [bytes]="lzwEncoding.text?.length"
+          [entropyScore]="lzwEncoding.entropyScore"
+          [entropyFraction]="lzwEncoding.entropyFraction">
+        </app-entropy-info>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <div class="encoded">
+    <mat-card>
+      <mat-card-title>Encoded Representation</mat-card-title>
+      <mat-card-content class="block-font">
+
+        <div class="encoded-container">
+          <div class="item"
+               *ngFor="let e of lzwEncoding.encodedTableFiltered; let i = index;"
+               [class.highlight-code-viewing]="selectedLzwEntry.code == e.code
+                                                        && selectedLzwEntry.next == e.next">
+            <div>{{e.output}}</div>
+            <div>{{e.code}}</div>
+          </div>
+        </div>
+
+        <br>
+        <div class="descriptive">Transmission</div>
+        <div>{{lzwEncoding.encodedTransmission}}</div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="coding-table" (mouseleave)="selectedLzwEntry = {}">
+
+    <div class="lzw-table-container">
+
+      <div class="item">
+        <div>Current</div>
+        <mat-divider class="divider-normal"></mat-divider>
+        <div>Next</div>
+        <mat-divider class="divider-normal"></mat-divider>
+        <div>Output</div>
+        <mat-divider class="divider-normal"></mat-divider>
+        <div>Add</div>
+      </div>
+
+      <div class="lzw-cells-container">
+        <div class="item hover-bright cursor-pointer"
+             *ngFor="let row of lzwEncoding.encodedTable"
+             (mouseenter)="selectedLzwEntry.code = row.code;
+                         selectedLzwEntry.next = row.next;">
+          <div>{{row.current || ' '}}</div>
+          <mat-divider class="divider-normal"></mat-divider>
+          <div>{{row.next || ' '}}</div>
+          <mat-divider class="divider-normal"></mat-divider>
+          <div>{{row.output || ' '}}</div>
+          <mat-divider class="divider-normal"></mat-divider>
+          <div>{{row.add || ' '}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

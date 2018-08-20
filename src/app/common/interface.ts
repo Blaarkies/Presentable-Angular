@@ -28,8 +28,6 @@ export interface AsciiImage {
   text: string;
   lines?: FlaggedText[];
   encoded?: FlaggedText[];
-  entropyScore?: number;
-  entropyFraction?: number;
 }
 
 export interface FlaggedText {
@@ -44,9 +42,4 @@ export interface HuffmanCode {
   usages: number;
 }
 
-export enum Routes {
-  main,
-  decorators,
-  compression,
-}
 

@@ -1,3 +1,13 @@
+export function getUniqueElements(obj: any): any[] {
+  let list = isString(obj) ? obj.split('') : obj;
+
+  return list.filter((c, i, a) => a.indexOf(c) === i);
+}
+
+export function isString(obj: any): obj is string {
+  return (typeof obj === 'string' || obj instanceof String);
+}
+
 export function replaceAll(text: string, search: string, replacement: string) {
   return text.split(search).join(replacement);
 }

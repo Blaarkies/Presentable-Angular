@@ -1,7 +1,6 @@
 @import '~@angular/material/theming';
 
 .container {
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 
@@ -34,7 +33,6 @@
 }
 
 .footer-container {
-  width: 100%;
   display: grid;
   grid-template-columns: max-content auto;
   grid-column-gap: 8px;
@@ -44,76 +42,6 @@
   }
 }
 
-.pixels-container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(17, 1fr);
-  grid-template-rows: repeat(17, 1fr);
-  grid-gap: 1px;
-
-  .pixels-item {
-  }
-}
-
-.pixel-color {
-  width: 32px;
-  height: 32px;
-}
-
-.pixels-on {
-  background-color: dimgrey;
-}
-
-.pixels-off {
-  background-color: whitesmoke;
-}
-
-.pixels-highlight {
-  outline: 1px solid green;
-  background-color: greenyellow;
-}
-
-.pixels-encoded-card-size {
-  width: 75% !important;
-}
-
-.pixels-font {
-  font: 24px monospace;
-}
-
-.pixels-text-scale {
-  transform: scale(2, 1);
-  display: inline-block;
-  margin-right: 32px;
-}
-
-.pixels-encoded-card-padding {
-  padding-left: 16px;
-}
-
 .cursor-pointer {
   cursor: pointer;
-}
-
-.huffman-container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: max-content auto;
-  grid-template-rows: max-content auto;
-  grid-template-areas:
-    'text-to-encode huffman-tree'
-    'huffman-table  huffman-tree';
-  grid-gap: 8px;
-}
-
-.text-to-encode {
-  grid-area: text-to-encode;
-}
-
-.huffman-table {
-  grid-area: huffman-table;
-}
-
-.huffman-tree {
-  grid-area: huffman-tree;
 }

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {EntropyExample} from "../../common/interface";
+import {roundToDecimalPlace} from "../../common/utils";
+import {CompressionProcessorService} from "../compression-processor.service";
 
 interface EncodedWord {
   normal: string;
@@ -9,18 +11,24 @@ interface EncodedWord {
 @Component({
   selector: 'app-entropy-card',
   templateUrl: './entropy-card.component.html',
-  styleUrls: ['./entropy-card.component.scss',
-    '../../app.component.scss']
+  styleUrls: ['./entropy-card.component.scss']
 })
 export class EntropyCardComponent implements OnInit {
 
-  @Input('data') data: EntropyExample;
-  @Input('charLimit') charLimit: number;
+  @Input() charLimit: number;
+
+  @Input() set data(value: EntropyExample) {
+    if (value) {
+      this.datebook = this.compression.getProcessedEntropy(value, this.charLimit);
+    }
+  }
 
   encodedWords: EncodedWord[] = [];
   encodeMode = false;
 
-  constructor() {
+  datebook: EntropyExample;
+
+  constructor(private compression: CompressionProcessorService) {
   }
 
   ngOnInit() {
@@ -45,4 +53,5 @@ export class EntropyCardComponent implements OnInit {
   getEncoded(word: string) {
     return this.encodedWords.find(ew => ew.normal === word.toLowerCase());
   }
+
 }

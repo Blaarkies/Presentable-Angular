@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {getArrayRange, getArraySplitByNumber, getRandomFromArray} from "../common/utils";
-import {FlaggedText, HuffmanCode} from "../common/interface";
+import {getArrayRange, getArraySplitByNumber, getRandomFromArray, roundToDecimalPlace} from "../common/utils";
+import {EntropyExample, FlaggedText, HuffmanCode} from "../common/interface";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,14 @@ import {FlaggedText, HuffmanCode} from "../common/interface";
 export class CompressionProcessorService {
 
   constructor() {
+  }
+
+  public getProcessedEntropy(data: EntropyExample, charLimit: number = data.text.length): EntropyExample {
+    data.text = data.text.substring(0, charLimit);
+    data.lines = data.text.split('\n');
+    data.entropyScore = this.getEntropyScore(data.text);
+    data.entropyFraction = roundToDecimalPlace(100 * data.entropyScore / data.text.length, 2);
+    return data;
   }
 
   /**
@@ -59,11 +67,6 @@ export class CompressionProcessorService {
   }
 
   getVisibleFontList() {
-    // return [].concat(
-    //   getArrayRange(64).slice(32),
-    //   getArrayRange(126).slice(90),
-    //   getArrayRange(255).slice(191)
-    // );
     return getArrayRange(256);
   }
 
@@ -278,7 +281,7 @@ export class CompressionProcessorService {
           string: charToAdd,
           code: lastCode
         });
-        let add = `${charToAdd} = ${lastCode}`;
+        let add = `${charToAdd}:${lastCode}`;
 
         return {
           current: nowStringClone,
