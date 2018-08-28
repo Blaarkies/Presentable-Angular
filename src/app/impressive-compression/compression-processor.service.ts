@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {getArrayRange, getArraySplitByNumber, getRandomFromArray, roundToDecimalPlace} from "../common/utils";
-import {EntropyExample, FlaggedText, HuffmanCode} from "../common/interface";
+import {getArrayRange, getArraySplitByNumber, getRandomFromArray, roundToDecimalPlace} from '../common/utils';
+import {EntropyExample, FlaggedText, HuffmanCode} from '../common/interface';
 
 @Injectable({
   providedIn: 'root'
@@ -154,31 +154,41 @@ export class CompressionProcessorService {
         usages: allFrequencies[k],
         index: k,
         char: String.fromCharCode(Number.parseInt(k)),
+        insertOrder: undefined
       }))
+      .sort((a, b) => a.index.localeCompare(b.index))
       .sort((a, b) => a.usages - b.usages);
 
     getArrayRange(tree.length * 2)
-      .forEach(() => {
-        if (tree.length <= 2) {
-          return;
+      .forEach(i => {
+        if (tree.length > 2) {
+          tree = this.processBranch(tree, i);
         }
-
-        let char1 = tree[0];
-        let char2 = tree[1];
-        let node = {
-          usages: char1.usages + char2.usages,
-          1: char1,
-          0: char2,
-          index: `${char1.index} ${char2.index}`,
-          char: `${char1.char} ${char2.char}`
-        };
-
-        tree.push(node);
-        tree = tree
-          .filter(n => n.index !== char1.index && n.index !== char2.index)
-          .sort((a, b) => a.usages - b.usages);
-
       });
+
+    return tree;
+  }
+
+  public processBranch(tree, index) {
+    let char1 = tree[0];
+    let char2 = tree[1];
+    char1.insertOrder = index;
+    char2.insertOrder = index;
+
+    let node = {
+      usages: char1.usages + char2.usages,
+      1: char1,
+      0: char2,
+      index: `${char1.index} ${char2.index}`,
+      char: `${char1.char} ${char2.char}`,
+      insertOrder: index
+    };
+
+    tree.push(node);
+    tree = tree
+      .filter(n => n.index !== char1.index && n.index !== char2.index)
+      .sort((a, b) => a.index.localeCompare(b.index))
+      .sort((a, b) => a.usages - b.usages);
 
     return tree;
   }
@@ -187,7 +197,9 @@ export class CompressionProcessorService {
     this.setPaths(tree);
     let dictionary: HuffmanCode[] = [];
     this.getEndNodes(tree, dictionary);
-    return dictionary.sort((a, b) => b.usages - a.usages);
+    return dictionary
+      .sort((a, b) => a.index.localeCompare(b.index))
+      .sort((a, b) => a.usages - b.usages);
   }
 
   getHuffmanEncoded(text: string, tree: any): string[] {

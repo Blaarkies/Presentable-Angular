@@ -10,6 +10,7 @@ export class NodeConnecterComponent {
 
   @Input() direction: BiDirectionEnum;
   @Input() pathText: string;
+  @Input() transparent: boolean;
 
   public BiDirectionEnum = BiDirectionEnum;
 

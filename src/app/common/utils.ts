@@ -1,3 +1,25 @@
+export function getSanitizedArray(array: number[]): any[] {
+  return array.filter(i => !theUnsanitized.some(u => i === u));
+}
+
+let theUnsanitized = [undefined, null, Number.NaN];
+
+export function getArrayMin(array: number[]): number {
+  array = getSanitizedArray(array);
+  if (array.length === 0) {
+    return undefined;
+  }
+  return array.reduce((s, c) => (s < c) ? s : c);
+}
+
+export function getArrayMax(array: number[]): number {
+  array = getSanitizedArray(array);
+  if (array.length === 0) {
+    return undefined;
+  }
+  return array.reduce((s, c) => (s > c) ? s : c);
+}
+
 export function getUniqueElements(obj: any): any[] {
   let list = isString(obj) ? obj.split('') : obj;
 

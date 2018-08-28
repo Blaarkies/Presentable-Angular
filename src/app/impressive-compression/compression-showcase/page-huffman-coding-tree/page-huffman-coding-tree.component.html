@@ -13,42 +13,46 @@
   <div class="huffman-table">
 
     <mat-card>
-      <mat-card-title>Frequency Table</mat-card-title>
-      <mat-card-content>
+      <mat-card-title>
+        <div class="mat-card-fix-title-button-container">
+          <div>Frequency Table</div>
+          <div class="mat-card-fix-align-right">
+            <button mat-flat-button (click)="resetTable()">Reset</button>
+          </div>
+        </div>
+      </mat-card-title>
 
-        <div>
+      <mat-card-footer>
 
-        <mat-list>
+        <div class="huffman-frequency-table">
+          <div class="character">Character</div>
+          <div class="usages">Usages</div>
+        </div>
+        <mat-divider class="divider-normal"></mat-divider>
 
-          <mat-list-item>
-            <div class="huffman-frequency-table">
-              <div class="character">Character</div>
-              <div class="usages">Usages</div>
-            </div>
-          </mat-list-item>
-          <mat-divider class="divider-normal"></mat-divider>
+        <mat-list class="scrollbar-primary list-size"
+                  (mouseleave)="tableHoverIndex = undefined">
 
-          <ng-container *ngFor="let hc of huffmanCoding?.table;">
-            <mat-list-item>
+          <ng-container *ngFor="let hc of tableDisplay; let i = index;">
+            <mat-list-item class="cursor-pointer"
+                           (click)="listItemClicked(hc);"
+                           (mouseenter)="tableHoverIndex = i-((tableDisplay.length-i)%2)"
+                           [class.highlight-code-viewing-secondary]="i >= tableHoverIndex">
               <div class="huffman-frequency-table">
                 <div class="character">{{hc.char}}</div>
                 <div class="usages">{{hc.usages}}</div>
               </div>
-
             </mat-list-item>
 
             <mat-divider class="divider-normal"></mat-divider>
           </ng-container>
         </mat-list>
-
-        </div>
-
-      </mat-card-content>
+      </mat-card-footer>
     </mat-card>
   </div>
 
   <div class="huffman-tree">
 
-    <app-huffman-tree [tree]="huffmanCoding?.tree"></app-huffman-tree>
+    <app-huffman-tree [tree]="huffmanCoding?.tree" [minInsertOrder$]="minInsertOrder$"></app-huffman-tree>
   </div>
 </div>

@@ -44,7 +44,23 @@ html * {
 }
 
 [hidden] {
-  display: none !important;;
+  display: none !important;
+}
+
+[invisible] {
+  visibility: hidden;
+}
+
+.transparent-less {
+  opacity: 0.75;
+}
+
+.transparent-more {
+  opacity: 0.15;
+}
+
+.transparent {
+  opacity: 0.5;
 }
 
 .hover-bright:hover {
@@ -54,6 +70,14 @@ html * {
 
 .hover-code-highlight:hover {
   @extend .highlight-code-viewing;
+}
+
+.hover-gray:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 //mat-toolbar {
@@ -93,3 +117,24 @@ html * {
   width: 80px;
 }
 
+.scrollbar-primary {
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border: 2px solid #545454;
+    background: linear-gradient(to bottom, #48ab4b 0%, #3d9140 5%, #4eb250 50%, #3d9140 95%, #48ab4b 100%);
+  }
+}

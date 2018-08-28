@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BiDirectionEnum} from "../../../common/bi-direction.enum";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-huffman-node',
@@ -9,6 +10,7 @@ import {BiDirectionEnum} from "../../../common/bi-direction.enum";
 export class HuffmanNodeComponent implements OnInit {
 
   @Input() treePart: any;
+  @Input() minInsertOrder$: BehaviorSubject<number>;
 
   public hasNestedLeftNode;
   public hasNestedRightNode;

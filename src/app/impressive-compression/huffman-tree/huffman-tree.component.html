@@ -1,8 +1,10 @@
-<div class="start-arrow">
+<div class="start-arrow fade-base"
+     [class.fade-out]="(minInsertOrder$ | async) < MAX_SAFE_INTEGER"
+     [class.fade-in]="(minInsertOrder$ | async) >= MAX_SAFE_INTEGER">
   <div class="block-font">Start</div>
   <svg width="16" height="16">
     <polygon fill="black" points="0,16 8,0 16,16"></polygon>
   </svg>
 </div>
 
-<app-huffman-node *ngIf="tree" [treePart]="tree"></app-huffman-node>
+<app-huffman-node *ngIf="tree" [treePart]="tree" [minInsertOrder$]="minInsertOrder$"></app-huffman-node>

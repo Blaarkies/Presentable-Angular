@@ -2,14 +2,17 @@
 
   <div class="item" *ngIf="leftNode">
     <app-node-connecter [direction]="BiDirectionEnum.LEFT"
-                        [pathText]="0"></app-node-connecter>
+                        [pathText]="0"
+                        [transparent]="leftNode.insertOrder > (minInsertOrder$ | async)"></app-node-connecter>
 
     <div *ngIf="hasNestedLeftNode;else left_leaf">
-      <app-huffman-node [treePart]="leftNode"></app-huffman-node>
+      <app-huffman-node [treePart]="leftNode" [minInsertOrder$]="minInsertOrder$"></app-huffman-node>
     </div>
 
     <ng-template #left_leaf>
-      <div class="character-icon">
+      <div class="character-icon fade-base"
+           [class.fade-out]="leftNode.insertOrder > (minInsertOrder$ | async)"
+           [class.fade-in]="leftNode.insertOrder <= (minInsertOrder$ | async)">
         {{leftNode.char}}
       </div>
     </ng-template>
@@ -17,14 +20,17 @@
 
   <div class="item" *ngIf="rightNode">
     <app-node-connecter [direction]="BiDirectionEnum.RIGHT"
-                        [pathText]="1"></app-node-connecter>
+                        [pathText]="1"
+                        [transparent]="rightNode.insertOrder > (minInsertOrder$ | async)"></app-node-connecter>
 
     <div *ngIf="hasNestedRightNode;else right_leaf">
-      <app-huffman-node [treePart]="rightNode"></app-huffman-node>
+      <app-huffman-node [treePart]="rightNode" [minInsertOrder$]="minInsertOrder$"></app-huffman-node>
     </div>
 
     <ng-template #right_leaf>
-      <div class="character-icon">
+      <div class="character-icon fade-base"
+           [class.fade-out]="rightNode.insertOrder > (minInsertOrder$ | async)"
+           [class.fade-in]="rightNode.insertOrder <= (minInsertOrder$ | async)">
         {{rightNode.char}}
       </div>
     </ng-template>

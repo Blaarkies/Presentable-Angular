@@ -13,10 +13,10 @@ export class DashboardComponent implements OnInit {
   public cards = <InfoCard[]>[];
 
   constructor(private router: Router) {
-    this.cards.push({title: 'Parser Expression Grammar', subtitle: 'by Pierre Roux', data: ''});
-    this.cards.push({title: 'Annotations in TypeScript', subtitle: 'by Pierre Roux', data: 'annotations-in-typescript'});
-    this.cards.push({title: 'AutoHotkey', subtitle: 'by Pierre Roux', data: ''});
-    this.cards.push({title: 'Impressive Compression', subtitle: 'by Pierre Roux', data: 'impressive-compression'});
+    // this.cards.push({title: 'Parser Expression Grammar', subtitle: 'by Pierre Roux', data: ''});
+    // this.cards.push({title: 'Annotations in TypeScript', subtitle: 'by Pierre Roux', data: 'annotations-in-typescript'});
+    // this.cards.push({title: 'AutoHotkey', subtitle: 'by Pierre Roux', data: ''});
+    this.cards.push({title: 'Compression Crash Course', subtitle: 'by Pierre Roux', data: 'impressive-compression'});
   }
 
   ngOnInit() {

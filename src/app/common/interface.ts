@@ -40,6 +40,7 @@ export interface HuffmanCode {
   index: string;
   path: string;
   usages: number;
+  insertOrder: number;
 }
 
 

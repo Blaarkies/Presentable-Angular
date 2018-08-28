@@ -25,6 +25,7 @@
 }
 
 .huffman-frequency-table {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 16px;
@@ -41,4 +42,23 @@
     grid-column: 2;
     @extend .codes-padding;
   }
+}
+
+.highlight-code-viewing-secondary {
+  color: black;
+  outline: 1px solid purple;
+  background-color: lighten(indigo, 70);
+}
+
+.list-size {
+  height: 500px;
+}
+
+.mat-card-fix-align-right {
+  text-align: right;
+}
+
+.mat-card-fix-title-button-container {
+  display: grid;
+  grid-template-columns: auto max-content;
 }

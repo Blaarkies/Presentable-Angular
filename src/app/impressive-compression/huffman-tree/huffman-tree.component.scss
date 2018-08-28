@@ -5,3 +5,33 @@
     margin-bottom: -6px;
   }
 }
+
+.fade-base {
+  transition-property: opacity, filter;
+  transition-duration: 0.7s;
+  transition-timing-function: ease-in-out;
+}
+
+.fade-out {
+  filter: blur(3px);
+  opacity: 0.15;
+}
+
+.fade-in {
+  animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1s 1;
+}
+
+@keyframes light-up {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 10px transparent);
+  }
+  50% {
+    filter: brightness(2) drop-shadow(0 0 10px white);
+  }
+  99% {
+    filter: brightness(1) drop-shadow(0 0 10px transparent);
+  }
+  100% {
+    filter: none;
+  }
+}
