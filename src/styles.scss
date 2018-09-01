@@ -29,6 +29,12 @@ $danger: $mat-red;
   background-color: greenyellow;
 }
 
+.highlight-code-viewing-secondary {
+  color: black;
+  outline: 1px solid purple;
+  background-color: lighten(indigo, 70);
+}
+
 html,
 body {
   margin: 0;
@@ -47,7 +53,7 @@ html * {
   display: none !important;
 }
 
-[invisible] {
+.invisible {
   visibility: hidden;
 }
 
@@ -70,6 +76,10 @@ html * {
 
 .hover-code-highlight:hover {
   @extend .highlight-code-viewing;
+}
+
+.hover-code-highlight-secondary:hover {
+  @extend .highlight-code-viewing-secondary;
 }
 
 .hover-gray:hover {
@@ -99,7 +109,7 @@ html * {
 
 .block-font {
   font-family: monospace;
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 .descriptive {
@@ -136,5 +146,39 @@ html * {
     border-radius: 10px;
     border: 2px solid #545454;
     background: linear-gradient(to bottom, #48ab4b 0%, #3d9140 5%, #4eb250 50%, #3d9140 95%, #48ab4b 100%);
+  }
+}
+
+
+.mat-card-fix-align-right {
+  text-align: right;
+}
+
+.mat-card-fix-title-button-container {
+  display: grid;
+  grid-template-columns: auto max-content;
+}
+
+.bi-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  >.item {
+    width: max-content;
+    margin: auto;
+  }
+}
+
+.footer-padding {
+  padding: 0 12px 12px 12px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+
+  >.footer-item {
   }
 }

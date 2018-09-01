@@ -1,14 +1,27 @@
 <div class="app-page">
 
   <mat-toolbar class="toolbar-container"
-                [hidden]="!currentImage">
+               [hidden]="!currentImage">
     <div class="page-avatar"
          [style.background-image]="currentImage"></div>
-    <span>{{currentRoute}}</span>
+    <span>{{currentShowcase}}</span>
+
     <h1 class="text-tile-center">{{pageTitle}}</h1>
+
+    <div class="full-height" [class.invisible]="router.url === '/'">
+      <button mat-button class="full-height" [routerLink]="['']">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-raised-button class="full-height" (click)="pageBackward()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+      <button mat-raised-button class="full-height" (click)="pageForward()">
+        <mat-icon>navigate_next</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
 
-  <div class="background-normal text-color-normal">
+  <div class="router-outlet-align">
     <router-outlet></router-outlet>
   </div>
 </div>

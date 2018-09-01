@@ -1,15 +1,45 @@
-.container {
+.dashboard-container {
   width: 100%;
   display: grid;
+  grid-template-areas: 'social subject empty';
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: repeat(5, 120px);
+  //grid-template-rows: repeat(5, 120px);
   grid-row-gap: .5em;
   grid-column-gap: 1em;
   padding-top: 28px;
+}
 
-  .item {
-    grid-column: 2;
+.social-container {
+  grid-area: social;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(5, 120px);
+  grid-row-gap: .5em;
+  grid-column-gap: 1em;
+
+  >.subject-card {
     text-align: center;
   }
 }
 
+.subject-container {
+  grid-area: subject;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(5, 120px);
+  grid-row-gap: .5em;
+  grid-column-gap: 1em;
+
+  >.subject-card {
+    text-align: center;
+  }
+}
+
+.image-button-alignment {
+  height: 56px;
+  margin-top: -16px;
+}
+
+.margin-right {
+  margin-right: 8px;
+}

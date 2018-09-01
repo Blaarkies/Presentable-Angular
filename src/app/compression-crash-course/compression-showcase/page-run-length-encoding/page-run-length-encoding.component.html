@@ -1,0 +1,42 @@
+<div class="bi-container">
+  <div class="item">
+    <mat-card>
+      <mat-card-title>Not Encoded</mat-card-title>
+      <mat-card-content>
+
+        <div class="pixels-container">
+          <ng-container *ngFor="let line of runLengthImage?.lines">
+            <div class="pixels-item pixel-color"
+                 *ngFor="let flaggedChar of line"
+                 [class.pixels-on]="flaggedChar.text === '▓'"
+                 [class.pixels-off]="flaggedChar.text !== '▓'"
+                 [class.pixels-highlight]="flaggedChar.id === selectedRunLengthId">
+            </div>
+          </ng-container>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="item pixels-encoded-card-size">
+
+    <mat-card (mouseleave)="selectedRunLengthId = null">
+      <mat-card-title>Encoded</mat-card-title>
+      <mat-card-content class="pixels-encoded-card-padding">
+          <span class="pixels-text-scale pixels-font cursor-pointer"
+                *ngFor="let flaggedChar of runLengthImage?.encoded;
+                let i = index"
+                (mouseenter)="selectedRunLengthId = flaggedChar.id"
+                [class.highlight-code-viewing]="flaggedChar.id === selectedRunLengthId">
+            {{flaggedChar.text}}
+            <br *ngIf="(i+1)%9==0">
+          </span>
+      </mat-card-content>
+
+      <mat-card-footer class="footer-padding">
+        <app-entropy-info [entropyObject]="runLengthImageEntropy"></app-entropy-info>
+      </mat-card-footer>
+
+    </mat-card>
+  </div>
+</div>

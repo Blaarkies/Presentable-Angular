@@ -1,0 +1,22 @@
+.big-font {
+  text-align: center;
+  font-size: 420px;
+}
+
+.rotate-question {
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.round-card {
+  border-radius: 50%;
+
+  margin: auto;
+  width: 500px;
+  height: 500px;
+}

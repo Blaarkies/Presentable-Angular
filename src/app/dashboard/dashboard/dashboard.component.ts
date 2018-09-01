@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {InfoCard} from "../../common/interface";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,13 +9,13 @@ import {InfoCard} from "../../common/interface";
 })
 export class DashboardComponent implements OnInit {
 
-  public cards = <InfoCard[]>[];
+  public cards = [];
 
   constructor(private router: Router) {
     // this.cards.push({title: 'Parser Expression Grammar', subtitle: 'by Pierre Roux', data: ''});
     // this.cards.push({title: 'Annotations in TypeScript', subtitle: 'by Pierre Roux', data: 'annotations-in-typescript'});
     // this.cards.push({title: 'AutoHotkey', subtitle: 'by Pierre Roux', data: ''});
-    this.cards.push({title: 'Compression Crash Course', subtitle: 'by Pierre Roux', data: 'impressive-compression'});
+    this.cards.push({title: 'Compression Crash Course', subtitle: 'by Pierre Roux', data: 'compression-crash-course'});
   }
 
   ngOnInit() {
@@ -27,3 +26,5 @@ export class DashboardComponent implements OnInit {
   }
 
 }
+
+// <app-page-data-and-information [data]="data" [charLimit]="charLimit"></app-page-data-and-information>

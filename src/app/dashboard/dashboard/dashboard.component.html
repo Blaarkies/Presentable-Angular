@@ -1,12 +1,39 @@
-<div class="container">
+<div class="dashboard-container">
 
-  <div class="item"
-       *ngFor="let card of cards">
+  <div class="social-container">
+    <div class="social-media-button">
+      <button class="margin-right"
+              mat-fab
+              color="link">
+        <a href="https://github.com/Blaarkies/Presentable-Angular">
+          <img src="../../../assets/github-circle.svg" class="image-button-alignment">
+        </a>
+      </button>
+      <span class="block-font">github.com/Blaarkies</span>
+    </div>
 
-    <mat-card (click)="goToRoute(card.data);"
-              class="hover-bright mat-elevation-z0">
-      <mat-card-title>{{card.title}}</mat-card-title>
-      <mat-card-subtitle>{{card.subtitle}}</mat-card-subtitle>
-    </mat-card>
+    <div class="social-media-button">
+      <button class="margin-right"
+              mat-fab
+              color="link">
+        <a href="https://twitter.com/Blaarkies">
+          <img src="../../../assets/twitter-circle.svg" class="image-button-alignment">
+        </a>
+      </button>
+      <span class="block-font">@Blaarkies</span>
+    </div>
   </div>
+
+  <div class="subject-container">
+    <div class="subject-card"
+         *ngFor="let card of cards">
+
+      <mat-card (click)="goToRoute(card.data);"
+                class="cursor-pointer hover-bright mat-elevation-z0">
+        <mat-card-title>{{card.title}}</mat-card-title>
+        <mat-card-subtitle>{{card.subtitle}}</mat-card-subtitle>
+      </mat-card>
+    </div>
+  </div>
+
 </div>

@@ -31,7 +31,8 @@ export function isString(obj: any): obj is string {
 }
 
 export function replaceAll(text: string, search: string, replacement: string) {
-  return text.split(search).join(replacement);
+  return text.split(search)
+             .join(replacement);
 }
 
 export function clone(obj: any): any {
@@ -42,32 +43,32 @@ export function getTextSplitByNumber(text: string, width: number) {
   return text
     .split('')
     .reduce((sum, c) => {
-        let newestLineIndex = sum.length - 1;
+              let newestLineIndex = sum.length - 1;
 
-        if (sum[newestLineIndex].length < width && c.charCodeAt(0) !== 10) {
-          sum[newestLineIndex] += c;
-        } else {
-          sum.push(c);
-        }
-        return sum;
-      },
-      ['']
+              if (sum[newestLineIndex].length < width && c.charCodeAt(0) !== 10) {
+                sum[newestLineIndex] += c;
+              } else {
+                sum.push(c);
+              }
+              return sum;
+            },
+            ['']
     );
 }
 
 export function getArraySplitByNumber(array: any[], width: number) {
   return array
     .reduce((sum, c) => {
-        let newestLineIndex = sum.length - 1;
+              let newestLineIndex = sum.length - 1;
 
-        if (sum[newestLineIndex].length < width) {
-          sum[newestLineIndex].push(c);
-        } else {
-          sum.push([c]);
-        }
-        return sum;
-      },
-      [[]]
+              if (sum[newestLineIndex].length < width) {
+                sum[newestLineIndex].push(c);
+              } else {
+                sum.push([c]);
+              }
+              return sum;
+            },
+            [[]]
     );
 }
 
@@ -100,7 +101,8 @@ export function getRandomInteger(max: number = 9) {
  * @returns {number[]}
  */
 export function getArrayRange(count: number = 1) {
-  return [...Array(count).keys()];
+  return [...Array(count)
+    .keys()];
 }
 
 /**
