@@ -1,0 +1,184 @@
+/* You can add global styles to this file, and also import other style files */
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+@include mat-core();
+
+$candy-app-primary: mat-palette($mat-green, 600, 100, 800);
+$candy-app-accent: mat-palette($mat-amber);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn: mat-palette($mat-pink);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+$primary: $mat-green;
+$accent: $mat-cyan;
+$warn: $mat-orange;
+$danger: $mat-red;
+
+.highlight-code-viewing {
+  color: black;
+  outline: 1px solid green;
+  background-color: greenyellow;
+}
+
+.highlight-code-viewing-secondary {
+  color: black;
+  outline: 1px solid purple;
+  background-color: lighten(indigo, 70);
+}
+
+html,
+body {
+  margin: 0;
+  background-color: lightgrey;
+
+  //padding: 0;
+  //height: 100%;
+  //width: 100%;
+}
+
+html * {
+  //box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.transparent-less {
+  opacity: 0.75;
+}
+
+.transparent-more {
+  opacity: 0.15;
+}
+
+.transparent {
+  opacity: 0.5;
+}
+
+.hover-bright:hover {
+  box-shadow: 0 0 20px 4px floralwhite !important;
+  filter: brightness(1.2);
+}
+
+.hover-code-highlight:hover {
+  @extend .highlight-code-viewing;
+}
+
+.hover-code-highlight-secondary:hover {
+  @extend .highlight-code-viewing-secondary;
+}
+
+.hover-gray:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+//mat-toolbar {
+//  color: #BBBBBB;
+//  background-color: #3C3F41;
+//}
+
+.card-big-font {
+  font-size: 22px;
+}
+
+.card-medium-font {
+  font-size: 18px;
+}
+
+.font-monospace {
+  font-family: monospace;
+}
+
+.block-font {
+  font-family: monospace;
+  font-size: xx-large;
+}
+
+.descriptive {
+  font-style: oblique;
+}
+
+.divider-normal {
+  position: initial !important;
+  left: auto !important;
+  width: auto !important;
+}
+
+.align-padding {
+  padding-left: 10px;
+  width: 80px;
+}
+
+.scrollbar-primary {
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border: 2px solid #545454;
+    background: linear-gradient(to bottom, #48ab4b 0%, #3d9140 5%, #4eb250 50%, #3d9140 95%, #48ab4b 100%);
+  }
+}
+
+
+.mat-card-fix-align-right {
+  text-align: right;
+}
+
+.mat-card-fix-title-button-container {
+  display: grid;
+  grid-template-columns: auto max-content;
+}
+
+.bi-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  >.item {
+    width: max-content;
+    margin: auto;
+  }
+}
+
+.footer-padding {
+  padding: 0 12px 12px 12px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+
+  >.footer-item {
+  }
+}

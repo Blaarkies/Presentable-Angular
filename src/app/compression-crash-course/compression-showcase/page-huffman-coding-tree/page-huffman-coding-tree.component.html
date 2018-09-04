@@ -1,0 +1,64 @@
+<div class="huffman-tree-container">
+
+  <div class="text-to-encode">
+
+    <mat-card>
+      <mat-card-title>Example Text</mat-card-title>
+      <mat-card-content class="card-medium-font">
+        <div *ngFor="let line of huffmanCoding?.lines">{{line}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="huffman-table">
+
+    <mat-card>
+      <mat-card-title>
+        <div class="mat-card-fix-title-button-container">
+          <div>Frequency Table</div>
+          <div class="mat-card-fix-align-right">
+            <button mat-mini-fab
+                    color="primary"
+                    (click)="resetTable()">
+              <mat-icon>restore</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card-title>
+
+      <mat-card-footer>
+
+        <div class="huffman-frequency-table">
+          <div class="character">Character</div>
+          <div class="usages">Usages</div>
+        </div>
+        <mat-divider class="divider-normal"></mat-divider>
+
+        <mat-list class="scrollbar-primary list-size"
+                  (mouseleave)="tableHoverIndex = undefined">
+
+          <ng-container *ngFor="let hc of tableDisplay; let i = index;">
+            <mat-list-item class="cursor-pointer"
+                           (click)="listItemClicked(hc);"
+                           (mouseenter)="tableHoverIndex = i-((tableDisplay.length-i)%2)"
+                           [class.highlight-code-viewing-secondary]="i >= tableHoverIndex">
+              <div class="huffman-frequency-table">
+                <div class="character">{{hc.char}}</div>
+                <div class="usages">{{hc.usages}}</div>
+              </div>
+            </mat-list-item>
+
+            <mat-divider class="divider-normal"></mat-divider>
+          </ng-container>
+        </mat-list>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+  <div class="huffman-tree">
+
+    <app-huffman-tree [tree]="huffmanCoding?.tree"
+                      [minInsertOrder$]="minInsertOrder$"
+                      [selectedPath$]="selectedPath$"></app-huffman-tree>
+  </div>
+</div>

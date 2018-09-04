@@ -1,0 +1,17 @@
+<div class="footer-container">
+
+  <div class="footer-item">Data</div>
+  <div class="footer-item">{{entropyObject?.text?.length}} bytes</div>
+
+  <div class="footer-item">Information</div>
+  <div class="footer-item">{{entropyObject?.entropyScore}} bytes</div>
+
+  <div class="footer-item">Ratio</div>
+  <div class="footer-item">
+    <app-progress-bar [value]="entropyObject?.entropyFraction"></app-progress-bar>
+  </div>
+
+</div>
+
+
+

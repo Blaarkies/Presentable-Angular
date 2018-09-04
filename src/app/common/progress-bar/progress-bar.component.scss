@@ -1,0 +1,45 @@
+@import '~@angular/material/theming';
+
+.meter {
+  height: 20px;
+  position: relative;
+  background: #555;
+  border-radius: 25px;
+  padding: 4px;
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.meter > span {
+  width: 0;
+  display: block;
+  height: 100%;
+  border-radius: 20px 8px 8px 20px;
+  background: rgb(43, 194, 83) -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #3d9140),
+      color-stop(1, #48ab4b));
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3),
+  inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+
+  transition: 1.4s ease-in-out;
+  transition-property: width;
+
+  color: $light-primary-text;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 0 0 12px black;
+}
+
+.progress-bar-text {
+  position: relative;
+  top: -20px;
+  left: 4px;
+
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 12px black;
+}

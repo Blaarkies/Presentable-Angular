@@ -1,0 +1,48 @@
+<div class="container">
+
+  <div class="item" *ngIf="leftNode">
+    <app-node-connecter [direction]="BiDirectionEnum.LEFT"
+                        [pathText]="0"
+                        [transparent]="leftNode.insertOrder > (minInsertOrder$ | async)"
+                        [highlight]="highlightLeft"></app-node-connecter>
+
+    <div *ngIf="hasNestedLeftNode;else left_leaf">
+      <app-huffman-node [treePart]="leftNode"
+                        [minInsertOrder$]="minInsertOrder$"
+                        [selectedPath$]="selectedPath$"></app-huffman-node>
+    </div>
+
+    <ng-template #left_leaf>
+      <div class="character-icon fade-base cursor-pointer"
+           [class.fade-out]="fadeOutLeft"
+           [class.fade-in]="!fadeOutLeft"
+           [class.highlight-selected-path]="highlightLeft"
+           (click)="setSelectedPath(leftNode)">
+        {{leftNode.char}}
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="item" *ngIf="rightNode">
+    <app-node-connecter [direction]="BiDirectionEnum.RIGHT"
+                        [pathText]="1"
+                        [transparent]="rightNode.insertOrder > (minInsertOrder$ | async)"
+                        [highlight]="highlightRight"></app-node-connecter>
+
+    <div *ngIf="hasNestedRightNode;else right_leaf">
+      <app-huffman-node [treePart]="rightNode"
+                        [minInsertOrder$]="minInsertOrder$"
+                        [selectedPath$]="selectedPath$"></app-huffman-node>
+    </div>
+
+    <ng-template #right_leaf>
+      <div class="character-icon fade-base cursor-pointer"
+           [class.fade-out]="fadeOutRight"
+           [class.fade-in]="!fadeOutRight"
+           [class.highlight-selected-path]="highlightRight"
+           (click)="setSelectedPath(rightNode)">
+        {{rightNode.char}}
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.app-page {
+  display: grid;
+  grid-template-rows: 64px 1fr;
+  height: 100vh;
+}
+
+.page-avatar {
+  width: 100px;
+  height: 100%;
+  background: no-repeat center;
+  background-size: contain;
+  content: ' ';
+  margin-right: 16px;
+}
+
+.toolbar-container {
+  display: grid;
+  //grid-template-areas: 'icon route title home left right';
+  grid-template-columns: max-content max-content auto max-content;
+
+}
+
+.text-tile-center {
+  text-align: center;
+  font-family: lucida console, monospace;
+  font-size: 2em;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.router-outlet-align {
+  align-self: center;
+  padding: 10px 20px 10px 20px;
+}

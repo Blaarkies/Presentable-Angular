@@ -1,0 +1,54 @@
+<mat-accordion>
+  <mat-expansion-panel
+    class="remove-expansion-panel-padding"
+    [expanded]="encodeMode">
+
+    <mat-list class="list-small">
+      <ng-container *ngFor="let rule of encodedWords">
+
+        <mat-list-item class="hover-gray">
+          <span>{{rule.normal}} = {{rule.encoded}}</span>
+        </mat-list-item>
+        <mat-divider class="divider-normal"></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-card>
+  <mat-card-title>
+    <span>{{datebook?.name}}</span>
+    ♣
+    <span class="text-artist-name">{{datebook?.artist}}</span></mat-card-title>
+  <mat-card-subtitle class="card-big-font">
+    <div *ngFor="let line of datebook?.lines">
+
+      <span class="hover-code-highlight-secondary cursor-pointer"
+            *ngFor="let word of line.split(' ')"
+            [class.highlight-code-viewing]="getEncoded(word)"
+            (click)="selectWordToEncode(word)">
+        {{encodeMode && getEncoded(word) ? getEncoded(word).encoded : word }}
+        {{' '}}
+      </span>
+
+    </div>
+  </mat-card-subtitle>
+
+  <mat-card-footer class="footer-padding">
+    <div class="entropy-footer-container">
+
+      <div class="item">
+        <app-entropy-info [entropyObject]="datebook"></app-entropy-info>
+      </div>
+
+      <div class="item justify-bottom-right">
+        <button mat-flat-button
+                (click)="encodeMode = !encodeMode"
+                [hidden]="encodedWords.length === 0">
+          {{encodeMode ? 'Decode' : 'Encode'}}
+        </button>
+      </div>
+    </div>
+  </mat-card-footer>
+
+</mat-card>

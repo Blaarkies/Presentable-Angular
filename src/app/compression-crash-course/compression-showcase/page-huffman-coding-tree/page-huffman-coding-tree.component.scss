@@ -1,0 +1,49 @@
+@import "../../../../styles";
+
+.huffman-tree-container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: max-content auto;
+  grid-template-areas: 'text-to-encode huffman-tree' 'huffman-table  huffman-tree';
+  grid-gap: 8px;
+}
+
+.text-to-encode {
+  grid-area: text-to-encode;
+}
+
+.huffman-table {
+  grid-area: huffman-table;
+}
+
+.huffman-tree {
+  grid-area: huffman-tree;
+}
+
+.codes-padding {
+  padding: 0 8px 0 8px;
+}
+
+.huffman-frequency-table {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 16px;
+
+  font-family: 'roboto', sans-serif;
+  @extend .block-font;
+
+  > .character {
+    grid-column: 1;
+    @extend .codes-padding;
+  }
+
+  > .usages {
+    grid-column: 2;
+    @extend .codes-padding;
+  }
+}
+
+.list-size {
+  height: 500px;
+}
