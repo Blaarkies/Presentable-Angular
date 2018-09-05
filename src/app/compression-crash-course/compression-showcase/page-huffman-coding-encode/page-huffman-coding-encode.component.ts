@@ -24,7 +24,8 @@ export class PageHuffmanCodingEncodeComponent implements OnInit {
 
   initData(data: EntropyExample) {
     this.huffmanCoding = this.dataService.getHuffmanCodingPageData(data);
-    this.huffmanCoding.table
+    this.huffmanCoding
+        .table
         .forEach(hc => this.dictionary[hc.path] = hc.char);
   }
 
