@@ -3,10 +3,8 @@
   <div class="text-to-encode">
     <mat-card>
       <mat-card-title>Not Encoded</mat-card-title>
-      <mat-card-content class="card-medium-font">
-        <div *ngFor="let line of huffmanCoding?.lines">
-          {{line}}
-        </div>
+      <mat-card-content class="card-big-font">
+        <span *ngFor="let line of huffmanCoding?.lines">{{line}}</span>
       </mat-card-content>
 
       <mat-card-footer class="footer-padding">

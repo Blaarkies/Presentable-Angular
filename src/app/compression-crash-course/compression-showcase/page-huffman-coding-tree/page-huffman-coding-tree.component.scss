@@ -1,8 +1,8 @@
-@import "../../../../styles";
+@import '../../../../styles';
 
 .huffman-tree-container {
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: 25% auto;
   grid-template-rows: max-content auto;
   grid-template-areas: 'text-to-encode huffman-tree' 'huffman-table  huffman-tree';
   grid-gap: 8px;

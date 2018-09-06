@@ -27,13 +27,22 @@ export class PageLempelZivWelchComponent implements OnInit {
                                 .toLowerCase();
     this.lzwEncoding.text = replaceAll(this.lzwEncoding.text, ' ', '_');
     this.lzwEncoding = this.compression.getProcessedEntropy(this.lzwEncoding);
-    this.lzwEncoding.textNumbers = this.lzwEncoding.text.split('')
-                                       .map(char => char.charCodeAt(0));
-    this.lzwEncoding.notEncodedTransmission = this.lzwEncoding.textNumbers.join(' ');
+    this.lzwEncoding.notEncodedTransmission = this.lzwEncoding.text.split('')
+                                                  .map(char => char.charCodeAt(0));
     this.lzwEncoding.encodedTable = this.compression.getLzwEncoded(this.lzwEncoding.text);
     this.lzwEncoding.encodedTableFiltered = this.lzwEncoding.encodedTable.filter(e => e.output);
     this.lzwEncoding.encodedTransmission = this.lzwEncoding.encodedTableFiltered.map(e => e.code)
                                                .join(' ');
   }
 
+  setSelectedLzwEntry(row, idx: number) {
+    this.selectedLzwEntry = {
+      code: row.code,
+      next: row.next,
+      char: row.current,
+      idxStart: idx - row.current.length + 1,
+      idxEnd: idx,
+      output: row.output
+    };
+  }
 }

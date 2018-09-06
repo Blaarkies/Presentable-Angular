@@ -31,7 +31,7 @@ export class AppComponent {
         )
         .subscribe(parentRoute => {
           let parentRouteData = <RouteData>parentRoute.data;
-          this.currentShowcase = parentRouteData['title'];
+          this.currentShowcase = parentRouteData.title;
           this.currentImage = this.sanitizer.bypassSecurityTrustStyle(`url(${parentRouteData.image})`);
           this.pageTitle = '';
 

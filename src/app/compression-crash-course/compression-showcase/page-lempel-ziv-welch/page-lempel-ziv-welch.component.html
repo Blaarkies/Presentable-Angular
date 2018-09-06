@@ -12,7 +12,12 @@
         <br>
         <br>
         <div class="descriptive">Transmission</div>
-        <div>{{lzwEncoding.notEncodedTransmission}}</div>
+        <ng-container *ngFor="let e of lzwEncoding.notEncodedTransmission; let idx = index">
+          <span [class.highlight-code-viewing]="idx >= selectedLzwEntry.idxStart
+                                                && idx <= selectedLzwEntry.idxEnd
+                                                && selectedLzwEntry.output">
+            {{e}}</span>{{' '}}
+        </ng-container>
       </mat-card-content>
 
       <mat-card-footer class="footer-padding">
@@ -60,10 +65,8 @@
 
       <div class="lzw-cells-container">
         <div class="item hover-bright cursor-pointer"
-             *ngFor="let row of lzwEncoding.encodedTable"
-             (mouseenter)="selectedLzwEntry.code = row.code;
-                         selectedLzwEntry.next = row.next;
-                         selectedLzwEntry.char = row.current;">
+             *ngFor="let row of lzwEncoding.encodedTable; let idx = index"
+             (mouseenter)="setSelectedLzwEntry(row, idx)">
           <div>{{row.current || ' '}}</div>
           <mat-divider class="divider-normal"></mat-divider>
           <div>{{row.next || ' '}}</div>

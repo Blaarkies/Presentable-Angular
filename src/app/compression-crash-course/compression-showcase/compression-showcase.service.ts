@@ -23,6 +23,7 @@ export class CompressionShowcaseService {
   }
 
   getHuffmanCodingPageData(data: EntropyExample) {
+    data = clone(data);
     data.text = data.text.substring(0, 96);
     let huffmanCoding = clone(this.compression.getProcessedEntropy(data));
     huffmanCoding.text = huffmanCoding.text.substring(0, 96);

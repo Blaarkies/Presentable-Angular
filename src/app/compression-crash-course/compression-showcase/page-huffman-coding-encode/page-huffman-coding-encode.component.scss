@@ -2,7 +2,7 @@
 
 .huffman-encode-container {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: 30% auto auto;
   grid-template-rows: max-content auto;
   grid-template-areas:
     'text-to-encode binary encoded'

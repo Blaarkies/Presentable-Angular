@@ -13,11 +13,10 @@
   grid-area: social;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(5, 120px);
-  grid-row-gap: .5em;
-  grid-column-gap: 1em;
+  grid-template-rows: repeat(2, max-content);
+  grid-row-gap: 1em;
 
-  >.subject-card {
+  > .subject-card {
     text-align: center;
   }
 }
@@ -26,13 +25,16 @@
   grid-area: subject;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(5, 120px);
+  grid-template-rows: repeat(6, 120px);
   grid-row-gap: .5em;
-  grid-column-gap: 1em;
 
-  >.subject-card {
+  > .subject-card {
     text-align: center;
   }
+}
+
+.empty-container {
+  grid-area: empty;
 }
 
 .image-button-alignment {
@@ -42,4 +44,15 @@
 
 .margin-right {
   margin-right: 8px;
+}
+
+.social-media-button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: .5em;
+
+  > .button-text {
+    align-self: center;
+  }
 }
