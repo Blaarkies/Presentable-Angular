@@ -35,6 +35,8 @@ $danger: $mat-red;
   background-color: lighten(indigo, 70);
 }
 
+$mediaQ-small-desktop: 'only screen and (max-width : 1400px)';
+
 html,
 body {
   margin: 0;
@@ -72,6 +74,16 @@ html * {
 .hover-bright:hover {
   box-shadow: 0 0 20px 4px floralwhite !important;
   filter: brightness(1.2);
+}
+
+.hover-darken {
+  transition-property: filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 }
 
 .hover-code-highlight:hover {
@@ -149,7 +161,6 @@ html * {
   }
 }
 
-
 .mat-card-fix-align-right {
   text-align: right;
 }
@@ -163,7 +174,7 @@ html * {
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  >.item {
+  > .item {
     width: max-content;
     margin: auto;
   }
@@ -179,6 +190,21 @@ html * {
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 
-  >.footer-item {
+  > .footer-item {
   }
+}
+
+@media #{$mediaQ-small-desktop} {
+  .card-big-font {
+    font-size: large;
+  }
+
+  .block-font {
+    font-size: x-large;
+  }
+
+  .card-medium-font {
+    font-size: 1.2em;
+  }
+
 }

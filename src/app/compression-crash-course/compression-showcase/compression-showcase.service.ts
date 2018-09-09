@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { clone, getTextSplitByNumber } from '../../common/utils';
+import { clone, getLinesOfTextSplitByNumber } from '../../common/utils';
 import { EntropyExample, JsonAsset } from '../../common/interface';
 import { CompressionProcessorService } from '../compression-processor.service';
 import { HttpClient } from '@angular/common/http';
@@ -42,7 +42,7 @@ export class CompressionShowcaseService {
                                 return hc;
                               })
                               .reverse();
-    huffmanCoding.lines = getTextSplitByNumber(huffmanCoding.text, 60);
+    huffmanCoding.lines = getLinesOfTextSplitByNumber(huffmanCoding.text, 60);
 
     return huffmanCoding;
   }

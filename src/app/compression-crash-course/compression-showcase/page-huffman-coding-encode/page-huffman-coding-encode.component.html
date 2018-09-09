@@ -28,7 +28,8 @@
         <div class="mat-card-fix-title-button-container">
           <div>Encoded</div>
           <div class="mat-card-fix-align-right">
-            <button mat-mini-fab
+            <button class="hover-darken"
+                    mat-mini-fab
                     color="primary"
                     (click)="resetDecodings()">
               <mat-icon>restore</mat-icon>
@@ -37,13 +38,16 @@
         </div>
       </mat-card-title>
       <mat-card-content class="card-medium-font">
-        <span class="font-monospace hover-code-highlight-secondary cursor-pointer"
+        <span class="font-monospace
+                     hover-code-highlight-secondary
+                     cursor-pointer
+                     inline-block"
               *ngFor="let code of huffmanCoding?.encodedArray; let i = index"
               [class.highlight-code-viewing]="code === selectedHuffmanCode"
               (click)="decodedFlags[i] = !decodedFlags[i]">
-        <span *ngIf="!decodedFlags[i]">{{code}}</span>
-        <span *ngIf="decodedFlags[i]">{{dictionary[code] + getWhiteSpace(code)}}</span>
-        <br *ngIf="(i+1)%10==0"></span>
+          <span *ngIf="!decodedFlags[i]">{{code}}</span>
+          <span *ngIf="decodedFlags[i]">{{dictionary[code] + getWhiteSpace(code)}}</span>
+        </span>
       </mat-card-content>
     </mat-card>
   </div>

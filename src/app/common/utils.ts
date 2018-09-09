@@ -39,7 +39,7 @@ export function clone(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
 }
 
-export function getTextSplitByNumber(text: string, width: number) {
+export function getLinesOfTextSplitByNumber(text: string, width: number) {
   return text
     .split('')
     .reduce((sum, c) => {
@@ -54,6 +54,21 @@ export function getTextSplitByNumber(text: string, width: number) {
             },
             ['']
     );
+}
+
+export function getTextInsertedSpacesByNumber(text: string, width: number): string {
+  return text
+    .split('')
+    .reduce((sum, c, i) => {
+              if (i - sum.i > width) {
+                sum.i = i;
+                sum.text += ' ';
+              }
+              sum.text += c;
+              return sum;
+            },
+            {i: -1, text: ''})
+    .text;
 }
 
 export function getArraySplitByNumber(array: any[], width: number) {

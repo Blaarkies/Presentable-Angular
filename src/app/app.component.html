@@ -4,18 +4,18 @@
                [hidden]="!currentImage">
     <div class="page-avatar"
          [style.background-image]="currentImage"></div>
-    <span>{{currentShowcase}}</span>
+    <span class="subject-title">{{currentShowcase}}</span>
 
-    <h1 class="text-tile-center">{{pageTitle}}</h1>
+    <span class="page-title-font">{{pageTitle}}</span>
 
     <div class="full-height" [class.invisible]="router.url === '/'">
       <button mat-button class="full-height" [routerLink]="['']">
         <mat-icon>home</mat-icon>
       </button>
-      <button mat-raised-button class="full-height" (click)="pageBackward()">
+      <button mat-raised-button class="full-height hover-gray" (click)="pageBackward()">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button mat-raised-button class="full-height" (click)="pageForward()">
+      <button mat-raised-button class="full-height hover-gray" (click)="pageForward()">
         <mat-icon>navigate_next</mat-icon>
       </button>
     </div>

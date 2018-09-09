@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import '../../../styles';
 
 .meter {
   height: 20px;
@@ -42,4 +43,12 @@
   color: white;
   font-weight: bold;
   text-shadow: 0 0 12px black;
+}
+
+@media #{$mediaQ-small-desktop} {
+  .meter > span {
+    font-size: medium;
+    line-height: 1.1em;
+  }
+
 }

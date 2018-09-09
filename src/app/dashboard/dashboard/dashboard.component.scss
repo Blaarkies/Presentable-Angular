@@ -1,9 +1,10 @@
+@import '../../../styles';
+
 .dashboard-container {
   width: 100%;
   display: grid;
   grid-template-areas: 'social subject empty';
   grid-template-columns: 1fr 2fr 1fr;
-  //grid-template-rows: repeat(5, 120px);
   grid-row-gap: .5em;
   grid-column-gap: 1em;
   padding-top: 28px;
@@ -56,3 +57,25 @@
     align-self: center;
   }
 }
+
+@media #{$mediaQ-small-desktop} {
+  .dashboard-container {
+    grid-template-areas: 'social subject';
+    grid-template-columns: max-content auto;
+  }
+
+  .subject-container {
+    grid-template-rows: repeat(5, 120px);
+  }
+
+  .social-container {
+    grid-row-gap: 2em;
+  }
+
+  .social-media-button {
+    justify-items: center;
+  }
+
+}
+
+

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { getArrayRange, getArraySplitByNumber, getRandomFromArray, roundToDecimalPlace } from '../common/utils';
+import { getArrayRange, getArraySplitByNumber, getRandomFromArray, isString, roundToDecimalPlace } from '../common/utils';
 import { EntropyExample, FlaggedText, HuffmanCode } from '../common/interface';
+import { isArray, isNumber } from 'util';
 
 @Injectable({
               providedIn: 'root'
@@ -19,13 +20,18 @@ export class CompressionProcessorService {
   }
 
   /**
-   * Returns the Information entropy value of a string, measured in bytes.
-   * @param {string} text
+   * Returns the Information entropy value of a string or array of numbers, measured in bytes.
+   * @param {string} input
    * @returns {number}
    */
-  public getEntropyScore(text: string): number {
-    let data = text.split('')
-                   .map(c => c.charCodeAt(0));
+  public getEntropyScore(input: string | number[]): number {
+    let data = [];
+    if (isString(input)) {
+      data = input.split('')
+                  .map(c => c.charCodeAt(0));
+    } else if (isArray(input)) {
+      data = input;
+    }
 
     let allFrequencies = {};
     data.forEach(d => {
@@ -57,11 +63,11 @@ export class CompressionProcessorService {
       .map((n, i) => {
         if (i && i % 50 === 0) {
           return String.fromCharCode(10);
-        }
-        if (Math.random() > 0.90) {
+        } else if (i && i % 10 === 0 || Math.random() > 0.90) {
           return ' ';
+        } else {
+          return String.fromCharCode(getRandomFromArray(alphaNumericalList));
         }
-        return String.fromCharCode(getRandomFromArray(alphaNumericalList));
       })
       .join('');
   }

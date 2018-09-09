@@ -1,3 +1,5 @@
+@import '../styles';
+
 .app-page {
   display: grid;
   grid-template-rows: 64px 1fr;
@@ -20,7 +22,11 @@
 
 }
 
-.text-tile-center {
+.subject-title {
+  font-size: x-large;
+}
+
+.page-title-font {
   text-align: center;
   font-family: lucida console, monospace;
   font-size: 2em;
@@ -34,3 +40,15 @@
   align-self: center;
   padding: 10px 20px 10px 20px;
 }
+
+@media #{$mediaQ-small-desktop} {
+  .subject-title {
+    font-size: large;
+  }
+
+  .page-title-font {
+    font-size: x-large;
+  }
+
+}
+

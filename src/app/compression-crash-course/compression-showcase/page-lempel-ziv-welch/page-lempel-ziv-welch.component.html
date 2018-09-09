@@ -4,18 +4,14 @@
     <mat-card>
       <mat-card-title>Not Encoded</mat-card-title>
       <mat-card-content class="block-font">
-
-        <span *ngFor="let e of lzwEncoding.encodedTableFiltered"
-              [class.highlight-code-viewing]="selectedLzwEntry.code == e.code
-                                              && selectedLzwEntry.next == e.next">{{e.output}}</span>
+        <span *ngFor="let e of lzwEncoding.text?.split(''); let idx = index"
+              [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">{{e}}</span>
 
         <br>
         <br>
-        <div class="descriptive">Transmission</div>
-        <ng-container *ngFor="let e of lzwEncoding.notEncodedTransmission; let idx = index">
-          <span [class.highlight-code-viewing]="idx >= selectedLzwEntry.idxStart
-                                                && idx <= selectedLzwEntry.idxEnd
-                                                && selectedLzwEntry.output">
+        <div class="descriptive">Network payload → {{lzwEncoding.normalPayloadSize}} bytes</div>
+        <ng-container *ngFor="let e of lzwEncoding.normalTransmission; let idx = index">
+          <span [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">
             {{e}}</span>{{' '}}
         </ng-container>
       </mat-card-content>
@@ -33,19 +29,22 @@
 
         <div class="encoded-container">
           <div class="item"
-               *ngFor="let e of lzwEncoding.encodedTableFiltered; let i = index;"
-               [class.highlight-code-viewing]="selectedLzwEntry.code == e.code
-                                                        && selectedLzwEntry.next == e.next">
+               *ngFor="let e of lzwEncoding.encodedTableFiltered;"
+               [class.highlight-code-viewing]="getIsSelectedEncodedTransmission(e)">
             <div>{{e.output}}</div>
             <div>{{e.code}}</div>
           </div>
         </div>
 
         <br>
-        <div class="descriptive">Transmission</div>
-        <div>{{lzwEncoding.encodedTransmission}}</div>
+        <div class="descriptive">Network payload → {{lzwEncoding.encodedPayloadSize}} bytes</div>
+        <div>{{lzwEncoding.encodedTransmission?.join(' ')}}</div>
 
       </mat-card-content>
+
+      <mat-card-footer class="footer-padding">
+        <app-entropy-info [entropyObject]="encodedEntropyInfo"></app-entropy-info>
+      </mat-card-footer>
     </mat-card>
   </div>
 

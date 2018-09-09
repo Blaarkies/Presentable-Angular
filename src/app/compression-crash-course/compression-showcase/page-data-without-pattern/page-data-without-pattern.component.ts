@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EntropyExample } from 'src/app/common/interface';
 import { CompressionProcessorService } from '../../compression-processor.service';
-import { getTextSplitByNumber, getUniqueElements, roundToDecimalPlace } from 'src/app/common/utils';
+import { getLinesOfTextSplitByNumber, getUniqueElements, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
 
 interface ValueDisplayLines {
@@ -35,7 +35,7 @@ export class PageDataWithoutPatternComponent implements OnInit {
     };
 
     this.charactersUsed.value = getUniqueElements(this.highEntropyData.text);
-    this.charactersUsed.displayLines = getTextSplitByNumber(this.charactersUsed.value.join(''), 50);
+    this.charactersUsed.displayLines = getLinesOfTextSplitByNumber(this.charactersUsed.value.join(''), 30);
 
     this.asciiFraction = roundToDecimalPlace(this.charactersUsed.value.length / 256, 2) * 100;
   }
