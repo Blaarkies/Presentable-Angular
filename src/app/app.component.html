@@ -12,10 +12,16 @@
       <button mat-button class="full-height" [routerLink]="['']">
         <mat-icon>home</mat-icon>
       </button>
-      <button mat-raised-button class="full-height hover-gray" (click)="pageBackward()">
+      <button mat-raised-button
+              class="full-height hover-gray"
+              [disabled]="backwardButtonDisabled"
+              (click)="pageBackward()">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button mat-raised-button class="full-height hover-gray" (click)="pageForward()">
+      <button mat-raised-button
+              class="full-height hover-gray"
+              [disabled]="forwardButtonDisabled"
+              (click)="pageForward()">
         <mat-icon>navigate_next</mat-icon>
       </button>
     </div>

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Location } from '@angular/common';
+import { Subject } from 'rxjs';
 
 interface RouteData {
   title: string;
@@ -14,20 +15,35 @@ interface RouteData {
              templateUrl: './app.component.html',
              styleUrls: ['./app.component.scss']
            })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
 
   currentShowcase: string;
   currentImage: SafeStyle;
   pageTitle: string;
+  forwardButtonDisabled: boolean;
+  backwardButtonDisabled: boolean;
+
+  unsubscribe$ = new Subject<void>();
 
   constructor(private route: ActivatedRoute,
               public router: Router,
               private location: Location,
               private sanitizer: DomSanitizer) {
     this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd),
+              takeUntil(this.unsubscribe$))
+        .subscribe(() => {
+          let newRouteValue = this.getNowRouteInfo();
+          if (newRouteValue) {
+            this.updateRouteButtonDisabled();
+          }
+        });
+
+    this.router.events
         .pipe(
           filter(event => event instanceof RoutesRecognized),
-          map((event: RoutesRecognized) => event.state.root.firstChild)
+          map((event: RoutesRecognized) => event.state.root.firstChild),
+          takeUntil(this.unsubscribe$)
         )
         .subscribe(parentRoute => {
           let parentRouteData = <RouteData>parentRoute.data;
@@ -44,25 +60,12 @@ export class AppComponent {
         });
   }
 
-
-  pageForward() {
-    let {children, parentPage, nowIdx} = this.getNowRouteInfo();
-
-    let newIdx = nowIdx + 1;
-    if (children[newIdx] !== undefined) {
-      this.router.navigate([parentPage, children[newIdx].path]);
-    } else {
-    }
+  pageBackward() {
+    this.routeIfPossible(-1);
   }
 
-  pageBackward() {
-    let {children, parentPage, nowIdx} = this.getNowRouteInfo();
-
-    let newIdx = nowIdx - 1;
-    if (children[newIdx] !== undefined && children[newIdx].path !== '') {
-      this.router.navigate([parentPage, children[newIdx].path]);
-    } else {
-    }
+  pageForward() {
+    this.routeIfPossible(+1);
   }
 
   private getNowRouteInfo() {
@@ -74,9 +77,37 @@ export class AppComponent {
     let nowPage = nowSnapshot.url
                              .split('/')
                              .reverse()[0];
+    if (nowSnapshot.root.children[0].routeConfig.children === undefined) {
+      return;
+    }
     let nowIdx = nowSnapshot.root.children[0].routeConfig.children
                                              .findIndex(c => c.path === nowPage);
     return {children, parentPage, nowIdx};
   }
 
+  private isRoutePossible(modifier: number) {
+    let {children, nowIdx} = this.getNowRouteInfo();
+
+    let newIdx = nowIdx + modifier;
+    return children[newIdx] !== undefined && children[newIdx].path !== '';
+  }
+
+  private routeIfPossible(modifier: number) {
+    let {children, parentPage, nowIdx} = this.getNowRouteInfo();
+
+    if (this.isRoutePossible(modifier)) {
+      this.router
+          .navigate([parentPage, children[nowIdx + modifier].path])
+          .then(() => this.updateRouteButtonDisabled());
+    }
+  }
+
+  private updateRouteButtonDisabled() {
+    this.backwardButtonDisabled = !this.isRoutePossible(-1);
+    this.forwardButtonDisabled = !this.isRoutePossible(+1);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+  }
 }
