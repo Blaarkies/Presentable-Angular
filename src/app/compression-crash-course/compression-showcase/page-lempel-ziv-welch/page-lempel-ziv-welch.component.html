@@ -48,11 +48,11 @@
     </mat-card>
   </div>
 
-  <div class="coding-table" (mouseleave)="selectedLzwEntry = {}">
+  <div class="coding-table">
 
     <div class="lzw-table-container">
 
-      <div class="item">
+      <div class="item" (mouseenter)="selectedLzwEntry = {}">
         <div>Current</div>
         <mat-divider class="divider-normal"></mat-divider>
         <div>Next</div>

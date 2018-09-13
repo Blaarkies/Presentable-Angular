@@ -12,14 +12,11 @@
 
 .social-container {
   grid-area: social;
+
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(2, max-content);
+  grid-template-rows: max-content max-content;
   grid-row-gap: 1em;
-
-  > .subject-card {
-    text-align: center;
-  }
 }
 
 .subject-container {
@@ -80,9 +77,8 @@
 }
 
 .mat-icon-fix-size {
-  width: 56px;
-  height: 56px;
   font-size: 56px;
-  line-height: 25px;
+  display: grid;
+  place-content: center center;
 }
 

@@ -6,7 +6,7 @@
 }
 
 .rotate-question {
-  animation: spin 5s linear infinite;
+  animation: spin 5s cubic-bezier(0.6, 0.06, 0.4, 0.94) infinite;
 }
 
 @keyframes spin {
