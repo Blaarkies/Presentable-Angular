@@ -115,6 +115,10 @@ html * {
   font-size: 22px;
 }
 
+.card-small-font {
+  font-size: 1em;
+}
+
 .font-monospace {
   font-family: monospace;
 }
@@ -173,6 +177,7 @@ html * {
 .bi-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
 
   > .item {
     width: max-content;

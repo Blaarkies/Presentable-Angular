@@ -1,5 +1,5 @@
 <h1>Presentable Angular</h1>
-<a href="https://blaarkies-presentable-angular.netlify.com/">
+<a href="blaarkies.com/">
 Demo
 </a>
 

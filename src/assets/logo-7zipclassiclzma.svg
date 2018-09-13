@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2100 3543 1600" version="1">
+  <rect rx="213" ry="213" height="1347" width="3543" y="2144" x="1" fill="#9b9b9b"/>
+  <path d="M2602 2565c-821 0-1626 457-2601 252v460c0 118 95 213 212 213h3118c118 0 213-95 213-213v-460a1809 1809 0 0 0-942-252z" fill="#4dde4a"/>
+  <text style="line-height:125%" transform="scale(1.1456 .87291)" y="3467" x="292" font-size="1500" font-family="ITC Zapf Chancery" letter-spacing="-103" word-spacing="0" font-style="oblique">
+    <tspan y="3567" x="292">lzma</tspan>
+  </text>
+</svg>

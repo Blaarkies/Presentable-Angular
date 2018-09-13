@@ -1,9 +1,11 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { TutorialDialogComponent } from 'src/app/common/tutorial-dialog/tutorial-dialog.component';
 
 interface RouteData {
   title: string;
@@ -15,7 +17,7 @@ interface RouteData {
              templateUrl: './app.component.html',
              styleUrls: ['./app.component.scss']
            })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, OnInit {
 
   currentShowcase: string;
   currentImage: SafeStyle;
@@ -24,11 +26,13 @@ export class AppComponent implements OnDestroy {
   backwardButtonDisabled: boolean;
 
   unsubscribe$ = new Subject<void>();
+  isTutorialMode: boolean = false;
 
   constructor(private route: ActivatedRoute,
               public router: Router,
               private location: Location,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private dialog: MatDialog) {
     this.router.events
         .pipe(filter(event => event instanceof NavigationEnd),
               takeUntil(this.unsubscribe$))
@@ -110,4 +114,25 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
   }
+
+  ngOnInit(): void {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => this.testDialog(), 100);
+  }
+
+  testDialog() {
+    if (this.isTutorialMode) {
+      this.dialog.open(TutorialDialogComponent,
+                       {
+                         width: '250px',
+                         data: {name: 'abc', animal: 'tier'}
+                       })
+          .afterClosed()
+          .subscribe(result => {
+            console.log('The dialog was closed');
+          });
+    }
+  }
+
 }
