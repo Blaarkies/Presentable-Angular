@@ -4,8 +4,8 @@
 
     <mat-card>
       <mat-card-title>Example Text</mat-card-title>
-      <mat-card-content class="card-medium-font">
-        <div *ngFor="let line of huffmanCoding?.lines">{{line}}</div>
+      <mat-card-content class="card-big-font">
+        <span *ngFor="let line of huffmanCoding?.lines">{{line}}</span>
       </mat-card-content>
     </mat-card>
   </div>
@@ -15,9 +15,10 @@
     <mat-card>
       <mat-card-title>
         <div class="mat-card-fix-title-button-container">
-          <div>Frequency Table</div>
+          <div class="mq-fix-font-size-table-name">Frequency Table</div>
           <div class="mat-card-fix-align-right">
-            <button mat-mini-fab
+            <button class="hover-darken"
+                    mat-mini-fab
                     color="primary"
                     (click)="resetTable()">
               <mat-icon>restore</mat-icon>
@@ -29,8 +30,8 @@
       <mat-card-footer>
 
         <div class="huffman-frequency-table">
-          <div class="character">Character</div>
-          <div class="usages">Usages</div>
+          <div class="character mq-fix-font-size-headers-size">Character</div>
+          <div class="usages mq-fix-font-size-headers">Usages</div>
         </div>
         <mat-divider class="divider-normal"></mat-divider>
 
@@ -38,7 +39,7 @@
                   (mouseleave)="tableHoverIndex = undefined">
 
           <ng-container *ngFor="let hc of tableDisplay; let i = index;">
-            <mat-list-item class="cursor-pointer"
+            <mat-list-item class="cursor-pointer fix-mat-list-item-height"
                            (click)="listItemClicked(hc);"
                            (mouseenter)="tableHoverIndex = i-((tableDisplay.length-i)%2)"
                            [class.highlight-code-viewing-secondary]="i >= tableHoverIndex">

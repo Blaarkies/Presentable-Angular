@@ -4,21 +4,38 @@
                [hidden]="!currentImage">
     <div class="page-avatar"
          [style.background-image]="currentImage"></div>
-    <span>{{currentShowcase}}</span>
+    <span class="subject-title">{{currentShowcase}}</span>
 
-    <h1 class="text-tile-center">{{pageTitle}}</h1>
+    <span class="page-title-font">{{pageTitle}}</span>
 
-    <div class="full-height" [class.invisible]="router.url === '/'">
+    <span class="vertical-container" matTooltip="Coming soon...">
+        <span>
+          <mat-slide-toggle color="primary"
+                            [checked]="isTutorialMode"
+                            [disabled]="true"></mat-slide-toggle>
+        </span>
+        <span class="slide-toggle-font">Tutorial</span>
+      </span>
+
+    <span class="full-height nav-buttons-container" *ngIf="router.url !== '/'">
       <button mat-button class="full-height" [routerLink]="['']">
         <mat-icon>home</mat-icon>
       </button>
-      <button mat-raised-button class="full-height" (click)="pageBackward()">
+
+      <button mat-raised-button
+              class="full-height hover-gray"
+              [disabled]="backwardButtonDisabled"
+              (click)="pageBackward()">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button mat-raised-button class="full-height" (click)="pageForward()">
+
+      <button mat-raised-button
+              class="full-height hover-gray"
+              [disabled]="forwardButtonDisabled"
+              (click)="pageForward()">
         <mat-icon>navigate_next</mat-icon>
       </button>
-    </div>
+    </span>
   </mat-toolbar>
 
   <div class="router-outlet-align">

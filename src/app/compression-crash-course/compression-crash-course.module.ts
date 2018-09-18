@@ -13,6 +13,7 @@ import { PageHuffmanCodingTreeComponent } from './compression-showcase/page-huff
 import { PageHuffmanCodingEncodeComponent } from './compression-showcase/page-huffman-coding-encode/page-huffman-coding-encode.component';
 import { PageQuestionsComponent } from './compression-showcase/page-questions/page-questions.component';
 import { PageLempelZivWelchComponent } from './compression-showcase/page-lempel-ziv-welch/page-lempel-ziv-welch.component';
+import { PageInRealLifeComponent } from './compression-showcase/page-in-real-life/page-in-real-life.component';
 
 @NgModule({
             imports: [
@@ -30,7 +31,8 @@ import { PageLempelZivWelchComponent } from './compression-showcase/page-lempel-
                            PageHuffmanCodingTreeComponent,
                            PageHuffmanCodingEncodeComponent,
                            PageQuestionsComponent,
-                           PageLempelZivWelchComponent]
+                           PageLempelZivWelchComponent,
+                           PageInRealLifeComponent]
           })
 export class CompressionCrashCourseModule {
 }

@@ -15,7 +15,7 @@ export class HuffmanNodeComponent implements OnInit, OnDestroy {
   @Input() minInsertOrder$: BehaviorSubject<number>;
   @Input() selectedPath$: BehaviorSubject<string>;
 
-  unsubscribe = new Subject<void>();
+  unsubscribe$ = new Subject<void>();
 
   public hasNestedLeftNode;
   public hasNestedRightNode;
@@ -33,7 +33,7 @@ export class HuffmanNodeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
+    this.unsubscribe$.next();
   }
 
   ngOnInit() {
@@ -44,14 +44,14 @@ export class HuffmanNodeComponent implements OnInit, OnDestroy {
     this.rightNode = this.treePart[1];
 
     this.selectedPath$
-        .pipe(takeUntil(this.unsubscribe))
+        .pipe(takeUntil(this.unsubscribe$))
         .subscribe(path => {
           this.highlightLeft = path.indexOf(this.leftNode.path) === 0;
           this.highlightRight = path.indexOf(this.rightNode.path) === 0;
         });
 
     this.minInsertOrder$
-        .pipe(takeUntil(this.unsubscribe))
+        .pipe(takeUntil(this.unsubscribe$))
         .subscribe(selectedInsertOrder => {
           this.fadeOutLeft = this.leftNode.insertOrder > selectedInsertOrder;
           this.fadeOutRight = this.rightNode.insertOrder > selectedInsertOrder;

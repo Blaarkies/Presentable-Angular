@@ -2,7 +2,7 @@
 
 .lzw-container {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content auto;
   grid-template-areas: 'text-to-encode encoded' 'coding-table   coding-table';
   grid-gap: 8px;
@@ -36,7 +36,7 @@
 
 .lzw-cells-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-gap: 4px;
 
   @extend .block-font;
@@ -58,4 +58,23 @@
     text-align: center;
   }
 
+}
+
+@media #{$mediaQ-small-desktop} {
+  .lzw-container {
+    grid-template-columns: auto 58%;
+  }
+
+  .lzw-cells-container {
+    grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+
+    > .item {
+      line-height: 1.1em;
+    }
+  }
+
+  .encoded-container {
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    grid-row-gap: 0;
+  }
 }

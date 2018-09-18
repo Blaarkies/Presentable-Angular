@@ -35,6 +35,8 @@ $danger: $mat-red;
   background-color: lighten(indigo, 70);
 }
 
+$mediaQ-small-desktop: 'only screen and (max-width : 1400px)';
+
 html,
 body {
   margin: 0;
@@ -74,6 +76,16 @@ html * {
   filter: brightness(1.2);
 }
 
+.hover-darken {
+  transition-property: filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
 .hover-code-highlight:hover {
   @extend .highlight-code-viewing;
 }
@@ -96,11 +108,15 @@ html * {
 //}
 
 .card-big-font {
-  font-size: 22px;
+  font-size: x-large;
 }
 
 .card-medium-font {
-  font-size: 18px;
+  font-size: 22px;
+}
+
+.card-small-font {
+  font-size: 1em;
 }
 
 .font-monospace {
@@ -149,7 +165,6 @@ html * {
   }
 }
 
-
 .mat-card-fix-align-right {
   text-align: right;
 }
@@ -162,8 +177,9 @@ html * {
 .bi-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
 
-  >.item {
+  > .item {
     width: max-content;
     margin: auto;
   }
@@ -179,6 +195,21 @@ html * {
   grid-column-gap: 8px;
   grid-row-gap: 8px;
 
-  >.footer-item {
+  > .footer-item {
   }
+}
+
+@media #{$mediaQ-small-desktop} {
+  .card-big-font {
+    font-size: large;
+  }
+
+  .block-font {
+    font-size: x-large;
+  }
+
+  .card-medium-font {
+    font-size: 1.2em;
+  }
+
 }

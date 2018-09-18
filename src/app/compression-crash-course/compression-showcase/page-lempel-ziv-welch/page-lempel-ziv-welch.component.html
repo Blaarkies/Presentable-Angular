@@ -4,15 +4,16 @@
     <mat-card>
       <mat-card-title>Not Encoded</mat-card-title>
       <mat-card-content class="block-font">
-
-        <span *ngFor="let e of lzwEncoding.encodedTableFiltered"
-              [class.highlight-code-viewing]="selectedLzwEntry.code == e.code
-                                              && selectedLzwEntry.next == e.next">{{e.output}}</span>
+        <span *ngFor="let e of lzwEncoding.text?.split(''); let idx = index"
+              [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">{{e}}</span>
 
         <br>
         <br>
-        <div class="descriptive">Transmission</div>
-        <div>{{lzwEncoding.notEncodedTransmission}}</div>
+        <div class="descriptive">Network payload → {{lzwEncoding.normalPayloadSize}} bytes</div>
+        <ng-container *ngFor="let e of lzwEncoding.normalTransmission; let idx = index">
+          <span [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">
+            {{e}}</span>{{' '}}
+        </ng-container>
       </mat-card-content>
 
       <mat-card-footer class="footer-padding">
@@ -28,19 +29,22 @@
 
         <div class="encoded-container">
           <div class="item"
-               *ngFor="let e of lzwEncoding.encodedTableFiltered; let i = index;"
-               [class.highlight-code-viewing]="selectedLzwEntry.code == e.code
-                                                        && selectedLzwEntry.next == e.next">
+               *ngFor="let e of lzwEncoding.encodedTableFiltered;"
+               [class.highlight-code-viewing]="getIsSelectedEncodedTransmission(e)">
             <div>{{e.output}}</div>
             <div>{{e.code}}</div>
           </div>
         </div>
 
         <br>
-        <div class="descriptive">Transmission</div>
-        <div>{{lzwEncoding.encodedTransmission}}</div>
+        <div class="descriptive">Network payload → {{lzwEncoding.encodedPayloadSize}} bytes</div>
+        <div>{{lzwEncoding.encodedTransmission?.join(' ')}}</div>
 
       </mat-card-content>
+
+      <mat-card-footer class="footer-padding">
+        <app-entropy-info [entropyObject]="encodedEntropyInfo"></app-entropy-info>
+      </mat-card-footer>
     </mat-card>
   </div>
 
@@ -60,10 +64,8 @@
 
       <div class="lzw-cells-container">
         <div class="item hover-bright cursor-pointer"
-             *ngFor="let row of lzwEncoding.encodedTable"
-             (mouseenter)="selectedLzwEntry.code = row.code;
-                         selectedLzwEntry.next = row.next;
-                         selectedLzwEntry.char = row.current;">
+             *ngFor="let row of lzwEncoding.encodedTable; let idx = index"
+             (mouseenter)="setSelectedLzwEntry(row, idx)">
           <div>{{row.current || ' '}}</div>
           <mat-divider class="divider-normal"></mat-divider>
           <div>{{row.next || ' '}}</div>

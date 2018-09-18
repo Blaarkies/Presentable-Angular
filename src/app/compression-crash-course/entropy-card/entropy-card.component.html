@@ -3,11 +3,11 @@
     class="remove-expansion-panel-padding"
     [expanded]="encodeMode">
 
-    <mat-list class="list-small">
+    <mat-list class="scrollbar-primary list-small">
       <ng-container *ngFor="let rule of encodedWords">
 
         <mat-list-item class="hover-gray">
-          <span>{{rule.normal}} = {{rule.encoded}}</span>
+          <span class="card-big-font">{{rule.normal}} = {{rule.encoded}}</span>
         </mat-list-item>
         <mat-divider class="divider-normal"></mat-divider>
       </ng-container>

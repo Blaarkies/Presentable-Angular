@@ -1,8 +1,8 @@
-@import "../../../../styles";
+@import '../../../../styles';
 
 .huffman-tree-container {
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: 25% auto;
   grid-template-rows: max-content auto;
   grid-template-areas: 'text-to-encode huffman-tree' 'huffman-table  huffman-tree';
   grid-gap: 8px;
@@ -45,5 +45,25 @@
 }
 
 .list-size {
-  height: 500px;
+  height: 475px;
+}
+
+@media #{$mediaQ-small-desktop} {
+  .list-size {
+    height: 330px;
+  }
+
+  .mq-fix-font-size-table-name {
+    font-size: large;
+  }
+
+  .mq-fix-font-size-headers {
+    font-size: x-large;
+  }
+}
+
+::ng-deep {
+  .fix-mat-list-item-height {
+    height: unset !important;
+  }
 }

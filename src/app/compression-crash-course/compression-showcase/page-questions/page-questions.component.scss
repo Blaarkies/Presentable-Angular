@@ -1,3 +1,5 @@
+@import '../../../../styles';
+
 .big-font {
   text-align: center;
   font-size: 420px;
@@ -19,4 +21,18 @@
   margin: auto;
   width: 500px;
   height: 500px;
+}
+
+@media #{$mediaQ-small-desktop} {
+  .big-font {
+    font-size: 350px;
+  }
+
+  .round-card {
+    border-radius: 50%;
+
+    margin: auto;
+    width: 420px;
+    height: 420px;
+  }
 }

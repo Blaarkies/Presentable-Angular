@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { clone, getTextSplitByNumber } from '../../common/utils';
+import { clone, getLinesOfTextSplitByNumber } from '../../common/utils';
 import { EntropyExample, JsonAsset } from '../../common/interface';
 import { CompressionProcessorService } from '../compression-processor.service';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +23,8 @@ export class CompressionShowcaseService {
   }
 
   getHuffmanCodingPageData(data: EntropyExample) {
+    data = clone(data);
+    data.text = data.text.substring(0, 96);
     let huffmanCoding = clone(this.compression.getProcessedEntropy(data));
     huffmanCoding.text = huffmanCoding.text.substring(0, 96);
     huffmanCoding.binary = this.compression.textToBinary(huffmanCoding.text);
@@ -40,7 +42,7 @@ export class CompressionShowcaseService {
                                 return hc;
                               })
                               .reverse();
-    huffmanCoding.lines = getTextSplitByNumber(huffmanCoding.text, 60);
+    huffmanCoding.lines = getLinesOfTextSplitByNumber(huffmanCoding.text, 60);
 
     return huffmanCoding;
   }

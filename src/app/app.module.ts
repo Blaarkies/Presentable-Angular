@@ -10,6 +10,7 @@ import { CompressionCrashCourseModule } from './compression-crash-course/compres
 import { MatComponentsModule } from './common/mat-components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
             declarations: [
@@ -26,7 +27,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
               HttpClientModule,
               FlexLayoutModule
             ],
-            providers: [],
+            providers: [
+              {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+            ],
             bootstrap: [AppComponent]
           })
 export class AppModule {

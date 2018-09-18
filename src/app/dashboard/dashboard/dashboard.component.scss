@@ -1,9 +1,10 @@
+@import '../../../styles';
+
 .dashboard-container {
   width: 100%;
   display: grid;
   grid-template-areas: 'social subject empty';
   grid-template-columns: 1fr 2fr 1fr;
-  //grid-template-rows: repeat(5, 120px);
   grid-row-gap: .5em;
   grid-column-gap: 1em;
   padding-top: 28px;
@@ -13,11 +14,10 @@
   grid-area: social;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(5, 120px);
-  grid-row-gap: .5em;
-  grid-column-gap: 1em;
+  grid-template-rows: repeat(2, max-content);
+  grid-row-gap: 1em;
 
-  >.subject-card {
+  > .subject-card {
     text-align: center;
   }
 }
@@ -26,13 +26,16 @@
   grid-area: subject;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(5, 120px);
+  grid-template-rows: repeat(6, 120px);
   grid-row-gap: .5em;
-  grid-column-gap: 1em;
 
-  >.subject-card {
+  > .subject-card {
     text-align: center;
   }
+}
+
+.empty-container {
+  grid-area: empty;
 }
 
 .image-button-alignment {
@@ -43,3 +46,43 @@
 .margin-right {
   margin-right: 8px;
 }
+
+.social-media-button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: .5em;
+
+  > .button-text {
+    align-self: center;
+  }
+}
+
+@media #{$mediaQ-small-desktop} {
+  .dashboard-container {
+    grid-template-areas: 'social subject';
+    grid-template-columns: max-content auto;
+  }
+
+  .subject-container {
+    grid-template-rows: repeat(5, 120px);
+  }
+
+  .social-container {
+    grid-row-gap: 2em;
+  }
+
+  .social-media-button {
+    justify-items: center;
+    grid-template-columns: auto;
+  }
+
+}
+
+.mat-icon-fix-size {
+  width: 56px;
+  height: 56px;
+  font-size: 56px;
+  line-height: 25px;
+}
+

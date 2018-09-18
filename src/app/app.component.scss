@@ -1,3 +1,5 @@
+@import '../styles';
+
 .app-page {
   display: grid;
   grid-template-rows: 64px 1fr;
@@ -15,12 +17,14 @@
 
 .toolbar-container {
   display: grid;
-  //grid-template-areas: 'icon route title home left right';
-  grid-template-columns: max-content max-content auto max-content;
-
+  grid-template-columns: max-content max-content auto max-content max-content;
 }
 
-.text-tile-center {
+.subject-title {
+  font-size: x-large;
+}
+
+.page-title-font {
   text-align: center;
   font-family: lucida console, monospace;
   font-size: 2em;
@@ -34,3 +38,31 @@
   align-self: center;
   padding: 10px 20px 10px 20px;
 }
+
+@media #{$mediaQ-small-desktop} {
+  .subject-title {
+    font-size: large;
+  }
+
+  .page-title-font {
+    font-size: x-large;
+  }
+}
+
+.slide-toggle-font {
+  font-size: 0.7em;
+}
+
+.vertical-container {
+  display: grid;
+  justify-items: center;
+  padding: 0 16px 0 16px;
+
+  grid-template-areas: 'top' 'bottom';
+}
+
+.nav-buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+}
+

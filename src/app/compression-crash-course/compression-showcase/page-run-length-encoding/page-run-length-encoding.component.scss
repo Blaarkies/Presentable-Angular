@@ -1,3 +1,5 @@
+@import '../../../../styles';
+
 .pixels-container {
   display: grid;
   grid-template-columns: repeat(17, 1fr);
@@ -42,4 +44,11 @@
 
 .pixels-encoded-card-padding {
   padding-left: 16px;
+}
+
+@media #{$mediaQ-small-desktop} {
+  .pixels-container {
+    grid-template-columns: repeat(17, 25px);
+    grid-template-rows: repeat(17, 25px);
+  }
 }
