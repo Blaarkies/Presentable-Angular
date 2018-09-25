@@ -4,8 +4,6 @@ import { filter, map, takeUntil } from 'rxjs/operators';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
-import { MatDialog } from '@angular/material';
-import { TutorialDialogComponent } from 'src/app/common/tutorial-dialog/tutorial-dialog.component';
 
 interface RouteData {
   title: string;
@@ -31,8 +29,7 @@ export class AppComponent implements OnDestroy, OnInit {
   constructor(private route: ActivatedRoute,
               public router: Router,
               private location: Location,
-              private sanitizer: DomSanitizer,
-              private dialog: MatDialog) {
+              private sanitizer: DomSanitizer) {
     this.router.events
         .pipe(filter(event => event instanceof NavigationEnd),
               takeUntil(this.unsubscribe$))
@@ -116,23 +113,6 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    // https://github.com/angular/material2/issues/5268
-    // TODO: work-around for expression change on dialog factory
-    setTimeout(() => this.testDialog(), 100);
-  }
-
-  testDialog() {
-    if (this.isTutorialMode) {
-      this.dialog.open(TutorialDialogComponent,
-                       {
-                         width: '250px',
-                         data: {name: 'abc', animal: 'tier'}
-                       })
-          .afterClosed()
-          .subscribe(result => {
-            console.log('The dialog was closed');
-          });
-    }
   }
 
 }

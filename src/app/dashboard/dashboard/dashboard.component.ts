@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TutorialDialogComponent } from 'src/app/common/tutorial-dialog/tutorial-dialog.component';
 import { MatDialog } from '@angular/material';
 import { WebsiteInfoDialogComponent } from 'src/app/common/website-info-dialog/website-info-dialog.component';
 
@@ -30,17 +29,14 @@ export class DashboardComponent implements OnInit {
     // https://github.com/angular/material2/issues/5268
     // TODO: work-around for expression change on dialog factory
     setTimeout(() => {
-                 this.dialog.open(WebsiteInfoDialogComponent,
-                                  {
-                                    // width: '250px',
-                                    data: {name: 'abc', animal: 'tier'}
-                                  })
-                     .afterClosed()
-                     .subscribe(result => {
-                       console.log('The dialog was closed');
-                     });
-               }
-      , 100);
+      this.dialog.open(WebsiteInfoDialogComponent,
+                       {
+                         width: '50%',
+                         data: {}
+                       })
+          .afterClosed()
+          .subscribe();
+    });
   }
 
 }

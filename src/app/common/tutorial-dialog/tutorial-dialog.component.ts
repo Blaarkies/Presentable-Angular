@@ -1,7 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-class DialogData {
+interface TutorialTab {
+  paragraphs: string[];
+}
+
+interface DialogTutorialData {
+  firstTab: TutorialTab,
+  secondTab: TutorialTab,
+  thirdTab: TutorialTab
 }
 
 @Component({
@@ -13,7 +20,7 @@ export class TutorialDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TutorialDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogTutorialData) {
   }
 
   onNoClick(): void {

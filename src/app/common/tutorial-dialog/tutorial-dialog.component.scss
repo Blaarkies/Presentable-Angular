@@ -1,0 +1,16 @@
+.mat-card-remove-box {
+  box-shadow: unset;
+  padding: unset;
+}
+
+.dialog-buttons-right {
+  display: grid;
+  justify-items: right;
+}
+
+::ng-deep {
+  .center-mat-tab-header mat-tab-header {
+    display: grid;
+    justify-items: center;
+  }
+}

@@ -12,5 +12,32 @@
   "asciiImage": {
     "width": 17,
     "text": "░░░░░░░░░░░░░░░░░░░░░░▓▓▓▓▓▓▓░░░░░░░░░▓▓▓▓▓▓▓▓▓▓░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓░░░░▓▓▓▓▓░░░░▓▓▓▓░░░░▓▓▓▓░░░░░░▓▓▓▓░░░▓▓▓░░░░░░░▓▓▓▓░░▓▓▓▓░░░░░░▓▓▓▓▓░░▓▓▓░░▓▓░░▓▓▓▓▓░░░▓▓▓░░▓▓▓▓▓▓▓▓▓░░░▓▓▓▓░▓▓▓▓▓▓▓▓░░░░░▓▓▓░░▓▓▓▓▓░░░░░░░▓▓▓▓░░░░░░░░░░░░░░▓▓▓▓░░░░▓▓▓░░░░░░░▓▓▓▓▓▓▓▓▓▓░░░░░░░░▓▓▓▓▓▓▓▓░░░░░░░░░░░▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░"
+  },
+  "pageDataAndInformation": {
+    "firstTab": {
+      "paragraphs": [
+        "Select words by clicking on them.",
+        "This will highlight all occurrences of this word. To replace each word with a shorter representation, click on the Encode button",
+        "If many words are encoded, you can scroll through the header to see what represents them",
+        "The green range bar at the bottom represents how much information is in this text"
+      ]
+    },
+    "secondTab": {
+      "paragraphs": []
+    },
+    "thirdTab": {
+      "paragraphs": []
+    }
+  },
+  "pageDataWithoutPattern": {
+    "firstTab": {
+      "paragraphs": []
+    },
+    "secondTab": {
+      "paragraphs": []
+    },
+    "thirdTab": {
+      "paragraphs": []
+    }
   }
 }

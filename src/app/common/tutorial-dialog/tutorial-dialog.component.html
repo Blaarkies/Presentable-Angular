@@ -1,6 +1,26 @@
-<h2 mat-dialog-title>Tutorial</h2>
-<mat-dialog-content>Do you want to learn?</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Yes</button>
-  <button mat-button [mat-dialog-close]="true">Yes</button>
+<mat-dialog-content>
+  <mat-card class="mat-card-remove-box">
+    <mat-card-content>
+
+      <mat-tab-group class="center-mat-tab-header">
+        <mat-tab label="TL;DR">
+          <p *ngFor="let text of data?.firstTab?.paragraphs">{{text}}</p>
+        </mat-tab>
+
+        <mat-tab label="Explained">
+          <p *ngFor="let text of data?.secondTab?.paragraphs">{{text}}</p>
+        </mat-tab>
+
+        <mat-tab label="Math">
+          <p *ngFor="let text of data?.thirdTab?.paragraphs">{{text}}</p>
+        </mat-tab>
+      </mat-tab-group>
+
+
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-buttons-right">
+  <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>

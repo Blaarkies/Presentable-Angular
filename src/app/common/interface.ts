@@ -21,6 +21,9 @@ export interface JsonAsset {
   medium: EntropyExample;
   high: EntropyExample;
   asciiImage: AsciiImage
+
+  pageDataAndInformation: any;
+  pageDataWithoutPattern: any;
 }
 
 export interface AsciiImage {
