@@ -22,30 +22,58 @@
 
 .lzw-table-container {
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: max-content minmax(max-content, 100px) auto;
+  grid-template-areas: 'letterTitle letterTitle dictionaryTitle'
+  'description character dictionary';
   grid-gap: 4px;
 
   @extend .block-font;
 
-  > .item {
+  .letterTitle {
+    grid-area: letterTitle;
+    @extend .title-medium;
+  }
+  .dictionaryTitle {
+    grid-area: dictionaryTitle;
+    @extend .title-medium;
+    margin-left: 12.5%;
+  }
+
+  .description {
+    grid-area: description;
+
     padding: 4px 0 4px 4px;
     background-color: white;
     height: max-content;
   }
-}
 
-.lzw-cells-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 4px;
+  .character {
+    grid-area: character;
 
-  @extend .block-font;
-
-  > .item {
+    user-select: none;
     background-color: white;
     padding: 4px 0 4px 0;
     text-align: center;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2);
+    height: max-content;
+  }
+
+  .dictionary {
+    grid-area: dictionary;
+
+    width: 75%;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(max-content, 100px));
+    grid-gap: 4px;
+
+    > .item {
+      background-color: white;
+      padding: 4px 0 4px 0;
+      text-align: center;
+      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2);
+    }
   }
 }
 
@@ -57,7 +85,6 @@
   > .item {
     text-align: center;
   }
-
 }
 
 @media #{$mediaQ-small-desktop} {
@@ -65,16 +92,16 @@
     grid-template-columns: auto 58%;
   }
 
-  .lzw-cells-container {
-    grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
-
-    > .item {
-      line-height: 1.1em;
-    }
-  }
-
   .encoded-container {
     grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
     grid-row-gap: 0;
   }
+}
+
+.empty-dictionary {
+  align-self: center;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
 }

@@ -65,7 +65,7 @@
 }
 
 .highlight-selected-path {
-  animation: selected-path cubic-bezier(0.55, 0.06, 0.68, 0.19) 0.7s alternate infinite;
+  animation: selected-path cubic-bezier(0.40, 0.00, 0, 1.00) 0.7s alternate infinite
 }
 
 @keyframes selected-path {

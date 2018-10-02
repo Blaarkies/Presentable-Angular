@@ -41,14 +41,6 @@ html,
 body {
   margin: 0;
   background-color: lightgrey;
-
-  //padding: 0;
-  //height: 100%;
-  //width: 100%;
-}
-
-html * {
-  //box-sizing: border-box;
 }
 
 [hidden] {
@@ -102,10 +94,10 @@ html * {
   cursor: pointer;
 }
 
-//mat-toolbar {
-//  color: #BBBBBB;
-//  background-color: #3C3F41;
-//}
+.title-medium {
+  font-size: 24px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .card-big-font {
   font-size: x-large;
@@ -144,7 +136,6 @@ html * {
 }
 
 .scrollbar-primary {
-
   overflow-y: scroll;
 
   &::-webkit-scrollbar-track {

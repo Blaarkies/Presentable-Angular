@@ -44,6 +44,29 @@ export interface HuffmanCode {
   path: string;
   usages: number;
   insertOrder: number;
+  display?: string;
+}
+
+export interface BinaryContainer {
+  binary: string;
+  value: string;
+}
+
+export interface HuffmanEncodedContainer {
+  bitcode: string;
+  value: string;
+}
+
+export interface LzwContainer {
+  current: string;
+  next: string;
+  output: string;
+  add: string;
+  code?: number;
+  dictionary: {
+    string: string;
+    code: number;
+  }[];
 }
 
 

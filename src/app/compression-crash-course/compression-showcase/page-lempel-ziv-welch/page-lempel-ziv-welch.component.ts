@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EntropyExample } from 'src/app/common/interface';
+import { EntropyExample, LzwContainer } from 'src/app/common/interface';
 import { replaceAll, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
@@ -23,6 +23,8 @@ export class PageLempelZivWelchComponent implements OnInit {
   lzwEncoding: any = {};
   selectedLzwEntry: SelectedEntry = <SelectedEntry>{};
   encodedEntropyInfo: EntropyExample;
+  currentIndex: number = 0;
+  currentCharacter: LzwContainer = <LzwContainer>{};
 
   constructor(private dataService: CompressionShowcaseService,
               private compression: CompressionProcessorService) {
@@ -53,11 +55,23 @@ export class PageLempelZivWelchComponent implements OnInit {
     };
     this.encodedEntropyInfo.entropyFraction = roundToDecimalPlace(100
       * this.encodedEntropyInfo.entropyScore / this.encodedEntropyInfo.text.length, 2);
+
+    this.lzwEncoding.encodedTable
+        .forEach(lzw => lzw.dictionary.splice(lzw.dictionary.length - 1, 1));
+
+    this.setCurrentCharacter();
   };
 
-  setSelectedLzwEntry(row, idx: number) {
+  private setCurrentCharacter() {
+    this.currentCharacter = this.lzwEncoding.encodedTable[this.currentIndex];
+  }
+
+  setSelectedLzwEntry() {
+    let row = this.currentCharacter;
+    let idx = this.lzwEncoding.encodedTable.indexOf(row);
+
     this.selectedLzwEntry = {
-      code: row.code,
+      code: row.code ? row.code.toString() : '',
       next: row.next,
       char: row.current,
       idxStart: idx - row.current.length + 1,
@@ -69,11 +83,17 @@ export class PageLempelZivWelchComponent implements OnInit {
   getIsSelectedNormalTransmission(idx: number) {
     return idx >= this.selectedLzwEntry.idxStart
       && idx <= this.selectedLzwEntry.idxEnd
-      && this.selectedLzwEntry.output;
+      && this.selectedLzwEntry.char;
   }
 
   getIsSelectedEncodedTransmission(encodedElement) {
     return this.selectedLzwEntry.code == encodedElement.code
       && this.selectedLzwEntry.next == encodedElement.next;
+  }
+
+  stepToNextCharacter() {
+    this.currentIndex = (this.currentIndex >= this.lzwEncoding.encodedTable.length - 1) ? 0 : this.currentIndex + 1;
+    this.setCurrentCharacter();
+    this.setSelectedLzwEntry();
   }
 }

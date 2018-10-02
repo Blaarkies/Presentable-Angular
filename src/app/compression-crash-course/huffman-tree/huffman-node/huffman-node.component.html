@@ -18,7 +18,7 @@
            [class.fade-in]="!fadeOutLeft"
            [class.highlight-selected-path]="highlightLeft"
            (click)="setSelectedPath(leftNode)">
-        {{leftNode.char}}
+        {{leftNode.display}}
       </div>
     </ng-template>
   </div>
@@ -41,7 +41,7 @@
            [class.fade-in]="!fadeOutRight"
            [class.highlight-selected-path]="highlightRight"
            (click)="setSelectedPath(rightNode)">
-        {{rightNode.char}}
+        {{rightNode.display}}
       </div>
     </ng-template>
   </div>

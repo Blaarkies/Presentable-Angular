@@ -44,7 +44,7 @@
                            (mouseenter)="tableHoverIndex = i-((tableDisplay.length-i)%2)"
                            [class.highlight-code-viewing-secondary]="i >= tableHoverIndex">
               <div class="huffman-frequency-table">
-                <div class="character">{{hc.char}}</div>
+                <div class="character">{{hc.display}}</div>
                 <div class="usages">{{hc.usages}}</div>
               </div>
             </mat-list-item>

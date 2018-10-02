@@ -24,24 +24,13 @@ export class CompressionShowcaseService {
 
   getHuffmanCodingPageData(data: EntropyExample) {
     data = clone(data);
-    data.text = data.text.substring(0, 96);
+    data.text = data.text.substring(52, 52+44);
     let huffmanCoding = clone(this.compression.getProcessedEntropy(data));
-    huffmanCoding.text = huffmanCoding.text.substring(0, 96);
-    huffmanCoding.binary = this.compression.textToBinary(huffmanCoding.text);
+    huffmanCoding.binary = this.compression.textToBinaryContainer(huffmanCoding.text);
     huffmanCoding.tree = this.compression.getHuffmanTree(huffmanCoding.text.toLowerCase());
-    huffmanCoding.encodedArray = this.compression.getHuffmanEncoded(huffmanCoding.text.toLowerCase(),
+    huffmanCoding.encodedArray = this.compression.getHuffmanEncodedContainer(huffmanCoding.text.toLowerCase(),
                                                                     huffmanCoding.tree);
-    huffmanCoding.table = this.compression.getHuffmanDictionary(huffmanCoding.tree)
-                              .map(hc => {
-                                if (hc.char === ' ') {
-                                  hc.char = '⎵';
-                                }
-                                if (hc.index === '10') {
-                                  hc.char = '¶';
-                                }
-                                return hc;
-                              })
-                              .reverse();
+    huffmanCoding.table = this.compression.getHuffmanDictionary(huffmanCoding.tree).reverse();
     huffmanCoding.lines = getLinesOfTextSplitByNumber(huffmanCoding.text, 60);
 
     return huffmanCoding;

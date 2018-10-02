@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { getArrayRange, getArraySplitByNumber, getRandomFromArray, isString, roundToDecimalPlace } from '../common/utils';
-import { EntropyExample, FlaggedText, HuffmanCode } from '../common/interface';
-import { isArray, isNumber } from 'util';
+import { clone, getArrayRange, getArraySplitByNumber, getRandomFromArray, isString, roundToDecimalPlace } from '../common/utils';
+import {
+  BinaryContainer,
+  HuffmanEncodedContainer,
+  LzwContainer,
+  EntropyExample,
+  FlaggedText,
+  HuffmanCode
+} from '../common/interface';
+import { isArray } from 'util';
 
 @Injectable({
               providedIn: 'root'
@@ -187,6 +194,7 @@ export class CompressionProcessorService {
       0: char2,
       index: `${char1.index} ${char2.index}`,
       char: `${char1.char} ${char2.char}`,
+      display: `${this.getDisplayCharacter(char1.char)} ${this.getDisplayCharacter(char2.char)}`,
       insertOrder: index
     };
 
@@ -205,7 +213,11 @@ export class CompressionProcessorService {
     this.getEndNodes(tree, dictionary);
     return dictionary
       .sort((a, b) => a.index.localeCompare(b.index))
-      .sort((a, b) => a.usages - b.usages);
+      .sort((a, b) => a.usages - b.usages)
+      .map(hc => {
+        hc.display = this.getDisplayCharacter(hc.char);
+        return hc;
+      });
   }
 
   getHuffmanEncoded(text: string, tree: any): string[] {
@@ -217,6 +229,29 @@ export class CompressionProcessorService {
                       dictionary
                         .find(hc => hc.index === code.toString())
                         .path);
+  }
+
+  getHuffmanEncodedContainer(text: string, tree: any): HuffmanEncodedContainer[] {
+    let dictionary = this.getHuffmanDictionary(tree);
+
+    return text.split('')
+               .map(char => (<HuffmanEncodedContainer>{
+                 bitcode: dictionary.find(hc => hc.index === char.charCodeAt(0)
+                                                                 .toString())
+                   .path,
+                 value: char,
+                 display: this.getDisplayCharacter(char)
+               }));
+  }
+
+  getDisplayCharacter(character: string): string {
+    if (character === ' ') {
+      return '⎵';
+    } else if (character.charCodeAt(0)
+                        .toString() === '10') {
+      return '¶';
+    }
+    return character;
   }
 
   setPaths(tree: any, path: string = ''): any {
@@ -255,8 +290,17 @@ export class CompressionProcessorService {
                .join('');
   }
 
+  textToBinaryContainer(text: string): BinaryContainer[] {
+    return text.split('')
+               .map(char => (<BinaryContainer>{
+                 binary: char.charCodeAt(0)
+                             .toString(2)
+                             .padStart(8, '0'),
+                 value: char
+               }));
+  }
 
-  getLzwEncoded(text: string) {
+  getLzwEncoded(text: string): LzwContainer[] {
     let dictionary = [];
     let lastCode = 255;
     let nowString = '';
@@ -274,7 +318,8 @@ export class CompressionProcessorService {
                      next: '',
                      output: nowString,
                      add: '',
-                     code: encodedWord ? encodedWord.code : nowString.charCodeAt(0)
+                     code: encodedWord ? encodedWord.code : nowString.charCodeAt(0),
+                     dictionary: clone(dictionary)
                    };
                  }
 
@@ -285,7 +330,8 @@ export class CompressionProcessorService {
                      current: nowString,
                      next: next,
                      output: '',
-                     add: ''
+                     add: '',
+                     dictionary: clone(dictionary)
                    };
                  }
 
@@ -308,7 +354,8 @@ export class CompressionProcessorService {
                    next: next,
                    output: output,
                    add: add,
-                   code: encodedWord ? encodedWord.code : output.charCodeAt(0)
+                   code: encodedWord ? encodedWord.code : output.charCodeAt(0),
+                   dictionary: clone(dictionary)
                  };
                });
   }

@@ -11,7 +11,7 @@ import { getArrayRange } from 'src/app/common/utils';
 export class PageHuffmanCodingEncodeComponent implements OnInit {
 
   huffmanCoding: EntropyExample | any;
-  selectedHuffmanCode: string;
+  selectedChar: string;
   decodedFlags: boolean[] = [];
   dictionary = {};
 
