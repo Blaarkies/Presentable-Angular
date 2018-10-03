@@ -1,0 +1,20 @@
+@import '../page-in-real-life.component';
+
+.image-zoom-container {
+  @extend .image-zoom-container;
+  height: 550px;
+}
+
+.font-size-extra-large {
+  font-size: 4em;
+}
+
+.mat-card-remove-box {
+  box-shadow: unset;
+  padding: unset;
+}
+
+.example-image {
+  height: 100%;
+  image-rendering: pixelated;
+}

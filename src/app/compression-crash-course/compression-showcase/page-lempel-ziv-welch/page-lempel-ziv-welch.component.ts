@@ -96,4 +96,11 @@ export class PageLempelZivWelchComponent implements OnInit {
     this.setCurrentCharacter();
     this.setSelectedLzwEntry();
   }
+
+  resetCharacter() {
+    this.currentIndex = 0;
+    this.setCurrentCharacter();
+    this.setSelectedLzwEntry();
+  }
+
 }

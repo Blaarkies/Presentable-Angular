@@ -23,6 +23,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { TutorialDialogComponent } from './tutorial-dialog/tutorial-dialog.component';
 import { WebsiteInfoDialogComponent } from './website-info-dialog/website-info-dialog.component';
+import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
+import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/keyframes-explained-dialog/keyframes-explained-dialog.component';
 
 @NgModule({
             imports: [
@@ -72,9 +74,17 @@ import { WebsiteInfoDialogComponent } from './website-info-dialog/website-info-d
             ],
             entryComponents: [
               TutorialDialogComponent,
-              WebsiteInfoDialogComponent
+              WebsiteInfoDialogComponent,
+              JpegExplainedDialogComponent,
+              KeyframesExplainedDialogComponent
             ],
-            declarations: [ProgressBarComponent, TutorialDialogComponent, WebsiteInfoDialogComponent]
+            declarations: [
+              ProgressBarComponent,
+              TutorialDialogComponent,
+              WebsiteInfoDialogComponent,
+              JpegExplainedDialogComponent,
+              KeyframesExplainedDialogComponent
+            ]
           })
 export class MatComponentsModule {
 }

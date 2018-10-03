@@ -68,7 +68,6 @@
       </div>
 
       <div class="character hover-bright cursor-pointer"
-           (click)="stepToNextCharacter()"
            (mouseenter)="setSelectedLzwEntry()">
         <div>{{currentCharacter.current || ' '}}</div>
         <mat-divider class="divider-normal"></mat-divider>
@@ -92,6 +91,25 @@
           <mat-divider class="divider-normal"></mat-divider>
           <div>{{page.code}}</div>
         </div>
+      </div>
+
+      <div class="restore-button">
+        <button class="hover-darken"
+                mat-mini-fab
+                color="primary"
+                (click)="resetCharacter()">
+          <mat-icon>restore</mat-icon>
+        </button>
+      </div>
+
+      <div class="next-button">
+        <button class="hover-darken"
+                mat-mini-fab
+                color="link"
+                (click)="stepToNextCharacter()"
+                (mouseenter)="setSelectedLzwEntry()">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
       </div>
 
     </div>

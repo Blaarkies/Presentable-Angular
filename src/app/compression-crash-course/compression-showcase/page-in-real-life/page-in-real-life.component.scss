@@ -1,7 +1,41 @@
-.image-height {
+.title-image-height {
   height: 100px;
+}
+
+.bullet-image-height {
+  height: 80px;
+  vertical-align: middle;
 }
 
 .align-center {
   align-items: center;
+}
+
+ul > li {
+  padding: 4px 0 4px 0;
+}
+
+.quad-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content auto;
+  grid-gap: 1em;
+}
+
+.image-zoom-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+
+  justify-items: center;
+}
+
+.example-image {
+  height: 200px;
+  image-rendering: pixelated;
+}
+
+.image-center {
+  display: grid;
+  justify-items: center;
 }
