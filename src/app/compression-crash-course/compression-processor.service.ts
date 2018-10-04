@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { clone, getArrayRange, getArraySplitByNumber, getRandomFromArray, isString, roundToDecimalPlace } from '../common/utils';
-import {
-  BinaryContainer,
-  HuffmanEncodedContainer,
-  LzwContainer,
-  EntropyExample,
-  FlaggedText,
-  HuffmanCode
-} from '../common/interface';
+import { BinaryContainer, EntropyExample, FlaggedText, HuffmanCode, HuffmanEncodedContainer, LzwContainer } from '../common/interface';
 import { isArray } from 'util';
 
 @Injectable({
@@ -73,14 +66,24 @@ export class CompressionProcessorService {
         } else if (i && i % 10 === 0 || Math.random() > 0.90) {
           return ' ';
         } else {
-          return String.fromCharCode(getRandomFromArray(alphaNumericalList));
+          let selectedChar = getRandomFromArray(alphaNumericalList);
+          if (alphaNumericalList.length > 20) {
+            alphaNumericalList.splice(alphaNumericalList.indexOf(selectedChar), 1);
+          } else {
+            alphaNumericalList = this.getVisibleFontList();
+          }
+          return selectedChar;
         }
       })
       .join('');
   }
 
   getVisibleFontList() {
-    return getArrayRange(256);
+    return getArrayRange(93)
+      .map(i => i + 33)
+      .concat(getArrayRange(161)
+                .map(i => i + 955))
+      .map(i => String.fromCharCode(i));
   }
 
   getRunLengthEncoded(text: string) {
