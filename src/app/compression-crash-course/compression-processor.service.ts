@@ -61,7 +61,7 @@ export class CompressionProcessorService {
     let alphaNumericalList = this.getVisibleFontList();
     return getArrayRange(charLimit)
       .map((n, i) => {
-        if (i && i % 50 === 0) {
+        if (i && i % 40 === 0) {
           return String.fromCharCode(10);
         } else if (i && i % 10 === 0 || Math.random() > 0.90) {
           return ' ';

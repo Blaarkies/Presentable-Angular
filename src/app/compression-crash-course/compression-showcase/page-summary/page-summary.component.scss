@@ -1,0 +1,26 @@
+.example-image {
+  vertical-align: -webkit-baseline-middle;
+  width: 90vw;
+}
+
+.list-item-container {
+  display: grid;
+  grid-template-columns: max-content auto;
+
+  >.right {
+    justify-self: right;
+    font-style: oblique;
+    color: dimgray;
+  }
+
+}
+
+.fadeable {
+  transition: 1s ease-in-out;
+  transition-property: opacity;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}

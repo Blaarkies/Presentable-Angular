@@ -4,6 +4,8 @@ import { CompressionShowcaseService } from 'src/app/compression-crash-course/com
 import { TutorialDialogComponent } from 'src/app/common/tutorial-dialog/tutorial-dialog.component';
 import { switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
+import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
+import { DevdayTemplateDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-data-and-information/devday-template-dialog/devday-template-dialog.component';
 
 @Component({
              selector: 'app-page-data-and-information',
@@ -42,6 +44,16 @@ export class PageDataAndInformationComponent implements OnInit {
     //                                 .afterClosed()
     //     ))
     //     .subscribe();
+  }
+
+  openDevdayDialog() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(DevdayTemplateDialogComponent, {width: '100%', height: '100%'})
+          .afterClosed()
+          .subscribe();
+    });
   }
 
 }

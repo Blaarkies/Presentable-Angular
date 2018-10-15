@@ -19,15 +19,18 @@ export class PageHuffmanCodingTreeComponent implements OnInit {
   tableHoverIndex: number = undefined;
   selectedPath$ = new BehaviorSubject<string>('');
 
+  isPresentation = false;
+
   constructor(private dataService: CompressionShowcaseService,
               private compression: CompressionProcessorService) {
   }
 
   ngOnInit() {
-    this.dataService.data.subscribe(data => {
-      this.initData(data.medium);
-      this.lastData = data.medium;
-    });
+    this.dataService.data
+        .subscribe(data => {
+          this.initData(data.medium);
+          this.lastData = data.medium;
+        });
   }
 
   initData(data: EntropyExample) {

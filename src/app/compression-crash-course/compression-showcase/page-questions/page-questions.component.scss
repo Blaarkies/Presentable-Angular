@@ -36,3 +36,34 @@
     height: 420px;
   }
 }
+
+.tri-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mat-icon-fix-size {
+  font-size: 56px;
+  display: grid;
+  place-content: center center;
+}
+
+.image-button-alignment {
+  height: 56px;
+  margin-top: -16px;
+}
+
+.font-size-extra-large {
+  font-size: 4em;
+}
+
+.join-link-container {
+  display: grid;
+}
+
+.center-and-size {
+  width: max-content;
+  height: max-content;
+  justify-self: right;
+  text-align: center;
+}

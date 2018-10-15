@@ -13,6 +13,9 @@ export class PageRunLengthEncodingComponent implements OnInit {
   runLengthImage: AsciiImage;
   selectedRunLengthId: number;
   runLengthImageEntropy: EntropyExample;
+  showEncoded: boolean = false;
+
+  isPresentation = false;
 
   constructor(private dataService: CompressionShowcaseService,
               private compression: CompressionProcessorService) {

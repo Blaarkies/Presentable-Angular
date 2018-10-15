@@ -10,6 +10,8 @@ export class EntropyInfoComponent implements OnInit {
 
   @Input() entropyObject: EntropyExample;
 
+  isPresentation = false;
+
   constructor() {
   }
 

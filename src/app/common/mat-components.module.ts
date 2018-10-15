@@ -25,6 +25,8 @@ import { TutorialDialogComponent } from './tutorial-dialog/tutorial-dialog.compo
 import { WebsiteInfoDialogComponent } from './website-info-dialog/website-info-dialog.component';
 import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
 import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/keyframes-explained-dialog/keyframes-explained-dialog.component';
+import { DevdayTemplateDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-data-and-information/devday-template-dialog/devday-template-dialog.component';
+import { DevdayTemplateEndDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/devday-template-end-dialog/devday-template-end-dialog.component';
 
 @NgModule({
             imports: [
@@ -76,14 +78,18 @@ import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-cou
               TutorialDialogComponent,
               WebsiteInfoDialogComponent,
               JpegExplainedDialogComponent,
-              KeyframesExplainedDialogComponent
+              KeyframesExplainedDialogComponent,
+              DevdayTemplateDialogComponent,
+              DevdayTemplateEndDialogComponent,
             ],
             declarations: [
               ProgressBarComponent,
               TutorialDialogComponent,
               WebsiteInfoDialogComponent,
               JpegExplainedDialogComponent,
-              KeyframesExplainedDialogComponent
+              KeyframesExplainedDialogComponent,
+              DevdayTemplateDialogComponent,
+              DevdayTemplateEndDialogComponent,
             ]
           })
 export class MatComponentsModule {

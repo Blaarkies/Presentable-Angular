@@ -20,7 +20,7 @@ export class PageInRealLifeComponent implements OnInit {
     // https://github.com/angular/material2/issues/5268
     // TODO: work-around for expression change on dialog factory
     setTimeout(() => {
-      this.dialog.open(JpegExplainedDialogComponent, {width: '90%', height: '90%'})
+      this.dialog.open(JpegExplainedDialogComponent, {width: '98%', height: '700px'})
           .afterClosed()
           .subscribe();
     });

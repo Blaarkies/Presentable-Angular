@@ -28,6 +28,8 @@ export class EntropyCardComponent implements OnInit {
 
   datebook: EntropyExample;
 
+  isPresentation = false;
+
   constructor(private compression: CompressionProcessorService) {
   }
 

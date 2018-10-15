@@ -13,11 +13,11 @@
       <mat-card-footer class="text-style-data footer-padding">
         <div class="footer-container">
 
-          <div class="footer-item">Characters used</div>
-          <div class="footer-item">{{charactersUsed.value.length}}</div>
+          <div [class.card-medium-font]="isPresentation">Characters used</div>
+          <div [class.card-medium-font]="isPresentation">{{charactersUsed.value.length}}</div>
 
-          <div class="footer-item">Fraction of ASCII table</div>
-          <div class="footer-item">
+          <div [class.card-medium-font]="isPresentation">Fraction of ASCII table</div>
+          <div>
             <app-progress-bar [value]="asciiFraction"></app-progress-bar>
           </div>
         </div>

@@ -100,11 +100,15 @@ body {
 }
 
 .card-big-font {
-  font-size: x-large;
+  font-size: 2em;
+}
+
+.card-bigger-font {
+  font-size: 2.3em;
 }
 
 .card-medium-font {
-  font-size: 22px;
+  font-size: 1.7em;
 }
 
 .card-small-font {
@@ -117,7 +121,7 @@ body {
 
 .block-font {
   font-family: monospace;
-  font-size: xx-large;
+  font-size: 2.2em;
 }
 
 .descriptive {
@@ -185,9 +189,7 @@ body {
   grid-template-columns: max-content auto;
   grid-column-gap: 8px;
   grid-row-gap: 8px;
-
-  > .footer-item {
-  }
+  padding-top: 1em;
 }
 
 @media #{$mediaQ-small-desktop} {

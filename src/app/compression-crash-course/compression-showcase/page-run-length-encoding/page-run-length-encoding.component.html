@@ -1,4 +1,4 @@
-<div class="bi-container">
+<div class="bi-container" (click)="showEncoded = true">
   <div class="item">
     <mat-card>
       <mat-card-title>Example Image</mat-card-title>
@@ -15,12 +15,24 @@
           </ng-container>
         </div>
       </mat-card-content>
+
+      <mat-card-footer class="footer-padding">
+        <div class="footer-container">
+          <div [class.card-medium-font]="isPresentation">Ratio</div>
+          <div>
+            <app-progress-bar [value]="runLengthImageEntropy.entropyFraction"></app-progress-bar>
+          </div>
+        </div>
+
+      </mat-card-footer>
     </mat-card>
   </div>
 
   <div class="item pixels-encoded-card-size">
 
-    <mat-card (mouseleave)="selectedRunLengthId = null">
+    <mat-card class="fadeable"
+              (mouseleave)="selectedRunLengthId = null"
+              [class.show]="!isPresentation || showEncoded">
       <mat-card-title>Example Image Encoded</mat-card-title>
       <mat-card-content class="pixels-encoded-card-padding">
           <span class="pixels-text-scale pixels-font cursor-pointer"
@@ -32,10 +44,6 @@
             <br *ngIf="(i+1)%9==0">
           </span>
       </mat-card-content>
-
-      <mat-card-footer class="footer-padding">
-        <app-entropy-info [entropyObject]="runLengthImageEntropy"></app-entropy-info>
-      </mat-card-footer>
 
     </mat-card>
   </div>

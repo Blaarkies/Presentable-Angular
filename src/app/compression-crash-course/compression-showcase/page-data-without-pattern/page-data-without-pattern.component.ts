@@ -15,6 +15,8 @@ interface ValueDisplayLines {
            })
 export class PageDataWithoutPatternComponent implements OnInit {
 
+  isPresentation = false;
+
   charLimit;
 
   highEntropyData: EntropyExample;
@@ -35,7 +37,10 @@ export class PageDataWithoutPatternComponent implements OnInit {
     };
 
     this.charactersUsed.value = getUniqueElements(this.highEntropyData.text);
-    this.charactersUsed.displayLines = getLinesOfTextSplitByNumber(this.charactersUsed.value.join(''), 30);
+    this.charactersUsed.displayLines = getLinesOfTextSplitByNumber(this.charactersUsed.value
+                                                                       .filter(c => c.charCodeAt(0) !== 10)
+                                                                       .sort()
+                                                                       .join(''), 30);
 
     this.asciiFraction = roundToDecimalPlace(this.charactersUsed.value.length / 256, 2) * 100;
   }

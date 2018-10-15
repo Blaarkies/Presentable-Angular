@@ -30,8 +30,7 @@
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 16px;
 
-  font-family: 'roboto', sans-serif;
-  @extend .block-font;
+  @extend .card-medium-font;
 
   > .character {
     grid-column: 1;

@@ -14,25 +14,29 @@ import { PageHuffmanCodingEncodeComponent } from './compression-showcase/page-hu
 import { PageQuestionsComponent } from './compression-showcase/page-questions/page-questions.component';
 import { PageLempelZivWelchComponent } from './compression-showcase/page-lempel-ziv-welch/page-lempel-ziv-welch.component';
 import { PageInRealLifeComponent } from './compression-showcase/page-in-real-life/page-in-real-life.component';
+import { PageSummaryComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary/page-summary.component';
 
 @NgModule({
             imports: [
               CommonModule,
               MatComponentsModule,
             ],
-            declarations: [EntropyCardComponent,
-                           HuffmanTreeComponent,
-                           EntropyInfoComponent,
-                           HuffmanNodeComponent,
-                           NodeConnecterComponent,
-                           PageDataAndInformationComponent,
-                           PageDataWithoutPatternComponent,
-                           PageRunLengthEncodingComponent,
-                           PageHuffmanCodingTreeComponent,
-                           PageHuffmanCodingEncodeComponent,
-                           PageQuestionsComponent,
-                           PageLempelZivWelchComponent,
-                           PageInRealLifeComponent]
+            declarations: [
+              EntropyCardComponent,
+              HuffmanTreeComponent,
+              EntropyInfoComponent,
+              HuffmanNodeComponent,
+              NodeConnecterComponent,
+              PageDataAndInformationComponent,
+              PageDataWithoutPatternComponent,
+              PageRunLengthEncodingComponent,
+              PageHuffmanCodingTreeComponent,
+              PageHuffmanCodingEncodeComponent,
+              PageQuestionsComponent,
+              PageLempelZivWelchComponent,
+              PageInRealLifeComponent,
+              PageSummaryComponent
+            ]
           })
 export class CompressionCrashCourseModule {
 }

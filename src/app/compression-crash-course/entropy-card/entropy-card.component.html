@@ -20,7 +20,7 @@
     <span>{{datebook?.name}}</span>
     ♣
     <span class="text-artist-name">{{datebook?.artist}}</span></mat-card-title>
-  <mat-card-subtitle class="card-big-font">
+  <div class="card-medium-font" [class.card-big-font]="isPresentation">
     <div *ngFor="let line of datebook?.lines">
 
       <span class="hover-code-highlight-secondary cursor-pointer"
@@ -32,7 +32,7 @@
       </span>
 
     </div>
-  </mat-card-subtitle>
+  </div>
 
   <mat-card-footer class="footer-padding">
     <div class="entropy-footer-container">

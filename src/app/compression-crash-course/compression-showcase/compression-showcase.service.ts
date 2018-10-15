@@ -26,7 +26,7 @@ export class CompressionShowcaseService {
     data = clone(data);
     data.text = data.text.substring(52, 52+44);
     let huffmanCoding = clone(this.compression.getProcessedEntropy(data));
-    huffmanCoding.binary = this.compression.textToBinaryContainer(huffmanCoding.text);
+    huffmanCoding.binary = this.compression.textToBinaryContainer(huffmanCoding.text.toLowerCase());
     huffmanCoding.tree = this.compression.getHuffmanTree(huffmanCoding.text.toLowerCase());
     huffmanCoding.encodedArray = this.compression.getHuffmanEncodedContainer(huffmanCoding.text.toLowerCase(),
                                                                     huffmanCoding.tree);

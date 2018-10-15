@@ -10,6 +10,7 @@ import { PageHuffmanCodingEncodeComponent } from 'src/app/compression-crash-cour
 import { PageLempelZivWelchComponent } from 'src/app/compression-crash-course/compression-showcase/page-lempel-ziv-welch/page-lempel-ziv-welch.component';
 import { PageQuestionsComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/page-questions.component';
 import { PageInRealLifeComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/page-in-real-life.component';
+import { PageSummaryComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary/page-summary.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
       {path: 'huffman-coding-decode', data: {title: 'Huffman coding'}, component: PageHuffmanCodingEncodeComponent},
       {path: 'lempel-ziv-welch', data: {title: 'Lempel-Ziv-Welch'}, component: PageLempelZivWelchComponent},
       {path: 'in-real-life', data: {title: 'In real life'}, component: PageInRealLifeComponent},
+      {path: 'summary', data: {title: 'In Conclusion'}, component: PageSummaryComponent},
       {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
     ]
   },
