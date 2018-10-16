@@ -172,8 +172,7 @@ export class CompressionProcessorService {
                        char: String.fromCharCode(Number.parseInt(k)),
                        insertOrder: undefined
                      }))
-                     .sort((a, b) => a.index.localeCompare(b.index))
-                     .sort((a, b) => a.usages - b.usages);
+                     .sort((a, b) => a.usages - b.usages || b.char.localeCompare(a.char));
 
     getArrayRange(tree.length * 2)
       .forEach(i => {
@@ -204,8 +203,7 @@ export class CompressionProcessorService {
     tree.push(node);
     tree = tree
       .filter(n => n.index !== char1.index && n.index !== char2.index)
-      .sort((a, b) => a.index.localeCompare(b.index))
-      .sort((a, b) => a.usages - b.usages);
+      .sort((a, b) => a.usages - b.usages || b.char.localeCompare(a.char));
 
     return tree;
   }
@@ -215,8 +213,7 @@ export class CompressionProcessorService {
     let dictionary: HuffmanCode[] = [];
     this.getEndNodes(tree, dictionary);
     return dictionary
-      .sort((a, b) => a.index.localeCompare(b.index))
-      .sort((a, b) => a.usages - b.usages)
+      .sort((a, b) => a.usages - b.usages || b.char.localeCompare(a.char))
       .map(hc => {
         hc.display = this.getDisplayCharacter(hc.char);
         return hc;

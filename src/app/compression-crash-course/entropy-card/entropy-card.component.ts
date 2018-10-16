@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntropyExample } from '../../common/interface';
 import { CompressionProcessorService } from '../compression-processor.service';
+import { TitleService } from 'src/app/title.service';
 
 // TODO: move!
 interface EncodedWord {
@@ -30,7 +31,9 @@ export class EntropyCardComponent implements OnInit {
 
   isPresentation = false;
 
-  constructor(private compression: CompressionProcessorService) {
+  constructor(private compression: CompressionProcessorService,
+              private titleService: TitleService) {
+    this.isPresentation = this.titleService.isPresentation;
   }
 
   ngOnInit() {

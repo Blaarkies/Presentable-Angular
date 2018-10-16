@@ -1,0 +1,80 @@
+<mat-dialog-content>
+
+  <mat-card class="mat-card-remove-box">
+    <mat-card-title>
+      <p>Thanks for visiting.
+      <p>Feedback about your experience on this website will be greatly appreciated
+    </mat-card-title>
+
+    <mat-card-content>
+
+      <!--<form name="contact" data-netlify="true">-->
+      <!--<p>-->
+      <!--<label>Name <input type="text" name="name" /></label>-->
+      <!--</p>-->
+      <!--<p>-->
+      <!--<label>Email <input type="email" name="email" /></label>-->
+      <!--</p>-->
+      <!--<p>-->
+      <!--<button type="submit">Send</button>-->
+      <!--</p>-->
+      <!--</form>-->
+
+      <form name="feedback"
+            netlify>
+        <p>
+          <mat-form-field>
+            <input matInput
+                   name="name"
+                   type="text"
+                   placeholder="Name"
+                   value="">
+          </mat-form-field>
+
+        <p>
+          <mat-form-field>
+            <input matInput
+                   name="email"
+                   type="email"
+                   placeholder="Email"
+                   value="">
+          </mat-form-field>
+
+        <p>
+          <mat-form-field>
+            <input matInput
+                   name="profession"
+                   type="text"
+                   placeholder="Profession"
+                   value="">
+          </mat-form-field>
+
+        <p>
+          <mat-form-field>
+            <input matInput
+                   name="feedback"
+                   type="message"
+                   placeholder="Feedback"
+                   value="">
+          </mat-form-field>
+
+        <p>
+          <button mat-flat-button
+                  color="primary"
+                  type="submit">Send feedback
+          </button>
+          <!--onNoClick-->
+      </form>
+
+    </mat-card-content>
+
+    <mat-card-footer>
+<br>
+    </mat-card-footer>
+  </mat-card>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close color="primary">Close</button>
+</mat-dialog-actions>

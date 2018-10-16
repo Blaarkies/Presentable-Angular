@@ -35,24 +35,8 @@
   grid-area: empty;
 }
 
-.image-button-alignment {
-  height: 56px;
-  margin-top: -16px;
-}
-
 .margin-right {
   margin-right: 8px;
-}
-
-.social-media-button {
-  width: 100%;
-  display: grid;
-  grid-template-columns: max-content auto;
-  grid-column-gap: .5em;
-
-  > .button-text {
-    align-self: center;
-  }
 }
 
 @media #{$mediaQ-small-desktop} {
@@ -68,12 +52,6 @@
   .social-container {
     grid-row-gap: 2em;
   }
-
-  .social-media-button {
-    justify-items: center;
-    grid-template-columns: auto;
-  }
-
 }
 
 .mat-icon-fix-size {

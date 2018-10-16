@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EntropyExample } from 'src/app/common/interface';
 import { CompressionShowcaseService } from '../compression-showcase.service';
 import { getArrayRange } from 'src/app/common/utils';
+import { TitleService } from 'src/app/title.service';
 
 @Component({
              selector: 'app-page-huffman-coding-encode',
@@ -15,7 +16,11 @@ export class PageHuffmanCodingEncodeComponent implements OnInit {
   decodedFlags: boolean[] = [];
   dictionary = {};
 
-  constructor(private dataService: CompressionShowcaseService) {
+  isPresentation = false;
+
+  constructor(private dataService: CompressionShowcaseService,
+              private titleService: TitleService) {
+    this.isPresentation = this.titleService.isPresentation;
   }
 
   ngOnInit() {

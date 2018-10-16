@@ -9,9 +9,11 @@ import { MatComponentsModule } from '../common/mat-components.module';
             imports: [
               CommonModule,
               DashboardRoutingModule,
-              MatComponentsModule
+              MatComponentsModule,
             ],
-            declarations: [DashboardComponent]
+            declarations: [
+              DashboardComponent
+            ]
           })
 export class DashboardModule {
 }

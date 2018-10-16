@@ -3,7 +3,8 @@
   <div class="text-to-encode">
     <mat-card>
       <mat-card-title>Example Text</mat-card-title>
-      <mat-card-content class="card-big-font">
+      <mat-card-content [class.card-medium-font]="!isPresentation"
+                        [class.card-big-font]="isPresentation">
         <span *ngFor="let char of huffmanCoding?.text.split('')"
               [class.highlight-code-viewing]="char.toLowerCase() === selectedChar">{{char}}</span>
       </mat-card-content>
@@ -17,7 +18,8 @@
   <div class="binary">
     <mat-card>
       <mat-card-title>Example Text in Binary</mat-card-title>
-      <mat-card-content class="card-bigger-font">
+      <mat-card-content [class.card-medium-font]="!isPresentation"
+                        [class.card-bigger-font]="isPresentation">
         <span class="font-monospace
                      cursor-pointer
                      inline-block"
@@ -44,7 +46,8 @@
           </div>
         </div>
       </mat-card-title>
-      <mat-card-content class="card-bigger-font">
+      <mat-card-content [class.card-medium-font]="!isPresentation"
+                        [class.card-bigger-font]="isPresentation">
         <span class="font-monospace
                      hover-code-highlight-secondary
                      cursor-pointer
@@ -61,7 +64,9 @@
 
   <div class="codes-container">
     <div class="title-medium">Dictionary</div>
-    <div class="huffman-character-codes-container">
+    <div class="huffman-character-codes-container"
+         [class.card-medium-font]="!isPresentation"
+         [class.card-bigger-font]="isPresentation">
 
       <div class="item" (mouseenter)="selectedChar = null">
         <div>Char</div>

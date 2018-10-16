@@ -15,6 +15,10 @@ import { PageQuestionsComponent } from './compression-showcase/page-questions/pa
 import { PageLempelZivWelchComponent } from './compression-showcase/page-lempel-ziv-welch/page-lempel-ziv-welch.component';
 import { PageInRealLifeComponent } from './compression-showcase/page-in-real-life/page-in-real-life.component';
 import { PageSummaryComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary/page-summary.component';
+import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
+import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/keyframes-explained-dialog/keyframes-explained-dialog.component';
+import { DevdayTemplateDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-data-and-information/devday-template-dialog/devday-template-dialog.component';
+import { DevdayTemplateEndDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/devday-template-end-dialog/devday-template-end-dialog.component';
 
 @NgModule({
             imports: [
@@ -35,8 +39,18 @@ import { PageSummaryComponent } from 'src/app/compression-crash-course/compressi
               PageQuestionsComponent,
               PageLempelZivWelchComponent,
               PageInRealLifeComponent,
-              PageSummaryComponent
-            ]
+              PageSummaryComponent,
+              JpegExplainedDialogComponent,
+              KeyframesExplainedDialogComponent,
+              DevdayTemplateDialogComponent,
+              DevdayTemplateEndDialogComponent,
+            ],
+            entryComponents: [
+              JpegExplainedDialogComponent,
+              KeyframesExplainedDialogComponent,
+              DevdayTemplateDialogComponent,
+              DevdayTemplateEndDialogComponent,
+            ],
           })
 export class CompressionCrashCourseModule {
 }

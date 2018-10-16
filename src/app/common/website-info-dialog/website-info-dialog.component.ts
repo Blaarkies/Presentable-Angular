@@ -11,9 +11,8 @@ class DialogData {
            })
 export class WebsiteInfoDialogComponent implements OnInit {
 
-  constructor(
-    public dialogRef: MatDialogRef<WebsiteInfoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<WebsiteInfoDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   onNoClick(): void {

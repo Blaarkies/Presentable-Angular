@@ -1,37 +1,7 @@
 <div class="dashboard-container">
 
   <div class="social-container">
-    <div class="social-media-button">
-      <button class="margin-right hover-bright"
-              mat-fab
-              color="link">
-        <a href="https://github.com/Blaarkies/Presentable-Angular">
-          <img src="../../../assets/github-circle.svg" class="image-button-alignment">
-        </a>
-      </button>
-      <div class="block-font button-text">github.com/Blaarkies</div>
-    </div>
-
-    <div class="social-media-button">
-      <button class="margin-right hover-bright"
-              mat-fab
-              color="link">
-        <a href="https://twitter.com/Blaarkies">
-          <img src="../../../assets/twitter-circle.svg" class="image-button-alignment">
-        </a>
-      </button>
-      <div class="block-font button-text">@Blaarkies</div>
-    </div>
-
-    <div class="social-media-button">
-      <button class="margin-right hover-bright"
-              mat-fab
-              color="link"
-              (click)="websiteInfoDialog()">
-        <mat-icon class="mat-icon-fix-size">info</mat-icon>
-      </button>
-      <div class="block-font button-text"></div>
-    </div>
+    <app-website-info></app-website-info>
   </div>
 
   <div class="subject-container">

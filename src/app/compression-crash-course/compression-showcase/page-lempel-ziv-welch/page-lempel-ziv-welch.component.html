@@ -3,7 +3,9 @@
   <div class="text-to-encode">
     <mat-card>
       <mat-card-title>Example Text</mat-card-title>
-      <mat-card-content class="block-font">
+      <mat-card-content class="font-monospace"
+                        [class.card-medium-font]="!isPresentation"
+                        [class.card-bigger-font]="isPresentation">
         <span *ngFor="let e of lzwEncoding.text?.split(''); let idx = index"
               [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">{{e}}</span>
 
@@ -12,22 +14,21 @@
         <br>
         <br>
         <div class="descriptive">Network payload → {{lzwEncoding.normalPayloadSize}} bytes</div>
+
         <ng-container *ngFor="let e of lzwEncoding.normalTransmission; let idx = index">
           <span [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">
             {{e}}</span>{{' '}}
         </ng-container>
       </mat-card-content>
-
-      <mat-card-footer class="footer-padding">
-        <app-entropy-info [entropyObject]="lzwEncoding"></app-entropy-info>
-      </mat-card-footer>
     </mat-card>
   </div>
 
   <div class="encoded">
     <mat-card>
       <mat-card-title>Example Text Encoded</mat-card-title>
-      <mat-card-content class="block-font">
+      <mat-card-content class="font-monospace"
+                        [class.card-medium-font]="!isPresentation"
+                        [class.card-bigger-font]="isPresentation">
 
         <div class="encoded-container">
           <div class="item"
@@ -43,16 +44,14 @@
         <div>{{lzwEncoding.encodedTransmission?.join(' ')}}</div>
 
       </mat-card-content>
-
-      <mat-card-footer class="footer-padding">
-        <app-entropy-info [entropyObject]="encodedEntropyInfo"></app-entropy-info>
-      </mat-card-footer>
     </mat-card>
   </div>
 
   <div class="coding-table">
 
-    <div class="lzw-table-container">
+    <div class="lzw-table-container"
+         [class.card-medium-font]="!isPresentation"
+         [class.card-bigger-font]="isPresentation">
 
       <div class="letterTitle">Current character</div>
       <div class="dictionaryTitle">Dictionary</div>
@@ -82,13 +81,14 @@
 
       <div class="dictionary">
         <div *ngIf="currentCharacter.dictionary?.length === 0"
-        class="empty-dictionary">
+             class="empty-dictionary">
           <mat-icon class="vertical-align-middle" color="warn">warning</mat-icon>
           <span> Empty</span>
         </div>
 
         <div class="item"
-             *ngFor="let page of currentCharacter.dictionary;">
+             *ngFor="let page of currentCharacter.dictionary;"
+             [class.highlight-code-viewing]="isDictionaryMatch(page.string)">
           <div>{{page.string}}</div>
           <mat-divider class="divider-normal"></mat-divider>
           <div>{{page.code}}</div>

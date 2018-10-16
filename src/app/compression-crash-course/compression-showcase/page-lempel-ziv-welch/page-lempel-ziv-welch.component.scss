@@ -6,6 +6,7 @@
   grid-template-rows: max-content auto;
   grid-template-areas: 'text-to-encode encoded' 'coding-table   coding-table';
   grid-gap: 8px;
+  grid-row-gap: 1em;
 }
 
 .text-to-encode {
@@ -26,7 +27,7 @@
   grid-template-areas: 'letterTitle letterTitle dictionaryTitle' 'description character dictionary' 'restore next .';
   grid-gap: 4px;
 
-  @extend .block-font;
+  @extend .font-monospace;
 
   .letterTitle {
     grid-area: letterTitle;

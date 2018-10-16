@@ -1,7 +1,18 @@
-<mat-card class="round-card">
-  <mat-card-content>
-    <div>
-      <div class="big-font rotate-question">?</div>
-    </div>
-  </mat-card-content>
-</mat-card>
+<div class="tri-container">
+  <div>
+    <app-website-info></app-website-info>
+  </div>
+
+  <div (click)="websiteInfoDialog()">
+    <mat-card class="round-card
+                     hover-bright
+                     cursor-pointer">
+      <mat-card-content>
+        <div>
+          <div class="big-font rotate-question">?</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

@@ -69,4 +69,13 @@ export interface LzwContainer {
   }[];
 }
 
+export interface SelectedEntry {
+  code: string;
+  next: string;
+  char: string;
+  idxStart: number;
+  idxEnd: number;
+  output: string;
+}
+
 

@@ -8,6 +8,8 @@ export class TitleService {
 // TODO: un used, delete if no purpose is found
   public titleChange$ = new Subject<string>();
 
+  public isPresentation = false;
+
   constructor() {
   }
 

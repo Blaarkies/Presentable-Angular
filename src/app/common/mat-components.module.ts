@@ -7,7 +7,7 @@ import {
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
-  MatIconModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatProgressBarModule,
   MatSlideToggleModule,
@@ -23,10 +23,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { TutorialDialogComponent } from './tutorial-dialog/tutorial-dialog.component';
 import { WebsiteInfoDialogComponent } from './website-info-dialog/website-info-dialog.component';
-import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
-import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/keyframes-explained-dialog/keyframes-explained-dialog.component';
-import { DevdayTemplateDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-data-and-information/devday-template-dialog/devday-template-dialog.component';
-import { DevdayTemplateEndDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/devday-template-end-dialog/devday-template-end-dialog.component';
+import { WebsiteInfoComponent } from './website-info/website-info.component';
+import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback-dialog.component';
 
 @NgModule({
             imports: [
@@ -50,6 +48,7 @@ import { DevdayTemplateEndDialogComponent } from 'src/app/compression-crash-cour
               MatIconModule,
               MatDialogModule,
               MatSlideToggleModule,
+              MatInputModule,
             ],
             exports: [
               CommonModule,
@@ -73,23 +72,20 @@ import { DevdayTemplateEndDialogComponent } from 'src/app/compression-crash-cour
               MatDialogModule,
               MatSlideToggleModule,
               ProgressBarComponent,
+              WebsiteInfoComponent,
+              MatInputModule,
             ],
             entryComponents: [
               TutorialDialogComponent,
               WebsiteInfoDialogComponent,
-              JpegExplainedDialogComponent,
-              KeyframesExplainedDialogComponent,
-              DevdayTemplateDialogComponent,
-              DevdayTemplateEndDialogComponent,
+              FeedbackDialogComponent,
             ],
             declarations: [
               ProgressBarComponent,
               TutorialDialogComponent,
               WebsiteInfoDialogComponent,
-              JpegExplainedDialogComponent,
-              KeyframesExplainedDialogComponent,
-              DevdayTemplateDialogComponent,
-              DevdayTemplateEndDialogComponent,
+              WebsiteInfoComponent,
+              FeedbackDialogComponent,
             ]
           })
 export class MatComponentsModule {

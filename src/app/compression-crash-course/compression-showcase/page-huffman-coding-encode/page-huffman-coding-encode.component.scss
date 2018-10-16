@@ -35,7 +35,8 @@
   > .item {
     display: inline;
 
-    @extend .block-font;
+    //@extend .block-font;
+    @extend .font-monospace;
     background-color: white;
     padding: 4px 0 4px 0;
     text-align: center;

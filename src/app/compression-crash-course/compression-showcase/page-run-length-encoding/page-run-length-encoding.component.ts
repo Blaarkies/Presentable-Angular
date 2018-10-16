@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AsciiImage, EntropyExample } from 'src/app/common/interface';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
+import { TitleService } from 'src/app/title.service';
 
 @Component({
              selector: 'app-page-run-length-encoding',
@@ -18,7 +19,9 @@ export class PageRunLengthEncodingComponent implements OnInit {
   isPresentation = false;
 
   constructor(private dataService: CompressionShowcaseService,
-              private compression: CompressionProcessorService) {
+              private compression: CompressionProcessorService,
+              private titleService: TitleService) {
+    this.isPresentation = this.titleService.isPresentation;
   }
 
   ngOnInit() {

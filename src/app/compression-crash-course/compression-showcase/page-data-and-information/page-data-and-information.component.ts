@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JsonAsset } from 'src/app/common/interface';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
-import { TutorialDialogComponent } from 'src/app/common/tutorial-dialog/tutorial-dialog.component';
-import { switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
-import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
 import { DevdayTemplateDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-data-and-information/devday-template-dialog/devday-template-dialog.component';
 
 @Component({
@@ -31,7 +28,7 @@ export class PageDataAndInformationComponent implements OnInit {
 
   testDialog() {
     // if (!this.isTutorialMode) {
-      return;
+    return;
     // }
 
     // this.dataService.data

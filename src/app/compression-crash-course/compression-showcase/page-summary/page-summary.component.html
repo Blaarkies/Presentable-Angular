@@ -1,12 +1,17 @@
 <mat-card>
   <mat-card-title>Sum ;-) mary</mat-card-title>
 
-  <mat-card-content class="card-big-font">
+  <mat-card-content [class.card-big-font]="isPresentation"
+                    [class.card-medium-font]="!isPresentation">
     <ul (click)="bulletNumber = bulletNumber + 1">
-      <li>Information Entropy <span class="fadeable" [class.show]="bulletNumber > 1">for a fair coin toss</span></li>
-      <img src="../../../../assets/shanon_entropy_coin.PNG" class="example-image fadeable" [class.show]="bulletNumber > 2"/>
-<br>
-<br>
+      <li>Information Entropy <span class="fadeable"
+                                    [class.show]="bulletNumber > 1">for a fair coin toss</span>
+      </li>
+      <img src="../../../../assets/shanon_entropy_coin.PNG"
+           class="example-image fadeable"
+           [class.show]="bulletNumber > 2"/>
+      <br>
+      <br>
       <li class="fadeable" [class.show]="bulletNumber > 3">
         <div class="list-item-container">
           <div>Recognize a pattern, replace it with something shorter</div>

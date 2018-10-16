@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntropyExample } from 'src/app/common/interface';
+import { TitleService } from 'src/app/title.service';
 
 @Component({
              selector: 'app-entropy-info',
@@ -12,7 +13,8 @@ export class EntropyInfoComponent implements OnInit {
 
   isPresentation = false;
 
-  constructor() {
+  constructor(private titleService: TitleService) {
+    this.isPresentation = this.titleService.isPresentation;
   }
 
   ngOnInit() {

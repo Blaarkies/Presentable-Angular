@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EntropyExample, LzwContainer } from 'src/app/common/interface';
+import { EntropyExample, LzwContainer, SelectedEntry } from 'src/app/common/interface';
 import { replaceAll, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
-
-interface SelectedEntry {
-  code: string;
-  next: string;
-  char: string;
-  idxStart: number;
-  idxEnd: number;
-  output: string;
-}
+import { TitleService } from 'src/app/title.service';
 
 @Component({
              selector: 'app-page-lempel-ziv-welch',
@@ -26,8 +18,12 @@ export class PageLempelZivWelchComponent implements OnInit {
   currentIndex: number = 0;
   currentCharacter: LzwContainer = <LzwContainer>{};
 
+  isPresentation = false;
+
   constructor(private dataService: CompressionShowcaseService,
-              private compression: CompressionProcessorService) {
+              private compression: CompressionProcessorService,
+              private titleService: TitleService) {
+    this.isPresentation = this.titleService.isPresentation;
   }
 
   ngOnInit() {
@@ -89,6 +85,10 @@ export class PageLempelZivWelchComponent implements OnInit {
   getIsSelectedEncodedTransmission(encodedElement) {
     return this.selectedLzwEntry.code == encodedElement.code
       && this.selectedLzwEntry.next == encodedElement.next;
+  }
+
+  isDictionaryMatch(stringToMatch: string): boolean {
+    return (this.selectedLzwEntry.char + this.selectedLzwEntry.next) == stringToMatch;
   }
 
   stepToNextCharacter() {

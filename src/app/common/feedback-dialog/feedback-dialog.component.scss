@@ -10,3 +10,9 @@
 .align-text-center {
   text-align: center;
 }
+
+::ng-deep {
+  mat-dialog-content {
+    overflow: hidden !important;
+  }
+}

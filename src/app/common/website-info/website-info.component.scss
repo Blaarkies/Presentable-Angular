@@ -1,0 +1,40 @@
+@import '../../../styles';
+
+.social-container {
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: max-content max-content;
+  grid-row-gap: 1em;
+}
+
+.social-media-button {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: .5em;
+
+  > .button-text {
+    align-self: center;
+  }
+}
+
+.image-button-alignment {
+  height: 56px;
+  margin-top: -16px;
+}
+
+@media #{$mediaQ-small-desktop} {
+  .social-media-button {
+    justify-items: center;
+    grid-template-columns: auto;
+  }
+}
+
+.mat-icon-fix-size {
+  font-size: 56px;
+  display: grid;
+  place-content: center center;
+}
+
