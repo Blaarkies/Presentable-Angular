@@ -11,6 +11,7 @@ import { MatComponentsModule } from './common/mat-components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { ImageProcessingModule } from 'src/app/image-processing/image-processing.module';
 
 @NgModule({
             declarations: [
@@ -23,6 +24,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
               DashboardModule,
               AnnotationsInTypescriptModule,
               CompressionCrashCourseModule,
+              ImageProcessingModule,
               MatComponentsModule,
               HttpClientModule,
               FlexLayoutModule

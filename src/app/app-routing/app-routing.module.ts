@@ -11,6 +11,7 @@ import { PageLempelZivWelchComponent } from 'src/app/compression-crash-course/co
 import { PageQuestionsComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/page-questions.component';
 import { PageInRealLifeComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/page-in-real-life.component';
 import { PageSummaryComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary/page-summary.component';
+import { IntroComponent } from 'src/app/image-processing/intro/intro.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,14 @@ const routes: Routes = [
       {path: 'in-real-life', data: {title: 'In real life'}, component: PageInRealLifeComponent},
       {path: 'summary', data: {title: 'In Conclusion'}, component: PageSummaryComponent},
       {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
+    ]
+  },
+  {
+    path: 'image-processing',
+    data: {title: 'An Image Is Worth 1000px', image: '../assets/logo-compression.gif'},
+    children: [
+      {path: '', redirectTo: 'intro', pathMatch: 'full'},
+      {path: 'intro', data: {title: 'The Need For Pixels'}, component: IntroComponent},
     ]
   },
   {path: '**', component: DashboardComponent}
