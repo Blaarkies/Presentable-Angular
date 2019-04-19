@@ -1,23 +1,48 @@
 <div class="tri-container">
-  <div class="item">
 
-    <div class="overlap-b pixel-numbers-container pixel-animate-fade">
+  <div class="item">
+    <div class="pixel-numbers-container">
       <div *ngFor="let i of sourcePixels"
            class="font-monospace pixel-with-number"
            [ngClass]="'pixel-color-'+i">
         {{i}}
       </div>
     </div>
+  </div>
+
+  <div class="item">
+    <mat-card>
+      <mat-card-title>Invert the pixel values</mat-card-title>
+
+      <mat-card-content>
+        <div class="card-medium-font">
+          <p>Colour depth is 8
+
+          <ul>
+            <li>Take a source pixel's value</li>
+            <li>Calculate what is `Colour depth` - `Source pixel's value`</li>
+            <li>Set Destination pixel's value to this results</li>
+          </ul>
+        </div>
+      </mat-card-content>
+
+
+      <mat-card-footer class="xfooter-padding">
+        the feet
+      </mat-card-footer>
+
+    </mat-card>
 
   </div>
 
   <div class="item">
-
-
+    <div class="pixel-numbers-container">
+      <div *ngFor="let i of resultPixels"
+           class="font-monospace pixel-with-number"
+           [ngClass]="'pixel-color-'+i">
+        {{i}}
+      </div>
+    </div>
   </div>
 
-  <div class="item">
-
-
-  </div>
 </div>

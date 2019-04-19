@@ -204,6 +204,14 @@ body {
   }
 }
 
+.tri-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1em;
+
+  place-items: center;
+}
+
 .footer-padding {
   padding: 0 12px 12px 12px;
 }
