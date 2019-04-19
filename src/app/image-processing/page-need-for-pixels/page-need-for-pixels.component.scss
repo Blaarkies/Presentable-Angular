@@ -1,0 +1,97 @@
+$blur-to-sharp-duration: 8000ms;
+.animate-blur-to-normal {
+  animation: blurToNormal $blur-to-sharp-duration linear infinite alternate;
+}
+
+.animate-normal-to-sharp {
+  animation: normalToSharp $blur-to-sharp-duration linear infinite alternate;
+}
+
+@keyframes blurToNormal {
+  0% {filter: blur(20px);}
+  50% {filter: blur(0px);}
+  100% {filter: blur(0px);}
+}
+
+@keyframes normalToSharp {
+  0% {opacity: 0;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+
+
+$image-to-pixels-duration: 20s;
+.animate-zoom {
+  image-rendering: pixelated;
+  animation: zoomIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) infinite alternate;
+}
+
+$image-lenna-max-scale: 50;
+@keyframes zoomIn {
+  0% {transform: scale(1);}
+  80% {transform: scale($image-lenna-max-scale);}
+  100% {transform: scale($image-lenna-max-scale); image-rendering: pixelated;}
+}
+
+.center-zoom-on-eye {
+  transform-origin: 40.05% 67.09%;
+}
+
+.pixel-animate-fade {
+  animation: fadeIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) infinite alternate;
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  80% {opacity: 0;}
+  85% {opacity: 1;}
+  100% {opacity: 1;}
+}
+
+.pixel-numbers-container {
+  display: grid;
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
+
+  overflow: hidden;
+
+  .pixel-with-number {
+    font-size: 5em;
+    text-align: center;
+    border: 2px dotted white;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.image-container {
+  width: 600px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+
+  border: 2px solid dimgray;
+  border-radius: 6px;
+
+  .image {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+.overlap-container {
+  display: grid;
+  grid-template-areas: 'overlap';
+
+  .overlap-a {
+    grid-area: overlap;
+    z-index: 1;
+  }
+
+  .overlap-b {
+    grid-area: overlap;
+    z-index: 2;
+  }
+}

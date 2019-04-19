@@ -102,7 +102,7 @@ export function flatMap(array: any[]) {
 }
 
 /***
- * Returns a random integer between 0(inclusive) and max(inclusive)
+ * Returns a random integer {0-max} (inclusive)
  * @param max
  * @returns {number}
  */

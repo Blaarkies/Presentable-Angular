@@ -11,7 +11,8 @@ import { PageLempelZivWelchComponent } from 'src/app/compression-crash-course/co
 import { PageQuestionsComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/page-questions.component';
 import { PageInRealLifeComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/page-in-real-life.component';
 import { PageSummaryComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary/page-summary.component';
-import { IntroComponent } from 'src/app/image-processing/intro/intro.component';
+import { PageNeedForPixelsComponent } from 'src/app/image-processing/page-need-for-pixels/page-need-for-pixels.component';
+import { PagePixelManipulationComponent } from 'src/app/image-processing/page-pixel-manipulation/page-pixel-manipulation.component';
 
 const routes: Routes = [
   {
@@ -29,23 +30,29 @@ const routes: Routes = [
     data: {title: 'Compression Crash Course', image: '../assets/logo-compression.gif'},
     children: [
       {path: '', redirectTo: 'data-and-information', pathMatch: 'full'},
-      {path: 'data-and-information', data: {title: 'Data and Information'}, component: PageDataAndInformationComponent},
-      {path: 'data-without-pattern', data: {title: 'Data without pattern'}, component: PageDataWithoutPatternComponent},
+      {path: 'data-and-information', data: {title: 'Data And Information'}, component: PageDataAndInformationComponent},
+      {path: 'data-without-pattern', data: {title: 'Data Without Pattern'}, component: PageDataWithoutPatternComponent},
       {path: 'run-length-encoding', data: {title: 'Run-length Encoding'}, component: PageRunLengthEncodingComponent},
-      {path: 'huffman-coding-tree', data: {title: 'Huffman coding'}, component: PageHuffmanCodingTreeComponent},
-      {path: 'huffman-coding-decode', data: {title: 'Huffman coding'}, component: PageHuffmanCodingEncodeComponent},
+      {path: 'huffman-coding-tree', data: {title: 'Huffman Coding'}, component: PageHuffmanCodingTreeComponent},
+      {path: 'huffman-coding-decode', data: {title: 'Huffman Coding'}, component: PageHuffmanCodingEncodeComponent},
       {path: 'lempel-ziv-welch', data: {title: 'Lempel-Ziv-Welch'}, component: PageLempelZivWelchComponent},
-      {path: 'in-real-life', data: {title: 'In real life'}, component: PageInRealLifeComponent},
+      {path: 'in-real-life', data: {title: 'In Real Life'}, component: PageInRealLifeComponent},
       {path: 'summary', data: {title: 'In Conclusion'}, component: PageSummaryComponent},
       {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
     ]
   },
   {
     path: 'image-processing',
-    data: {title: 'An Image Is Worth 1000px', image: '../assets/logo-compression.gif'},
+    data: {title: 'An Image Is Worth 1000px', image: '../assets/logo-image-proc.gif'},
     children: [
-      {path: '', redirectTo: 'intro', pathMatch: 'full'},
-      {path: 'intro', data: {title: 'The Need For Pixels'}, component: IntroComponent},
+      {path: '', redirectTo: 'need-for-pixels', pathMatch: 'full'},
+      {path: 'need-for-pixels', data: {title: 'The Need For Pixels'}, component: PageNeedForPixelsComponent},
+      {path: 'pixel-manipulation', data: {title: 'How To Train Your Pixel'}, component: PagePixelManipulationComponent},
+      {path: 'mask-blur', data: {title: 'Blur Between The Lines'}, component: PageQuestionsComponent},
+      {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageQuestionsComponent},
+      {path: 'mask-custom', data: {title: 'Custom Masks'}, component: PageQuestionsComponent},
+      {path: 'in-real-life', data: {title: 'In Real Life'}, component: PageQuestionsComponent},
+      {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
     ]
   },
   {path: '**', component: DashboardComponent}
