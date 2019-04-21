@@ -102,16 +102,12 @@ body {
 }
 
 .fade-in {
-  animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1s 1;
+  animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1000ms 1;
 }
 
 @keyframes light-up {
-  0% {
-    filter: brightness(1) drop-shadow(0 0 10px transparent);
-  }
-  100% {
-    filter: brightness(2) drop-shadow(0 0 10px white);
-  }
+  from {filter: brightness(1) drop-shadow(0 0 10px transparent);}
+  to {filter: brightness(2) drop-shadow(0 0 10px white);}
 }
 
 .cursor-pointer {
@@ -237,4 +233,8 @@ body {
     font-size: 1.2em;
   }
 
+}
+
+mat-card-title {
+  font-size: 2.3em;
 }

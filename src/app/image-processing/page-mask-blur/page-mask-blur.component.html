@@ -1,11 +1,13 @@
 <div class="tri-container">
 
-  <div class="item">
+  <div class="item" (mouseleave)="setMaskVisibility(null)">
     <div class="pixel-numbers-container">
       <div *ngFor="let pixel of sourcePixels; let i = index"
            class="font-monospace pixel-with-number hover-code-highlight cursor-pointer"
            [ngClass]="'pixel-color-'+pixel.value"
-           (click)="setVisibility(pixel)">
+           [class.highlight-mask]="pixel.maskVisible"
+           (click)="setVisibility(pixel)"
+           (mouseenter)="setMaskVisibility(pixel)">
         {{pixel.value}}
       </div>
     </div>
@@ -13,18 +15,18 @@
 
   <div class="item">
     <mat-card>
-      <mat-card-title>Invert each pixel value</mat-card-title>
+      <mat-card-title>Blur each pixel value</mat-card-title>
 
       <mat-card-content>
         <div class="card-medium-font">
 
           <div class="bi-container">
             <div class="left-label-container">
-              <div class="label">Source pixel's value = x</div>
+              <div class="label">Source pixel's value</div>
               <div class="left-label-connector"></div>
             </div>
             <div class="right-label-container">
-              <div class="label">Colour depth value = 7</div>
+              <div class="label">All 8 neighbouring pixels' values</div>
               <div class="right-label-connector"></div>
             </div>
           </div>
@@ -36,7 +38,7 @@
                     (click)="completeDestinationImage()">
               <mat-icon class="mat-icon-fix-size animate-mat-icon-rotate">settings</mat-icon>
             </button>
-            <div class="algorithm-code">7 - x</div>
+            <div class="algorithm-code">numbers / 9</div>
           </div>
 
           <div class="center-label-container">

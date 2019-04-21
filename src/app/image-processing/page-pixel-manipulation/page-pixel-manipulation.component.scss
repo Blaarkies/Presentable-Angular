@@ -1,3 +1,5 @@
+@import 'styles';
+
 .pixel-numbers-container {
   display: grid;
   grid-template-columns: repeat(8, 75px);
@@ -7,7 +9,7 @@
 
   .pixel-with-number {
     font-size: 5em;
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
 
     text-align: center;
     border: 2px dotted white;
@@ -17,7 +19,7 @@
 }
 
 $color-depth: 7;
-@mixin asdf {
+@mixin pixel-color-depths {
   @for $i from 0 through $color-depth {
     .pixel-color-#{$i} {
       background-color: hsl(0, 0, ($i / $color-depth) * 100);
@@ -25,5 +27,107 @@ $color-depth: 7;
   }
 }
 
-@include asdf;
+@include pixel-color-depths;
 
+$color-connectors: dimgray;
+$height-connector: 50px;
+$rotate-amount-connectors: 30deg;
+$margin-amount-connectors: 20%;
+.value-as-label {
+  border: 2px solid $color-connectors;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8px;
+}
+
+.left-label-container {
+  display: grid;
+  place-items: end;
+
+  .label {
+    @extend .value-as-label;
+  }
+
+  .left-label-connector {
+    border-right: 5px solid $color-connectors;
+    height: $height-connector;
+    transform: skew($rotate-amount-connectors);
+    margin-right: $margin-amount-connectors;
+  }
+}
+
+.right-label-container {
+  display: grid;
+  place-items: start;
+
+  .label {
+    @extend .value-as-label;
+  }
+
+  .right-label-connector {
+    border-left: 5px solid $color-connectors;
+    height: $height-connector;
+    transform: skew(-$rotate-amount-connectors);
+    margin-left: $margin-amount-connectors;
+  }
+}
+
+.algorithm-box-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1em;
+
+  border: 2px solid $color-connectors;
+  border-radius: 4px;
+
+  width: max-content;
+  padding: 16px;
+  margin: auto;
+
+  place-items: center;
+
+  .algorithm-code {
+    @extend .font-monospace;
+    font-size: 32px;
+  }
+}
+
+.center-label-container {
+  display: grid;
+  place-items: center;
+
+  .label {
+    @extend .value-as-label;
+  }
+
+  .center-label-connector {
+    border-right: 5px solid $color-connectors;
+    height: $height-connector;
+  }
+}
+
+.mat-icon-fix-size {
+  font-size: 48px;
+  width: auto;
+  height: auto;
+
+  margin: -20px;
+  place-self: center;
+}
+
+.animate-mat-icon-rotate {
+  animation: rotation 2500ms ease-in-out infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359.9999deg);
+  }
+}
+
+.transition-on-opacity {
+  transition: opacity 500ms ease-in-out;
+}

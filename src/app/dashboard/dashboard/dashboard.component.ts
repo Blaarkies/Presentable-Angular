@@ -10,12 +10,12 @@ import { MatDialog } from '@angular/material';
            })
 export class DashboardComponent implements OnInit {
 
-  public cards = [];
+  public topics = [];
 
   constructor(private router: Router,
               private dialog: MatDialog) {
-    this.cards.push({title: 'Compression Crash Course', subtitle: 'by Pierre Roux', data: 'compression-crash-course'});
-    this.cards.push({title: 'An Image Is Worth 1000px', subtitle: 'by Pierre Roux', data: 'image-processing'});
+    this.topics.push({title: 'Compression Crash Course', subtitle: 'by Pierre Roux', data: 'compression-crash-course'});
+    this.topics.push({title: 'An Image Is Worth 1000px', subtitle: 'by Pierre Roux', data: 'image-processing'});
   }
 
   ngOnInit() {

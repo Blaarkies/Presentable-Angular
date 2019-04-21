@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getArrayRange, getRandomInteger } from 'src/app/common/utils';
+import { Pixel } from 'src/app/image-processing/interfaces';
 
 @Component({
              selector: 'app-page-pixel-manipulation',
@@ -10,17 +10,47 @@ export class PagePixelManipulationComponent implements OnInit {
 
   colorDepthAmount = 7;
 
-  sourcePixels = getArrayRange(8 * 8) // TODO: give real values
-    .map(_ => getRandomInteger(7));
-
-  resultPixels = this.sourcePixels // TODO: give real values
-                     .map(i => this.colorDepthAmount - i);
+  sourcePixels: Pixel[];
+  resultPixels: Pixel[];
 
   constructor() {
+    this.sourcePixels = // This is the character "e"
+      `00377510
+      03752670
+      17200072
+      27000273
+      27077750
+      17001100
+      01720260
+      00177700`
+        .split('\n')
+        .map(line => line.trim())
+        .join('')
+        .split('')
+        .map((c, i) => ({
+          value: parseInt(c),
+          index: i
+        }));
 
+    this.resultPixels = this.sourcePixels
+                            .map(pix => ({
+                              value: this.colorDepthAmount - pix.value,
+                              index: pix.index
+                            }));
   }
 
   ngOnInit() {
   }
 
+  setVisibility(pixel: Pixel) {
+    let destinationPixel = this.resultPixels
+                               .find(p => p.index === pixel.index);
+    destinationPixel.visible = !destinationPixel.visible;
+  }
+
+  completeDestinationImage() {
+    this.resultPixels
+        .filter(pix => !pix.visible)
+        .forEach((pix, i) => setTimeout(_ => pix.visible = true, i * 100));
+  }
 }

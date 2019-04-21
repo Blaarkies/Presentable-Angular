@@ -128,3 +128,7 @@ export function getArrayRange(count: number = 1) {
 export function getRandomFromArray(array: any[]) {
   return array[Math.floor((Math.random() * array.length))];
 }
+
+export function sum(array: any[], valueRetriever: (item) => number = item => item): number {
+  return array.reduce((sum, c) => sum + valueRetriever(c), 0);
+}

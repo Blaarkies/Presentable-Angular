@@ -13,6 +13,7 @@ import { PageInRealLifeComponent } from 'src/app/compression-crash-course/compre
 import { PageSummaryComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary/page-summary.component';
 import { PageNeedForPixelsComponent } from 'src/app/image-processing/page-need-for-pixels/page-need-for-pixels.component';
 import { PagePixelManipulationComponent } from 'src/app/image-processing/page-pixel-manipulation/page-pixel-manipulation.component';
+import { PageMaskBlurComponent } from 'src/app/image-processing/page-mask-blur/page-mask-blur.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'need-for-pixels', pathMatch: 'full'},
       {path: 'need-for-pixels', data: {title: 'The Need For Pixels'}, component: PageNeedForPixelsComponent},
       {path: 'pixel-manipulation', data: {title: 'How To Train Your Pixel'}, component: PagePixelManipulationComponent},
-      {path: 'mask-blur', data: {title: 'Blur Between The Lines'}, component: PageQuestionsComponent},
+      {path: 'mask-blur', data: {title: 'Blur Between The Lines'}, component: PageMaskBlurComponent},
       {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageQuestionsComponent},
       {path: 'mask-custom', data: {title: 'Custom Masks'}, component: PageQuestionsComponent},
       {path: 'in-real-life', data: {title: 'In Real Life'}, component: PageQuestionsComponent},
