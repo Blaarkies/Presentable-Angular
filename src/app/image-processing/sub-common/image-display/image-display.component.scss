@@ -1,0 +1,47 @@
+.pixel-numbers-container {
+  display: grid;
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
+
+  overflow: hidden;
+
+  .pixel-with-number {
+    font-size: 5em;
+    text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
+
+    text-align: center;
+    border: 2px dotted white;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+$color-depth: 7;
+@mixin pixel-color-depths {
+  @for $i from 0 through $color-depth {
+    .pixel-color-#{$i} {
+      background-color: hsl(0, 0, ($i / $color-depth) * 100);
+    }
+  }
+}
+@include pixel-color-depths;
+
+.transition-on-opacity {
+  transition: opacity 500ms ease-in-out;
+}
+
+
+$color-mask-highlight: transparentize(green, 0.5);
+.highlight-mask {
+  animation: highlightBackground 750ms ease-in-out alternate-reverse infinite;
+  background-image: linear-gradient($color-mask-highlight, $color-mask-highlight);
+}
+
+@keyframes highlightBackground {
+  from {filter: contrast(0.8);}
+  to {filter: contrast(1.2);}
+}
+
+.opacity-0 {
+  opacity: 0;
+}

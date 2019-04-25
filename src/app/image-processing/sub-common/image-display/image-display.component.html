@@ -1,0 +1,17 @@
+<div class="item" (mouseleave)="setMaskVisibility(null)">
+  <div class="pixel-numbers-container">
+    <div *ngFor="let pixel of sourceImage.pixels; let i = index"
+         class="font-monospace
+               pixel-with-number
+               hover-code-highlight
+               cursor-pointer
+               transition-on-opacity"
+         [ngClass]="'pixel-color-'+pixel.value"
+         [class.highlight-mask]="pixel.maskVisible"
+         [class.opacity-0]="!pixel.visible"
+         (click)="onPixelClick(pixel)"
+         (mouseenter)="onPixelHover(pixel)">
+      {{pixel.value}}
+    </div>
+  </div>
+</div>

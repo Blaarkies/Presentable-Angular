@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { getArrayRange, getRandomInteger } from 'src/app/common/utils';
+import { Image } from 'src/app/image-processing/interfaces/image';
+import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 
 @Component({
              selector: 'app-intro',
@@ -8,10 +9,19 @@ import { getArrayRange, getRandomInteger } from 'src/app/common/utils';
            })
 export class PageNeedForPixelsComponent implements OnInit, OnDestroy {
 
-  pixels = getArrayRange(8 * 8)
-    .map(_ => getRandomInteger(7));
+  sourceImage: Image;
+  showPixels: boolean;
 
-  constructor() {
+  constructor(private pixelProcessorService: PixelProcessorService) {
+    this.sourceImage = this.pixelProcessorService.getImageFromString(
+     `23445553
+      34566554
+      30246765
+      50356766
+      41455566
+      02455776
+      24567755
+      45676765`);
   }
 
   ngOnInit() {

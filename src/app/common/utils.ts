@@ -1,3 +1,7 @@
+export function getXYFromIndex(imageWidth: number, i: number): number[] {
+  return [i % imageWidth, Math.floor(i / imageWidth)];
+}
+
 export function getSanitizedArray(array: number[]): any[] {
   return array.filter(i => !theUnsanitized.some(u => i === u));
 }

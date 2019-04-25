@@ -1,4 +1,4 @@
-<div class="bi-container">
+<div class="bi-container" (click)="showPixels = true">
   <div class="item">
 
     <div class="image-container overlap-container">
@@ -10,19 +10,15 @@
     </div>
   </div>
 
-  <div class="item">
+  <div class="item animate-fade-in" *ngIf="showPixels">
 
     <div class="image-container overlap-container">
 
       <div class="image overlap-a animate-zoom center-zoom-on-eye"
            style="background-image: url('assets/lenna-example.jpg');"></div>
 
-      <div class="overlap-b pixel-numbers-container pixel-animate-fade">
-        <div *ngFor="let value of pixels"
-             class="font-monospace pixel-with-number">
-          {{value}}
-        </div>
-      </div>
+      <app-image-display class="overlap-b pixel-animate-fade invisible-background"
+                         [sourceImage]="sourceImage"></app-image-display>
     </div>
   </div>
 </div>

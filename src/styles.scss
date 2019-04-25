@@ -238,3 +238,16 @@ body {
 mat-card-title {
   font-size: 2.3em;
 }
+
+.animate-fade-in {
+  animation: opacity0to1 1000ms ease-in-out forwards;
+}
+
+@keyframes opacity0to1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

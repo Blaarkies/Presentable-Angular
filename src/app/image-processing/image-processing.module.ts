@@ -4,13 +4,15 @@ import { PageNeedForPixelsComponent } from 'src/app/image-processing/page-need-f
 import { MatComponentsModule } from 'src/app/common/mat-components.module';
 import { PagePixelManipulationComponent } from './page-pixel-manipulation/page-pixel-manipulation.component';
 import { PageMaskBlurComponent } from './page-mask-blur/page-mask-blur.component';
+import { ImageDisplayComponent } from './sub-common/image-display/image-display.component';
+import { AlgorithmBoxComponent } from './sub-common/algorithm-box/algorithm-box.component';
 
 @NgModule({
             imports: [
               CommonModule,
               MatComponentsModule,
             ],
-            declarations: [PageNeedForPixelsComponent, PagePixelManipulationComponent, PageMaskBlurComponent]
+            declarations: [PageNeedForPixelsComponent, PagePixelManipulationComponent, PageMaskBlurComponent, ImageDisplayComponent, AlgorithmBoxComponent]
           })
 export class ImageProcessingModule {
 }

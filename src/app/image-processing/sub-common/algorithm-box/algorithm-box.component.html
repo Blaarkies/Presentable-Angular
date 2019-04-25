@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>{{title}}</mat-card-title>
+
+  <mat-card-content>
+    <div class="card-medium-font">
+
+      <div class="bi-container">
+        <div class="left-label-container">
+          <div class="label">{{inputA}}</div>
+          <div class="left-label-connector"></div>
+        </div>
+        <div class="right-label-container">
+          <div class="label">{{inputB}}</div>
+          <div class="right-label-connector"></div>
+        </div>
+      </div>
+
+      <div class="algorithm-box-container">
+        <button class="hover-darken"
+                mat-fab
+                color="primary"
+                (click)="onCompleteDestinationImage()">
+          <mat-icon class="mat-icon-fix-size animate-mat-icon-rotate">settings</mat-icon>
+        </button>
+        <div class="algorithm-code">{{calculation}}</div>
+      </div>
+
+      <div class="center-label-container">
+        <div class="center-label-connector"></div>
+        <div class="label">{{output}}</div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

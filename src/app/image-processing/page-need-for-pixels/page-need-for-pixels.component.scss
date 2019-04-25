@@ -1,37 +1,77 @@
-$blur-to-sharp-duration: 8000ms;
+$blur-to-sharp-duration: 12000ms;
 .animate-blur-to-normal {
-  animation: blurToNormal $blur-to-sharp-duration linear infinite alternate;
+  animation: blurToNormal $blur-to-sharp-duration linear infinite both;
 }
 
 .animate-normal-to-sharp {
-  animation: normalToSharp $blur-to-sharp-duration linear infinite alternate;
+  animation: normalToSharp $blur-to-sharp-duration linear infinite both;
 }
 
 @keyframes blurToNormal {
-  0% {filter: blur(20px);}
-  50% {filter: blur(0px);}
-  100% {filter: blur(0px);}
+  0% {
+    filter: blur(0px);
+  }
+  16% {
+    filter: blur(0px);
+  }
+  25% {
+    filter: blur(20px);
+  }
+  41% {
+    filter: blur(20px) invert(0);
+  }
+  50% {
+    filter: blur(0px) invert(1);
+  }
+  66% {
+    filter: blur(0px) invert(1);
+  }
+  74% {
+    filter: blur(0px) invert(0);
+  }
+  100% {
+    filter: blur(0px);
+  }
 }
 
 @keyframes normalToSharp {
-  0% {opacity: 0;}
-  50% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  74% {
+    opacity: 1;
+  }
+  91% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
-
-
-$image-to-pixels-duration: 20s;
+$pixel-zoom-fade-delay: 2s;
+$image-to-pixels-duration: 15s;
 .animate-zoom {
   image-rendering: pixelated;
-  animation: zoomIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) infinite alternate;
+  animation: zoomIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) forwards;
+  animation-delay: $pixel-zoom-fade-delay;
 }
 
 $image-lenna-max-scale: 50;
 @keyframes zoomIn {
-  0% {transform: scale(1);}
-  80% {transform: scale($image-lenna-max-scale);}
-  100% {transform: scale($image-lenna-max-scale); image-rendering: pixelated;}
+  0% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale($image-lenna-max-scale);
+  }
+  100% {
+    transform: scale($image-lenna-max-scale);
+    image-rendering: pixelated;
+  }
 }
 
 .center-zoom-on-eye {
@@ -39,29 +79,22 @@ $image-lenna-max-scale: 50;
 }
 
 .pixel-animate-fade {
-  animation: fadeIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) infinite alternate;
+  animation: fadeIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) both;
+  animation-delay: $pixel-zoom-fade-delay;
 }
 
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  80% {opacity: 0;}
-  85% {opacity: 1;}
-  100% {opacity: 1;}
-}
-
-.pixel-numbers-container {
-  display: grid;
-  grid-template-columns: repeat(8, 75px);
-  grid-template-rows: repeat(8, 75px);
-
-  overflow: hidden;
-
-  .pixel-with-number {
-    font-size: 5em;
-    text-align: center;
-    border: 2px dotted white;
-    width: 100%;
-    height: 100%;
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -93,5 +126,11 @@ $image-lenna-max-scale: 50;
   .overlap-b {
     grid-area: overlap;
     z-index: 2;
+  }
+}
+
+.invisible-background {
+  ::ng-deep .pixel-with-number {
+    background: unset;
   }
 }

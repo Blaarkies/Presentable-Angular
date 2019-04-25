@@ -1,34 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { Pixel } from 'src/app/image-processing/interfaces';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { roundToDecimalPlace, sum } from 'src/app/common/utils';
+import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
+import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
+import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 
 @Component({
              selector: 'app-page-mask-blur',
              templateUrl: './page-mask-blur.component.html',
-             styleUrls: ['./page-mask-blur.component.scss',
-                         '../page-pixel-manipulation/page-pixel-manipulation.component.scss']
+             styleUrls: ['./page-mask-blur.component.scss']
            })
 export class PageMaskBlurComponent implements OnInit {
 
-  imageWidth = 8;
+  @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
 
-  sourcePixels: Pixel[];
-  resultPixels: Pixel[];
+  sourceImage: Image;
+  resultImage: Image;
 
-  averageMaskCoordinates = [
-    {x: 0, y: 0},
-    {x: 1, y: 0},
-    {x: 1, y: -1},
-    {x: 0, y: -1},
-    {x: -1, y: -1},
-    {x: -1, y: 0},
-    {x: -1, y: 1},
-    {x: 0, y: 1},
-    {x: 1, y: 1},
-  ];
+  averageMask: Mask;
+  inputA: string;
+  inputB: string;
+  output: string;
+  calculationText: string;
 
-  constructor() {
-    this.sourcePixels = // This is the character "e"
+  constructor(private pixelProcessorService: PixelProcessorService) {
+    this.averageMask = this.pixelProcessorService.getMaskFromString(
+      `111
+      111
+      111`);
+
+    this.sourceImage = this.pixelProcessorService.getImageFromString(
       `00007270
       00007270
       00707270
@@ -36,74 +37,37 @@ export class PageMaskBlurComponent implements OnInit {
       00000000
       00007777
       00007777
-      00007777`
-        .split('\n')
-        .map(line => line.trim())
-        .join('')
-        .split('')
-        .map((c, i) => ({
-          value: parseInt(c),
-          index: i
-        }));
+      00007777`);
 
-    this.resultPixels = this.sourcePixels
-                            .map((pix, i, f) => {
-                              let [centerX, centerY] = this.getXYFromIndex(this.imageWidth, i);
-                              let nearPixels = this.averageMaskCoordinates
-                                                   .map(({x, y}) => ({x: centerX + x, y: centerY + y}))
-                                                   .filter(({x, y}) => x >= 0
-                                                     && x < this.imageWidth
-                                                     && y >= 0
-                                                     && y < this.imageWidth)
-                                                   .map(({x, y}) => this.getByXY(f, this.imageWidth, x, y));
-                              return {
-                                value: sum(nearPixels, c => c.value) / nearPixels.length,
-                                index: pix.index
-                              };
-                            })
-                            .map(pix => {
-                              pix.value = roundToDecimalPlace(pix.value);
-                              return pix;
-                            });
+    let averageFilter = nearPixels => sum(nearPixels, c => c.value) / nearPixels.length;
+
+    this.resultImage = this.sourceImage
+                           .getProcessedImageFrom(this.averageMask, averageFilter);
   }
 
   ngOnInit() {
   }
 
   setVisibility(pixel: Pixel) {
-    let destinationPixel = this.resultPixels[pixel.index];
-    destinationPixel.visible = !destinationPixel.visible;
+    this.resultImageDisplayer.setVisibility(pixel);
   }
 
   completeDestinationImage() {
-    this.resultPixels
-        .filter(pix => !pix.visible)
-        .forEach((pix, i) => setTimeout(_ => pix.visible = true, i * 100));
+    this.resultImageDisplayer.completeDestinationImage();
   }
 
-  private getByXY(serialImage: Pixel[], imageWidth: number, x: number, y: number): Pixel {
-    return serialImage[y * imageWidth + x];
-  }
-
-  private getXYFromIndex(imageWidth: number, i: number): number[] {
-    return [i % imageWidth, Math.floor(i / imageWidth)];
-  }
-
-  setMaskVisibility(pixel: Pixel): void {
-    this.sourcePixels.forEach(pix => pix.maskVisible = false);
-
+  setHoveredPixel(pixel: Pixel) {
     if (!pixel) {
+      this.inputA = this.inputB = this.output = this.calculationText = null;
       return;
     }
-    let [centerX, centerY] = this.getXYFromIndex(this.imageWidth, pixel.index);
-    this.averageMaskCoordinates
-        .map(({x, y}) => ({x: centerX + x, y: centerY + y}))
-        .filter(({x, y}) => x >= 0
-          && x < this.imageWidth
-          && y >= 0
-          && y < this.imageWidth)
-        .map(({x, y}) => this.getByXY(this.sourcePixels, this.imageWidth, x, y))
-        .forEach(pix => pix.maskVisible = true);
 
+    this.inputA = pixel.value.toString();
+    this.inputB = this.averageMask.pixels.length.toString();
+    let nearPixels = this.sourceImage.getMaskedPixels(this.averageMask, pixel);
+    let sumOfValues = sum(nearPixels, c => c.value);
+    this.output = roundToDecimalPlace(sumOfValues / nearPixels.length)
+      .toString();
+    this.calculationText = `${sumOfValues} / ${nearPixels.length}`;
   }
 }

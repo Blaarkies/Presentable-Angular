@@ -1,62 +1,18 @@
 <div class="tri-container">
 
-  <div class="item">
-    <div class="pixel-numbers-container">
-      <div *ngFor="let pixel of sourcePixels; let i = index"
-           class="font-monospace pixel-with-number hover-code-highlight cursor-pointer"
-           [ngClass]="'pixel-color-'+pixel.value"
-           (click)="setVisibility(pixel)">
-        {{pixel.value}}
-      </div>
-    </div>
-  </div>
+  <app-image-display #source
+                     [sourceImage]="sourceImage"
+                     [mask]="pointMask"
+                     (pixelClick)="setVisibility($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
-  <div class="item">
-    <mat-card>
-      <mat-card-title>Invert each pixel value</mat-card-title>
+  <app-algorithm-box [title]="'Invert each pixel value'"
+                     [inputA]="inputA || 'Source pixel\'s value'"
+                     [inputB]="inputB || 'Colour depth value'"
+                     [calculation]="calculationText || colorDepthAmount + ' - x'"
+                     [output]="output || 'Destination pixel\'s value'"
+                     (complete)="completeDestinationImage()"></app-algorithm-box>
 
-      <mat-card-content>
-        <div class="card-medium-font">
-
-          <div class="bi-container">
-            <div class="left-label-container">
-              <div class="label">Source pixel's value = x</div>
-              <div class="left-label-connector"></div>
-            </div>
-            <div class="right-label-container">
-              <div class="label">Colour depth value = 7</div>
-              <div class="right-label-connector"></div>
-            </div>
-          </div>
-
-          <div class="algorithm-box-container">
-            <button class="hover-darken"
-                    mat-fab
-                    color="primary"
-                    (click)="completeDestinationImage()">
-              <mat-icon class="mat-icon-fix-size animate-mat-icon-rotate">settings</mat-icon>
-            </button>
-            <div class="algorithm-code">7 - x</div>
-          </div>
-
-          <div class="center-label-container">
-            <div class="center-label-connector"></div>
-            <div class="label">Destination pixel's value</div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div class="item">
-    <div class="pixel-numbers-container">
-      <div *ngFor="let pixel of resultPixels"
-           class="font-monospace pixel-with-number transition-on-opacity"
-           [ngClass]="'pixel-color-'+pixel.value"
-           [style.opacity]="pixel.visible ? 1:0">
-        {{pixel.value}}
-      </div>
-    </div>
-  </div>
-
+  <app-image-display #result [sourceImage]="resultImage"></app-image-display>
 </div>

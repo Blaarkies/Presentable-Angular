@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Pixel } from 'src/app/image-processing/interfaces';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
+import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
+import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 
 @Component({
              selector: 'app-page-pixel-manipulation',
@@ -8,13 +11,24 @@ import { Pixel } from 'src/app/image-processing/interfaces';
            })
 export class PagePixelManipulationComponent implements OnInit {
 
+  @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
+
   colorDepthAmount = 7;
 
-  sourcePixels: Pixel[];
-  resultPixels: Pixel[];
+  sourceImage: Image;
+  resultImage: Image;
 
-  constructor() {
-    this.sourcePixels = // This is the character "e"
+  pointMask: Mask;
+  inputA: string;
+  inputB: string;
+  output: string;
+  calculationText: string;
+
+  constructor(private pixelProcessorService: PixelProcessorService) {
+    this.pointMask = new Mask();
+
+    // This is the character "e"
+    this.sourceImage = this.pixelProcessorService.getImageFromString(
       `00377510
       03752670
       17200072
@@ -22,35 +36,34 @@ export class PagePixelManipulationComponent implements OnInit {
       27077750
       17001100
       01720260
-      00177700`
-        .split('\n')
-        .map(line => line.trim())
-        .join('')
-        .split('')
-        .map((c, i) => ({
-          value: parseInt(c),
-          index: i
-        }));
+      00177700`);
 
-    this.resultPixels = this.sourcePixels
-                            .map(pix => ({
-                              value: this.colorDepthAmount - pix.value,
-                              index: pix.index
-                            }));
+    let invertFilter = nearPixels => this.colorDepthAmount - nearPixels[0].value;
+
+    this.resultImage = this.sourceImage
+                           .getProcessedImageFrom(this.pointMask, invertFilter);
   }
 
   ngOnInit() {
   }
 
   setVisibility(pixel: Pixel) {
-    let destinationPixel = this.resultPixels
-                               .find(p => p.index === pixel.index);
-    destinationPixel.visible = !destinationPixel.visible;
+    this.resultImageDisplayer.setVisibility(pixel);
   }
 
   completeDestinationImage() {
-    this.resultPixels
-        .filter(pix => !pix.visible)
-        .forEach((pix, i) => setTimeout(_ => pix.visible = true, i * 100));
+    this.resultImageDisplayer.completeDestinationImage();
+  }
+
+  setHoveredPixel(pixel: Pixel) {
+    if (!pixel) {
+      this.inputA = this.inputB = this.output = this.calculationText = null;
+      return;
+    }
+
+    this.inputA = pixel.value.toString();
+    this.inputB = this.colorDepthAmount.toString();
+    this.output = (this.colorDepthAmount - pixel.value).toString();
+    this.calculationText = `${this.colorDepthAmount} - ${pixel.value}`;
   }
 }

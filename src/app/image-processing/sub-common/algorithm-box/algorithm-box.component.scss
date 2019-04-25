@@ -1,0 +1,102 @@
+@import 'styles';
+
+$color-connectors: dimgray;
+$height-connector: 50px;
+$rotate-amount-connectors: 30deg;
+$margin-amount-connectors: 20%;
+.value-as-label {
+  border: 2px solid $color-connectors;
+  border-radius: 4px;
+  text-align: center;
+  padding: 8px;
+  min-width: 60px;
+}
+
+.left-label-container {
+  display: grid;
+  place-items: end;
+
+  .label {
+    @extend .value-as-label;
+  }
+
+  .left-label-connector {
+    border-right: 5px solid $color-connectors;
+    height: $height-connector;
+    transform: skew($rotate-amount-connectors);
+    margin-right: $margin-amount-connectors;
+  }
+}
+
+.right-label-container {
+  display: grid;
+  place-items: start;
+
+  .label {
+    @extend .value-as-label;
+  }
+
+  .right-label-connector {
+    border-left: 5px solid $color-connectors;
+    height: $height-connector;
+    transform: skew(-$rotate-amount-connectors);
+    margin-left: $margin-amount-connectors;
+  }
+}
+
+.algorithm-box-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1em;
+
+  border: 2px solid $color-connectors;
+  border-radius: 4px;
+
+  width: max-content;
+  padding: 16px;
+  margin: auto;
+
+  place-items: center;
+
+  .algorithm-code {
+    @extend .font-monospace;
+    font-size: 32px;
+  }
+}
+
+.center-label-container {
+  display: grid;
+  place-items: center;
+
+  .label {
+    @extend .value-as-label;
+  }
+
+  .center-label-connector {
+    border-right: 5px solid $color-connectors;
+    height: $height-connector;
+  }
+}
+
+.mat-icon-fix-size {
+  font-size: 48px;
+  width: auto;
+  height: auto;
+
+  margin: -20px;
+  place-self: center;
+}
+
+.animate-mat-icon-rotate {
+  animation: rotation 2500ms ease-in-out infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359.9999deg);
+  }
+}
+
