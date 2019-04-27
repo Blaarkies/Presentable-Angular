@@ -29,7 +29,9 @@ export class ImageDisplayComponent implements OnInit {
       return;
     }
     image.getMaskedPixels(this.mask, pixel)
-         .forEach(pix => pix.maskVisible = true);
+         .forEach(pix => this.sourceImage
+           .pixels[pix.index]
+           .maskVisible = true);
   }
 
   onPixelClick(pixel: Pixel) {

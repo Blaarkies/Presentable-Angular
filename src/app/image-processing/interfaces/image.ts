@@ -1,11 +1,12 @@
 import { getXYFromIndex, roundToDecimalPlace } from 'src/app/common/utils';
-import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 
 export class Pixel {
   value: number;
   index: number;
   visible? = true;
   maskVisible? = false;
+  maskValue?: number;
 }
 
 export class Image {
@@ -26,7 +27,7 @@ export class Image {
 
                        let result = filter(maskedPixels);
 
-                       return {
+                       return <Pixel>{
                          value: roundToDecimalPlace(result),
                          index: pix.index
                        };
@@ -35,12 +36,19 @@ export class Image {
     return new Image(pixels, width);
   }
 
-  getMaskedPixels(mask: Mask, centerPixel: Pixel) {
+  getMaskedPixels(mask: Mask, centerPixel: Pixel): Pixel[] {
     let [centerX, centerY] = getXYFromIndex(this.imageWidth, centerPixel.index);
     return mask.pixels
-               .map(({x, y}) => ({x: centerX + x, y: centerY + y}))
+               .map(({x, y, value}) => ({x: centerX + x, y: centerY + y, value}))
                .filter(({x, y}) => this.isInBounds(x, y))
-               .map(({x, y}) => this.getByXY(x, y));
+               .map(({x, y, value}) => {
+                 let pixel = this.getByXY(x, y);
+                 return <Pixel>{
+                   value: pixel.value,
+                   index: pixel.index,
+                   maskValue: value
+                 };
+               });
   }
 
   isInBounds(x: number, y: number) {

@@ -12,8 +12,13 @@ $margin-amount-connectors: 20%;
   min-width: 60px;
 }
 
-.left-label-container {
+.label-container {
   display: grid;
+  grid-template-rows: auto max-content;
+}
+
+.left-label-container {
+  @extend .label-container;
   place-items: end;
 
   .label {
@@ -29,7 +34,7 @@ $margin-amount-connectors: 20%;
 }
 
 .right-label-container {
-  display: grid;
+  @extend .label-container;
   place-items: start;
 
   .label {

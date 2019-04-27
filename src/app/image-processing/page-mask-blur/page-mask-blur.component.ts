@@ -66,8 +66,7 @@ export class PageMaskBlurComponent implements OnInit {
     this.inputB = this.averageMask.pixels.length.toString();
     let nearPixels = this.sourceImage.getMaskedPixels(this.averageMask, pixel);
     let sumOfValues = sum(nearPixels, c => c.value);
-    this.output = roundToDecimalPlace(sumOfValues / nearPixels.length)
-      .toString();
+    this.output = this.resultImage.pixels[pixel.index].value.toString();
     this.calculationText = `${sumOfValues} / ${nearPixels.length}`;
   }
 }

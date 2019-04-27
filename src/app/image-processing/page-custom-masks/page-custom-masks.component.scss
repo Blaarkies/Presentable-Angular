@@ -1,0 +1,23 @@
+@import 'styles';
+
+$mask-pixel-size: 80px;
+
+.custom-mask-container {
+  padding: 16px;
+
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+
+  width: max-content;
+  margin: auto;
+
+  .mask-pixel {
+    height: $mask-pixel-size;
+    width: $mask-pixel-size;
+
+    text-align: center;
+    @extend .font-monospace;
+    font-size: 3em;
+  }
+}

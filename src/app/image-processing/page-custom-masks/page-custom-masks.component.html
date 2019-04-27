@@ -1,0 +1,32 @@
+<div class="tri-container">
+
+  <app-image-display #source
+                     [sourceImage]="sourceImage"
+                     [mask]="customMask"
+                     (pixelClick)="setVisibility($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+
+  <div>
+    <app-algorithm-box [title]="'Apply custom filter on each pixel\'s value'"
+                       [inputA]="inputA || '9 pixels\' values'"
+                       [inputB]="inputB || 'Multiply by corresponding mask\'s value'"
+                       [calculation]="calculationText || 'sum / count'"
+                       [output]="output || 'Destination pixel\'s value'"
+                       (complete)="completeDestinationImage()"></app-algorithm-box>
+    <div class="custom-mask-container">
+      <ng-container *ngFor="let pixel of customMask.pixels">
+        <input class="mask-pixel"
+               type="number"
+               align="middle"
+               size="3"
+               [value]="pixel.value"
+               (change)="updateMaskPixel($event, pixel)"
+               (click)="pixel.value = pixel.value + 1"
+               (contextmenu)="pixel.value = pixel.value - 1"/>
+      </ng-container>
+    </div>
+  </div>
+
+  <app-image-display #result [sourceImage]="resultImage"></app-image-display>
+</div>
