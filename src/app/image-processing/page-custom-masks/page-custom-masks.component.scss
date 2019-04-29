@@ -1,21 +1,5 @@
 @import 'styles';
 
-.custom-mask-container {
-  padding: 16px;
-
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(3, auto);
-  grid-gap: 4px;
-
-  width: max-content;
-  margin: auto;
-}
-
-.slide-toggle-font {
-  font-family: Roboto, sans-serif;
-}
-
 .vertical-container {
   justify-self: end;
   height: max-content;
@@ -24,9 +8,8 @@
   display: grid;
   justify-items: center;
   grid-template-rows: auto auto;
-}
 
-.mask-editor-container {
-  display: grid;
-  grid-template-columns: auto max-content;
+  .slide-toggle-font {
+    font-family: Roboto, sans-serif;
+  }
 }

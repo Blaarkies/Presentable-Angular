@@ -15,6 +15,7 @@ import { PageNeedForPixelsComponent } from 'src/app/image-processing/page-need-f
 import { PagePixelManipulationComponent } from 'src/app/image-processing/page-pixel-manipulation/page-pixel-manipulation.component';
 import { PageMaskBlurComponent } from 'src/app/image-processing/page-mask-blur/page-mask-blur.component';
 import { PageCustomMasksComponent } from 'src/app/image-processing/page-custom-masks/page-custom-masks.component';
+import { PageMaskSharpenComponent } from 'src/app/image-processing/page-mask-sharpen/page-mask-sharpen.component';
 
 const routes: Routes = [
   {
@@ -52,7 +53,7 @@ const routes: Routes = [
       {path: 'pixel-manipulation', data: {title: 'How To Train Your Pixel'}, component: PagePixelManipulationComponent},
       {path: 'mask-blur', data: {title: 'Blur Between The Lines'}, component: PageMaskBlurComponent},
       {path: 'mask-custom', data: {title: 'Custom Masks'}, component: PageCustomMasksComponent},
-      {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageQuestionsComponent},
+      {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageMaskSharpenComponent},
       {path: 'in-real-life', data: {title: 'In Real Life'}, component: PageQuestionsComponent},
       {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
     ]

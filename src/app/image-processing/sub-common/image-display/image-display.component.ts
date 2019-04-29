@@ -11,6 +11,7 @@ export class ImageDisplayComponent implements OnInit {
 
   @Input() sourceImage: Image;
   @Input() mask: Mask = new Mask();
+  @Input() highlightPixel: Pixel;
 
   @Output() pixelClick = new EventEmitter<Pixel>();
   @Output() pixelHover = new EventEmitter<Pixel>();
@@ -49,10 +50,10 @@ export class ImageDisplayComponent implements OnInit {
     destinationPixel.visible = !destinationPixel.visible;
   }
 
-  completeDestinationImage() {
+  completeDestinationImage(durationPerPixel: number = 100) {
     this.sourceImage
         .pixels
         .filter(pix => !pix.visible)
-        .forEach((pix, i) => setTimeout(_ => pix.visible = true, i * 100));
+        .forEach((pix, i) => setTimeout(_ => pix.visible = true, i * durationPerPixel));
   }
 }

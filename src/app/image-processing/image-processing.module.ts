@@ -7,7 +7,8 @@ import { PageMaskBlurComponent } from './page-mask-blur/page-mask-blur.component
 import { ImageDisplayComponent } from './sub-common/image-display/image-display.component';
 import { AlgorithmBoxComponent } from './sub-common/algorithm-box/algorithm-box.component';
 import { PageCustomMasksComponent } from './page-custom-masks/page-custom-masks.component';
-import { SpinnerValueComponent } from './sub-common/spinner-value/spinner-value.component';
+import { MaskEditorComponent } from 'src/app/image-processing/sub-common/mask-editor/mask-editor.component';
+import { PageMaskSharpenComponent } from './page-mask-sharpen/page-mask-sharpen.component';
 
 @NgModule({
             imports: [
@@ -20,7 +21,8 @@ import { SpinnerValueComponent } from './sub-common/spinner-value/spinner-value.
                            ImageDisplayComponent,
                            AlgorithmBoxComponent,
                            PageCustomMasksComponent,
-                           SpinnerValueComponent]
+                           MaskEditorComponent,
+                           PageMaskSharpenComponent]
           })
 export class ImageProcessingModule {
 }

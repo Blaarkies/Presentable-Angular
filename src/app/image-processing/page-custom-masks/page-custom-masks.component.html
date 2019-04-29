@@ -15,14 +15,10 @@
                        [output]="output || 'Destination pixel\'s value'"
                        (complete)="completeDestinationImage()"></app-algorithm-box>
     <div class="overlap-container">
-      <div class="overlap-a custom-mask-container">
-        <app-spinner-value *ngFor="let pixel of customMask.pixels"
-                           [pixel]="pixel"></app-spinner-value>
-      </div>
+      <app-spinner-value class="overlap-a" [mask]="customMask"></app-spinner-value>
 
       <div class="overlap-b vertical-container">
         <mat-slide-toggle color="primary"
-                          ariaLabel="ariaLabel"
                           (change)="isAverage = $event.checked"
                           [checked]="isAverage"></mat-slide-toggle>
         <div class="slide-toggle-font">Average</div>

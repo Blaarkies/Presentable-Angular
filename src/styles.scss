@@ -106,8 +106,12 @@ body {
 }
 
 @keyframes light-up {
-  from {filter: brightness(1) drop-shadow(0 0 10px transparent);}
-  to {filter: brightness(2) drop-shadow(0 0 10px white);}
+  from {
+    filter: brightness(1) drop-shadow(0 0 10px transparent);
+  }
+  to {
+    filter: brightness(2) drop-shadow(0 0 10px white);
+  }
 }
 
 .cursor-pointer {
@@ -176,7 +180,7 @@ body {
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     border: 2px solid #545454;
-    background: linear-gradient(to bottom, #48ab4b 0%, #3d9140 5%, #4eb250 50%, #3d9140 95%, #48ab4b 100%);
+    background: linear-gradient(to bottom, #48AB4B 0%, #3D9140 5%, #4EB250 50%, #3D9140 95%, #48AB4B 100%);
   }
 }
 
@@ -265,4 +269,13 @@ mat-card-title {
     grid-area: overlap;
     z-index: 2;
   }
+}
+
+.font-default {
+  font-family: Roboto, sans-serif;
+}
+
+.font-page-title {
+  font-size: 2.3em;
+  @extend .font-default;
 }

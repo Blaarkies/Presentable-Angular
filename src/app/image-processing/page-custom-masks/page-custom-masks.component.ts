@@ -28,7 +28,7 @@ export class PageCustomMasksComponent implements OnInit {
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
     let value = sum(nearPixels, c => (c.value * c.maskValue));
-    return this.isAverage ? value / (divisor || 1) : value;
+    return this.isAverage ? value / (divisor || nearPixels.length) : value + (this.sourceImage.colorDepth / 2);
   };
 
   constructor(private pixelProcessorService: PixelProcessorService) {
@@ -89,7 +89,7 @@ export class PageCustomMasksComponent implements OnInit {
     this.inputB = nearPixels.map(pix => pix.maskValue).join(', ');
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
-    let sumOfMaskValues = sum(nearPixels, c => c.maskValue);
+    let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
     this.calculationText = this.isAverage
                            ? `${sumOfValues} / ${sumOfMaskValues}`
                            : `${sumOfValues} + ${this.sourceImage.colorDepth / 2}`;

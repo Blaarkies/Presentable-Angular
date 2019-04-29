@@ -11,7 +11,7 @@ export class PixelProcessorService {
   constructor() {
   }
 
-  getImageFromString(serialImage: string, colorDepth: number = null): Image {
+  getImageFromString(serialImage: string, colorDepth?: number): Image {
     let {trimmedLines, width} = this.getTrimmedLinesAndWidth(serialImage);
 
     let pixels = trimmedLines.join('')
@@ -53,6 +53,25 @@ export class PixelProcessorService {
                                   .map(line => line.trim());
     let width = trimmedLines[0].length;
     return {trimmedLines, width};
+  }
+
+  getMaskFromList(list: number[], height?: number, width?: number): Mask {
+    if (!height || !width) {
+      height = width = Math.sqrt(list.length);
+    }
+
+    let pixels = list.map((c, i) => {
+      let [x, y] = getXYFromIndex(width, i);
+      let xOffset = (width - 1) / 2;
+      let yOffset = (height - 1) / 2;
+      return (<MaskPixel>{
+        x: x - xOffset,
+        y: y - yOffset,
+        value: c
+      });
+    });
+
+    return new Mask(pixels);
   }
 
 }
