@@ -23,6 +23,8 @@ export class PageMaskBlurComponent implements OnInit {
   output: string;
   calculationText: string;
 
+  hoverPixel: Pixel;
+
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.averageMask = this.pixelProcessorService.getMaskFromString(
       `111
@@ -57,6 +59,7 @@ export class PageMaskBlurComponent implements OnInit {
   }
 
   setHoveredPixel(pixel: Pixel) {
+    this.hoverPixel = pixel;
     if (!pixel) {
       this.inputA = this.inputB = this.output = this.calculationText = null;
       return;

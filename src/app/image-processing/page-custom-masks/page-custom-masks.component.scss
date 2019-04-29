@@ -3,7 +3,6 @@
 .vertical-container {
   justify-self: end;
   height: max-content;
-  padding: 16px;
 
   display: grid;
   justify-items: center;
@@ -12,4 +11,15 @@
   .slide-toggle-font {
     font-family: Roboto, sans-serif;
   }
+}
+
+.slider-background {
+  background-color: ghostwhite;
+  border-radius: 16px;
+  padding: 8px;
+  @extend .mat-elevation-z1;
+}
+
+.container-padding {
+  padding: 16px 0;
 }

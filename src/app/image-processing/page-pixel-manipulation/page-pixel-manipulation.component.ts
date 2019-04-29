@@ -22,6 +22,8 @@ export class PagePixelManipulationComponent implements OnInit {
   output: string;
   calculationText: string;
 
+  hoverPixel: Pixel;
+
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.pointMask = new Mask();
 
@@ -54,6 +56,8 @@ export class PagePixelManipulationComponent implements OnInit {
   }
 
   setHoveredPixel(pixel: Pixel) {
+    this.hoverPixel = pixel;
+
     if (!pixel) {
       this.inputA = this.inputB = this.output = this.calculationText = null;
       return;

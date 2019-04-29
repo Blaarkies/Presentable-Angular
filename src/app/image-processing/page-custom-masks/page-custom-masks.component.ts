@@ -24,6 +24,7 @@ export class PageCustomMasksComponent implements OnInit {
   calculationText: string;
 
   isAverage = true;
+  hoverPixel: Pixel;
 
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
@@ -78,6 +79,7 @@ export class PageCustomMasksComponent implements OnInit {
   }
 
   setHoveredPixel(pixel: Pixel) {
+    this.hoverPixel = pixel;
     if (!pixel) {
       this.inputA = this.inputB = this.output = this.calculationText = null;
       return;
@@ -85,8 +87,10 @@ export class PageCustomMasksComponent implements OnInit {
 
     let nearPixels = this.sourceImage.getMaskedPixels(this.customMask, pixel);
 
-    this.inputA = nearPixels.map(pix => pix.value).join(', ');
-    this.inputB = nearPixels.map(pix => pix.maskValue).join(', ');
+    this.inputA = nearPixels.map(pix => pix.value)
+                            .join(', ');
+    this.inputB = nearPixels.map(pix => pix.maskValue)
+                            .join(', ');
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;

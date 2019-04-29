@@ -14,5 +14,7 @@
                      [output]="output || 'Destination pixel\'s value'"
                      (complete)="completeDestinationImage()"></app-algorithm-box>
 
-  <app-image-display #result [sourceImage]="resultImage"></app-image-display>
+  <app-image-display #result
+                     [sourceImage]="resultImage"
+                     [highlightPixel]="hoverPixel"></app-image-display>
 </div>

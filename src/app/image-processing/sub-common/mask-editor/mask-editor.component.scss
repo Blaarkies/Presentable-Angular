@@ -4,8 +4,6 @@ $mask-pixel-size: 80px;
 $transition-buttons: background-color 300ms ease-in-out;
 
 .custom-mask-container {
-  padding: 16px;
-
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(3, auto);

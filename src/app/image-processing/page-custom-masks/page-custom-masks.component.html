@@ -14,10 +14,10 @@
                        [calculation]="calculationText || 'sum / count'"
                        [output]="output || 'Destination pixel\'s value'"
                        (complete)="completeDestinationImage()"></app-algorithm-box>
-    <div class="overlap-container">
-      <app-spinner-value class="overlap-a" [mask]="customMask"></app-spinner-value>
+    <div class="overlap-container container-padding">
+      <app-mask-editor class="overlap-a" [mask]="customMask"></app-mask-editor>
 
-      <div class="overlap-b vertical-container">
+      <div class="overlap-b vertical-container slider-background">
         <mat-slide-toggle color="primary"
                           (change)="isAverage = $event.checked"
                           [checked]="isAverage"></mat-slide-toggle>
@@ -26,5 +26,7 @@
     </div>
   </div>
 
-  <app-image-display #result [sourceImage]="resultImage"></app-image-display>
+  <app-image-display #result
+                     [sourceImage]="resultImage"
+                     [highlightPixel]="hoverPixel"></app-image-display>
 </div>
