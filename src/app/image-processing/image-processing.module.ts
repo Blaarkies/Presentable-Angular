@@ -7,13 +7,20 @@ import { PageMaskBlurComponent } from './page-mask-blur/page-mask-blur.component
 import { ImageDisplayComponent } from './sub-common/image-display/image-display.component';
 import { AlgorithmBoxComponent } from './sub-common/algorithm-box/algorithm-box.component';
 import { PageCustomMasksComponent } from './page-custom-masks/page-custom-masks.component';
+import { SpinnerValueComponent } from './sub-common/spinner-value/spinner-value.component';
 
 @NgModule({
             imports: [
               CommonModule,
               MatComponentsModule,
             ],
-            declarations: [PageNeedForPixelsComponent, PagePixelManipulationComponent, PageMaskBlurComponent, ImageDisplayComponent, AlgorithmBoxComponent, PageCustomMasksComponent]
+            declarations: [PageNeedForPixelsComponent,
+                           PagePixelManipulationComponent,
+                           PageMaskBlurComponent,
+                           ImageDisplayComponent,
+                           AlgorithmBoxComponent,
+                           PageCustomMasksComponent,
+                           SpinnerValueComponent]
           })
 export class ImageProcessingModule {
 }

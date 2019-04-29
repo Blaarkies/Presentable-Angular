@@ -1,23 +1,32 @@
 @import 'styles';
 
-$mask-pixel-size: 80px;
-
 .custom-mask-container {
   padding: 16px;
 
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(3, auto);
+  grid-gap: 4px;
 
   width: max-content;
   margin: auto;
+}
 
-  .mask-pixel {
-    height: $mask-pixel-size;
-    width: $mask-pixel-size;
+.slide-toggle-font {
+  font-family: Roboto, sans-serif;
+}
 
-    text-align: center;
-    @extend .font-monospace;
-    font-size: 3em;
-  }
+.vertical-container {
+  justify-self: end;
+  height: max-content;
+  padding: 16px;
+
+  display: grid;
+  justify-items: center;
+  grid-template-rows: auto auto;
+}
+
+.mask-editor-container {
+  display: grid;
+  grid-template-columns: auto max-content;
 }

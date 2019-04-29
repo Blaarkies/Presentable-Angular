@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
-import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
+import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
 
@@ -23,9 +23,12 @@ export class PageCustomMasksComponent implements OnInit {
   output: string;
   calculationText: string;
 
+  isAverage = true;
+
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
-    return sum(nearPixels, c => (c.value * c.maskValue)) / (divisor || 1);
+    let value = sum(nearPixels, c => (c.value * c.maskValue));
+    return this.isAverage ? value / (divisor || 1) : value;
   };
 
   constructor(private pixelProcessorService: PixelProcessorService) {
@@ -42,7 +45,7 @@ export class PageCustomMasksComponent implements OnInit {
       35255542
       25222222
       22532342
-      22255522`);
+      22255522`, 7);
 
     this.filterImage();
   }
@@ -58,14 +61,7 @@ export class PageCustomMasksComponent implements OnInit {
       this.resultImage = tempImage;
     }
 
-    this.resultImage.pixels
-        .forEach(pix => {
-          if (pix.value < 0) {
-            pix.value = 0;
-          } else if (pix.value > 7) {
-            pix.value = 7;
-          }
-        });
+    this.resultImage.capPixelValues(7);
   }
 
   ngOnInit() {
@@ -87,18 +83,18 @@ export class PageCustomMasksComponent implements OnInit {
       return;
     }
 
-    this.inputA = pixel.value.toString();
-    this.inputB = this.customMask.pixels.find(pix => pix.x == 0 && pix.y == 0)
-                      .value
-                      .toString();
     let nearPixels = this.sourceImage.getMaskedPixels(this.customMask, pixel);
-    let sumOfValues = sum(nearPixels, c => c.value);
+
+    this.inputA = nearPixels.map(pix => pix.value).join(', ');
+    this.inputB = nearPixels.map(pix => pix.maskValue).join(', ');
+
+    let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue);
+    this.calculationText = this.isAverage
+                           ? `${sumOfValues} / ${sumOfMaskValues}`
+                           : `${sumOfValues} + ${this.sourceImage.colorDepth / 2}`;
+
     this.output = this.resultImage.pixels[pixel.index].value.toString();
-    this.calculationText = `${sumOfValues} / ${sumOfMaskValues}`;
   }
 
-  updateMaskPixel($event: Event & {target: {value: string}}, pixel: MaskPixel) {
-    pixel.value = parseInt($event.target.value);
-  }
 }

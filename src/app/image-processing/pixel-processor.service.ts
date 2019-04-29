@@ -11,7 +11,7 @@ export class PixelProcessorService {
   constructor() {
   }
 
-  getImageFromString(serialImage: string): Image {
+  getImageFromString(serialImage: string, colorDepth: number = null): Image {
     let {trimmedLines, width} = this.getTrimmedLinesAndWidth(serialImage);
 
     let pixels = trimmedLines.join('')
@@ -21,8 +21,11 @@ export class PixelProcessorService {
                                index: i,
                                visible: true
                              }));
+    if (!colorDepth) {
+      colorDepth = Math.max(...pixels.map(pix => pix.value));
+    }
 
-    return new Image(pixels, width);
+    return new Image(pixels, width, colorDepth);
   }
 
   getMaskFromString(serialImage: string): Mask {

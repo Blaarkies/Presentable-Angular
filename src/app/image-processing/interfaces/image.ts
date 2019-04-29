@@ -1,5 +1,5 @@
 import { getXYFromIndex, roundToDecimalPlace } from 'src/app/common/utils';
-import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
+import { Mask } from 'src/app/image-processing/interfaces/mask';
 
 export class Pixel {
   value: number;
@@ -13,14 +13,15 @@ export class Image {
 
   pixels: Pixel[];
   imageWidth: number;
+  colorDepth: number;
 
-  constructor(pixels: Pixel[], imageWidth: number) {
+  constructor(pixels: Pixel[], imageWidth: number, colorDepth: number) {
     this.pixels = pixels;
     this.imageWidth = imageWidth;
+    this.colorDepth = colorDepth;
   }
 
   getProcessedImageFrom(mask: Mask, filter: (maskedPixels: Pixel[]) => number) {
-    let width = this.imageWidth;
     let pixels = this.pixels
                      .map(pix => {
                        let maskedPixels = this.getMaskedPixels(mask, pix);
@@ -33,7 +34,7 @@ export class Image {
                        };
                      });
 
-    return new Image(pixels, width);
+    return new Image(pixels, this.imageWidth, this.colorDepth);
   }
 
   getMaskedPixels(mask: Mask, centerPixel: Pixel): Pixel[] {
@@ -51,7 +52,7 @@ export class Image {
                });
   }
 
-  isInBounds(x: number, y: number) {
+  isInBounds(x: number, y: number): boolean {
     return x >= 0 && x < this.imageWidth
       && y >= 0 && y < this.imageWidth;
   }
@@ -60,4 +61,14 @@ export class Image {
     return this.pixels[y * this.imageWidth + x];
   }
 
+  capPixelValues(colorDepth: number): void {
+    this.pixels
+        .forEach(pix => {
+          if (pix.value < 0) {
+            pix.value = 0;
+          } else if (pix.value > colorDepth) {
+            pix.value = colorDepth;
+          }
+        });
+  }
 }

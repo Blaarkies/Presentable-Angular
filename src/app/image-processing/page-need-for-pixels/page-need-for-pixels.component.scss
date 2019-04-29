@@ -114,21 +114,6 @@ $image-lenna-max-scale: 50;
   }
 }
 
-.overlap-container {
-  display: grid;
-  grid-template-areas: 'overlap';
-
-  .overlap-a {
-    grid-area: overlap;
-    z-index: 1;
-  }
-
-  .overlap-b {
-    grid-area: overlap;
-    z-index: 2;
-  }
-}
-
 .invisible-background {
   ::ng-deep .pixel-with-number {
     background: unset;

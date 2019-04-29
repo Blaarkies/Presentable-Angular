@@ -21,7 +21,7 @@ export class PageNeedForPixelsComponent implements OnInit, OnDestroy {
       41455566
       02455776
       24567755
-      45676765`);
+      45676765`, 7);
   }
 
   ngOnInit() {

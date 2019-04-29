@@ -9,8 +9,8 @@
          *ngFor="let topic of topics">
 
       <mat-card (click)="goToRoute(topic.data);"
-                class="cursor-pointer hover-bright mat-elevation-z0">
-        <mat-card-title class="card-medium-font">{{topic.title}}</mat-card-title>
+                class="cursor-pointer hover-bright mat-elevation-z3">
+        <mat-card-title>{{topic.title}}</mat-card-title>
         <mat-card-subtitle>{{topic.subtitle}}</mat-card-subtitle>
       </mat-card>
     </div>

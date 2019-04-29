@@ -1,0 +1,47 @@
+@import 'styles';
+
+$mask-pixel-size: 80px;
+$transition-buttons: background-color 300ms ease-in-out;
+.mask-pixel {
+  height: $mask-pixel-size;
+  width: $mask-pixel-size;
+  place-items: center;
+  background-color: white;
+
+  text-align: center;
+  @extend .font-monospace;
+  font-size: 3em;
+
+  .spinner-button-container {
+    display: grid;
+    grid-template-rows: 50% 50%;
+
+    height: 100%;
+    width: 100%;
+    line-height: 1;
+    user-select: none;
+
+    color: transparent;
+    background-color: transparent;
+
+    .plus {
+      transition: $transition-buttons;
+
+      &:hover {
+        background-color: transparentize(green, 0.5);
+        color: white;
+      }
+    }
+
+    .minus {
+      transition: $transition-buttons;
+
+      &:hover {
+        background-color: transparentize(red, 0.5);
+        color: white;
+      }
+    }
+  }
+}
+
+

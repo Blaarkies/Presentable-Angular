@@ -10,21 +10,23 @@
   <div>
     <app-algorithm-box [title]="'Apply custom filter on each pixel\'s value'"
                        [inputA]="inputA || '9 pixels\' values'"
-                       [inputB]="inputB || 'Multiply by corresponding mask\'s value'"
+                       [inputB]="inputB || 'Corresponding mask\'s values'"
                        [calculation]="calculationText || 'sum / count'"
                        [output]="output || 'Destination pixel\'s value'"
                        (complete)="completeDestinationImage()"></app-algorithm-box>
-    <div class="custom-mask-container">
-      <ng-container *ngFor="let pixel of customMask.pixels">
-        <input class="mask-pixel"
-               type="number"
-               align="middle"
-               size="3"
-               [value]="pixel.value"
-               (change)="updateMaskPixel($event, pixel)"
-               (click)="pixel.value = pixel.value + 1"
-               (contextmenu)="pixel.value = pixel.value - 1"/>
-      </ng-container>
+    <div class="overlap-container">
+      <div class="overlap-a custom-mask-container">
+        <app-spinner-value *ngFor="let pixel of customMask.pixels"
+                           [pixel]="pixel"></app-spinner-value>
+      </div>
+
+      <div class="overlap-b vertical-container">
+        <mat-slide-toggle color="primary"
+                          ariaLabel="ariaLabel"
+                          (change)="isAverage = $event.checked"
+                          [checked]="isAverage"></mat-slide-toggle>
+        <div class="slide-toggle-font">Average</div>
+      </div>
     </div>
   </div>
 

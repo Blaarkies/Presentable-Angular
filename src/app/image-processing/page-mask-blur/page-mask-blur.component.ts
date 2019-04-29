@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { roundToDecimalPlace, sum } from 'src/app/common/utils';
+import { sum } from 'src/app/common/utils';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
@@ -37,7 +37,7 @@ export class PageMaskBlurComponent implements OnInit {
       00000000
       00007777
       00007777
-      00007777`);
+      00007777`, 7);
 
     let averageFilter = nearPixels => sum(nearPixels, c => c.value) / nearPixels.length;
 
@@ -62,9 +62,13 @@ export class PageMaskBlurComponent implements OnInit {
       return;
     }
 
-    this.inputA = pixel.value.toString();
-    this.inputB = this.averageMask.pixels.length.toString();
     let nearPixels = this.sourceImage.getMaskedPixels(this.averageMask, pixel);
+
+    this.inputA = pixel.value.toString();
+    this.inputB = nearPixels.filter((_, i) => i !== 4)
+                            .map(pix => pix.value)
+                            .join(', ');
+
     let sumOfValues = sum(nearPixels, c => c.value);
     this.output = this.resultImage.pixels[pixel.index].value.toString();
     this.calculationText = `${sumOfValues} / ${nearPixels.length}`;

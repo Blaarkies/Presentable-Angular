@@ -8,9 +8,9 @@
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
   <app-algorithm-box [title]="'Invert each pixel value'"
-                     [inputA]="inputA || 'Source pixel\'s value'"
-                     [inputB]="inputB || 'Colour depth value'"
-                     [calculation]="calculationText || colorDepthAmount + ' - x'"
+                     [inputA]="inputB || 'Colour depth value'"
+                     [inputB]="inputA || 'Source pixel\'s value'"
+                     [calculation]="calculationText || sourceImage.colorDepth + ' - Source pixel'"
                      [output]="output || 'Destination pixel\'s value'"
                      (complete)="completeDestinationImage()"></app-algorithm-box>
 

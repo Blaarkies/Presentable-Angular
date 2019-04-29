@@ -13,8 +13,6 @@ export class PagePixelManipulationComponent implements OnInit {
 
   @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
 
-  colorDepthAmount = 7;
-
   sourceImage: Image;
   resultImage: Image;
 
@@ -36,9 +34,9 @@ export class PagePixelManipulationComponent implements OnInit {
       27077750
       17001100
       01720260
-      00177700`);
+      00177700`, 7);
 
-    let invertFilter = nearPixels => this.colorDepthAmount - nearPixels[0].value;
+    let invertFilter = nearPixels => this.sourceImage.colorDepth - nearPixels[0].value;
 
     this.resultImage = this.sourceImage
                            .getProcessedImageFrom(this.pointMask, invertFilter);
@@ -60,10 +58,11 @@ export class PagePixelManipulationComponent implements OnInit {
       this.inputA = this.inputB = this.output = this.calculationText = null;
       return;
     }
+    let colorDepth = this.sourceImage.colorDepth;
 
     this.inputA = pixel.value.toString();
-    this.inputB = this.colorDepthAmount.toString();
-    this.output = (this.colorDepthAmount - pixel.value).toString();
-    this.calculationText = `${this.colorDepthAmount} - ${pixel.value}`;
+    this.inputB = colorDepth.toString();
+    this.output = (colorDepth - pixel.value).toString();
+    this.calculationText = `${colorDepth} - ${pixel.value}`;
   }
 }
