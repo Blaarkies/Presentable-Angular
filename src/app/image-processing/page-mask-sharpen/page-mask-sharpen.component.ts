@@ -69,7 +69,11 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   private setSharpImageAndResults() {
-    let sharpFilter = nearPixels => (sum(nearPixels, c => (c.value * c.maskValue)) + this.grayPointValue) * this.sharpenPower;
+    let sharpFilter = nearPixels => {
+      let sumOfMaskArea = sum(nearPixels, c => (c.value * c.maskValue));
+      let ratioOfMaskAvailable = nearPixels.length / this.sharpMask.pixels.length;
+      return sumOfMaskArea * ratioOfMaskAvailable * this.sharpenPower;
+    };
     let tempImage = this.sourceImage.getProcessedImageFrom(this.sharpMask, sharpFilter);
     if (!this.sharpImage) {
       this.sharpImage = tempImage;
@@ -86,7 +90,7 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
     tempImage.pixels
              .forEach(pix => {
                let srcPix = this.sourceImage.pixels[pix.index].value;
-               let sharpPix = this.sharpImage.pixels[pix.index].value - this.grayPointValue;
+               let sharpPix = this.sharpImage.pixels[pix.index].value;
                pix.value = roundToDecimalPlace(srcPix + sharpPix * this.resultPower);
              });
     tempImage.capPixelValues(7);

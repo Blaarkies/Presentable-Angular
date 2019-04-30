@@ -6,15 +6,20 @@
                hover-code-highlight
                cursor-pointer
                transition-on-opacity"
-         [ngClass]="(pixel.value < 0) ? 'pixel-color-0'
-                                     : (pixel.value > 7)  ? 'pixel-color-7'
-                                                          : 'pixel-color-' + pixel.value"
+         [ngClass]="showNegativeValues
+                     ? (pixel.value < -7) ? 'pixel-negative-color--7'
+                                          : (pixel.value > 7) ? 'pixel-negative-color-7'
+                                                               : 'pixel-negative-color-' + pixel.value
+                     : (pixel.value < 0) ? 'pixel-color-0'
+                                         : (pixel.value > 7)  ? 'pixel-color-7'
+                                                              : 'pixel-color-' + pixel.value"
+         [class.negative-font-size]="showNegativeValues"
          [class.highlight-mask]="pixel.maskVisible"
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
          (click)="onPixelClick(pixel)"
          (mouseenter)="onPixelHover(pixel)">
-      {{pixel.value}}
+      <span>{{pixel.value}}</span>
     </div>
   </div>
 </div>

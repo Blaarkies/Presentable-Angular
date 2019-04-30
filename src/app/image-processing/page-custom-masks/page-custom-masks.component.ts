@@ -4,6 +4,7 @@ import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
              selector: 'app-page-custom-masks',
@@ -29,7 +30,9 @@ export class PageCustomMasksComponent implements OnInit {
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
     let value = sum(nearPixels, c => (c.value * c.maskValue));
-    return this.isAverage ? value / (divisor || nearPixels.length) : value + (this.sourceImage.colorDepth / 2);
+    return this.isAverage
+           ? value / (divisor || nearPixels.length)
+           : value * nearPixels.length / this.customMask.pixels.length;
   };
 
   constructor(private pixelProcessorService: PixelProcessorService) {
@@ -62,7 +65,9 @@ export class PageCustomMasksComponent implements OnInit {
       this.resultImage = tempImage;
     }
 
-    this.resultImage.capPixelValues(7);
+    if (this.isAverage) {
+      this.resultImage.capPixelValues(7);
+    }
   }
 
   ngOnInit() {
@@ -94,11 +99,13 @@ export class PageCustomMasksComponent implements OnInit {
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
-    this.calculationText = this.isAverage
-                           ? `${sumOfValues} / ${sumOfMaskValues}`
-                           : `${sumOfValues} + ${this.sourceImage.colorDepth / 2}`;
+    this.calculationText = this.isAverage ? `${sumOfValues} / ${sumOfMaskValues}` : `${sumOfValues}`;
 
     this.output = this.resultImage.pixels[pixel.index].value.toString();
   }
 
+  setIsAverageSlider($event: MatSlideToggleChange) {
+    this.isAverage = $event.checked;
+    this.filterImage();
+  }
 }

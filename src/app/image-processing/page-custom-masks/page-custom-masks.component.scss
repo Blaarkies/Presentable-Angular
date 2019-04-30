@@ -20,6 +20,7 @@
   @extend .mat-elevation-z1;
 }
 
-.container-padding {
-  padding: 16px 0;
+.filtering-container {
+  display: grid;
+  grid-gap: 16px;
 }

@@ -13,15 +13,9 @@
     <div class="image-title">Sharpening Guide</div>
     <app-image-display #sharp
                        [sourceImage]="sharpImage"
-                       [highlightPixel]="hoverPixel"></app-image-display>
+                       [highlightPixel]="hoverPixel"
+                       [showNegativeValues]="true"></app-image-display>
 
-  </div>
-
-  <div class="image-c">
-    <div class="image-title">Result Image</div>
-    <app-image-display #result
-                       [sourceImage]="sumImage"
-                       [highlightPixel]="hoverPixel"></app-image-display>
   </div>
 
   <mat-slider class="footer-b slider-under-image"
@@ -32,6 +26,13 @@
               [step]="0.01"
               (input)="setSharpnessPowerSlider($event)">
   </mat-slider>
+
+  <div class="image-c">
+    <div class="image-title">Result Image</div>
+    <app-image-display #result
+                       [sourceImage]="sumImage"
+                       [highlightPixel]="hoverPixel"></app-image-display>
+  </div>
 
   <mat-slider class="footer-c slider-under-image"
               color="primary"

@@ -12,6 +12,7 @@ export class ImageDisplayComponent implements OnInit {
   @Input() sourceImage: Image;
   @Input() mask: Mask = new Mask();
   @Input() highlightPixel: Pixel;
+  @Input() showNegativeValues: boolean;
 
   @Output() pixelClick = new EventEmitter<Pixel>();
   @Output() pixelHover = new EventEmitter<Pixel>();
