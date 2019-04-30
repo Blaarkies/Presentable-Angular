@@ -10,11 +10,26 @@
   </div>
 
   <div class="image-b">
-    <div class="image-title">Sharpening Guide</div>
-    <app-image-display #sharp
-                       [sourceImage]="sharpImage"
-                       [highlightPixel]="hoverPixel"
-                       [showNegativeValues]="true"></app-image-display>
+    <div class="image-title overlap-container">
+      <span class="overlap-a">Sharpening Guide</span>
+      <button class="overlap-a justify-button-right hover-darken"
+              mat-mini-fab
+              color="primary"
+              (click)="showMask = !showMask">
+        <mat-icon>info</mat-icon>
+      </button>
+    </div>
+    <div class="overlap-container">
+      <app-image-display class="overlap-a transition-transparency"
+                         #sharp
+                         [class.transparent-more]="showMask"
+                         [sourceImage]="sharpImage"
+                         [highlightPixel]="hoverPixel"
+                         [showNegativeValues]="true"></app-image-display>
+      <app-mask-editor class="overlap-b animate-fade-in center-mask-editor"
+                       [mask]="sharpMask"
+                       *ngIf="showMask"></app-mask-editor>
+    </div>
 
   </div>
 

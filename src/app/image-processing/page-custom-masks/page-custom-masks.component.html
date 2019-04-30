@@ -11,7 +11,7 @@
     <app-algorithm-box [title]="'Apply custom filter on each pixel\'s value'"
                        [inputA]="inputA || '9 pixels\' values'"
                        [inputB]="inputB || 'Corresponding mask\'s values'"
-                       [calculation]="calculationText || 'sum / count'"
+                       [calculation]="calculationText || isAverage ? 'sum / count' : 'sum'"
                        [output]="output || 'Destination pixel\'s value'"
                        (complete)="completeDestinationImage()"></app-algorithm-box>
     <div class="overlap-container">

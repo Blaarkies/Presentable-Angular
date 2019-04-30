@@ -9,13 +9,13 @@ $blur-to-sharp-duration: 12000ms;
 
 @keyframes blurToNormal {
   0% {
-    filter: blur(0px);
+    filter: blur(0px) invert(0);
   }
   16% {
-    filter: blur(0px);
+    filter: blur(0px) invert(0);
   }
   25% {
-    filter: blur(20px);
+    filter: blur(20px) invert(0);
   }
   41% {
     filter: blur(20px) invert(0);
@@ -30,7 +30,7 @@ $blur-to-sharp-duration: 12000ms;
     filter: blur(0px) invert(0);
   }
   100% {
-    filter: blur(0px);
+    filter: blur(0px) invert(0);
   }
 }
 

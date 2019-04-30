@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TitleService } from 'src/app/title.service';
 
 @Component({
-             selector: 'app-page-summary',
-             templateUrl: './page-summary.component.html',
-             styleUrls: ['./page-summary.component.scss']
+             selector: 'app-page-summary-compression',
+             templateUrl: './page-summary-compression.component.html',
+             styleUrls: ['./page-summary-compression.component.scss']
            })
-export class PageSummaryComponent implements OnInit {
+export class PageSummaryCompressionComponent implements OnInit {
 
   bulletNumber: number = 1;
 

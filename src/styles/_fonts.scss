@@ -1,0 +1,22 @@
+.size-content-title {
+  font-size: 2.3em !important;
+}
+
+.font-default {
+  font-family: Roboto, sans-serif;
+}
+
+.page-title {
+  font-size: 2.3em !important;
+  @extend .font-default;
+}
+
+.content-title {
+  @extend .size-content-title;
+  @extend .font-default;
+}
+
+.content-subtitle {
+  font-size: 1.7em !important;
+  @extend .font-default;
+}

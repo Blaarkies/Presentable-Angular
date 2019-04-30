@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/keyframes-explained-dialog/keyframes-explained-dialog.component';
-import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life/jpeg-explained-dialog/jpeg-explained-dialog.component';
+import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/keyframes-explained-dialog/keyframes-explained-dialog.component';
+import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/jpeg-explained-dialog/jpeg-explained-dialog.component';
 
 @Component({
-             selector: 'app-page-in-real-life',
-             templateUrl: './page-in-real-life.component.html',
-             styleUrls: ['./page-in-real-life.component.scss']
+             selector: 'app-page-in-real-life-compression',
+             templateUrl: './page-in-real-life-compression.component.html',
+             styleUrls: ['./page-in-real-life-compression.component.scss']
            })
-export class PageInRealLifeComponent implements OnInit {
+export class PageInRealLifeCompressionComponent implements OnInit {
 
   constructor(private dialog: MatDialog) {
   }

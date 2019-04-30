@@ -1,0 +1,62 @@
+@import 'styles/fonts';
+
+.quad-grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 1em;
+}
+
+.logo-image {
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.large-image {
+  height: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.logos-container {
+  padding: 16px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 16px;
+}
+
+.large-image-padding {
+  padding: 16px;
+}
+
+.remove-header ::ng-deep mat-tab-header {
+  display: none;
+}
+
+.bullet-list-grid-container {
+  display: grid;
+
+  grid-auto-flow: column;
+  grid-gap: 0.4em;
+  grid-template-rows: auto auto;
+}
+
+.fourier-container {
+  display: grid;
+  grid-template-columns: auto max-content auto;
+  grid-gap: 0.4em;
+
+  .center-arrow {
+    place-self: center;
+    @extend .size-content-title;
+  }
+}
+
+.bi-vertical-container {
+  display: grid;
+  grid-template-rows: auto;
+  row-gap: 1em;
+}

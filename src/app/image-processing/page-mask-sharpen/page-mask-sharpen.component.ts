@@ -32,6 +32,7 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
   unsubscribe = new Subject<void>();
   grayPointValue: number;
   hoverPixel: Pixel;
+  showMask: boolean;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.sharpMask = this.pixelProcessorService.getMaskFromList(

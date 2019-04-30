@@ -1,4 +1,4 @@
-@import 'styles';
+@import 'styles/styles';
 
 .slider-under-image {
   width: 90%;
@@ -27,8 +27,20 @@
   // @formatter:on
 
   .image-title {
-    @extend .font-page-title;
+    @extend .page-title;
     text-align: center;
   }
 
+}
+
+.transition-transparency {
+  transition: opacity 300ms ease-in-out;
+}
+
+.center-mask-editor {
+  place-self: center;
+}
+
+.justify-button-right {
+  place-self: end;
 }
