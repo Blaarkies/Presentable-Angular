@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { EntropyExample } from 'src/app/common/interface';
+import { EntropyExample } from 'src/app/common/interfaces';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { getLinesOfTextSplitByNumber, getUniqueElements, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
-import { ValueDisplayLines } from 'src/app/compression-crash-course/compression-showcase/page-data-without-pattern/value-display.lines';
+import { ValueDisplayLines } from 'src/app/compression-crash-course/compression-showcase/page-data-without-pattern/interfaces';
 
 @Component({
              selector: 'app-page-data-without-pattern',
-             templateUrl: './page-data-without-pattern.component.html'
+             templateUrl: './page-data-without-pattern.component.html',
+             styleUrls: ['./page-data-without-pattern.component.scss']
            })
 export class PageDataWithoutPatternComponent implements OnInit {
 

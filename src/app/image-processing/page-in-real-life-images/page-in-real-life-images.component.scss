@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
-  grid-gap: 1em;
+  grid-gap: 16px;
 }
 
 .logo-image {
@@ -51,12 +51,12 @@
 
   .center-arrow {
     place-self: center;
-    @extend .size-content-title;
+    font-size: $size-content-title;
   }
 }
 
 .bi-vertical-container {
   display: grid;
   grid-template-rows: auto;
-  row-gap: 1em;
+  row-gap: 16px;
 }

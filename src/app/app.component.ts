@@ -4,7 +4,9 @@ import { filter, map, takeUntil } from 'rxjs/operators';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
-import { RouteData } from 'src/app/routeData';
+import { RouteData } from 'src/app/interfaces';
+import { MatDialog } from '@angular/material';
+import { SettingsDialogComponent } from 'src/app/common/settings-dialog/settings-dialog.component';
 
 @Component({
              selector: 'app-root',
@@ -21,11 +23,15 @@ export class AppComponent implements OnDestroy, OnInit {
 
   unsubscribe$ = new Subject<void>();
   isTutorialMode: boolean = false;
+  isPresentationMode: boolean;
 
   constructor(private route: ActivatedRoute,
               public router: Router,
               private location: Location,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private dialog: MatDialog) {
+    this.isPresentationMode = JSON.parse(localStorage.getItem('isPresentationMode'));
+
     this.router.events
         .pipe(filter(event => event instanceof NavigationEnd),
               takeUntil(this.unsubscribe$))
@@ -111,4 +117,26 @@ export class AppComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
   }
 
+  openSettings() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(SettingsDialogComponent, {
+        data: {
+          isPresentationMode: this.isPresentationMode
+        }
+      })
+          .afterClosed()
+          .pipe(
+            filter(settings => settings),
+            takeUntil(this.unsubscribe$)
+          )
+          .subscribe(settings => {
+            console.log(settings);
+            this.isPresentationMode = settings.isPresentationMode;
+
+            localStorage.setItem('isPresentationMode', JSON.stringify(this.isPresentationMode));
+          });
+    });
+  }
 }

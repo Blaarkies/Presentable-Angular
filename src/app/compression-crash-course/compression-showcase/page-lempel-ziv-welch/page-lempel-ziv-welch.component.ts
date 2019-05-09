@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EntropyExample, LzwContainer, SelectedEntry } from 'src/app/common/interface';
+import { EntropyExample, LzwContainer, SelectedEntry } from 'src/app/common/interfaces';
 import { replaceAll, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';

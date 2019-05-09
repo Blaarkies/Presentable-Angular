@@ -19,13 +19,13 @@ ul > li {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content auto;
-  grid-gap: 1em;
+  grid-gap: 16px;
 }
 
 .image-zoom-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1em;
+  grid-gap: 16px;
 
   justify-items: center;
 }

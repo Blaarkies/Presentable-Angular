@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonAsset } from 'src/app/common/interface';
+import { JsonAsset } from 'src/app/common/interfaces';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
 
 @Component({

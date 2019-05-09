@@ -12,32 +12,33 @@
   }
 }
 
+._icon-base {
+  padding: 0 4px;
+  width: max-content;
+  margin: auto;
+}
+
 .path-icon {
   color: black;
   background-color: white;
   border: 2px solid black;
-  border-radius: 100%;
-  padding: 0 4px 0 4px;
-  width: max-content;
-  margin: auto;
+  @extend ._icon-base;
 
-  font-size: 2.4em;
-  font-family: monospace;
+  border-radius: 100%;
+  @extend .code-title;
 }
 
 .character-icon {
   color: black;
   background-color: floralwhite;
   border: 2px solid silver;
-  border-radius: 4px;
-  padding: 0 4px 0 4px;
-  width: max-content;
-  margin: auto;
+  @extend ._icon-base;
 
-  font-family: 'roboto', sans-serif;
-  font-size: 2.4em;
+  border-radius: 4px;
+  @extend .code-title;
 }
 
+$border-type: 2px solid black;
 .partial-border {
   border-top: 2px solid black;
   width: 50%;
@@ -45,11 +46,11 @@
 
   &.left {
     margin-left: auto;
-    border-left: 2px solid black;
+    border-left: $border-type;
   }
   &.right {
     margin-right: auto;
-    border-right: 2px solid black;
+    border-right: $border-type;
   }
 }
 
@@ -61,7 +62,7 @@
 }
 
 .arrow-container {
-  margin: -5px 0 -5px 0;
+  margin: -5px 0;
 }
 
 .highlight-selected-path {

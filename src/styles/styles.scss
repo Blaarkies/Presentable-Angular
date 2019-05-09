@@ -81,6 +81,16 @@ html, body {
   animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1000ms 1;
 }
 
+.fadeable {
+  transition: 1s ease-in-out;
+  transition-property: opacity;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
 @keyframes light-up {
   from {
     filter: brightness(1) drop-shadow(0 0 10px transparent);
@@ -100,7 +110,7 @@ html, body {
 }
 
 .card-big-font {
-  font-size: 2em;
+  font-size: 32px;
 }
 
 .card-bigger-font {
@@ -112,7 +122,7 @@ html, body {
 }
 
 .card-small-font {
-  font-size: 1em;
+  font-size: 16px;
 }
 
 .font-monospace {
@@ -172,10 +182,9 @@ html, body {
 .bi-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 1em;
+  column-gap: 16px;
 
   > .item {
-    width: max-content;
     margin: auto;
   }
 }
@@ -183,7 +192,7 @@ html, body {
 .tri-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 1em;
+  column-gap: 16px;
 
   place-items: center;
 }
@@ -197,7 +206,12 @@ html, body {
   grid-template-columns: max-content auto;
   grid-column-gap: 8px;
   grid-row-gap: 8px;
-  padding-top: 1em;
+  padding-top: 16px;
+  align-items: center;
+}
+
+.card-title-padding {
+  padding-bottom: 16px;
 }
 
 @media #{$mediaQ-small-desktop} {
@@ -241,4 +255,14 @@ html, body {
     grid-area: overlap;
     z-index: 2;
   }
+}
+
+.is-presentation-mode {
+  background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      transparentize(gray, 0.9) 10px,
+      transparentize(gray, 0.9) 20px
+  );
 }

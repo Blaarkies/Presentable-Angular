@@ -52,7 +52,7 @@ $margin-amount-connectors: 20%;
 .algorithm-box-container {
   display: grid;
   grid-template-columns: auto auto;
-  column-gap: 1em;
+  column-gap: 16px;
 
   border: 2px solid $color-connectors;
   border-radius: 4px;

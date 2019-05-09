@@ -6,44 +6,41 @@
   grid-template-rows: repeat(17, 1fr);
   grid-gap: 1px;
 
-  .pixels-item {
+  .pixel-body {
+    width: 32px;
+    height: 32px;
+    outline: 1px solid lightgreen;
+  }
+
+  .pixels-on {
+    background-color: dimgrey;
+  }
+
+  .pixels-off {
+    background-color: whitesmoke;
+  }
+
+  .pixels-highlight {
+    outline: 1px solid green;
+    background-color: greenyellow;
   }
 }
 
-.pixel-color {
-  width: 32px;
-  height: 32px;
-  outline: 1px solid lightgreen;
-}
-
-.pixels-on {
-  background-color: dimgrey;
-}
-
-.pixels-off {
-  background-color: whitesmoke;
-}
-
-.pixels-highlight {
-  outline: 1px solid green;
-  background-color: greenyellow;
-}
-
-.pixels-encoded-card-size {
+.pixels-encoded-card {
   width: 75% !important;
-}
 
-.pixels-font {
-  font-size: 2.4em;
-}
+  .pixels-font {
+    font-size: 32px;
+  }
 
-.pixels-text-scale {
-  display: inline-block;
-  margin-right: 4px;
-}
+  .pixels-text-scale {
+    display: inline-block;
+    margin-right: 4px;
+  }
 
-.pixels-encoded-card-padding {
-  padding-left: 16px;
+  .pixels-encoded-card-padding {
+    padding-left: 16px;
+  }
 }
 
 @media #{$mediaQ-small-desktop} {
@@ -53,12 +50,6 @@
   }
 }
 
-.fadeable {
-  transition: 1s ease-in-out;
-  transition-property: opacity;
-  opacity: 0;
-}
-
-.show {
-  opacity: 1;
+:host-context(.is-presentation-mode) .pixels-encoded-card {
+  @extend .fadeable;
 }

@@ -6,7 +6,7 @@
   grid-template-areas: 'social subject empty';
   grid-template-columns: 1fr 2fr 1fr;
   grid-row-gap: .5em;
-  grid-column-gap: 1em;
+  grid-column-gap: 16px;
   padding-top: 28px;
 }
 
@@ -16,7 +16,7 @@
   width: 100%;
   display: grid;
   grid-template-rows: max-content max-content;
-  grid-row-gap: 1em;
+  grid-row-gap: 16px;
 }
 
 .subject-container {
@@ -50,7 +50,7 @@
   }
 
   .social-container {
-    grid-row-gap: 2em;
+    grid-row-gap: 32px;
   }
 }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { clone, getArrayMax } from 'src/app/common/utils';
-import { EntropyExample, HuffmanCode } from 'src/app/common/interface';
+import { EntropyExample, HuffmanCode } from 'src/app/common/interfaces';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { BehaviorSubject } from 'rxjs';
 import { CompressionShowcaseService } from '../compression-showcase.service';

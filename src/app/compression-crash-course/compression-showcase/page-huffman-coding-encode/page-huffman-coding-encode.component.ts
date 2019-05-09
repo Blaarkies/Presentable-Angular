@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EntropyExample } from 'src/app/common/interface';
+import { EntropyExample } from 'src/app/common/interfaces';
 import { CompressionShowcaseService } from '../compression-showcase.service';
 import { getArrayRange } from 'src/app/common/utils';
 

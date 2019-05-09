@@ -2,9 +2,10 @@
 
   <div class="text-to-encode">
     <mat-card>
-      <mat-card-title>Example Text</mat-card-title>
+      <div class="content-title card-title-padding">Example Text</div>
       <mat-card-content>
-        <span *ngFor="let char of huffmanCoding?.text.split('')"
+        <span class="content-subtitle"
+              *ngFor="let char of huffmanCoding?.text.split('')"
               [class.highlight-code-viewing]="char.toLowerCase() === selectedChar">{{char}}</span>
       </mat-card-content>
 
@@ -16,11 +17,9 @@
 
   <div class="binary">
     <mat-card>
-      <mat-card-title>Example Text in Binary</mat-card-title>
+      <div class="content-title card-title-padding">Example Text in Binary</div>
       <mat-card-content>
-        <span class="font-monospace
-                     cursor-pointer
-                     inline-block"
+        <span class="code-subtitle cursor-pointer inline-block"
               *ngFor="let binContainer of huffmanCoding?.binary;">
           <span [class.highlight-code-viewing]="binContainer.value === selectedChar">{{binContainer.binary}}</span>
           <span> </span>
@@ -31,24 +30,19 @@
 
   <div class="encoded">
     <mat-card>
-      <mat-card-title>
-        <div class="mat-card-fix-title-button-container">
-          <div>Example Text Encoded</div>
-          <div class="mat-card-fix-align-right">
-            <button class="hover-darken"
-                    mat-mini-fab
-                    color="primary"
-                    (click)="resetDecodings()">
-              <mat-icon>restore</mat-icon>
-            </button>
-          </div>
+      <div class="mat-card-fix-title-button-container">
+        <div class="content-title card-title-padding">Example Text Encoded</div>
+        <div class="mat-card-fix-align-right">
+          <button class="hover-darken"
+                  mat-mini-fab
+                  color="primary"
+                  (click)="resetDecodings()">
+            <mat-icon>restore</mat-icon>
+          </button>
         </div>
-      </mat-card-title>
+      </div>
       <mat-card-content>
-        <span class="font-monospace
-                     hover-code-highlight-secondary
-                     cursor-pointer
-                     inline-block"
+        <span class="code-subtitle hover-code-highlight-secondary cursor-pointer inline-block"
               *ngFor="let hcContainer of huffmanCoding?.encodedArray; let i = index"
               [class.highlight-code-viewing]="hcContainer.value === selectedChar"
               (click)="decodedFlags[i] = !decodedFlags[i]">
@@ -60,22 +54,24 @@
   </div>
 
   <div class="codes-container">
-    <div class="title-medium">Dictionary</div>
-    <div class="huffman-character-codes-container">
+    <mat-card>
+      <div class="content-title card-title-padding">Dictionary</div>
+      <div class="huffman-character-codes-container">
 
-      <div class="item" (mouseenter)="selectedChar = null">
-        <div>Char</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>Code</div>
-      </div>
+        <div class="item" (mouseenter)="selectedChar = null">
+          <div>Char</div>
+          <mat-divider class="divider-normal"></mat-divider>
+          <div>Code</div>
+        </div>
 
-      <div class="item hover-bright mat-elevation-z0 cursor-pointer"
-           *ngFor="let col of huffmanCoding?.table"
-           (mouseenter)="selectedChar = col.char">
-        <div>{{col.display}}</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>{{col.path}}</div>
+        <div class="item hover-bright cursor-pointer"
+             *ngFor="let col of huffmanCoding?.table"
+             (mouseenter)="selectedChar = col.char">
+          <div>{{col.display}}</div>
+          <mat-divider class="divider-normal"></mat-divider>
+          <div>{{col.path}}</div>
+        </div>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>

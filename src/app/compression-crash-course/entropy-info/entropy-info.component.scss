@@ -1,11 +1,6 @@
 .container {
   display: grid;
   grid-template-columns: max-content auto;
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
   grid-template-rows: repeat(3, auto);
-
-  >.item {
-    align-self: center;
-  }
+  grid-gap: 8px;
 }

@@ -1,42 +1,48 @@
-<div class="app-page">
+<div class="app-page" [class.is-presentation-mode]="isPresentationMode">
 
-  <mat-toolbar class="toolbar-container"
-               [hidden]="!currentImage">
-    <div class="page-avatar"
-         [style.background-image]="currentImage"></div>
-    <span class="subject-title">{{currentShowcase}}</span>
+  <div class="overlap-container">
+    <mat-toolbar class="overlap-a toolbar-container" [hidden]="!currentImage">
+      <div class="settings-and-page-id">
+        <button mat-button
+                class="settings-button"
+                (click)="openSettings()">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <div class="page-avatar" [style.background-image]="currentImage"></div>
+        <span class="subject-title">{{currentShowcase}}</span>
+      </div>
 
-    <span class="page-title-font">{{pageTitle}}</span>
+      <div class="toggle-and-navigation">
+        <app-toggle-slider [isChecked]="isTutorialMode"
+                           [isDisabled]="true"
+                           [tooltipText]="'Coming soon...'"
+                           [label]="'Tutorial'"
+                           (change)="isTutorialMode = $event"></app-toggle-slider>
 
-    <span class="vertical-container" matTooltip="Coming soon...">
-        <span>
-          <mat-slide-toggle color="primary"
-                            [checked]="isTutorialMode"
-                            [disabled]="true"></mat-slide-toggle>
+        <span class="full-height nav-buttons-container" *ngIf="router.url !== '/'">
+          <button mat-button class="full-height" [routerLink]="['']">
+            <mat-icon>home</mat-icon>
+          </button>
+
+          <button mat-raised-button
+                  class="full-height hover-gray"
+                  [disabled]="backwardButtonDisabled"
+                  (click)="pageBackward()">
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+
+          <button mat-raised-button
+                  class="full-height hover-gray"
+                  [disabled]="forwardButtonDisabled"
+                  (click)="pageForward()">
+            <mat-icon>navigate_next</mat-icon>
+          </button>
         </span>
-        <span class="slide-toggle-font">Tutorial</span>
-      </span>
+      </div>
+    </mat-toolbar>
 
-    <span class="full-height nav-buttons-container" *ngIf="router.url !== '/'">
-      <button mat-button class="full-height" [routerLink]="['']">
-        <mat-icon>home</mat-icon>
-      </button>
-
-      <button mat-raised-button
-              class="full-height hover-gray"
-              [disabled]="backwardButtonDisabled"
-              (click)="pageBackward()">
-        <mat-icon>navigate_before</mat-icon>
-      </button>
-
-      <button mat-raised-button
-              class="full-height hover-gray"
-              [disabled]="forwardButtonDisabled"
-              (click)="pageForward()">
-        <mat-icon>navigate_next</mat-icon>
-      </button>
-    </span>
-  </mat-toolbar>
+    <div class="overlap-b page-title-font">{{pageTitle}}</div>
+  </div>
 
   <div class="router-outlet-align">
     <router-outlet></router-outlet>

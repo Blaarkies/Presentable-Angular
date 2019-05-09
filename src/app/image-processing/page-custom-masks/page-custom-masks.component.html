@@ -17,11 +17,11 @@
     <div class="overlap-container">
       <app-mask-editor class="overlap-a" [mask]="customMask"></app-mask-editor>
 
-      <div class="overlap-b vertical-container slider-background">
-        <mat-slide-toggle color="primary"
-                          (change)="setIsAverageSlider($event)"
-                          [checked]="isAverage"></mat-slide-toggle>
-        <div class="slide-toggle-font">Average</div>
+      <div class="overlap-b slider-background">
+        <app-toggle-slider [isChecked]="isAverage"
+                           [tooltipText]="'Toggles calculation between sum and average'"
+                           [label]="'Average'"
+                           (change)="setIsAverageSlider($event)"></app-toggle-slider>
       </div>
     </div>
   </div>

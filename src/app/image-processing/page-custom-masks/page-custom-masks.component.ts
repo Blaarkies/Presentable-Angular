@@ -104,8 +104,8 @@ export class PageCustomMasksComponent implements OnInit {
     this.output = this.resultImage.pixels[pixel.index].value.toString();
   }
 
-  setIsAverageSlider($event: MatSlideToggleChange) {
-    this.isAverage = $event.checked;
+  setIsAverageSlider(checked: boolean) {
+    this.isAverage = checked;
     this.filterImage();
   }
 }

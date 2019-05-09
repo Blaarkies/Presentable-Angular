@@ -1,13 +1,12 @@
 <mat-accordion>
-  <mat-expansion-panel
-    class="remove-expansion-panel-padding"
-    [expanded]="encodeMode">
+  <mat-expansion-panel class="remove-expansion-panel-padding"
+                       [expanded]="encodeMode">
 
     <mat-list class="scrollbar-primary list-small">
       <ng-container *ngFor="let rule of encodedWords">
 
         <mat-list-item class="hover-gray">
-          <span class="card-big-font">{{rule.normal}} = {{rule.encoded}}</span>
+          <span class="content-title">{{rule.normal}} = {{rule.encoded}}</span>
         </mat-list-item>
         <mat-divider class="divider-normal"></mat-divider>
       </ng-container>
@@ -15,12 +14,12 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<mat-card>
-  <mat-card-title>
-    <span>{{datebook?.name}}</span>
-    ♣
-    <span class="text-artist-name">{{datebook?.artist}}</span></mat-card-title>
-  <div class="card-medium-font">
+<mat-card class="min-width-limit">
+  <div class="content-title card-title-padding">
+    {{datebook?.name}} - {{datebook?.artist}}
+  </div>
+
+  <div class="content-subtitle">
     <div *ngFor="let line of datebook?.lines">
 
       <span class="hover-code-highlight-secondary cursor-pointer"
@@ -37,11 +36,9 @@
   <mat-card-footer class="footer-padding">
     <div class="entropy-footer-container">
 
-      <div class="item">
-        <app-entropy-info [entropyObject]="datebook"></app-entropy-info>
-      </div>
+      <app-entropy-info [entropyObject]="datebook"></app-entropy-info>
 
-      <div class="item justify-bottom-right">
+      <div class="justify-bottom-right">
         <button mat-flat-button
                 (click)="encodeMode = !encodeMode"
                 [hidden]="encodedWords.length === 0">

@@ -27,6 +27,8 @@ import { TutorialDialogComponent } from './tutorial-dialog/tutorial-dialog.compo
 import { WebsiteInfoDialogComponent } from './website-info-dialog/website-info-dialog.component';
 import { WebsiteInfoComponent } from './website-info/website-info.component';
 import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback-dialog.component';
+import { ToggleSliderComponent } from './toggle-slider/toggle-slider.component';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 
 @NgModule({
             imports: [
@@ -75,14 +77,16 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               MatIconModule,
               MatDialogModule,
               MatSlideToggleModule,
+              MatInputModule,
               ProgressBarComponent,
               WebsiteInfoComponent,
-              MatInputModule,
+              ToggleSliderComponent,
             ],
             entryComponents: [
               TutorialDialogComponent,
               WebsiteInfoDialogComponent,
               FeedbackDialogComponent,
+              SettingsDialogComponent,
             ],
             declarations: [
               ProgressBarComponent,
@@ -90,6 +94,8 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               WebsiteInfoDialogComponent,
               WebsiteInfoComponent,
               FeedbackDialogComponent,
+              ToggleSliderComponent,
+              SettingsDialogComponent,
             ]
           })
 export class MatComponentsModule {

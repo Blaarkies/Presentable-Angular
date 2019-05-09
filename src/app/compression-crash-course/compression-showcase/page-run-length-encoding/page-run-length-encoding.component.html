@@ -1,12 +1,13 @@
 <div class="bi-container" (click)="showEncoded = true">
   <div class="item">
+
     <mat-card>
-      <mat-card-title>Example Image</mat-card-title>
+      <div class="content-title card-title-padding">Example Image</div>
       <mat-card-content>
 
         <div class="pixels-container">
           <ng-container *ngFor="let line of runLengthImage?.lines">
-            <div class="pixels-item pixel-color"
+            <div class="pixel-body"
                  *ngFor="let flaggedChar of line"
                  [class.pixels-on]="flaggedChar.text === '▓'"
                  [class.pixels-off]="flaggedChar.text !== '▓'"
@@ -19,21 +20,18 @@
       <mat-card-footer class="footer-padding">
         <div class="footer-container">
           <div>Ratio</div>
-          <div>
-            <app-progress-bar [value]="runLengthImageEntropy.entropyFraction"></app-progress-bar>
-          </div>
+          <app-progress-bar [value]="runLengthImageEntropy?.entropyFraction"></app-progress-bar>
         </div>
 
       </mat-card-footer>
     </mat-card>
   </div>
 
-  <div class="item pixels-encoded-card-size">
+  <div class="item pixels-encoded-card" [class.show]="showEncoded">
 
-    <mat-card class="fadeable"
-              (mouseleave)="selectedRunLengthId = null"
-              [class.show]="showEncoded">
-      <mat-card-title>Example Image Encoded</mat-card-title>
+    <mat-card (mouseleave)="selectedRunLengthId = null">
+      <div class="content-title card-title-padding">Example Image Encoded</div>
+
       <mat-card-content class="pixels-encoded-card-padding">
           <span class="pixels-text-scale pixels-font cursor-pointer"
                 *ngFor="let flaggedChar of runLengthImage?.encoded;

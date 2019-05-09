@@ -16,15 +16,17 @@ import { PageInRealLifeImagesComponent } from './page-in-real-life-images/page-i
               CommonModule,
               MatComponentsModule,
             ],
-            declarations: [PageNeedForPixelsComponent,
-                           PagePixelManipulationComponent,
-                           PageMaskBlurComponent,
-                           ImageDisplayComponent,
-                           AlgorithmBoxComponent,
-                           PageCustomMasksComponent,
-                           MaskEditorComponent,
-                           PageMaskSharpenComponent,
-                           PageInRealLifeImagesComponent]
+            declarations: [
+              PageNeedForPixelsComponent,
+              PagePixelManipulationComponent,
+              PageMaskBlurComponent,
+              ImageDisplayComponent,
+              AlgorithmBoxComponent,
+              PageCustomMasksComponent,
+              MaskEditorComponent,
+              PageMaskSharpenComponent,
+              PageInRealLifeImagesComponent
+            ]
           })
 export class ImageProcessingModule {
 }
