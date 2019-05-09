@@ -1,0 +1,90 @@
+.pixel-numbers-container {
+  display: grid;
+  grid-template-columns: repeat(8, 75px);
+  grid-template-rows: repeat(8, 75px);
+
+  overflow: hidden;
+
+  .pixel-with-number {
+    user-select: none;
+    line-height: 0;
+    font-size: 5em;
+    text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
+    border: 2px dotted white;
+
+    display: grid;
+    place-items: center;
+  }
+}
+
+$color-depth: 7;
+@mixin pixel-color-depths {
+  @for $i from 0 through $color-depth {
+    .pixel-color-#{$i} {
+      background-color: hsl(0, 0, ($i / $color-depth) * 100);
+    }
+  }
+}
+
+@include pixel-color-depths;
+
+$negative-color-depth: ($color-depth * 2);
+@mixin pixel-negative-color-depths {
+  @for $i from 0 through $negative-color-depth {
+    .pixel-negative-color-#{$i - ($negative-color-depth / 2)} {
+      background-color: hsl(-($i / $negative-color-depth) * 120, 100, 50);
+    }
+  }
+}
+
+@include pixel-negative-color-depths;
+
+.transition-on-opacity {
+  transition: opacity 500ms ease-in-out;
+}
+
+
+$color-mask-highlight: transparentize(green, 0.1);
+$color-mask-shadow: transparentize(black, 0.7);
+.highlight-mask {
+  animation: highlightBackground 750ms ease-in-out alternate-reverse infinite;
+  background-image: repeating-linear-gradient(
+      45deg,
+      $color-mask-highlight,
+      $color-mask-highlight 10px,
+      $color-mask-shadow 10px,
+      $color-mask-shadow 20px
+  );
+  outline: 1px solid white;
+}
+
+@keyframes highlightBackground {
+  from {
+    filter: contrast(0.8);
+  }
+  to {
+    filter: contrast(1.2);
+  }
+}
+
+$color-mask-secondary-highlight: transparentize(#E0B5FF, 0.1);
+$color-mask-secondary-shadow: transparentize(black, 0.7);
+.highlight-secondary-mask {
+  animation: highlightBackground 750ms ease-in-out alternate-reverse infinite;
+  background-image: repeating-linear-gradient(
+      45deg,
+      $color-mask-secondary-highlight,
+      $color-mask-secondary-highlight 10px,
+      $color-mask-secondary-shadow 10px,
+      $color-mask-secondary-shadow 20px
+  );
+  outline: 1px solid white;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.negative-font-size {
+  font-size: 3.3em !important;
+}

@@ -1,0 +1,20 @@
+<div class="tri-container">
+
+  <app-image-display #source
+                     [sourceImage]="sourceImage"
+                     [mask]="averageMask"
+                     (pixelClick)="setVisibility($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+
+  <app-algorithm-box [title]="'Blur each pixel\'s value'"
+                     [inputA]="inputA || 'Source pixel\'s value'"
+                     [inputB]="inputB || '8 neighbour pixels\' values'"
+                     [calculation]="calculationText || 'sum / count'"
+                     [output]="output || 'Destination pixel\'s value'"
+                     (complete)="completeDestinationImage()"></app-algorithm-box>
+
+  <app-image-display #result
+                     [sourceImage]="resultImage"
+                     [highlightPixel]="hoverPixel"></app-image-display>
+</div>

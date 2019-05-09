@@ -1,0 +1,33 @@
+<div class="tri-container">
+
+  <app-image-display #source
+                     [sourceImage]="sourceImage"
+                     [mask]="customMask"
+                     (pixelClick)="setVisibility($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+
+  <div class="filtering-container">
+    <app-algorithm-box [title]="'Apply custom filter on each pixel\'s value'"
+                       [inputA]="inputA || '9 pixels\' values'"
+                       [inputB]="inputB || 'Corresponding mask\'s values'"
+                       [calculation]="calculationText || isAverage ? 'sum / count' : 'sum'"
+                       [output]="output || 'Destination pixel\'s value'"
+                       (complete)="completeDestinationImage()"></app-algorithm-box>
+    <div class="overlap-container">
+      <app-mask-editor class="overlap-a" [mask]="customMask"></app-mask-editor>
+
+      <div class="overlap-b vertical-container slider-background">
+        <mat-slide-toggle color="primary"
+                          (change)="setIsAverageSlider($event)"
+                          [checked]="isAverage"></mat-slide-toggle>
+        <div class="slide-toggle-font">Average</div>
+      </div>
+    </div>
+  </div>
+
+  <app-image-display #result
+                     [sourceImage]="resultImage"
+                     [highlightPixel]="hoverPixel"
+                     [showNegativeValues]="!isAverage"></app-image-display>
+</div>

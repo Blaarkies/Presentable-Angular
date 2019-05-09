@@ -1,0 +1,121 @@
+$blur-to-sharp-duration: 12000ms;
+.animate-blur-to-normal {
+  animation: blurToNormal $blur-to-sharp-duration linear infinite both;
+}
+
+.animate-normal-to-sharp {
+  animation: normalToSharp $blur-to-sharp-duration linear infinite both;
+}
+
+@keyframes blurToNormal {
+  0% {
+    filter: blur(0px) invert(0);
+  }
+  16% {
+    filter: blur(0px) invert(0);
+  }
+  25% {
+    filter: blur(20px) invert(0);
+  }
+  41% {
+    filter: blur(20px) invert(0);
+  }
+  50% {
+    filter: blur(0px) invert(1);
+  }
+  66% {
+    filter: blur(0px) invert(1);
+  }
+  74% {
+    filter: blur(0px) invert(0);
+  }
+  100% {
+    filter: blur(0px) invert(0);
+  }
+}
+
+@keyframes normalToSharp {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  74% {
+    opacity: 1;
+  }
+  91% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+$pixel-zoom-fade-delay: 2s;
+$image-to-pixels-duration: 15s;
+.animate-zoom {
+  image-rendering: pixelated;
+  animation: zoomIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) forwards;
+  animation-delay: $pixel-zoom-fade-delay;
+}
+
+$image-lenna-max-scale: 50;
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale($image-lenna-max-scale);
+  }
+  100% {
+    transform: scale($image-lenna-max-scale);
+    image-rendering: pixelated;
+  }
+}
+
+.center-zoom-on-eye {
+  transform-origin: 40.05% 67.09%;
+}
+
+.pixel-animate-fade {
+  animation: fadeIn $image-to-pixels-duration cubic-bezier(1, 0, 0.78, 1) both;
+  animation-delay: $pixel-zoom-fade-delay;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.image-container {
+  width: 600px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+
+  border: 2px solid dimgray;
+  border-radius: 6px;
+
+  .image {
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+.invisible-background {
+  ::ng-deep .pixel-with-number {
+    background: unset;
+  }
+}

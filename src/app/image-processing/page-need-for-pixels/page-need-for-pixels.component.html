@@ -1,0 +1,24 @@
+<div class="bi-container" (click)="showPixels = true">
+  <div class="item">
+
+    <div class="image-container overlap-container">
+
+      <div class="image overlap-a animate-blur-to-normal"
+           style="background-image: url('assets/lenna-example.jpg');"></div>
+      <div class="image overlap-b animate-normal-to-sharp"
+           style="background-image: url('assets/lenna-sharpened.jpg');"></div>
+    </div>
+  </div>
+
+  <div class="item animate-fade-in" *ngIf="showPixels">
+
+    <div class="image-container overlap-container">
+
+      <div class="image overlap-a animate-zoom center-zoom-on-eye"
+           style="background-image: url('assets/lenna-example.jpg');"></div>
+
+      <app-image-display class="overlap-b pixel-animate-fade invisible-background"
+                         [sourceImage]="sourceImage"></app-image-display>
+    </div>
+  </div>
+</div>

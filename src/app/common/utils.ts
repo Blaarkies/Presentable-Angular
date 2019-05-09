@@ -1,3 +1,7 @@
+export function getXYFromIndex(imageWidth: number, i: number): number[] {
+  return [i % imageWidth, Math.floor(i / imageWidth)];
+}
+
 export function getSanitizedArray(array: number[]): any[] {
   return array.filter(i => !theUnsanitized.some(u => i === u));
 }
@@ -102,7 +106,7 @@ export function flatMap(array: any[]) {
 }
 
 /***
- * Returns a random integer between 0(inclusive) and max(inclusive)
+ * Returns a random integer {0-max} (inclusive)
  * @param max
  * @returns {number}
  */
@@ -127,4 +131,8 @@ export function getArrayRange(count: number = 1) {
  */
 export function getRandomFromArray(array: any[]) {
   return array[Math.floor((Math.random() * array.length))];
+}
+
+export function sum(array: any[], valueRetriever: (item) => number = item => item): number {
+  return array.reduce((sum, c) => sum + valueRetriever(c), 0);
 }

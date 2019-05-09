@@ -16,7 +16,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSliderModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,6 +46,7 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               MatExpansionModule,
               MatProgressBarModule,
               MatTooltipModule,
+              MatSliderModule,
               MatIconModule,
               MatDialogModule,
               MatSlideToggleModule,
@@ -68,6 +70,7 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               MatExpansionModule,
               MatProgressBarModule,
               MatTooltipModule,
+              MatSliderModule,
               MatIconModule,
               MatDialogModule,
               MatSlideToggleModule,

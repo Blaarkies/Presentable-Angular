@@ -1,0 +1,26 @@
+@import 'styles/styles';
+
+.vertical-container {
+  justify-self: end;
+  height: max-content;
+
+  display: grid;
+  justify-items: center;
+  grid-template-rows: auto auto;
+
+  .slide-toggle-font {
+    font-family: Roboto, sans-serif;
+  }
+}
+
+.slider-background {
+  background-color: ghostwhite;
+  border-radius: 16px;
+  padding: 8px;
+  @extend .mat-elevation-z1;
+}
+
+.filtering-container {
+  display: grid;
+  grid-gap: 16px;
+}

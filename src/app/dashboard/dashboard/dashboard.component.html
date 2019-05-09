@@ -6,12 +6,12 @@
 
   <div class="subject-container">
     <div class="subject-card"
-         *ngFor="let card of cards">
+         *ngFor="let topic of topics">
 
-      <mat-card (click)="goToRoute(card.data);"
-                class="cursor-pointer hover-bright mat-elevation-z0">
-        <mat-card-title>{{card.title}}</mat-card-title>
-        <mat-card-subtitle>{{card.subtitle}}</mat-card-subtitle>
+      <mat-card (click)="goToRoute(topic.data);"
+                class="cursor-pointer hover-bright mat-elevation-z3">
+        <mat-card-title>{{topic.title}}</mat-card-title>
+        <mat-card-subtitle>{{topic.subtitle}}</mat-card-subtitle>
       </mat-card>
     </div>
   </div>

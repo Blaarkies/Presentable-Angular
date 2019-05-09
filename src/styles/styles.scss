@@ -1,27 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
-@include mat-core();
-
-$candy-app-primary: mat-palette($mat-green, 600, 100, 800);
-$candy-app-accent: mat-palette($mat-amber);
-
-// The warn palette is optional (defaults to red).
-$candy-app-warn: mat-palette($mat-pink);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($candy-app-theme);
-
-$primary: $mat-green;
-$accent: $mat-cyan;
-$warn: $mat-orange;
-$danger: $mat-red;
+@import 'fonts';
+@import 'material-theming';
+@import 'variables';
 
 .highlight-code-viewing {
   color: black;
@@ -35,10 +14,7 @@ $danger: $mat-red;
   background-color: lighten(indigo, 70) !important;
 }
 
-$mediaQ-small-desktop: 'only screen and (max-width : 1400px)';
-
-html,
-body {
+html, body {
   margin: 0;
   background-color: lightgrey;
 }
@@ -102,14 +78,14 @@ body {
 }
 
 .fade-in {
-  animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1s 1;
+  animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1000ms 1;
 }
 
 @keyframes light-up {
-  0% {
+  from {
     filter: brightness(1) drop-shadow(0 0 10px transparent);
   }
-  100% {
+  to {
     filter: brightness(2) drop-shadow(0 0 10px white);
   }
 }
@@ -120,7 +96,7 @@ body {
 
 .title-medium {
   font-size: 24px;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .card-big-font {
@@ -180,7 +156,7 @@ body {
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
     border: 2px solid #545454;
-    background: linear-gradient(to bottom, #48ab4b 0%, #3d9140 5%, #4eb250 50%, #3d9140 95%, #48ab4b 100%);
+    background: linear-gradient(to bottom, #48AB4B 0%, #3D9140 5%, #4EB250 50%, #3D9140 95%, #48AB4B 100%);
   }
 }
 
@@ -202,6 +178,14 @@ body {
     width: max-content;
     margin: auto;
   }
+}
+
+.tri-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1em;
+
+  place-items: center;
 }
 
 .footer-padding {
@@ -229,4 +213,32 @@ body {
     font-size: 1.2em;
   }
 
+}
+
+.animate-fade-in {
+  animation: opacity0to1 1000ms ease-in-out forwards;
+}
+
+@keyframes opacity0to1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.overlap-container {
+  display: grid;
+  grid-template-areas: 'overlap';
+
+  .overlap-a {
+    grid-area: overlap;
+    z-index: 1;
+  }
+
+  .overlap-b {
+    grid-area: overlap;
+    z-index: 2;
+  }
 }

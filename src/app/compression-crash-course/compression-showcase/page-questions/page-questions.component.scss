@@ -1,4 +1,8 @@
-@import '../../../../styles';
+@import '../../../../styles/styles';
+
+.website-info-top-left {
+  place-self: start;
+}
 
 .big-font {
   text-align: center;
@@ -35,11 +39,6 @@
     width: 420px;
     height: 420px;
   }
-}
-
-.tri-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .mat-icon-fix-size {
