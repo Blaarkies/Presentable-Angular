@@ -1,8 +1,7 @@
 <mat-card>
   <mat-card-title>Summary</mat-card-title>
 
-  <mat-card-content [class.card-big-font]="isPresentation"
-                    [class.card-medium-font]="!isPresentation">
+  <mat-card-content>
     <ul (click)="bulletNumber = bulletNumber + 1">
       <li>Information Entropy <span class="fadeable"
                                     [class.show]="bulletNumber > 1">for a fair coin toss</span>

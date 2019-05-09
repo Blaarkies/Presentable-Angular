@@ -1,10 +1,13 @@
-@import '../../../../styles/styles';
+@import 'styles/styles';
 
 .huffman-tree-container {
   display: grid;
   grid-template-columns: 25% auto;
   grid-template-rows: max-content auto;
-  grid-template-areas: 'text-to-encode huffman-tree' 'huffman-table  huffman-tree';
+  // @formatter:off
+  grid-template-areas: 'text-to-encode huffman-tree'
+                       'huffman-table  huffman-tree';
+  // @formatter:on
   grid-gap: 8px;
 }
 

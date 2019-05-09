@@ -3,9 +3,7 @@
   <div class="text-to-encode">
     <mat-card>
       <mat-card-title>Example Text</mat-card-title>
-      <mat-card-content class="font-monospace"
-                        [class.card-medium-font]="!isPresentation"
-                        [class.card-bigger-font]="isPresentation">
+      <mat-card-content class="font-monospace">
         <span *ngFor="let e of lzwEncoding.text?.split(''); let idx = index"
               [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">{{e}}</span>
 
@@ -26,9 +24,7 @@
   <div class="encoded">
     <mat-card>
       <mat-card-title>Example Text Encoded</mat-card-title>
-      <mat-card-content class="font-monospace"
-                        [class.card-medium-font]="!isPresentation"
-                        [class.card-bigger-font]="isPresentation">
+      <mat-card-content class="font-monospace">
 
         <div class="encoded-container">
           <div class="item"
@@ -49,9 +45,7 @@
 
   <div class="coding-table">
 
-    <div class="lzw-table-container"
-         [class.card-medium-font]="!isPresentation"
-         [class.card-bigger-font]="isPresentation">
+    <div class="lzw-table-container">
 
       <div class="letterTitle">Current character</div>
       <div class="dictionaryTitle">Dictionary</div>

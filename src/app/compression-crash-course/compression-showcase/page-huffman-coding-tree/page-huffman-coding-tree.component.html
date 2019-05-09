@@ -4,8 +4,7 @@
 
     <mat-card>
       <mat-card-title>Example Text</mat-card-title>
-      <mat-card-content [class.card-big-font]="isPresentation"
-                        [class.card-medium-font]="!isPresentation">
+      <mat-card-content>
         <span *ngFor="let line of huffmanCoding?.lines">{{line}}</span>
       </mat-card-content>
     </mat-card>
@@ -31,8 +30,8 @@
       <mat-card-footer>
 
         <div class="huffman-frequency-table">
-          <div class="character" [class.card-medium-font]="isPresentation">Character</div>
-          <div class="usages" [class.card-medium-font]="isPresentation">Usages</div>
+          <div class="character">Character</div>
+          <div class="usages">Usages</div>
         </div>
         <mat-divider class="divider-normal"></mat-divider>
 
@@ -45,8 +44,8 @@
                            (mouseenter)="tableHoverIndex = i-((tableDisplay.length-i)%2)"
                            [class.highlight-code-viewing-secondary]="i >= tableHoverIndex">
               <div class="huffman-frequency-table">
-                <div class="character" [class.card-medium-font]="isPresentation">{{hc.display}}</div>
-                <div class="usages" [class.card-medium-font]="isPresentation">{{hc.usages}}</div>
+                <div class="character">{{hc.display}}</div>
+                <div class="usages">{{hc.usages}}</div>
               </div>
             </mat-list-item>
 

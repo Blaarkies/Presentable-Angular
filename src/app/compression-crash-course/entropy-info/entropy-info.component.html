@@ -1,6 +1,6 @@
 <div class="footer-container">
 
-  <ng-container *ngIf="!isPresentation">
+  <ng-container>
     <div>Data</div>
     <div>{{entropyObject?.text?.length}} bytes</div>
 
@@ -8,7 +8,7 @@
     <div>{{entropyObject?.entropyScore}} bytes</div>
   </ng-container>
 
-  <div [class.card-medium-font]="isPresentation">Ratio</div>
+  <div>Ratio</div>
   <div>
     <app-progress-bar [value]="entropyObject?.entropyFraction"></app-progress-bar>
   </div>

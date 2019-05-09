@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { AnnotationsInTypescriptModule } from './annotations-in-typescript/annotations-in-typescript.module';
 import { CompressionCrashCourseModule } from './compression-crash-course/compression-crash-course.module';
 import { MatComponentsModule } from './common/mat-components.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +21,6 @@ import { ImageProcessingModule } from 'src/app/image-processing/image-processing
               BrowserAnimationsModule,
               AppRoutingModule,
               DashboardModule,
-              AnnotationsInTypescriptModule,
               CompressionCrashCourseModule,
               ImageProcessingModule,
               MatComponentsModule,

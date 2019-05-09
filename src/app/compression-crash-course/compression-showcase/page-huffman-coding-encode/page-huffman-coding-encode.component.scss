@@ -1,12 +1,13 @@
-@import '../../../../styles/styles';
+@import 'styles/styles';
 
 .huffman-encode-container {
   display: grid;
   grid-template-columns: 25% auto 26%;
   grid-template-rows: max-content auto;
-  grid-template-areas:
-    'text-to-encode binary encoded'
-    'codes         codes    codes';
+  // @formatter:off
+  grid-template-areas: 'text-to-encode binary encoded'
+                       'codes          codes  codes';
+  // @formatter:on
   grid-gap: 8px;
 }
 
@@ -34,8 +35,6 @@
 
   > .item {
     display: inline;
-
-    //@extend .block-font;
     @extend .font-monospace;
     background-color: white;
     padding: 4px 0 4px 0;

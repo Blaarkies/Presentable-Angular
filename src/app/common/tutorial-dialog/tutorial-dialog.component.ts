@@ -1,15 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-
-interface TutorialTab {
-  paragraphs: string[];
-}
-
-interface DialogTutorialData {
-  firstTab: TutorialTab,
-  secondTab: TutorialTab,
-  thirdTab: TutorialTab
-}
+import { DialogTutorialData } from 'src/app/common/tutorial-dialog/dialog-tutorial.data';
 
 @Component({
              selector: 'app-tutorial-dialog',

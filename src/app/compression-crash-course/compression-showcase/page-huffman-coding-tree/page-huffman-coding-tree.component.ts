@@ -4,7 +4,6 @@ import { EntropyExample, HuffmanCode } from 'src/app/common/interface';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { BehaviorSubject } from 'rxjs';
 import { CompressionShowcaseService } from '../compression-showcase.service';
-import { TitleService } from 'src/app/title.service';
 
 @Component({
              selector: 'app-page-huffman-coding-tree',
@@ -20,12 +19,8 @@ export class PageHuffmanCodingTreeComponent implements OnInit {
   tableHoverIndex: number = undefined;
   selectedPath$ = new BehaviorSubject<string>('');
 
-  isPresentation = false;
-
   constructor(private dataService: CompressionShowcaseService,
-              private compression: CompressionProcessorService,
-              private titleService: TitleService) {
-    this.isPresentation = this.titleService.isPresentation;
+              private compression: CompressionProcessorService) {
   }
 
   ngOnInit() {

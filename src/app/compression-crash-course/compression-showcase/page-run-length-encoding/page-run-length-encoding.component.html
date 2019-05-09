@@ -18,7 +18,7 @@
 
       <mat-card-footer class="footer-padding">
         <div class="footer-container">
-          <div [class.card-medium-font]="isPresentation">Ratio</div>
+          <div>Ratio</div>
           <div>
             <app-progress-bar [value]="runLengthImageEntropy.entropyFraction"></app-progress-bar>
           </div>
@@ -32,7 +32,7 @@
 
     <mat-card class="fadeable"
               (mouseleave)="selectedRunLengthId = null"
-              [class.show]="!isPresentation || showEncoded">
+              [class.show]="showEncoded">
       <mat-card-title>Example Image Encoded</mat-card-title>
       <mat-card-content class="pixels-encoded-card-padding">
           <span class="pixels-text-scale pixels-font cursor-pointer"

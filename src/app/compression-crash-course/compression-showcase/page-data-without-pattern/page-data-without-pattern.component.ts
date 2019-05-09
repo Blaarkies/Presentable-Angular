@@ -3,12 +3,7 @@ import { EntropyExample } from 'src/app/common/interface';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { getLinesOfTextSplitByNumber, getUniqueElements, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
-import { TitleService } from 'src/app/title.service';
-
-interface ValueDisplayLines {
-  value: any;
-  displayLines: string[];
-}
+import { ValueDisplayLines } from 'src/app/compression-crash-course/compression-showcase/page-data-without-pattern/value-display.lines';
 
 @Component({
              selector: 'app-page-data-without-pattern',
@@ -22,12 +17,8 @@ export class PageDataWithoutPatternComponent implements OnInit {
   charactersUsed: ValueDisplayLines = <ValueDisplayLines>{};
   asciiFraction: number;
 
-  isPresentation = false;
-
   constructor(private dataService: CompressionShowcaseService,
-              private compression: CompressionProcessorService,
-              private titleService: TitleService) {
-    this.isPresentation = this.titleService.isPresentation;
+              private compression: CompressionProcessorService) {
   }
 
   ngOnInit() {

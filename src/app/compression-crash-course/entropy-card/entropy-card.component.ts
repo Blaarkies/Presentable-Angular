@@ -1,20 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EntropyExample } from '../../common/interface';
 import { CompressionProcessorService } from '../compression-processor.service';
-import { TitleService } from 'src/app/title.service';
-
-// TODO: move!
-interface EncodedWord {
-  normal: string;
-  encoded: string;
-}
+import { EncodedWord } from 'src/app/compression-crash-course/entropy-card/encoded.word';
 
 @Component({
              selector: 'app-entropy-card',
              templateUrl: './entropy-card.component.html',
              styleUrls: ['./entropy-card.component.scss']
            })
-export class EntropyCardComponent implements OnInit {
+export class EntropyCardComponent {
 
   @Input() charLimit: number;
 
@@ -29,17 +23,10 @@ export class EntropyCardComponent implements OnInit {
 
   datebook: EntropyExample;
 
-  isPresentation = false;
-
-  constructor(private compression: CompressionProcessorService,
-              private titleService: TitleService) {
-    this.isPresentation = this.titleService.isPresentation;
+  constructor(private compression: CompressionProcessorService) {
   }
 
-  ngOnInit() {
-  }
-
-  selectWordToEncode(word: string) {
+  selectWordToEncode(word: string): void {
     word = word.toLowerCase();
 
     if (this.encodedWords.some(ew => ew.normal === word)) {
@@ -55,7 +42,7 @@ export class EntropyCardComponent implements OnInit {
                            });
   }
 
-  getEncoded(word: string) {
+  getEncoded(word: string): EncodedWord {
     return this.encodedWords.find(ew => ew.normal === word.toLowerCase());
   }
 

@@ -29,9 +29,6 @@ export class HuffmanNodeComponent implements OnInit, OnDestroy {
 
   public BiDirectionEnum = BiDirectionEnum;
 
-  constructor() {
-  }
-
   ngOnDestroy(): void {
     this.unsubscribe$.next();
   }

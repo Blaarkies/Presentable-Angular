@@ -1,10 +1,13 @@
-@import '../../../../styles/styles';
+@import 'styles/styles';
 
 .lzw-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content auto;
-  grid-template-areas: 'text-to-encode encoded' 'coding-table   coding-table';
+  // @formatter:off
+  grid-template-areas: 'text-to-encode encoded'
+                       'coding-table   coding-table';
+  // @formatter:on
   grid-gap: 8px;
   grid-row-gap: 1em;
 }
@@ -24,7 +27,11 @@
 .lzw-table-container {
   display: grid;
   grid-template-columns: max-content minmax(max-content, 100px) auto;
-  grid-template-areas: 'letterTitle letterTitle dictionaryTitle' 'description character dictionary' 'restore next .';
+  // @formatter:off
+  grid-template-areas: 'letterTitle letterTitle dictionaryTitle'
+                       'description character   dictionary'
+                       'restore     next        .';
+  // @formatter:on
   grid-gap: 4px;
 
   @extend .font-monospace;
@@ -33,6 +40,7 @@
     grid-area: letterTitle;
     @extend .title-medium;
   }
+
   .dictionaryTitle {
     grid-area: dictionaryTitle;
     @extend .title-medium;

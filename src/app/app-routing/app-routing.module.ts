@@ -24,11 +24,6 @@ const routes: Routes = [
     component: DashboardComponent,
     data: {title: 'Presentable Angular', image: '../assets/logo-dashboard.jpg'}
   },
-  // {
-  //   path: 'annotations-in-typescript',
-  //   component: DecoratorShowcaseComponent,
-  //   data: {title: "Annotations in TypeScript", image: '../assets/logo-typescript.png'}
-  // },
   {
     path: 'compression-crash-course',
     data: {title: 'Compression Crash Course', image: '../assets/logo-compression.gif'},

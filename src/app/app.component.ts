@@ -4,11 +4,7 @@ import { filter, map, takeUntil } from 'rxjs/operators';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Location } from '@angular/common';
 import { Subject } from 'rxjs';
-
-interface RouteData {
-  title: string;
-  image?: string;
-}
+import { RouteData } from 'src/app/routeData';
 
 @Component({
              selector: 'app-root',

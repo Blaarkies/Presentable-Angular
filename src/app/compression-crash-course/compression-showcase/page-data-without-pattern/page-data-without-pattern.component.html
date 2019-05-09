@@ -1,4 +1,5 @@
 <div class="bi-container">
+
   <div class="item">
     <app-entropy-card [data]="highEntropyData" [charLimit]="charLimit"></app-entropy-card>
   </div>
@@ -13,10 +14,10 @@
       <mat-card-footer class="text-style-data footer-padding">
         <div class="footer-container">
 
-          <div [class.card-medium-font]="isPresentation">Characters used</div>
-          <div [class.card-medium-font]="isPresentation">{{charactersUsed.value.length}}</div>
+          <div>Characters used</div>
+          <div>{{charactersUsed.value.length}}</div>
 
-          <div [class.card-medium-font]="isPresentation">Fraction of ASCII table</div>
+          <div>Fraction of ASCII table</div>
           <div>
             <app-progress-bar [value]="asciiFraction"></app-progress-bar>
           </div>

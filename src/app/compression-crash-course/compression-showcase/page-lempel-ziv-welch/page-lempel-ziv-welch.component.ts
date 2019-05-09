@@ -3,7 +3,6 @@ import { EntropyExample, LzwContainer, SelectedEntry } from 'src/app/common/inte
 import { replaceAll, roundToDecimalPlace } from 'src/app/common/utils';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
-import { TitleService } from 'src/app/title.service';
 
 @Component({
              selector: 'app-page-lempel-ziv-welch',
@@ -18,12 +17,8 @@ export class PageLempelZivWelchComponent implements OnInit {
   currentIndex: number = 0;
   currentCharacter: LzwContainer = <LzwContainer>{};
 
-  isPresentation = false;
-
   constructor(private dataService: CompressionShowcaseService,
-              private compression: CompressionProcessorService,
-              private titleService: TitleService) {
-    this.isPresentation = this.titleService.isPresentation;
+              private compression: CompressionProcessorService) {
   }
 
   ngOnInit() {
@@ -50,7 +45,8 @@ export class PageLempelZivWelchComponent implements OnInit {
       entropyScore: this.compression.getEntropyScore(this.lzwEncoding.encodedTransmission)
     };
     this.encodedEntropyInfo.entropyFraction = roundToDecimalPlace(100
-      * this.encodedEntropyInfo.entropyScore / this.encodedEntropyInfo.text.length, 2);
+                                                                    * this.encodedEntropyInfo.entropyScore / this.encodedEntropyInfo.text.length,
+                                                                  2);
 
     this.lzwEncoding.encodedTable
         .forEach(lzw => lzw.dictionary.splice(lzw.dictionary.length - 1, 1));
