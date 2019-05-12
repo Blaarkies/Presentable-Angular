@@ -10,7 +10,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatProgressBarModule,
+  MatProgressBarModule, MatRippleModule,
   MatSliderModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -29,6 +29,7 @@ import { WebsiteInfoComponent } from './website-info/website-info.component';
 import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback-dialog.component';
 import { ToggleSliderComponent } from './toggle-slider/toggle-slider.component';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+import { ButtonIconFabComponent } from './button-icon-fab/button-icon-fab.component';
 
 @NgModule({
             imports: [
@@ -54,6 +55,7 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
               MatDialogModule,
               MatSlideToggleModule,
               MatInputModule,
+              MatRippleModule,
             ],
             exports: [
               CommonModule,
@@ -81,6 +83,7 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
               ProgressBarComponent,
               WebsiteInfoComponent,
               ToggleSliderComponent,
+              ButtonIconFabComponent,
             ],
             entryComponents: [
               TutorialDialogComponent,
@@ -96,6 +99,7 @@ import { SettingsDialogComponent } from './settings-dialog/settings-dialog.compo
               FeedbackDialogComponent,
               ToggleSliderComponent,
               SettingsDialogComponent,
+              ButtonIconFabComponent,
             ]
           })
 export class MatComponentsModule {

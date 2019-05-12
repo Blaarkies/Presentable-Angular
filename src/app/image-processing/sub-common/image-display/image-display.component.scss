@@ -1,16 +1,19 @@
+@import 'styles/styles';
+
+$size-pixel: 60px;
 .pixel-numbers-container {
   display: grid;
-  grid-template-columns: repeat(8, 75px);
-  grid-template-rows: repeat(8, 75px);
+  grid-template-columns: repeat(8, $size-pixel);
+  grid-template-rows: repeat(8, $size-pixel);
 
   overflow: hidden;
 
   .pixel-with-number {
     user-select: none;
     line-height: 0;
-    font-size: 80px;
     text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
     border: 2px dotted white;
+    @extend .font-pixel-number;
 
     display: grid;
     place-items: center;
@@ -83,8 +86,4 @@ $color-mask-secondary-shadow: transparentize(black, 0.7);
 
 .opacity-0 {
   opacity: 0;
-}
-
-.negative-font-size {
-  font-size: 3.3em !important;
 }

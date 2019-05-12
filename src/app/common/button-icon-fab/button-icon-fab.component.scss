@@ -1,0 +1,72 @@
+@import 'styles/styles';
+
+::ng-deep .mat-icon {
+  display: inherit;
+  height: unset;
+  width: unset;
+}
+
+._center-icon {
+  color: white;
+  place-self: center;
+}
+
+$small-size: 20px;
+$medium-size: 40px;
+$large-size: 60px;
+.icon-container {
+  display: grid;
+
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  outline: none;
+  user-select: none;
+
+  @extend .mat-elevation-z1;
+  @extend .cursor-pointer;
+
+  &.small {
+    width: $small-size;
+    height: $small-size;
+
+    mat-icon {
+      @extend ._center-icon;
+      font-size: 0.8 * $small-size;
+    }
+  }
+
+  &.medium {
+    width: $medium-size;
+    height: $medium-size;
+
+    mat-icon {
+      @extend ._center-icon;
+      font-size: 0.8 * $medium-size;
+    }
+  }
+
+  &.large {
+    width: $large-size;
+    height: $large-size;
+
+    mat-icon {
+      @extend ._center-icon;
+      font-size: 0.8 * $large-size;
+    }
+  }
+
+  &.primary {
+    background-color: #43A047;
+    mat-icon {
+      color: white;
+    }
+  }
+
+  &.link {
+    background-color: white;
+    mat-icon {
+      color: black;
+    }
+  }
+}

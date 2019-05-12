@@ -1,7 +1,7 @@
 <div class="item" (mouseleave)="setMaskVisibility(null)">
   <div class="pixel-numbers-container">
     <div *ngFor="let pixel of sourceImage.pixels; let i = index"
-         class="font-monospace
+         class="code-subtitle
                pixel-with-number
                hover-code-highlight
                cursor-pointer
@@ -13,7 +13,6 @@
                      : (pixel.value < 0) ? 'pixel-color-0'
                                          : (pixel.value > 7)  ? 'pixel-color-7'
                                                               : 'pixel-color-' + pixel.value"
-         [class.negative-font-size]="showNegativeValues"
          [class.highlight-mask]="pixel.maskVisible"
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"

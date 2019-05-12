@@ -1,114 +1,115 @@
 <div class="lzw-container">
 
   <div class="text-to-encode">
-    <mat-card>
-      <mat-card-title>Example Text</mat-card-title>
-      <mat-card-content class="font-monospace">
-        <span *ngFor="let e of lzwEncoding.text?.split(''); let idx = index"
-              [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">{{e}}</span>
+    <mat-card class="fix-mat-card-full-height">
+      <div class="fix-mat-card-normal-padding">
+        <div class="content-title card-title-padding">Example Text</div>
+        <mat-card-content>
+          <div class="network-encoded-container">
+            <div>
+            <span class="content-subtitle" *ngFor="let e of lzwEncoding.text?.split(''); let idx = index"
+                  [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">{{e}}</span>
+            </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="descriptive">Network payload → {{lzwEncoding.normalPayloadSize}} bytes</div>
-
-        <ng-container *ngFor="let e of lzwEncoding.normalTransmission; let idx = index">
-          <span [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">
-            {{e}}</span>{{' '}}
-        </ng-container>
-      </mat-card-content>
+            <div>
+              <div class="content-subtitle descriptive">Network payload → {{lzwEncoding.normalPayloadSize}} bytes</div>
+              <ng-container *ngFor="let e of lzwEncoding.normalTransmission; let idx = index">
+                <span class="code-subtitle" [class.highlight-code-viewing]="getIsSelectedNormalTransmission(idx)">
+                  {{e}}</span>{{' '}}
+              </ng-container>
+            </div>
+          </div>
+        </mat-card-content>
+      </div>
     </mat-card>
   </div>
 
   <div class="encoded">
     <mat-card>
-      <mat-card-title>Example Text Encoded</mat-card-title>
-      <mat-card-content class="font-monospace">
+      <div class="content-title card-title-padding">Example Text Encoded</div>
+      <mat-card-content>
+        <div class="network-encoded-container">
 
-        <div class="encoded-container">
-          <div class="item"
-               *ngFor="let e of lzwEncoding.encodedTableFiltered;"
-               [class.highlight-code-viewing]="getIsSelectedEncodedTransmission(e)">
-            <div>{{e.output}}</div>
-            <div>{{e.code}}</div>
+          <div class="encoded-container">
+            <div class="item"
+                 *ngFor="let e of lzwEncoding.encodedTableFiltered;"
+                 [class.highlight-code-viewing]="getIsSelectedEncodedTransmission(e)">
+              <div class="content-subtitle">{{e.output}}</div>
+              <div class="code-subtitle">{{e.code}}</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="content-subtitle descriptive">Network payload → {{lzwEncoding.encodedPayloadSize}} bytes</div>
+            <div class="code-subtitle">{{lzwEncoding.encodedTransmission?.join(' ')}}</div>
           </div>
         </div>
-
-        <br>
-        <div class="descriptive">Network payload → {{lzwEncoding.encodedPayloadSize}} bytes</div>
-        <div>{{lzwEncoding.encodedTransmission?.join(' ')}}</div>
-
       </mat-card-content>
     </mat-card>
   </div>
 
   <div class="coding-table">
 
-    <div class="lzw-table-container">
+    <mat-card>
+      <mat-card-content>
+        <div class="lzw-table-container">
 
-      <div class="letterTitle">Current character</div>
-      <div class="dictionaryTitle">Dictionary</div>
+          <div class="content-title letterTitle">Current character</div>
+          <div class="content-title dictionaryTitle">Dictionary</div>
 
-      <div class="description"
-           (mouseenter)="selectedLzwEntry = {}"
-           (click)="currentIndex = 0">
-        <div>Current</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>Next</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>Output</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>Add</div>
-      </div>
+          <div class="content-subtitle description mat-elevation-z1"
+               (mouseenter)="selectedLzwEntry = {}"
+               (click)="currentIndex = 0">
+            <div>Current</div>
+            <mat-divider class="divider-normal"></mat-divider>
+            <div>Next</div>
+            <mat-divider class="divider-normal"></mat-divider>
+            <div>Output</div>
+            <mat-divider class="divider-normal"></mat-divider>
+            <div>Add</div>
+          </div>
 
-      <div class="character hover-bright cursor-pointer"
-           (mouseenter)="setSelectedLzwEntry()">
-        <div>{{currentCharacter.current || ' '}}</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>{{currentCharacter.next || ' '}}</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>{{currentCharacter.output ? currentCharacter.output + ':' + currentCharacter.code : ' '}}</div>
-        <mat-divider class="divider-normal"></mat-divider>
-        <div>{{currentCharacter.add || ' '}}</div>
-      </div>
+          <div class="code-subtitle character hover-bright cursor-pointer mat-elevation-z1"
+               (mouseenter)="setSelectedLzwEntry()">
+            <div>{{currentCharacter.current || ' '}}</div>
+            <mat-divider class="divider-normal"></mat-divider>
+            <div>{{currentCharacter.next || ' '}}</div>
+            <mat-divider class="divider-normal"></mat-divider>
+            <div>{{currentCharacter.output ? currentCharacter.output + ':' + currentCharacter.code : ' '}}</div>
+            <mat-divider class="divider-normal"></mat-divider>
+            <div>{{currentCharacter.add || ' '}}</div>
+          </div>
 
-      <div class="dictionary">
-        <div *ngIf="currentCharacter.dictionary?.length === 0"
-             class="empty-dictionary">
-          <mat-icon class="vertical-align-middle" color="warn">warning</mat-icon>
-          <span> Empty</span>
+          <div class="dictionary">
+            <div *ngIf="currentCharacter.dictionary?.length === 0"
+                 class="empty-dictionary">
+              <mat-icon color="warn">warning</mat-icon>
+              <span>Empty</span>
+            </div>
+
+            <div class="item code-subtitle mat-elevation-z1"
+                 *ngFor="let page of currentCharacter.dictionary;"
+                 [class.highlight-code-viewing]="isDictionaryMatch(page.string)">
+              <div>{{page.string}}</div>
+              <mat-divider class="divider-normal"></mat-divider>
+              <div>{{page.code}}</div>
+            </div>
+          </div>
+
+          <div class="restore-button">
+            <app-button-icon-fab (click)="resetCharacter()">restore</app-button-icon-fab>
+          </div>
+
+          <div class="next-button">
+            <app-button-icon-fab color="link"
+                                 (click)="stepToNextCharacter()"
+                                 (mouseenter)="setSelectedLzwEntry()">arrow_forward
+            </app-button-icon-fab>
+          </div>
+
         </div>
-
-        <div class="item"
-             *ngFor="let page of currentCharacter.dictionary;"
-             [class.highlight-code-viewing]="isDictionaryMatch(page.string)">
-          <div>{{page.string}}</div>
-          <mat-divider class="divider-normal"></mat-divider>
-          <div>{{page.code}}</div>
-        </div>
-      </div>
-
-      <div class="restore-button">
-        <button class="hover-darken"
-                mat-mini-fab
-                color="primary"
-                (click)="resetCharacter()">
-          <mat-icon>restore</mat-icon>
-        </button>
-      </div>
-
-      <div class="next-button">
-        <button class="hover-darken"
-                mat-mini-fab
-                color="link"
-                (click)="stepToNextCharacter()"
-                (mouseenter)="setSelectedLzwEntry()">
-          <mat-icon>arrow_forward</mat-icon>
-        </button>
-      </div>
-
-    </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 
 </div>

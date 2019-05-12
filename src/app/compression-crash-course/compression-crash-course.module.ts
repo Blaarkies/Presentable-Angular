@@ -11,7 +11,7 @@ import { PageDataWithoutPatternComponent } from './compression-showcase/page-dat
 import { PageRunLengthEncodingComponent } from './compression-showcase/page-run-length-encoding/page-run-length-encoding.component';
 import { PageHuffmanCodingTreeComponent } from './compression-showcase/page-huffman-coding-tree/page-huffman-coding-tree.component';
 import { PageHuffmanCodingEncodeComponent } from './compression-showcase/page-huffman-coding-encode/page-huffman-coding-encode.component';
-import { PageQuestionsComponent } from './compression-showcase/page-questions/page-questions.component';
+import { PageQuestionsComponent } from '../common/page-questions/page-questions.component';
 import { PageLempelZivWelchComponent } from './compression-showcase/page-lempel-ziv-welch/page-lempel-ziv-welch.component';
 import { PageInRealLifeCompressionComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/page-in-real-life-compression.component';
 import { PageSummaryCompressionComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary-compression/page-summary-compression.component';

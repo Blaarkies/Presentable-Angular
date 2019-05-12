@@ -5,8 +5,7 @@
   </div>
 
   <div class="subject-container">
-    <div class="subject-card"
-         *ngFor="let topic of topics">
+    <div class="subject-card" *ngFor="let topic of topics">
 
       <mat-card (click)="goToRoute(topic.data);"
                 class="cursor-pointer hover-bright mat-elevation-z3">

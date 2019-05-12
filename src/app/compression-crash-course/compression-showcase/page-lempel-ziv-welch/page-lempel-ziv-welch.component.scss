@@ -7,21 +7,13 @@
   // @formatter:off
   grid-template-areas: 'text-to-encode encoded'
                        'coding-table   coding-table';
+  .text-to-encode {grid-area: text-to-encode;}
+  .encoded {grid-area: encoded;}
+  .coding-table {grid-area: coding-table;}
   // @formatter:on
-  grid-gap: 8px;
+
+  grid-column-gap: 8px;
   grid-row-gap: 16px;
-}
-
-.text-to-encode {
-  grid-area: text-to-encode;
-}
-
-.encoded {
-  grid-area: encoded;
-}
-
-.coding-table {
-  grid-area: coding-table;
 }
 
 .lzw-table-container {
@@ -31,28 +23,20 @@
   grid-template-areas: 'letterTitle letterTitle dictionaryTitle'
                        'description character   dictionary'
                        'restore     next        .';
-  // @formatter:on
-  grid-gap: 4px;
-
-  @extend .font-monospace;
-
-  .letterTitle {
-    grid-area: letterTitle;
-    @extend .title-medium;
-  }
-
+  .letterTitle {grid-area: letterTitle;}
   .dictionaryTitle {
     grid-area: dictionaryTitle;
-    @extend .title-medium;
     margin-left: 12.5%;
   }
+  // @formatter:on
+
+  grid-gap: 4px;
 
   .description {
     grid-area: description;
 
-    padding: 4px 0 4px 4px;
     background-color: white;
-    height: max-content;
+    height: 100%;
   }
 
   .character {
@@ -60,10 +44,8 @@
 
     user-select: none;
     background-color: white;
-    padding: 4px 0 4px 0;
+    height: 100%;
     text-align: center;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2);
-    height: max-content;
   }
 
   .dictionary {
@@ -78,9 +60,8 @@
 
     > .item {
       background-color: white;
-      padding: 4px 0 4px 0;
+      padding: 4px 0;
       text-align: center;
-      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2);
     }
   }
 
@@ -118,8 +99,24 @@
 
 .empty-dictionary {
   align-self: center;
+  display: grid;
+  justify-content: center;
+
+  .mat-icon {
+    justify-self: center;
+  }
 }
 
-.vertical-align-middle {
-  vertical-align: middle;
+.network-encoded-container {
+  display: grid;
+  grid-gap: 32px;
+}
+
+.fix-mat-card-full-height {
+  padding: 0;
+  height: 100%;
+
+  .fix-mat-card-normal-padding {
+    padding: 24px;
+  }
 }

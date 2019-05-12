@@ -8,6 +8,8 @@ $size-code-title: 32px;
 $size-code-subtitle: 20px;
 $size-code-text: 16px;
 
+$size-pixel-number: 36px;
+
 .font-default {
   font-family: Roboto, sans-serif;
 }
@@ -50,5 +52,11 @@ $size-code-text: 16px;
 
 .code-text {
   font-size: $size-code-text !important;
+  @extend .font-code;
+}
+
+
+.font-pixel-number {
+  font-size: $size-pixel-number !important;
   @extend .font-code;
 }

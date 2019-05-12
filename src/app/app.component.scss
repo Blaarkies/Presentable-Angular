@@ -54,11 +54,16 @@
 }
 
 .router-outlet-align {
-  align-self: center;
   padding: 10px 20px;
-}
 
-@media #{$mediaQ-small-desktop} {
+  display: grid;
+  grid-template-rows: 0 auto;
+
+  // Set the component pages to be centered, on their host element
+  // This way the dashboard component can re-align itself to top
+  ::ng-deep > * {
+    align-self: center;
+  }
 }
 
 ::ng-deep .mat-toolbar-single-row {

@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-card-title>{{title}}</mat-card-title>
+  <div class="content-title card-title-padding">{{title}}</div>
 
   <mat-card-content>
-    <div class="card-medium-font">
+    <div class="content-subtitle">
 
       <div class="bi-container">
         <div class="left-label-container" *ngIf="inputA">
@@ -16,12 +16,9 @@
       </div>
 
       <div class="algorithm-box-container">
-        <button class="hover-darken"
-                mat-fab
-                color="primary"
-                (click)="onCompleteDestinationImage()">
-          <mat-icon class="mat-icon-fix-size animate-mat-icon-rotate">settings</mat-icon>
-        </button>
+        <app-button-icon-fab class="animate-mat-icon-rotate"
+                             (click)="onCompleteDestinationImage()">settings
+        </app-button-icon-fab>
         <div class="algorithm-code">{{calculation}}</div>
       </div>
 

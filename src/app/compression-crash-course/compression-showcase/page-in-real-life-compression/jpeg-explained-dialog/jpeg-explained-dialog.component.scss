@@ -3,22 +3,13 @@
 .image-zoom-container {
   @extend .image-zoom-container;
   height: 550px;
-}
 
-.font-size-extra-large {
-  font-size: 64px;
+  div {
+    height: 100%;
+  }
 }
 
 .mat-card-remove-box {
   box-shadow: unset;
   padding: unset;
-}
-
-.example-image {
-  height: 100%;
-  image-rendering: pixelated;
-}
-
-mat-card-title {
-  text-align: center;
 }

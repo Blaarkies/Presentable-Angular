@@ -8,7 +8,7 @@ import { PageRunLengthEncodingComponent } from '../compression-crash-course/comp
 import { PageHuffmanCodingTreeComponent } from 'src/app/compression-crash-course/compression-showcase/page-huffman-coding-tree/page-huffman-coding-tree.component';
 import { PageHuffmanCodingEncodeComponent } from 'src/app/compression-crash-course/compression-showcase/page-huffman-coding-encode/page-huffman-coding-encode.component';
 import { PageLempelZivWelchComponent } from 'src/app/compression-crash-course/compression-showcase/page-lempel-ziv-welch/page-lempel-ziv-welch.component';
-import { PageQuestionsComponent } from 'src/app/compression-crash-course/compression-showcase/page-questions/page-questions.component';
+import { PageQuestionsComponent } from 'src/app/common/page-questions/page-questions.component';
 import { PageInRealLifeCompressionComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/page-in-real-life-compression.component';
 import { PageSummaryCompressionComponent } from 'src/app/compression-crash-course/compression-showcase/page-summary-compression/page-summary-compression.component';
 import { PageNeedForPixelsComponent } from 'src/app/image-processing/page-need-for-pixels/page-need-for-pixels.component';

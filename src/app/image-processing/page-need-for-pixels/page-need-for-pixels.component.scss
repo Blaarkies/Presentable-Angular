@@ -1,3 +1,5 @@
+@import 'styles/styles';
+
 $blur-to-sharp-duration: 12000ms;
 .animate-blur-to-normal {
   animation: blurToNormal $blur-to-sharp-duration linear infinite both;
@@ -67,10 +69,12 @@ $image-lenna-max-scale: 50;
   }
   80% {
     transform: scale($image-lenna-max-scale);
+    filter: grayscale(1);
   }
   100% {
     transform: scale($image-lenna-max-scale);
     image-rendering: pixelated;
+    filter: grayscale(1);
   }
 }
 
@@ -115,7 +119,28 @@ $image-lenna-max-scale: 50;
 }
 
 .invisible-background {
-  ::ng-deep .pixel-with-number {
-    background: unset;
+  ::ng-deep {
+    .pixel-with-number {
+      background: unset;
+    }
+    .pixel-numbers-container {
+
+      grid-template-columns: repeat(8, auto);
+      grid-template-rows: repeat(8, auto);
+      height: 600px;
+    }
   }
 }
+
+:host-context(.is-presentation-mode) {
+  .display-none {
+    display: none;
+  }
+
+  .display-unset {
+    display: inherit;
+  }
+}
+
+
+

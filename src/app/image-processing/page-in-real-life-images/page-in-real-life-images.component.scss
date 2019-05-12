@@ -40,14 +40,14 @@
   display: grid;
 
   grid-auto-flow: column;
-  grid-gap: 0.4em;
+  grid-gap: 6px;
   grid-template-rows: auto auto;
 }
 
 .fourier-container {
   display: grid;
   grid-template-columns: auto max-content auto;
-  grid-gap: 0.4em;
+  grid-gap: 6px;
 
   .center-arrow {
     place-self: center;

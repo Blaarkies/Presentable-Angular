@@ -1,3 +1,5 @@
+@import 'styles/styles';
+
 .example-image {
   vertical-align: -webkit-baseline-middle;
   width: 90vw;
@@ -7,10 +9,21 @@
   display: grid;
   grid-template-columns: max-content auto;
 
-  >.right {
+  > .right {
     justify-self: right;
     font-style: oblique;
     color: dimgray;
   }
 
+}
+
+:host-context(.is-presentation-mode) .summary-fadeable {
+  @extend .fadeable;
+}
+
+.equation-image {
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -8,9 +8,6 @@ import { getXYFromIndex } from 'src/app/common/utils';
             })
 export class PixelProcessorService {
 
-  constructor() {
-  }
-
   getImageFromString(serialImage: string, colorDepth?: number): Image {
     let {trimmedLines, width} = this.getTrimmedLinesAndWidth(serialImage);
 

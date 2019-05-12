@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
@@ -6,16 +6,13 @@ import { MatDialogRef } from '@angular/material';
              templateUrl: './jpeg-explained-dialog.component.html',
              styleUrls: ['./jpeg-explained-dialog.component.scss']
            })
-export class JpegExplainedDialogComponent implements OnInit {
+export class JpegExplainedDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<JpegExplainedDialogComponent>) {
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  ngOnInit() {
   }
 
 }

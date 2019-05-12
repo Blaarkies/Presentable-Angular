@@ -1,47 +1,45 @@
 <mat-card>
-  <mat-card-title>Summary</mat-card-title>
+  <div class="content-title card-title-padding">Summary</div>
 
   <mat-card-content>
-    <ul (click)="bulletNumber = bulletNumber + 1">
-      <li>Information Entropy <span class="fadeable"
+    <ul class="content-subtitle" (click)="bulletNumber = bulletNumber + 1">
+      <li>Information Entropy <span class="summary-fadeable"
                                     [class.show]="bulletNumber > 1">for a fair coin toss</span>
       </li>
-      <img src="../../../../assets/shanon_entropy_coin.PNG"
-           class="example-image fadeable"
-           [class.show]="bulletNumber > 2"/>
-      <br>
-      <br>
-      <li class="fadeable" [class.show]="bulletNumber > 3">
+      <div class="equation-image summary-fadeable"
+           style="background-image: url('assets/shanon_entropy_coin.PNG');"
+           [class.show]="bulletNumber > 2"></div>
+      <li class="summary-fadeable" [class.show]="bulletNumber > 3">
         <div class="list-item-container">
           <div>Recognize a pattern, replace it with something shorter</div>
-          <div class="right">AAAAA == 5xA</div>
+          <div class="right">AAAAA can be written as 5xA</div>
         </div>
       </li>
 
       <br>
 
-      <li class="fadeable" [class.show]="bulletNumber > 4">
+      <li class="summary-fadeable" [class.show]="bulletNumber > 4">
         <div class="list-item-container">
           <div>Most of the time, a dictionary needs to be sent</div>
-          <div class="right">Gucci = 1; Gang = 0;</div>
+          <div class="right">You need to know that Gucci = 0; Gang = 1;</div>
         </div>
       </li>
 
       <br>
 
-      <li class="fadeable" [class.show]="bulletNumber > 5">
+      <li class="summary-fadeable" [class.show]="bulletNumber > 5">
         <div class="list-item-container">
           <div>Huffman Coding converts every unit into the simplest state</div>
-          <div class="right">"FaceEmoji, Smiley, ASCII 249" becomes 1,2,3</div>
+          <div class="right">The text "FaceEmoji, Smiley, ASCII 249" can be shortened 1,2,3</div>
         </div>
       </li>
 
       <br>
 
-      <li class="fadeable" [class.show]="bulletNumber > 6">
+      <li class="summary-fadeable" [class.show]="bulletNumber > 6">
         <div class="list-item-container">
           <div>LZW will link letters and group them as words</div>
-          <div class="right">Supercalifragilisticexpialidocious = 256</div>
+          <div class="right">Long words can be written outside the ASCII range, like Supercalifragilisticexpialidocious = 256, </div>
         </div>
       </li>
 

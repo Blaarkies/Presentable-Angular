@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 25% auto 26%;
   grid-template-rows: max-content auto;
+
   // @formatter:off
   grid-template-areas: 'text-to-encode binary encoded'
                        'codes          codes  codes';
@@ -12,6 +13,7 @@
   .encoded {grid-area: encoded;}
   .codes-container {grid-area: codes;}
   // @formatter:on
+
   grid-gap: 8px;
 }
 

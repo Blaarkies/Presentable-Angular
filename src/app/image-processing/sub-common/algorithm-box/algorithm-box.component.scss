@@ -8,6 +8,7 @@ $margin-amount-connectors: 20%;
   border: 2px solid $color-connectors;
   border-radius: 4px;
   text-align: center;
+  @extend .code-subtitle;
   padding: 8px;
   min-width: 60px;
 }
@@ -64,8 +65,7 @@ $margin-amount-connectors: 20%;
   place-items: center;
 
   .algorithm-code {
-    @extend .font-monospace;
-    font-size: 32px;
+    @extend .code-title;
   }
 }
 
@@ -83,25 +83,13 @@ $margin-amount-connectors: 20%;
   }
 }
 
-.mat-icon-fix-size {
-  font-size: 48px;
-  width: auto;
-  height: auto;
-
-  margin: -20px;
-  place-self: center;
-}
-
 .animate-mat-icon-rotate {
   animation: rotation 2500ms ease-in-out infinite;
 }
 
 @keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359.9999deg);
+  100% {
+    transform: rotate(360deg);
   }
 }
 
