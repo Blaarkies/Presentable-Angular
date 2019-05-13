@@ -3,7 +3,7 @@ export interface TutorialTab {
 }
 
 export interface DialogTutorialData {
-  firstTab: TutorialTab,
-  secondTab: TutorialTab,
-  thirdTab: TutorialTab
+  firstTab: TutorialTab;
+  secondTab: TutorialTab;
+  thirdTab: TutorialTab;
 }

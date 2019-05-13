@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AsciiImage, EntropyExample } from 'src/app/common/interface';
+import { AsciiImage, EntropyExample } from 'src/app/common/interfaces';
 import { CompressionProcessorService } from '../../compression-processor.service';
 import { CompressionShowcaseService } from 'src/app/compression-crash-course/compression-showcase/compression-showcase.service';
 

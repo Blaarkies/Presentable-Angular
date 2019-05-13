@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { sum } from 'src/app/common/utils';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
@@ -10,7 +10,7 @@ import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image
              templateUrl: './page-mask-blur.component.html',
              styleUrls: ['./page-mask-blur.component.scss']
            })
-export class PageMaskBlurComponent implements OnInit {
+export class PageMaskBlurComponent {
 
   @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
 
@@ -45,9 +45,6 @@ export class PageMaskBlurComponent implements OnInit {
 
     this.resultImage = this.sourceImage
                            .getProcessedImageFrom(this.averageMask, averageFilter);
-  }
-
-  ngOnInit() {
   }
 
   setVisibility(pixel: Pixel) {

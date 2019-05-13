@@ -1,22 +1,118 @@
-.size-content-title {
-  font-size: 2.3em !important;
-}
+$size-page-title: 30px;
+
+$size-content-title: 24px;
+$size-content-subtitle: 20px;
+$size-content-text: 16px;
+
+$size-code-title: 32px;
+$size-code-subtitle: 20px;
+$size-code-text: 16px;
+
+$size-pixel-number: 36px;
 
 .font-default {
   font-family: Roboto, sans-serif;
 }
 
+.font-code {
+  font-family: monospace;
+}
+
+
 .page-title {
-  font-size: 2.3em !important;
+  font-size: $size-page-title !important;
   @extend .font-default;
 }
 
+
 .content-title {
-  @extend .size-content-title;
+  font-size: $size-content-title !important;
   @extend .font-default;
 }
 
 .content-subtitle {
-  font-size: 1.7em !important;
+  font-size: $size-content-subtitle !important;
   @extend .font-default;
+}
+
+.content-text {
+  font-size: $size-content-text !important;
+  @extend .font-default;
+}
+
+
+.code-title {
+  font-size: $size-code-title !important;
+  @extend .font-code;
+}
+
+.code-subtitle {
+  font-size: $size-code-subtitle !important;
+  @extend .font-code;
+}
+
+.code-text {
+  font-size: $size-code-text !important;
+  @extend .font-code;
+}
+
+
+.font-pixel-number {
+  font-size: $size-pixel-number !important;
+  @extend .font-code;
+}
+
+
+.descriptive {
+  font-style: oblique;
+}
+
+
+.is-presentation-mode {
+  $presentation-mode-size-multiplier: 1.5;
+
+  $presentation-mode-size-page-title: $size-page-title * $presentation-mode-size-multiplier;
+  $presentation-mode-size-content-title: $size-content-title * $presentation-mode-size-multiplier;
+  $presentation-mode-size-content-subtitle: $size-content-subtitle * $presentation-mode-size-multiplier;
+  $presentation-mode-size-content-text: $size-content-text * $presentation-mode-size-multiplier;
+  $presentation-mode-size-code-title: $size-code-title * $presentation-mode-size-multiplier;
+  $presentation-mode-size-code-subtitle: $size-code-subtitle * $presentation-mode-size-multiplier;
+  $presentation-mode-size-code-text: $size-code-text * $presentation-mode-size-multiplier;
+
+  .page-title {
+    font-size: $presentation-mode-size-page-title !important;
+    @extend .font-default;
+  }
+
+
+  .content-title {
+    font-size: $presentation-mode-size-content-title !important;
+    @extend .font-default;
+  }
+
+  .content-subtitle {
+    font-size: $presentation-mode-size-content-subtitle !important;
+    @extend .font-default;
+  }
+
+  .content-text {
+    font-size: $presentation-mode-size-content-text !important;
+    @extend .font-default;
+  }
+
+
+  .code-title {
+    font-size: $presentation-mode-size-code-title !important;
+    @extend .font-code;
+  }
+
+  .code-subtitle {
+    font-size: $presentation-mode-size-code-subtitle !important;
+    @extend .font-code;
+  }
+
+  .code-text {
+    font-size: $presentation-mode-size-code-text !important;
+    @extend .font-code;
+  }
 }

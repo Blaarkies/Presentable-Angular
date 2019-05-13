@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { clone, getArrayRange, getArraySplitByNumber, getRandomFromArray, isString, roundToDecimalPlace } from '../common/utils';
-import { BinaryContainer, EntropyExample, FlaggedText, HuffmanCode, HuffmanEncodedContainer, LzwContainer } from '../common/interface';
+import { BinaryContainer, EntropyExample, FlaggedText, HuffmanCode, HuffmanEncodedContainer, LzwContainer } from 'src/app/common/interfaces';
 import { isArray } from 'util';
 
 @Injectable({

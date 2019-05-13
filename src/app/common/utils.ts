@@ -2,11 +2,11 @@ export function getXYFromIndex(imageWidth: number, i: number): number[] {
   return [i % imageWidth, Math.floor(i / imageWidth)];
 }
 
+let theUnsanitized = [undefined, null, Number.NaN];
+
 export function getSanitizedArray(array: number[]): any[] {
   return array.filter(i => !theUnsanitized.some(u => i === u));
 }
-
-let theUnsanitized = [undefined, null, Number.NaN];
 
 export function getArrayMin(array: number[]): number {
   array = getSanitizedArray(array);

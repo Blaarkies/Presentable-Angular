@@ -1,3 +1,6 @@
+<!--Use a carousel for the image filters instead. Leave some tabs on it so that the presenter
+can move to a specific picture temporarily, in order to make a point to the audience-->
+
 <div class="bi-container" (click)="showPixels = true">
   <div class="item">
 
@@ -10,7 +13,7 @@
     </div>
   </div>
 
-  <div class="item animate-fade-in" *ngIf="showPixels">
+  <div class="item animate-fade-in display-none" [class.display-unset]="showPixels">
 
     <div class="image-container overlap-container">
 
@@ -18,7 +21,8 @@
            style="background-image: url('assets/lenna-example.jpg');"></div>
 
       <app-image-display class="overlap-b pixel-animate-fade invisible-background"
-                         [sourceImage]="sourceImage"></app-image-display>
+                         [sourceImage]="sourceImage"
+                         [showTitle]="false"></app-image-display>
     </div>
   </div>
 </div>

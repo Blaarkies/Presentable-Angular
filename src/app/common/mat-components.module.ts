@@ -10,7 +10,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatProgressBarModule,
+  MatProgressBarModule, MatRippleModule,
   MatSliderModule,
   MatSlideToggleModule,
   MatSnackBarModule,
@@ -27,6 +27,9 @@ import { TutorialDialogComponent } from './tutorial-dialog/tutorial-dialog.compo
 import { WebsiteInfoDialogComponent } from './website-info-dialog/website-info-dialog.component';
 import { WebsiteInfoComponent } from './website-info/website-info.component';
 import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback-dialog.component';
+import { ToggleSliderComponent } from './toggle-slider/toggle-slider.component';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+import { ButtonIconFabComponent } from './button-icon-fab/button-icon-fab.component';
 
 @NgModule({
             imports: [
@@ -52,6 +55,7 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               MatDialogModule,
               MatSlideToggleModule,
               MatInputModule,
+              MatRippleModule,
             ],
             exports: [
               CommonModule,
@@ -75,14 +79,17 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               MatIconModule,
               MatDialogModule,
               MatSlideToggleModule,
+              MatInputModule,
               ProgressBarComponent,
               WebsiteInfoComponent,
-              MatInputModule,
+              ToggleSliderComponent,
+              ButtonIconFabComponent,
             ],
             entryComponents: [
               TutorialDialogComponent,
               WebsiteInfoDialogComponent,
               FeedbackDialogComponent,
+              SettingsDialogComponent,
             ],
             declarations: [
               ProgressBarComponent,
@@ -90,6 +97,9 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
               WebsiteInfoDialogComponent,
               WebsiteInfoComponent,
               FeedbackDialogComponent,
+              ToggleSliderComponent,
+              SettingsDialogComponent,
+              ButtonIconFabComponent,
             ]
           })
 export class MatComponentsModule {

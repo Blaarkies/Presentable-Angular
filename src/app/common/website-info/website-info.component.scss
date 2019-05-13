@@ -5,7 +5,7 @@
 
   display: grid;
   grid-template-rows: max-content max-content;
-  grid-row-gap: 1em;
+  grid-gap: 16px;
 }
 
 .social-media-button {
@@ -13,16 +13,8 @@
 
   display: grid;
   grid-template-columns: max-content auto;
-  grid-column-gap: .5em;
-
-  > .button-text {
-    align-self: center;
-  }
-}
-
-.image-button-alignment {
-  height: 56px;
-  margin-top: -16px;
+  grid-column-gap: 8px;
+  align-items: center;
 }
 
 @media #{$mediaQ-small-desktop} {
@@ -32,9 +24,8 @@
   }
 }
 
-.mat-icon-fix-size {
-  font-size: 56px;
-  display: grid;
-  place-content: center center;
+.button-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100px;
 }
-

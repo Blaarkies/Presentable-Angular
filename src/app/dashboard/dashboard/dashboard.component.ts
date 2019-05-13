@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,16 +7,13 @@ import { Router } from '@angular/router';
              styleUrls: ['./dashboard.component.scss',
                          '../../app.component.scss']
            })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   public topics = [];
 
   constructor(private router: Router) {
     this.topics.push({title: 'Compression Crash Course', subtitle: 'by Pierre Roux', data: 'compression-crash-course'});
     this.topics.push({title: 'An Image Is Worth 1000px', subtitle: 'by Pierre Roux', data: 'image-processing'});
-  }
-
-  ngOnInit() {
   }
 
   public goToRoute(route: string) {

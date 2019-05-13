@@ -1,0 +1,9 @@
+<span class="vertical-container" [matTooltip]="tooltipText">
+  <span>
+    <mat-slide-toggle color="primary"
+                      [checked]="isChecked"
+                      [disabled]="isDisabled"
+                      (change)="onChange($event)"></mat-slide-toggle>
+  </span>
+<span class="slide-toggle-font">{{label}}</span>
+</span>

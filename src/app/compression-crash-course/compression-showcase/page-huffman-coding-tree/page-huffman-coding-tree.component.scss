@@ -7,24 +7,16 @@
   // @formatter:off
   grid-template-areas: 'text-to-encode huffman-tree'
                        'huffman-table  huffman-tree';
+  .text-to-encode {grid-area: text-to-encode;}
+  .huffman-table {grid-area: huffman-table;}
+  .huffman-tree {grid-area: huffman-tree;}
   // @formatter:on
+
   grid-gap: 8px;
 }
 
-.text-to-encode {
-  grid-area: text-to-encode;
-}
-
-.huffman-table {
-  grid-area: huffman-table;
-}
-
-.huffman-tree {
-  grid-area: huffman-tree;
-}
-
 .codes-padding {
-  padding: 0 8px 0 8px;
+  padding: 0 8px;
 }
 
 .huffman-frequency-table {
@@ -33,7 +25,7 @@
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 16px;
 
-  @extend .card-medium-font;
+  @extend .content-subtitle;
 
   > .character {
     grid-column: 1;
@@ -53,14 +45,6 @@
 @media #{$mediaQ-small-desktop} {
   .list-size {
     height: 330px;
-  }
-
-  .mq-fix-font-size-table-name {
-    font-size: large;
-  }
-
-  .mq-fix-font-size-headers {
-    font-size: x-large;
   }
 }
 

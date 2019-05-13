@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BiDirectionEnum } from 'src/app/common/bi-direction.enum';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { HuffmanCode } from 'src/app/common/interface';
+import { HuffmanCode } from 'src/app/common/interfaces';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { EntropyExample } from '../../common/interface';
+import { Component, Input } from '@angular/core';
+import { EntropyExample } from 'src/app/common/interfaces';
 import { CompressionProcessorService } from '../compression-processor.service';
-import { EncodedWord } from 'src/app/compression-crash-course/entropy-card/encoded.word';
+import { EncodedWord } from 'src/app/compression-crash-course/entropy-card/interfaces';
 
 @Component({
              selector: 'app-entropy-card',

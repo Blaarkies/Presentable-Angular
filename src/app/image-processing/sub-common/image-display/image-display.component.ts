@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 
@@ -7,21 +7,17 @@ import { Mask } from 'src/app/image-processing/interfaces/mask';
              templateUrl: './image-display.component.html',
              styleUrls: ['./image-display.component.scss']
            })
-export class ImageDisplayComponent implements OnInit {
+export class ImageDisplayComponent {
 
   @Input() sourceImage: Image;
   @Input() mask: Mask = new Mask();
   @Input() highlightPixel: Pixel;
   @Input() showNegativeValues: boolean;
+  @Input() title: string;
+  @Input() showTitle: boolean = true;
 
   @Output() pixelClick = new EventEmitter<Pixel>();
   @Output() pixelHover = new EventEmitter<Pixel>();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   setMaskVisibility(pixel: Pixel): void {
     let image = this.sourceImage;

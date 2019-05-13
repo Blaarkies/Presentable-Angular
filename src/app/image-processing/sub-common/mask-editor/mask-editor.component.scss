@@ -1,6 +1,7 @@
 @import 'styles/styles';
+@import 'styles/fonts';
 
-$mask-pixel-size: 80px;
+$mask-pixel-size: 60px;
 $transition-buttons: background-color 300ms ease-in-out;
 
 .custom-mask-container {
@@ -20,10 +21,9 @@ $transition-buttons: background-color 300ms ease-in-out;
     background-color: white;
 
     text-align: center;
-    @extend .font-monospace;
-    font-size: 3em;
+    @extend .font-pixel-number;
 
-    .spinner-button-container {
+    .adjuster-buttons-container {
       display: grid;
       grid-template-rows: 50% 50%;
 
@@ -34,6 +34,7 @@ $transition-buttons: background-color 300ms ease-in-out;
 
       color: transparent;
       background-color: transparent;
+      font-size: round($size-pixel-number * 0.83);
 
       .plus {
         transition: $transition-buttons;

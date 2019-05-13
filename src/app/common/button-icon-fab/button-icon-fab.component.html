@@ -1,0 +1,7 @@
+<button class="icon-container hover-darken"
+        [ngClass]="[color, size]"
+        (click)="onClick()">
+  <mat-icon class="center-icon">
+    <ng-content></ng-content>
+  </mat-icon>
+</button>

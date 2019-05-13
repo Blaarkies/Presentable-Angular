@@ -1,26 +1,25 @@
-.example-image {
-  vertical-align: -webkit-baseline-middle;
-  width: 90vw;
-}
+@import 'styles/styles';
 
 .list-item-container {
   display: grid;
   grid-template-columns: max-content auto;
 
-  >.right {
+  > .right {
     justify-self: right;
     font-style: oblique;
     color: dimgray;
   }
-
 }
 
-.fadeable {
-  transition: 1s ease-in-out;
-  transition-property: opacity;
-  opacity: 0;
+:host-context(.is-presentation-mode) {
+  .summary-fadeable {
+    @extend .fadeable;
+  }
 }
 
-.show {
-  opacity: 1;
+.equation-image {
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

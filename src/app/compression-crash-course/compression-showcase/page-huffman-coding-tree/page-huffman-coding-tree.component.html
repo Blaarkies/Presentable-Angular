@@ -3,9 +3,9 @@
   <div class="text-to-encode">
 
     <mat-card>
-      <mat-card-title>Example Text</mat-card-title>
+      <div class="content-title card-title-padding">Example Text</div>
       <mat-card-content>
-        <span *ngFor="let line of huffmanCoding?.lines">{{line}}</span>
+        <span class="content-subtitle" *ngFor="let line of huffmanCoding?.lines">{{line}}</span>
       </mat-card-content>
     </mat-card>
   </div>
@@ -15,19 +15,14 @@
     <mat-card>
       <mat-card-title>
         <div class="mat-card-fix-title-button-container">
-          <div class="mq-fix-font-size-table-name">Frequency Table</div>
+          <div class="content-title card-title-padding">Frequency Table</div>
           <div class="mat-card-fix-align-right">
-            <button class="hover-darken"
-                    mat-mini-fab
-                    color="primary"
-                    (click)="resetTable()">
-              <mat-icon>restore</mat-icon>
-            </button>
+            <app-button-icon-fab (buttonClick)="resetTable()">restore</app-button-icon-fab>
           </div>
         </div>
       </mat-card-title>
 
-      <mat-card-footer>
+      <mat-card-content>
 
         <div class="huffman-frequency-table">
           <div class="character">Character</div>
@@ -52,7 +47,7 @@
             <mat-divider class="divider-normal"></mat-divider>
           </ng-container>
         </mat-list>
-      </mat-card-footer>
+      </mat-card-content>
     </mat-card>
   </div>
 

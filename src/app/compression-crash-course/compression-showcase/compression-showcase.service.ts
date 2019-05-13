@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { clone, getLinesOfTextSplitByNumber } from '../../common/utils';
-import { EntropyExample, JsonAsset } from '../../common/interface';
+import { EntropyExample, JsonAsset } from 'src/app/common/interfaces';
 import { CompressionProcessorService } from '../compression-processor.service';
 import { HttpClient } from '@angular/common/http';
 import { shareReplay } from 'rxjs/operators';

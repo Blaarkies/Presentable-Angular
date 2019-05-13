@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EntropyExample } from 'src/app/common/interface';
+import { EntropyExample } from 'src/app/common/interfaces';
 
 @Component({
              selector: 'app-entropy-info',

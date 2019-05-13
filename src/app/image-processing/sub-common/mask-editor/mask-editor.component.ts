@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 
 @Component({
@@ -6,15 +6,9 @@ import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
              templateUrl: './mask-editor.component.html',
              styleUrls: ['./mask-editor.component.scss']
            })
-export class MaskEditorComponent implements OnInit {
+export class MaskEditorComponent {
 
   @Input() mask: Mask;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   plusPixelValue(pixel: MaskPixel): void {
     pixel.value++;

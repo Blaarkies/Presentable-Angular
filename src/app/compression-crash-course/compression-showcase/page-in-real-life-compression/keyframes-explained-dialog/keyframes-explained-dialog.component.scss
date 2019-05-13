@@ -5,10 +5,7 @@
   padding: unset;
 }
 
-.image-height {
+.example-image {
+  @extend .example-image;
   height: 650px;
-}
-
-mat-card-title {
-  text-align: center;
 }

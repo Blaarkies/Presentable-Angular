@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { KeyframesExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/keyframes-explained-dialog/keyframes-explained-dialog.component';
 import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/jpeg-explained-dialog/jpeg-explained-dialog.component';
@@ -8,12 +8,9 @@ import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/c
              templateUrl: './page-in-real-life-compression.component.html',
              styleUrls: ['./page-in-real-life-compression.component.scss']
            })
-export class PageInRealLifeCompressionComponent implements OnInit {
+export class PageInRealLifeCompressionComponent {
 
   constructor(private dialog: MatDialog) {
-  }
-
-  ngOnInit() {
   }
 
   openJpegDialog() {

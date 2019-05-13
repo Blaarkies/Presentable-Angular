@@ -23,14 +23,6 @@ html, body {
   display: none !important;
 }
 
-.invisible {
-  visibility: hidden;
-}
-
-.transparent-less {
-  opacity: 0.75;
-}
-
 .transparent-more {
   opacity: 0.15;
 }
@@ -81,6 +73,16 @@ html, body {
   animation: light-up cubic-bezier(0.1, 0.7, 0.9, 0.3) 1000ms 1;
 }
 
+.fadeable {
+  transition: 1s ease-in-out;
+  transition-property: opacity;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
 @keyframes light-up {
   from {
     filter: brightness(1) drop-shadow(0 0 10px transparent);
@@ -94,49 +96,10 @@ html, body {
   cursor: pointer;
 }
 
-.title-medium {
-  font-size: 24px;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-.card-big-font {
-  font-size: 2em;
-}
-
-.card-bigger-font {
-  font-size: 2.3em;
-}
-
-.card-medium-font {
-  font-size: 1.7em;
-}
-
-.card-small-font {
-  font-size: 1em;
-}
-
-.font-monospace {
-  font-family: monospace;
-}
-
-.block-font {
-  font-family: monospace;
-  font-size: 2.2em;
-}
-
-.descriptive {
-  font-style: oblique;
-}
-
 .divider-normal {
   position: initial !important;
   left: auto !important;
   width: auto !important;
-}
-
-.align-padding {
-  padding-left: 10px;
-  width: 80px;
 }
 
 .scrollbar-primary {
@@ -172,10 +135,9 @@ html, body {
 .bi-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 1em;
+  column-gap: 16px;
 
   > .item {
-    width: max-content;
     margin: auto;
   }
 }
@@ -183,12 +145,12 @@ html, body {
 .tri-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 1em;
+  column-gap: 16px;
 
   place-items: center;
 }
 
-.footer-padding {
+.mat-card-fix-footer-padding {
   padding: 0 12px 12px 12px;
 }
 
@@ -197,22 +159,12 @@ html, body {
   grid-template-columns: max-content auto;
   grid-column-gap: 8px;
   grid-row-gap: 8px;
-  padding-top: 1em;
+  padding-top: 16px;
+  align-items: center;
 }
 
-@media #{$mediaQ-small-desktop} {
-  .card-big-font {
-    font-size: large;
-  }
-
-  .block-font {
-    font-size: x-large;
-  }
-
-  .card-medium-font {
-    font-size: 1.2em;
-  }
-
+.card-title-padding {
+  padding-bottom: 16px;
 }
 
 .animate-fade-in {
@@ -241,4 +193,16 @@ html, body {
     grid-area: overlap;
     z-index: 2;
   }
+}
+
+.is-presentation-mode {
+  background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      transparentize(gray, 0.9) 10px,
+      transparentize(gray, 0.9) 20px
+  );
+
+
 }

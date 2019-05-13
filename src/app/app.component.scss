@@ -1,33 +1,52 @@
-@import '../styles/styles';
+@import 'styles/styles';
 
 .app-page {
   display: grid;
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: 64px auto;
   height: 100vh;
-}
-
-.page-avatar {
-  width: 100px;
-  height: 100%;
-  background: no-repeat center;
-  background-size: contain;
-  content: ' ';
-  margin-right: 16px;
 }
 
 .toolbar-container {
   display: grid;
-  grid-template-columns: max-content max-content auto max-content max-content;
+  grid-template-columns: auto auto;
 }
 
-.subject-title {
-  font-size: x-large;
+.settings-and-page-id {
+  height: 100%;
+  place-self: start;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  align-items: center;
+
+  .page-avatar {
+    width: 100px;
+    height: 100%;
+    background: no-repeat center;
+    background-size: contain;
+    content: ' ';
+    margin-right: 16px;
+  }
+
+  .subject-title {
+    font-size: 30px;
+  }
+}
+
+.toggle-and-navigation {
+  place-self: end;
+  display: grid;
+  grid-template-columns: max-content max-content;
+
+  .nav-buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+  }
 }
 
 .page-title-font {
-  text-align: center;
-  font-family: lucida console, monospace;
-  font-size: 2em;
+  place-self: center;
+  @extend .font-default;
+  font-size: 32px;
 }
 
 .full-height {
@@ -35,34 +54,25 @@
 }
 
 .router-outlet-align {
-  align-self: center;
-  padding: 10px 20px 10px 20px;
-}
+  padding: 10px 20px;
 
-@media #{$mediaQ-small-desktop} {
-  .subject-title {
-    font-size: large;
-  }
+  display: grid;
+  grid-template-rows: 0 auto;
 
-  .page-title-font {
-    font-size: x-large;
+  // Set the component pages to be centered, on their host element
+  // This way the dashboard component can re-align itself to top
+  ::ng-deep > * {
+    align-self: center;
   }
 }
 
-.slide-toggle-font {
-  font-size: 0.7em;
+::ng-deep .mat-toolbar-single-row {
+  padding: unset;
 }
 
-.vertical-container {
-  display: grid;
-  justify-items: center;
-  padding: 0 16px 0 16px;
+.settings-button {
+  @extend .full-height;
+  @extend .hover-gray;
 
-  grid-template-areas: 'top' 'bottom';
+  min-width: unset;
 }
-
-.nav-buttons-container {
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
-}
-

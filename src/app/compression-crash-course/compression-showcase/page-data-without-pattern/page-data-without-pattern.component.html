@@ -6,12 +6,12 @@
 
   <div class="item">
     <mat-card>
-      <mat-card-title>Characters Used</mat-card-title>
-      <mat-card-content class="card-big-font">
+      <div class="content-title card-title-padding">Characters Used</div>
+      <mat-card-content class="content-subtitle">
         <div *ngFor="let line of charactersUsed.displayLines">{{line}}</div>
       </mat-card-content>
 
-      <mat-card-footer class="text-style-data footer-padding">
+      <mat-card-footer class="mat-card-fix-footer-padding">
         <div class="footer-container">
 
           <div>Characters used</div>
