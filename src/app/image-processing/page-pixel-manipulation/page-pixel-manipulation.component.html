@@ -3,18 +3,20 @@
   <app-image-display #source
                      [sourceImage]="sourceImage"
                      [mask]="pointMask"
+                     [title]="'Source Image'"
                      (pixelClick)="setVisibility($event)"
                      (pixelHover)="setHoveredPixel($event)"
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
-  <app-algorithm-box [title]="'Invert each pixel value'"
+  <app-algorithm-box [title]="'Invert Each Pixel Value'"
                      [inputA]="inputB || 'Colour depth value'"
-                     [inputB]="inputA || 'Source pixel\'s value'"
+                     [inputB]="inputA || 'Source pixel value'"
                      [calculation]="calculationText || sourceImage.colorDepth + ' - Source pixel'"
-                     [output]="output || 'Destination pixel\'s value'"
+                     [output]="output || 'Destination pixel value'"
                      (complete)="completeDestinationImage()"></app-algorithm-box>
 
   <app-image-display #result
                      [sourceImage]="resultImage"
-                     [highlightPixel]="hoverPixel"></app-image-display>
+                     [highlightPixel]="hoverPixel"
+                     [title]="'Result Image'"></app-image-display>
 </div>

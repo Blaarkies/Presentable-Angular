@@ -9,7 +9,7 @@
               [class.highlight-code-viewing]="char.toLowerCase() === selectedChar">{{char}}</span>
       </mat-card-content>
 
-      <mat-card-footer class="footer-padding">
+      <mat-card-footer class="mat-card-fix-footer-padding">
         <app-entropy-info [entropyObject]="huffmanCoding"></app-entropy-info>
       </mat-card-footer>
     </mat-card>
@@ -33,7 +33,7 @@
       <div class="mat-card-fix-title-button-container">
         <div class="content-title card-title-padding">Example Text Encoded</div>
         <div class="mat-card-fix-align-right">
-          <app-button-icon-fab (click)="resetDecodings()">restore</app-button-icon-fab>
+          <app-button-icon-fab (buttonClick)="resetDecodings()">restore</app-button-icon-fab>
         </div>
       </div>
       <mat-card-content>

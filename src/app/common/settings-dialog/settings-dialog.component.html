@@ -1,9 +1,11 @@
 <div class="content-title">Settings</div>
 <mat-dialog-content>
   <div class="settings-container">
-    <app-toggle-slider [isChecked]="isPresentationMode"
-                       [tooltipText]="'Sets font size to be clearly visible to an audience'"
+<!--    [tooltipText]="'Sets font size to be clearly visible to an audience'"-->
+    <app-toggle-slider [isChecked]="false && isPresentationMode"
+                       [tooltipText]="'Coming soon...'"
                        [label]="'Presentation Mode'"
+                       [isDisabled]="true"
                        (change)="isPresentationMode = $event"></app-toggle-slider>
   </div>
 </mat-dialog-content>

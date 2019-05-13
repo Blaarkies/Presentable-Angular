@@ -1,17 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
-import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
              selector: 'app-page-custom-masks',
              templateUrl: './page-custom-masks.component.html',
              styleUrls: ['./page-custom-masks.component.scss']
            })
-export class PageCustomMasksComponent implements OnInit {
+export class PageCustomMasksComponent {
 
   @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
 
@@ -68,9 +67,6 @@ export class PageCustomMasksComponent implements OnInit {
     if (this.isAverage) {
       this.resultImage.capPixelValues(7);
     }
-  }
-
-  ngOnInit() {
   }
 
   setVisibility(pixel: Pixel) {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
@@ -13,10 +13,12 @@ import { sample, takeUntil } from 'rxjs/operators';
              templateUrl: './page-mask-sharpen.component.html',
              styleUrls: ['./page-mask-sharpen.component.scss']
            })
-export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
 
   @ViewChild('sharp') sharpImageDisplayer: ImageDisplayComponent;
   @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
+
+  unsubscribe$ = new Subject<void>();
 
   sourceImage: Image;
   sharpImage: Image;
@@ -25,11 +27,8 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
   sharpMask: Mask;
 
   sharpenPower = 1;
-  resultPower = 0.1;
   sharpSlider$ = new Subject<number>();
-  resultSlider$ = new Subject<number>();
 
-  unsubscribe = new Subject<void>();
   grayPointValue: number;
   hoverPixel: Pixel;
   showMask: boolean;
@@ -56,16 +55,10 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
     this.setSharpImageAndResults();
 
     let updateDuration = 100;
-    this.sharpSlider$.pipe(sample(interval(updateDuration)), takeUntil(this.unsubscribe))
+    this.sharpSlider$.pipe(sample(interval(updateDuration)), takeUntil(this.unsubscribe$))
         .subscribe(sharpPower => {
           this.sharpenPower = sharpPower;
           this.setSharpImageAndResults();
-        });
-
-    this.resultSlider$.pipe(sample(interval(updateDuration)), takeUntil(this.unsubscribe))
-        .subscribe(resultPower => {
-          this.resultPower = resultPower;
-          this.setResultImage();
         });
   }
 
@@ -92,7 +85,7 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
              .forEach(pix => {
                let srcPix = this.sourceImage.pixels[pix.index].value;
                let sharpPix = this.sharpImage.pixels[pix.index].value;
-               pix.value = roundToDecimalPlace(srcPix + sharpPix * this.resultPower);
+               pix.value = roundToDecimalPlace(srcPix + sharpPix);
              });
     tempImage.capPixelValues(7);
 
@@ -104,11 +97,8 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
     }
   }
 
-  ngOnInit() {
-  }
-
   ngOnDestroy(): void {
-    this.unsubscribe.next();
+    this.unsubscribe$.next();
   }
 
   ngAfterViewInit(): void {
@@ -122,10 +112,6 @@ export class PageMaskSharpenComponent implements OnInit, OnDestroy, AfterViewIni
 
   setSharpnessPowerSlider($event: MatSliderChange) {
     this.sharpSlider$.next($event.value);
-  }
-
-  setResultPowerSlider($event: MatSliderChange) {
-    this.resultSlider$.next($event.value);
   }
 
 }

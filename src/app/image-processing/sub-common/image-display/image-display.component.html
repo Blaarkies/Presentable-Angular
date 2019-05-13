@@ -1,5 +1,8 @@
-<div class="item" (mouseleave)="setMaskVisibility(null)">
-  <div class="pixel-numbers-container">
+<mat-card *ngIf="showTitle else pixelsOnly">
+
+  <div class="image-title">{{title}}</div>
+
+  <div class="pixel-numbers-container" (mouseleave)="setMaskVisibility(null)">
     <div *ngFor="let pixel of sourceImage.pixels; let i = index"
          class="code-subtitle
                pixel-with-number
@@ -21,4 +24,29 @@
       <span>{{pixel.value}}</span>
     </div>
   </div>
-</div>
+</mat-card>
+
+<ng-template #pixelsOnly>
+  <div class="pixel-numbers-container" (mouseleave)="setMaskVisibility(null)">
+    <div *ngFor="let pixel of sourceImage.pixels; let i = index"
+         class="code-subtitle
+               pixel-with-number
+               hover-code-highlight
+               cursor-pointer
+               transition-on-opacity"
+         [ngClass]="showNegativeValues
+                     ? (pixel.value < -7) ? 'pixel-negative-color--7'
+                                          : (pixel.value > 7) ? 'pixel-negative-color-7'
+                                                               : 'pixel-negative-color-' + pixel.value
+                     : (pixel.value < 0) ? 'pixel-color-0'
+                                         : (pixel.value > 7)  ? 'pixel-color-7'
+                                                              : 'pixel-color-' + pixel.value"
+         [class.highlight-mask]="pixel.maskVisible"
+         [class.opacity-0]="!pixel.visible"
+         [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
+         (click)="onPixelClick(pixel)"
+         (mouseenter)="onPixelHover(pixel)">
+      <span>{{pixel.value}}</span>
+    </div>
+  </div>
+</ng-template>

@@ -9,9 +9,9 @@ export class ButtonIconFabComponent {
 
   @Input() size: string = 'medium';
   @Input() color: string = 'primary';
-  @Output() click = new EventEmitter<void>();
+  @Output() buttonClick = new EventEmitter<void>();
 
   onClick() {
-    this.click.emit();
+    this.buttonClick.emit();
   }
 }

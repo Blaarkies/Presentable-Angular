@@ -29,11 +29,10 @@
         {{encodeMode && getEncoded(word) ? getEncoded(word).encoded : word }}
         {{' '}}
       </span>
-
     </div>
   </div>
 
-  <mat-card-footer class="footer-padding">
+  <mat-card-footer class="mat-card-fix-footer-padding">
     <div class="entropy-footer-container">
 
       <app-entropy-info [entropyObject]="datebook"></app-entropy-info>

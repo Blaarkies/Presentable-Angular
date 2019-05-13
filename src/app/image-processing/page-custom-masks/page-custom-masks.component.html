@@ -1,18 +1,27 @@
+<!--
+add shortcut buttons next to the kernel
+- Average blur
+- Gaussian blur
+- Laplace unsharp
+- Sobel
+-->
+
 <div class="tri-container">
 
   <app-image-display #source
                      [sourceImage]="sourceImage"
                      [mask]="customMask"
+                     [title]="'Source Image'"
                      (pixelClick)="setVisibility($event)"
                      (pixelHover)="setHoveredPixel($event)"
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
   <div class="filtering-container">
-    <app-algorithm-box [title]="'Apply custom filter on each pixel\'s value'"
-                       [inputA]="inputA || '9 pixels\' values'"
-                       [inputB]="inputB || 'Corresponding mask\'s values'"
+    <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel Value'"
+                       [inputA]="inputA || '9 pixel values'"
+                       [inputB]="inputB || 'Corresponding mask values'"
                        [calculation]="calculationText || isAverage ? 'sum / count' : 'sum'"
-                       [output]="output || 'Destination pixel\'s value'"
+                       [output]="output || 'Destination pixel value'"
                        (complete)="completeDestinationImage()"></app-algorithm-box>
     <div class="overlap-container">
       <app-mask-editor class="overlap-a" [mask]="customMask"></app-mask-editor>
@@ -29,5 +38,6 @@
   <app-image-display #result
                      [sourceImage]="resultImage"
                      [highlightPixel]="hoverPixel"
-                     [showNegativeValues]="!isAverage"></app-image-display>
+                     [showNegativeValues]="!isAverage"
+                     [title]="'Result Image'"></app-image-display>
 </div>

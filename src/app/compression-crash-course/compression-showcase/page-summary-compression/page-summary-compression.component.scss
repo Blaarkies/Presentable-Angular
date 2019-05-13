@@ -1,10 +1,5 @@
 @import 'styles/styles';
 
-.example-image {
-  vertical-align: -webkit-baseline-middle;
-  width: 90vw;
-}
-
 .list-item-container {
   display: grid;
   grid-template-columns: max-content auto;
@@ -14,11 +9,12 @@
     font-style: oblique;
     color: dimgray;
   }
-
 }
 
-:host-context(.is-presentation-mode) .summary-fadeable {
-  @extend .fadeable;
+:host-context(.is-presentation-mode) {
+  .summary-fadeable {
+    @extend .fadeable;
+  }
 }
 
 .equation-image {

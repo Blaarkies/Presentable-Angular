@@ -1,31 +1,30 @@
 <div class="pixels-and-sliders-container">
 
   <div class="image-a">
-    <div class="image-title">Source Image</div>
     <app-image-display #source
                        [sourceImage]="sourceImage"
                        [mask]="sharpMask"
+                       [title]="'Source Image'"
                        (pixelHover)="setHoveredPixel($event)"
                        (mouseleave)="setHoveredPixel(null)"></app-image-display>
   </div>
 
   <div class="image-b">
-    <div class="image-title overlap-container">
-      <span class="overlap-a">Sharpening Guide</span>
-      <button class="overlap-a justify-button-right hover-darken"
+    <div class="overlap-container">
+
+      <button class="overlap-b place-button-top-right hover-darken"
               mat-mini-fab
               color="primary"
               (click)="showMask = !showMask">
         <mat-icon>info</mat-icon>
       </button>
-    </div>
-    <div class="overlap-container">
       <app-image-display class="overlap-a transition-transparency"
                          #sharp
                          [class.transparent-more]="showMask"
                          [sourceImage]="sharpImage"
                          [highlightPixel]="hoverPixel"
-                         [showNegativeValues]="true"></app-image-display>
+                         [showNegativeValues]="true"
+                         [title]="'Sharpening Guide'"></app-image-display>
       <app-mask-editor class="overlap-b animate-fade-in center-mask-editor"
                        [mask]="sharpMask"
                        *ngIf="showMask"></app-mask-editor>
@@ -43,18 +42,9 @@
   </mat-slider>
 
   <div class="image-c">
-    <div class="image-title">Result Image</div>
     <app-image-display #result
                        [sourceImage]="sumImage"
-                       [highlightPixel]="hoverPixel"></app-image-display>
+                       [highlightPixel]="hoverPixel"
+                       [title]="'Result Image'"></app-image-display>
   </div>
-
-  <mat-slider class="footer-c slider-under-image"
-              color="primary"
-              [value]="resultPower"
-              [min]="0"
-              [max]="1"
-              [step]="0.01"
-              (input)="setResultPowerSlider($event)">
-  </mat-slider>
 </div>

@@ -97,12 +97,12 @@
           </div>
 
           <div class="restore-button">
-            <app-button-icon-fab (click)="resetCharacter()">restore</app-button-icon-fab>
+            <app-button-icon-fab (buttonClick)="resetCharacter()">restore</app-button-icon-fab>
           </div>
 
           <div class="next-button">
             <app-button-icon-fab color="link"
-                                 (click)="stepToNextCharacter()"
+                                 (buttonClick)="stepToNextCharacter()"
                                  (mouseenter)="setSelectedLzwEntry()">arrow_forward
             </app-button-icon-fab>
           </div>

@@ -8,6 +8,9 @@ $size-pixel: 60px;
 
   overflow: hidden;
 
+  border: 2px solid dimgray;
+  border-radius: 6px;
+
   .pixel-with-number {
     user-select: none;
     line-height: 0;
@@ -86,4 +89,10 @@ $color-mask-secondary-shadow: transparentize(black, 0.7);
 
 .opacity-0 {
   opacity: 0;
+}
+
+.image-title {
+  @extend .page-title;
+  @extend .card-title-padding;
+  text-align: center;
 }

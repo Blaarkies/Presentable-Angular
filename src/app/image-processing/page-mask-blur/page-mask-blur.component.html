@@ -1,24 +1,30 @@
+<!--
 add some way to show which kernel items gets multiplied by pixel on image
 - lock a pixel so that the pointer can be used?
 - have an animation play?
+
+in the algorithm box, show the 8 input pixels in their relative positions (not just a flat line string)
+-->
 
 <div class="tri-container">
 
   <app-image-display #source
                      [sourceImage]="sourceImage"
                      [mask]="averageMask"
+                     [title]="'Source Image'"
                      (pixelClick)="setVisibility($event)"
                      (pixelHover)="setHoveredPixel($event)"
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
-  <app-algorithm-box [title]="'Blur each pixel\'s value'"
-                     [inputA]="inputA || 'Source pixel\'s value'"
-                     [inputB]="inputB || '8 neighbour pixels\' values'"
+  <app-algorithm-box [title]="'Blur Each Pixel Value'"
+                     [inputA]="inputA || 'Source pixel value'"
+                     [inputB]="inputB || '8 neighbour pixel values'"
                      [calculation]="calculationText || 'sum / count'"
-                     [output]="output || 'Destination pixel\'s value'"
+                     [output]="output || 'Destination pixel value'"
                      (complete)="completeDestinationImage()"></app-algorithm-box>
 
   <app-image-display #result
                      [sourceImage]="resultImage"
-                     [highlightPixel]="hoverPixel"></app-image-display>
+                     [highlightPixel]="hoverPixel"
+                     [title]="'Result Image'"></app-image-display>
 </div>

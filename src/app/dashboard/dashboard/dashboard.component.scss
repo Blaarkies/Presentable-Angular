@@ -48,12 +48,4 @@
     grid-template-areas: 'social subject';
     grid-template-columns: max-content auto;
   }
-
-  .subject-container {
-    grid-template-rows: repeat(5, 120px);
-  }
-
-  .social-container {
-    grid-row-gap: 32px;
-  }
 }
