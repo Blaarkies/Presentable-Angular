@@ -51,7 +51,7 @@
   <div class="codes-container">
     <mat-card>
       <div class="content-title card-title-padding">Dictionary</div>
-      <div class="huffman-character-codes-container">
+      <div class="huffman-character-codes-container code-subtitle">
 
         <div class="item" (mouseenter)="selectedChar = null">
           <div>Char</div>
@@ -64,7 +64,7 @@
              (mouseenter)="selectedChar = col.char">
           <div>{{col.display}}</div>
           <mat-divider class="divider-normal"></mat-divider>
-          <div>{{col.path}}</div>
+          <div class="code-text">{{col.path}}</div>
         </div>
       </div>
     </mat-card>

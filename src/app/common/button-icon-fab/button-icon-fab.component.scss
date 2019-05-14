@@ -58,6 +58,7 @@ $large-size: 60px;
 
   &.primary {
     background-color: #43A047;
+
     mat-icon {
       color: white;
     }
@@ -65,8 +66,44 @@ $large-size: 60px;
 
   &.link {
     background-color: white;
+
     mat-icon {
       color: black;
+    }
+  }
+}
+
+:host-context(.is-presentation-mode) {
+  $presentation-mode-small-size: $small-size * $presentation-mode-size-multiplier;
+  $presentation-mode-medium-size: $medium-size * $presentation-mode-size-multiplier;
+  $presentation-mode-large-size: $large-size * $presentation-mode-size-multiplier;
+
+  .icon-container {
+    &.small {
+      width: $presentation-mode-small-size;
+      height: $presentation-mode-small-size;
+
+      mat-icon {
+        font-size: 0.8 * $presentation-mode-small-size;
+      }
+    }
+
+    &.medium {
+      width: $presentation-mode-medium-size;
+      height: $presentation-mode-medium-size;
+
+      mat-icon {
+        font-size: 0.8 * $presentation-mode-medium-size;
+      }
+    }
+
+    &.large {
+      width: $presentation-mode-large-size;
+      height: $presentation-mode-large-size;
+
+      mat-icon {
+        font-size: 0.8 * $presentation-mode-large-size;
+      }
     }
   }
 }

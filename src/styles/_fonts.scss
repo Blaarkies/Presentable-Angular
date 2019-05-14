@@ -1,4 +1,5 @@
 $size-page-title: 30px;
+$size-page-subtitle: 26px;
 
 $size-content-title: 24px;
 $size-content-subtitle: 20px;
@@ -10,6 +11,8 @@ $size-code-text: 16px;
 
 $size-pixel-number: 36px;
 
+$presentation-mode-size-multiplier: 1.5;
+
 .font-default {
   font-family: Roboto, sans-serif;
 }
@@ -18,9 +21,18 @@ $size-pixel-number: 36px;
   font-family: monospace;
 }
 
+.center-text {
+  place-self: center;
+}
+
 
 .page-title {
   font-size: $size-page-title !important;
+  @extend .font-default;
+}
+
+.page-subtitle {
+  font-size: $size-page-subtitle !important;
   @extend .font-default;
 }
 
@@ -68,10 +80,9 @@ $size-pixel-number: 36px;
 }
 
 
-.is-presentation-mode {
-  $presentation-mode-size-multiplier: 1.5;
-
+::ng-deep .is-presentation-mode {
   $presentation-mode-size-page-title: $size-page-title * $presentation-mode-size-multiplier;
+  $presentation-mode-size-page-subtitle: $size-page-subtitle * $presentation-mode-size-multiplier;
   $presentation-mode-size-content-title: $size-content-title * $presentation-mode-size-multiplier;
   $presentation-mode-size-content-subtitle: $size-content-subtitle * $presentation-mode-size-multiplier;
   $presentation-mode-size-content-text: $size-content-text * $presentation-mode-size-multiplier;
@@ -81,6 +92,11 @@ $size-pixel-number: 36px;
 
   .page-title {
     font-size: $presentation-mode-size-page-title !important;
+    @extend .font-default;
+  }
+
+  .page-subtitle {
+    font-size: $presentation-mode-size-page-subtitle !important;
     @extend .font-default;
   }
 

@@ -50,6 +50,8 @@
   }
 }
 
-:host-context(.is-presentation-mode) .pixels-encoded-card {
-  @extend .fadeable;
+:host-context(.is-presentation-mode) {
+  .pixels-encoded-card {
+    @extend .fadeable;
+  }
 }

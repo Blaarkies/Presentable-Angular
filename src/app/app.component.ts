@@ -132,7 +132,6 @@ export class AppComponent implements OnDestroy, OnInit {
             takeUntil(this.unsubscribe$)
           )
           .subscribe(settings => {
-            console.log(settings);
             this.isPresentationMode = settings.isPresentationMode;
 
             localStorage.setItem('isPresentationMode', JSON.stringify(this.isPresentationMode));

@@ -8,7 +8,6 @@ $margin-amount-connectors: 20%;
   border: 2px solid $color-connectors;
   border-radius: 4px;
   text-align: center;
-  @extend .code-subtitle;
   padding: 8px;
   min-width: 60px;
 }
@@ -63,10 +62,6 @@ $margin-amount-connectors: 20%;
   margin: auto;
 
   place-items: center;
-
-  .algorithm-code {
-    @extend .code-title;
-  }
 }
 
 .center-label-container {

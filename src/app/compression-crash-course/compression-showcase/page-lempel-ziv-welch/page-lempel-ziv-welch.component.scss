@@ -86,17 +86,7 @@
   }
 }
 
-@media #{$mediaQ-small-desktop} {
-  .lzw-container {
-    grid-template-columns: auto 58%;
-  }
-
-  .encoded-container {
-    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-    grid-row-gap: 0;
-  }
-}
-
+$mat-icon-font-size: 32px;
 .empty-dictionary {
   align-self: center;
   display: grid;
@@ -104,6 +94,7 @@
 
   .mat-icon {
     justify-self: center;
+    font-size: $mat-icon-font-size;
   }
 }
 
@@ -118,5 +109,22 @@
 
   .fix-mat-card-normal-padding {
     padding: 24px;
+  }
+}
+
+:host-context(.is-presentation-mode) {
+  .empty-dictionary .mat-icon {
+    font-size: $mat-icon-font-size * $presentation-mode-size-multiplier;
+  }
+}
+
+@media #{$mediaQ-small-desktop} {
+  .lzw-container {
+    grid-template-columns: auto 58%;
+  }
+
+  .encoded-container {
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    grid-row-gap: 0;
   }
 }

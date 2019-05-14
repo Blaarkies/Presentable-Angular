@@ -3,9 +3,11 @@
 .list-item-container {
   display: grid;
   grid-template-columns: max-content auto;
+  grid-gap: 50px;
 
   > .right {
     justify-self: right;
+    text-align: right;
     font-style: oblique;
     color: dimgray;
   }
@@ -14,6 +16,10 @@
 :host-context(.is-presentation-mode) {
   .summary-fadeable {
     @extend .fadeable;
+  }
+
+  .equation-image {
+    height: 150px;
   }
 }
 
