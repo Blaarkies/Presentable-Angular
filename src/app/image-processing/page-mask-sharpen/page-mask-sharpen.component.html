@@ -12,12 +12,8 @@
   <div class="image-b">
     <div class="overlap-container">
 
-      <button class="overlap-b place-button-top-right hover-darken"
-              mat-mini-fab
-              color="primary"
-              (click)="showMask = !showMask">
-        <mat-icon>info</mat-icon>
-      </button>
+      <app-button-icon-fab class="overlap-b place-button-top-right"
+                           (click)="showMask = !showMask">info</app-button-icon-fab>
       <app-image-display class="overlap-a transition-transparency"
                          #sharp
                          [class.transparent-more]="showMask"

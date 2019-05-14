@@ -26,10 +26,6 @@
     content: ' ';
     margin-right: 16px;
   }
-
-  .subject-title {
-    font-size: 30px;
-  }
 }
 
 .toggle-and-navigation {
@@ -41,12 +37,6 @@
     display: grid;
     grid-template-columns: repeat(4, max-content);
   }
-}
-
-.page-title-font {
-  place-self: center;
-  @extend .font-default;
-  font-size: 32px;
 }
 
 .full-height {
