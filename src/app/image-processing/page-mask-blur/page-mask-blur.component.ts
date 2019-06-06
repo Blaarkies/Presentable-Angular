@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { sum } from 'src/app/common/utils';
+import { clone, sum } from 'src/app/common/utils';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
-import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 
 @Component({
@@ -18,12 +18,12 @@ export class PageMaskBlurComponent {
   resultImage: Image;
 
   averageMask: Mask;
-  inputA: string;
-  inputB: string;
   output: string;
   calculationText: string;
 
   hoverPixel: Pixel;
+  kernelInputA: Mask;
+  kernelInputB: Mask;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.averageMask = this.pixelProcessorService.getMaskFromString(
@@ -58,19 +58,33 @@ export class PageMaskBlurComponent {
   setHoveredPixel(pixel: Pixel) {
     this.hoverPixel = pixel;
     if (!pixel) {
-      this.inputA = this.inputB = this.output = this.calculationText = null;
+      this.output
+        = this.calculationText
+        = this.kernelInputA
+        = this.kernelInputB
+        = null;
       return;
     }
 
     let nearPixels = this.sourceImage.getMaskedPixels(this.averageMask, pixel);
+    let selectedPixelIndex = nearPixels.findIndex(p => p.index == pixel.index);
+    let nearMask = Mask.fromPixels(nearPixels);
 
-    this.inputA = pixel.value.toString();
-    this.inputB = nearPixels.filter((_, i) => i !== 4)
-                            .map(pix => pix.value)
-                            .join(', ');
+    let centerMask = <Mask>clone(nearMask);
+    centerMask.pixels
+              .filter((p, i) => i !== selectedPixelIndex)
+              .forEach(p => p.value = null);
+
+    let surroundingMaskPixels = nearMask;
+    surroundingMaskPixels.pixels[selectedPixelIndex].value = null;
+
+    this.kernelInputA = centerMask;
+    this.kernelInputB = surroundingMaskPixels;
 
     let sumOfValues = sum(nearPixels, c => c.value);
     this.output = this.resultImage.pixels[pixel.index].value.toString();
     this.calculationText = `${sumOfValues} / ${nearPixels.length}`;
   }
+
+
 }

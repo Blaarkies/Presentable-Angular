@@ -9,6 +9,7 @@ import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 export class MaskEditorComponent {
 
   @Input() mask: Mask;
+  @Input() disabled = false;
 
   plusPixelValue(pixel: MaskPixel): void {
     pixel.value++;

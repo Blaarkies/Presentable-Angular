@@ -25,6 +25,7 @@ export class PageCustomMasksComponent {
 
   isAverage = true;
   hoverPixel: Pixel;
+  kernelInputA: Mask;
 
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
@@ -82,16 +83,19 @@ export class PageCustomMasksComponent {
   setHoveredPixel(pixel: Pixel) {
     this.hoverPixel = pixel;
     if (!pixel) {
-      this.inputA = this.inputB = this.output = this.calculationText = null;
+      this.inputA
+        = this.inputB
+        = this.kernelInputA
+        = this.output
+        = this.calculationText
+        = null;
       return;
     }
 
     let nearPixels = this.sourceImage.getMaskedPixels(this.customMask, pixel);
+    let nearMask = Mask.fromPixels(nearPixels);
 
-    this.inputA = nearPixels.map(pix => pix.value)
-                            .join(', ');
-    this.inputB = nearPixels.map(pix => pix.maskValue)
-                            .join(', ');
+    this.kernelInputA = nearMask;
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
@@ -102,6 +106,35 @@ export class PageCustomMasksComponent {
 
   setIsAverageSlider(checked: boolean) {
     this.isAverage = checked;
+    this.filterImage();
+  }
+
+  activateSmoothMask() {
+    this.customMask = this.pixelProcessorService.getMaskFromString(
+      `111
+      111
+      111`);
+    this.isAverage = true;
+    this.filterImage();
+  }
+
+  activateGaussianMask() {
+    this.customMask = this.pixelProcessorService.getMaskFromString(
+      `121
+      242
+      121`);
+    this.isAverage = true;
+    this.filterImage();
+  }
+
+  activateSharpenMask() {
+    this.customMask = this.pixelProcessorService.getMaskFromList(
+      [
+        -1, -2, -1,
+        -2, 12, -2,
+        -1, -2, -1
+      ]);
+    this.isAverage = false;
     this.filterImage();
   }
 }

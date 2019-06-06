@@ -1,8 +1,10 @@
 <div class="overlap-a custom-mask-container">
   <div *ngFor="let pixel of mask.pixels"
-       class="overlap-container mask-pixel cursor-pointer mat-elevation-z1">
+       class="overlap-container mask-pixel cursor-pointer mat-elevation-z1"
+       [class.transparent]="pixel.value == null">
     <div class="overlap-a">{{pixel.value}}</div>
-    <div class="overlap-b adjuster-buttons-container">
+    <div *ngIf="!disabled"
+         class="overlap-b adjuster-buttons-container">
       <div class="plus" (click)="plusPixelValue(pixel)">+</div>
       <div class="minus" (click)="minusPixelValue(pixel)">-</div>
     </div>

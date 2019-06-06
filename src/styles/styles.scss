@@ -180,6 +180,10 @@ html, body {
   }
 }
 
+.align-text-center {
+  text-align: center;
+}
+
 .overlap-container {
   display: grid;
   grid-template-areas: 'overlap';
@@ -200,7 +204,7 @@ html, body {
       45deg,
       transparent,
       transparent 10px,
-      transparentize(gray, 0.9) 10px,
-      transparentize(gray, 0.9) 20px
+      transparentize(gray, 0.93) 10px,
+      transparentize(gray, 0.93) 20px
   );
 }

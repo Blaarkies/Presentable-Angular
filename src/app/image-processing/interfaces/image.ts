@@ -1,5 +1,5 @@
 import { getXYFromIndex, roundToDecimalPlace } from 'src/app/common/utils';
-import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 
 export class Pixel {
   value: number;
@@ -71,4 +71,5 @@ export class Image {
           }
         });
   }
+
 }
