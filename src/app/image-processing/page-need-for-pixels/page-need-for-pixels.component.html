@@ -4,25 +4,73 @@ can move to a specific picture temporarily, in order to make a point to the audi
 <div class="bi-container" (click)="showPixels = true">
   <div class="item">
 
-    <div class="image-container overlap-container">
+    <mat-card>
+      <mat-card-content>
 
-      <div class="image overlap-a animate-blur-to-normal"
-           style="background-image: url('assets/lenna-example.jpg');"></div>
-      <div class="image overlap-b animate-normal-to-sharp"
-           style="background-image: url('assets/lenna-sharpened.jpg');"></div>
-    </div>
+        <mat-tab-group class="move-tabs-to-bottom space-for-tab-header"
+                       [selectedIndex]="filtersSwapIndex"
+                       (click)="userClickTab(); $event.stopPropagation();">
+          <mat-tab label="Normal">
+            <div class="content-title card-title-padding">No Effects</div>
+            <div class="image-container">
+              <div class="image" style="background-image: url('assets/lenna-example.jpg');"></div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Binarize">
+            <div class="content-title card-title-padding">Black and White</div>
+            <div class="image-container">
+              <div class="image filter-black-and-white"
+                   style="background-image: url('assets/lenna-example.jpg');"></div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Blur">
+            <div class="content-title card-title-padding">Smoothed</div>
+            <div class="image-container">
+              <div class="image filter-blur" style="background-image: url('assets/lenna-example.jpg');"></div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Sharpen">
+            <div class="content-title card-title-padding">Sharpened</div>
+            <div class="image-container">
+              <div class="image" style="background-image: url('assets/lenna-sharpened.jpg');"></div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Invert">
+            <div class="content-title card-title-padding">Inverted</div>
+            <div class="image-container">
+              <div class="image filter-invert" style="background-image: url('assets/lenna-example.jpg');"></div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+
+      </mat-card-content>
+    </mat-card>
+
   </div>
 
   <div class="item animate-fade-in display-none" [class.display-unset]="showPixels">
 
-    <div class="image-container overlap-container">
 
-      <div class="image overlap-a animate-zoom center-zoom-on-eye"
-           style="background-image: url('assets/lenna-example.jpg');"></div>
+    <mat-card>
+      <mat-card-content>
+        <div class="content-title card-title-padding">Inside An Image</div>
 
-      <app-image-display class="overlap-b pixel-animate-fade invisible-background"
-                         [sourceImage]="sourceImage"
-                         [showTitle]="false"></app-image-display>
-    </div>
+        <div class="image-container overlap-container">
+
+          <div class="image overlap-a animate-zoom center-zoom-on-eye"
+               style="background-image: url('assets/lenna-example.jpg');"></div>
+
+          <app-image-display class="overlap-b pixel-animate-fade invisible-background"
+                             [sourceImage]="sourceImage"
+                             [showTitle]="false"></app-image-display>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+
   </div>
 </div>

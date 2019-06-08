@@ -1,34 +1,43 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnDestroy } from '@angular/core';
+import { interval, of, Subject } from 'rxjs';
+import { delay, filter, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
              selector: 'app-page-in-real-life-images',
              templateUrl: './page-in-real-life-images.component.html',
              styleUrls: ['./page-in-real-life-images.component.scss']
            })
-export class PageInRealLifeImagesComponent implements OnInit, OnDestroy {
+export class PageInRealLifeImagesComponent implements OnDestroy {
+
+  unsubscribe$ = new Subject<void>();
 
   logoSwapIndex = 0;
   fourierSwapIndex = 0;
-
-  swapInterval$ = interval(7500);
-  unsubscribe = new Subject<void>();
+  userClicked = false;
+  bulletNumber: number = 1;
 
   constructor() {
-    this.swapInterval$
-        .pipe(takeUntil(this.unsubscribe))
-        .subscribe(_ => {
-          this.logoSwapIndex = (this.logoSwapIndex + 1) % 3;
-          setTimeout(_ => this.fourierSwapIndex = (this.fourierSwapIndex + 1) % 4, 250);
-        });
-  }
+    interval(1000 * 7.5)
+      .pipe(
+        filter(_ => !this.userClicked),
+        tap(_ => this.logoSwapIndex = (this.logoSwapIndex + 1) % 3),
+        delay(300),
+        tap(_ => this.fourierSwapIndex = (this.fourierSwapIndex + 1) % 4),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe();
 
-  ngOnInit() {
+    setTimeout(_ => this.bulletNumber++, 0);
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe.next();
+    this.unsubscribe$.next();
   }
 
+  userClickTab(): void {
+    this.userClicked = true;
+    of(null)
+      .pipe(delay(1000 * 15), takeUntil(this.unsubscribe$))
+      .subscribe(_ => this.userClicked = false);
+  }
 }
