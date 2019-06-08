@@ -1,19 +1,45 @@
 <mat-card>
-  <div class="content-title card-title-padding">{{title}}</div>
+  <div class="content-title card-title-padding align-text-center">{{title}}</div>
 
   <mat-card-content>
     <div class="content-subtitle">
 
       <div class="bi-container">
-        <div class="left-label-container" *ngIf="inputA">
-          <div class="code-subtitle label">{{inputA}}</div>
+        <div class="left-label-container" *ngIf="inputA || kernelInputA">
+          <div class="code-subtitle label" *ngIf="kernelInputA; else normalA">
+            <app-mask-editor [mask]="kernelInputA"
+                             [disabled]="true"></app-mask-editor>
+          </div>
+          <ng-template #normalA>
+            <div class="code-subtitle label">{{inputA}}</div>
+          </ng-template>
+
           <div class="left-label-connector"></div>
         </div>
+
         <div class="right-label-container" *ngIf="inputB">
-          <div class="code-subtitle label">{{inputB}}</div>
-          <div class="right-label-connector"></div>
+          <div class="right-label-container" *ngIf="inputB || kernelInputB">
+            <div class="code-subtitle label" *ngIf="kernelInputB; else normalB">
+              <app-mask-editor [mask]="kernelInputB"
+                               [disabled]="!editKernelB"></app-mask-editor>
+            </div>
+            <ng-template #normalB>
+              <div class="code-subtitle label">{{inputB}}</div>
+            </ng-template>
+
+            <div class="right-label-connector"></div>
+          </div>
         </div>
       </div>
+
+      <ng-container *ngIf="inputC">
+        <div class="algorithm-box-container fit-content">
+          <div class="code-subtitle">{{inputC}}</div>
+        </div>
+        <div class="center-label-container">
+          <div class="center-label-connector"></div>
+        </div>
+      </ng-container>
 
       <div class="algorithm-box-container">
         <app-button-icon-fab class="animate-mat-icon-rotate"

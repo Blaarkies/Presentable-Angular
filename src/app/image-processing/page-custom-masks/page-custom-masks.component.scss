@@ -1,7 +1,6 @@
 @import 'styles/styles';
 
 .slider-background {
-  justify-self: end;
   height: max-content;
 
   background-color: ghostwhite;
@@ -13,4 +12,21 @@
 .filtering-container {
   display: grid;
   grid-gap: 16px;
+}
+
+.button-padding {
+  padding: 16px 8px;
+}
+
+.shortcuts-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+
+  grid-gap: 8px;
+  align-items: center;
+}
+
+.place-button-top-right {
+  place-self: start end;
+  margin: -5%;
 }

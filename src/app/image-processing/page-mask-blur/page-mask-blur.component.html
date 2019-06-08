@@ -17,10 +17,13 @@ in the algorithm box, show the 8 input pixels in their relative positions (not j
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
   <app-algorithm-box [title]="'Blur Each Pixel Value'"
-                     [inputA]="inputA || 'Source pixel value'"
-                     [inputB]="inputB || '8 neighbour pixel values'"
+                     [inputA]="kernelInputA || 'Source pixel value'"
+                     [inputB]="kernelInputB || '8 neighbour pixel values'"
+                     [inputC]="inputC || 'Sum all values'"
                      [calculation]="calculationText || 'sum / count'"
                      [output]="output || 'Destination pixel value'"
+                     [kernelInputA]="kernelInputA"
+                     [kernelInputB]="kernelInputB"
                      (complete)="completeDestinationImage()"></app-algorithm-box>
 
   <app-image-display #result

@@ -1,11 +1,3 @@
-<!--
-add shortcut buttons next to the kernel
-- Average blur
-- Gaussian blur
-- Laplace unsharp
-- Sobel
--->
-
 <div class="tri-container">
 
   <app-image-display #source
@@ -17,16 +9,25 @@ add shortcut buttons next to the kernel
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
   <div class="filtering-container">
-    <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel Value'"
-                       [inputA]="inputA || '9 pixel values'"
-                       [inputB]="inputB || 'Corresponding mask values'"
-                       [calculation]="calculationText || isAverage ? 'sum / count' : 'sum'"
-                       [output]="output || 'Destination pixel value'"
-                       (complete)="completeDestinationImage()"></app-algorithm-box>
     <div class="overlap-container">
-      <app-mask-editor class="overlap-a" [mask]="customMask"></app-mask-editor>
-
-      <div class="overlap-b slider-background">
+      <app-button-icon-fab class="overlap-b place-button-top-right"
+                           (click)="explainKernelDialog()">info</app-button-icon-fab>
+      <app-algorithm-box class="overlap-a" [title]="'Apply Custom Filter On Each Pixel'"
+                         [inputA]="inputA || '9 pixel values'"
+                         [inputB]="inputB || 'Corresponding mask values'"
+                         [inputC]="inputC || 'Sum all products'"
+                         [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
+                         [output]="output || 'Destination pixel value'"
+                         [kernelInputA]="kernelInputA"
+                         [kernelInputB]="customMask"
+                         [editKernelB]="true"
+                         (complete)="completeDestinationImage()"></app-algorithm-box>
+    </div>
+    <div class="shortcuts-container">
+      <button mat-raised-button class="content-title button-padding" (click)="activateSmoothMask()">Smooth</button>
+      <button mat-raised-button class="content-title button-padding" (click)="activateGaussianMask()">Gaussian</button>
+      <button mat-raised-button class="content-title button-padding" (click)="activateSharpenMask()">Sharpen</button>
+      <div class="slider-background">
         <app-toggle-slider [isChecked]="isAverage"
                            [tooltipText]="'Toggles calculation between sum and average'"
                            [label]="'Average'"

@@ -1,58 +1,19 @@
 @import 'styles/styles';
 
-$blur-to-sharp-duration: 12000ms;
-.animate-blur-to-normal {
-  animation: blurToNormal $blur-to-sharp-duration linear infinite both;
+.move-tabs-to-bottom ::ng-deep mat-tab-header {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
 }
 
-.animate-normal-to-sharp {
-  animation: normalToSharp $blur-to-sharp-duration linear infinite both;
+.space-for-tab-header {
+  padding-bottom: 48px;
 }
 
-@keyframes blurToNormal {
-  0% {
-    filter: blur(0px) invert(0);
-  }
-  16% {
-    filter: blur(0px) invert(0);
-  }
-  25% {
-    filter: blur(20px) invert(0);
-  }
-  41% {
-    filter: blur(20px) invert(0);
-  }
-  50% {
-    filter: blur(0px) invert(1);
-  }
-  66% {
-    filter: blur(0px) invert(1);
-  }
-  74% {
-    filter: blur(0px) invert(0);
-  }
-  100% {
-    filter: blur(0px) invert(0);
-  }
+::ng-deep .mat-tab-label, .mat-tab-label-active {
+  min-width: 24px !important;
 }
 
-@keyframes normalToSharp {
-  0% {
-    opacity: 0;
-  }
-  66% {
-    opacity: 0;
-  }
-  74% {
-    opacity: 1;
-  }
-  91% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 
 $pixel-zoom-fade-delay: 2s;
 $image-to-pixels-duration: 15s;
@@ -103,6 +64,8 @@ $image-lenna-max-scale: 50;
 }
 
 .image-container {
+  display: grid;
+
   width: 600px;
   height: 600px;
   position: relative;
@@ -123,6 +86,7 @@ $image-lenna-max-scale: 50;
     .pixel-with-number {
       background: unset;
     }
+
     .pixel-numbers-container {
 
       grid-template-columns: repeat(8, auto);
@@ -143,5 +107,14 @@ $image-lenna-max-scale: 50;
   }
 }
 
+.filter-invert {
+  filter: invert(1);
+}
 
+.filter-blur {
+  filter: blur(20px);
+}
 
+.filter-black-and-white {
+  filter: grayscale(1) contrast(30);
+}

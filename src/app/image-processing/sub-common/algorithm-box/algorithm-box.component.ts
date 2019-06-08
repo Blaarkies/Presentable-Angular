@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Mask } from 'src/app/image-processing/interfaces/mask';
 
 @Component({
              selector: 'app-algorithm-box',
@@ -7,14 +8,20 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
            })
 export class AlgorithmBoxComponent {
 
-  @Input() title;
-  @Input() inputA;
-  @Input() inputB;
-  @Input() calculation;
-  @Input() output;
+  @Input() title: string;
+  @Input() inputA: string;
+  @Input() inputB: string;
+  @Input() inputC: string;
+  @Input() calculation: string;
+  @Input() output: string;
+  @Input() kernelInputA: Mask = null;
+  @Input() kernelInputB: Mask = null;
+  @Input() editKernelB = false;
+
   @Output() complete = new EventEmitter<void>();
 
   onCompleteDestinationImage() {
     this.complete.emit();
   }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -23,7 +23,18 @@ export class AppComponent implements OnDestroy, OnInit {
 
   unsubscribe$ = new Subject<void>();
   isTutorialMode: boolean = false;
-  isPresentationMode: boolean;
+
+  private _isPresentationMode: boolean;
+  get isPresentationMode(): boolean {
+    return this._isPresentationMode;
+  }
+
+  set isPresentationMode(value: boolean) {
+    value
+    ? document.body.classList.add('is-presentation-mode')
+    : document.body.classList.remove('is-presentation-mode');
+    this._isPresentationMode = value;
+  }
 
   constructor(private route: ActivatedRoute,
               public router: Router,
@@ -133,7 +144,6 @@ export class AppComponent implements OnDestroy, OnInit {
           )
           .subscribe(settings => {
             this.isPresentationMode = settings.isPresentationMode;
-
             localStorage.setItem('isPresentationMode', JSON.stringify(this.isPresentationMode));
           });
     });

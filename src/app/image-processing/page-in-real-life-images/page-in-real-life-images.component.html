@@ -1,14 +1,7 @@
-<!--
-Do not hide the tab headers, use them for control during presentation
-- in order to talk about a specific picture
-- pause the carousel timer for 10 seconds on manual clicks
--->
-
-
-<div class="bi-container">
+<div class="bi-container" (click)="bulletNumber = bulletNumber + 1">
 
   <div class="bi-vertical-container">
-    <mat-card>
+    <mat-card class="summary-fadeable" [class.show]="bulletNumber > 1">
       <div class="content-title card-title-padding">Fourier Transform</div>
       <mat-card-content>
         <ul class="content-subtitle">
@@ -20,11 +13,12 @@ Do not hide the tab headers, use them for control during presentation
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="summary-fadeable" [class.show]="bulletNumber > 2">
       <mat-card-content>
 
-        <mat-tab-group [selectedIndex]="fourierSwapIndex" class="remove-header">
-          <mat-tab>
+        <mat-tab-group [selectedIndex]="fourierSwapIndex" class="move-tabs-to-bottom"
+                       (click)="userClickTab(); $event.stopPropagation();">
+          <mat-tab label="Transform">
             <div class="content-title">Spatial Domain To Frequency Domain</div>
             <div class="large-image-padding fourier-container">
               <div class="large-image" style="background-image: url('assets/fourier/fourier-normal.png');"></div>
@@ -33,7 +27,7 @@ Do not hide the tab headers, use them for control during presentation
             </div>
           </mat-tab>
 
-          <mat-tab>
+          <mat-tab label="Sharpen">
             <div class="content-title">Highpass Filter (Edge Detection)</div>
             <div class="large-image-padding fourier-container">
               <div class="large-image" style="background-image: url('assets/fourier/fourier-sharp-map.png');"></div>
@@ -43,7 +37,7 @@ Do not hide the tab headers, use them for control during presentation
             </div>
           </mat-tab>
 
-          <mat-tab>
+          <mat-tab label="Blur">
             <div class="content-title">Lowpass Filter (Blur)</div>
             <div class="large-image-padding fourier-container">
               <div class="large-image" style="background-image: url('assets/fourier/fourier-blur-map.png');"></div>
@@ -52,7 +46,7 @@ Do not hide the tab headers, use them for control during presentation
             </div>
           </mat-tab>
 
-          <mat-tab>
+          <mat-tab label="Custom">
             <div class="content-title">Custom Filter</div>
             <div class="large-image-padding fourier-container">
               <div class="large-image" style="background-image: url('assets/fourier/fourier-special-map.png');"></div>
@@ -68,39 +62,41 @@ Do not hide the tab headers, use them for control during presentation
   </div>
 
   <div class="bi-vertical-container">
-
-    <mat-card>
+    <mat-card class="space-for-tab-header summary-fadeable" [class.show]="bulletNumber > 3">
       <mat-card-content>
 
-        <mat-tab-group [selectedIndex]="logoSwapIndex" class="remove-header">
-          <mat-tab>
+        <mat-tab-group [selectedIndex]="logoSwapIndex" class="move-tabs-to-bottom"
+                       (click)="userClickTab(); $event.stopPropagation();">
+          <mat-tab label="Usage">
             <div class="content-title">Applying blur with Paint.Net</div>
             <div class="large-image-padding">
               <div class="large-image" style="background-image: url('assets/example-paint-dot-net.png');"></div>
             </div>
           </mat-tab>
 
-          <mat-tab>
-            <div class="content-title">Apps that do image filtering</div>
-            <ul class="content-subtitle bullet-list-grid-container">
-              <li>Adobe Photoshop</li>
-              <li>CorelDRAW</li>
-              <li>GIMP</li>
-              <li>Paint.NET</li>
-              <li>Google Photos</li>
-              <li>and many, many more</li>
-            </ul>
-            <div class="logos-container">
-              <div class="logo-image" style="background-image: url('assets/logo-corel-draw.png');"></div>
-              <div class="logo-image" style="background-image: url('assets/logo-google-photos.png');"></div>
-              <div class="logo-image" style="background-image: url('assets/logo-gimp.png');"></div>
-              <div class="logo-image" style="background-image: url('assets/logo-paintdotnet.jpg');"></div>
-              <div class="logo-image" style="background-image: url('assets/logo-photoshop.jpg');"></div>
+          <mat-tab label="Apps">
+            <div class="large-image-padding">
+              <div class="content-title">Apps that do image filtering</div>
+              <ul class="content-subtitle bullet-list-grid-container">
+                <li>Adobe Photoshop</li>
+                <li>CorelDRAW</li>
+                <li>GIMP</li>
+                <li>Paint.NET</li>
+                <li>Google Photos</li>
+                <li>and many, many more</li>
+              </ul>
+              <div class="logos-container">
+                <div class="logo-image" style="background-image: url('assets/logo-corel-draw.png');"></div>
+                <div class="logo-image" style="background-image: url('assets/logo-google-photos.png');"></div>
+                <div class="logo-image" style="background-image: url('assets/logo-gimp.png');"></div>
+                <div class="logo-image" style="background-image: url('assets/logo-paintdotnet.jpg');"></div>
+                <div class="logo-image" style="background-image: url('assets/logo-photoshop.jpg');"></div>
+              </div>
             </div>
           </mat-tab>
 
-          <mat-tab>
-            <div class="content-title">Basic filters on a Google Pixel 2</div>
+          <mat-tab label="Mobile">
+            <div class="content-title">Filters on a Google Pixel 2</div>
             <div class="large-image-padding">
               <div class="large-image" style="background-image: url('assets/example-pixel-2-image.png');"></div>
             </div>
@@ -110,7 +106,7 @@ Do not hide the tab headers, use them for control during presentation
       </mat-card-content>
     </mat-card>
 
-    <mat-card>
+    <mat-card class="summary-fadeable" [class.show]="bulletNumber > 3">
       <div class="content-title card-title-padding">Other Applications Of Image Processing</div>
       <mat-card-content>
         <ul class="content-subtitle">

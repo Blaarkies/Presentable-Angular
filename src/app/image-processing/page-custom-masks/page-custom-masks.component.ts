@@ -4,6 +4,8 @@ import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
+import { MatDialog } from '@angular/material';
+import { KernelExplainedDialogComponent } from 'src/app/image-processing/page-custom-masks/kernel-explained-dialog/kernel-explained-dialog.component';
 
 @Component({
              selector: 'app-page-custom-masks',
@@ -20,11 +22,13 @@ export class PageCustomMasksComponent {
   customMask: Mask;
   inputA: string;
   inputB: string;
+  inputC: string;
   output: string;
   calculationText: string;
 
   isAverage = true;
   hoverPixel: Pixel;
+  kernelInputA: Mask;
 
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
@@ -34,7 +38,8 @@ export class PageCustomMasksComponent {
            : value * nearPixels.length / this.customMask.pixels.length;
   };
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     this.customMask = this.pixelProcessorService.getMaskFromString(
       `111
       111
@@ -82,16 +87,24 @@ export class PageCustomMasksComponent {
   setHoveredPixel(pixel: Pixel) {
     this.hoverPixel = pixel;
     if (!pixel) {
-      this.inputA = this.inputB = this.output = this.calculationText = null;
+      this.inputA
+        = this.inputB
+        = this.inputC
+        = this.kernelInputA
+        = this.output
+        = this.calculationText
+        = null;
       return;
     }
 
     let nearPixels = this.sourceImage.getMaskedPixels(this.customMask, pixel);
+    let nearMask = Mask.fromPixels(nearPixels);
 
-    this.inputA = nearPixels.map(pix => pix.value)
-                            .join(', ');
-    this.inputB = nearPixels.map(pix => pix.maskValue)
-                            .join(', ');
+    this.kernelInputA = nearMask;
+
+    this.inputC = nearPixels.map((p, i) => ({a: p.value, b: this.customMask.pixels[i].value}))
+                            .map(pair => `(${pair.a}×${pair.b})`)
+                            .join('+');
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
@@ -103,5 +116,44 @@ export class PageCustomMasksComponent {
   setIsAverageSlider(checked: boolean) {
     this.isAverage = checked;
     this.filterImage();
+  }
+
+  activateSmoothMask() {
+    this.customMask = this.pixelProcessorService.getMaskFromString(
+      `111
+      111
+      111`);
+    this.isAverage = true;
+    this.filterImage();
+  }
+
+  activateGaussianMask() {
+    this.customMask = this.pixelProcessorService.getMaskFromString(
+      `121
+      242
+      121`);
+    this.isAverage = true;
+    this.filterImage();
+  }
+
+  activateSharpenMask() {
+    this.customMask = this.pixelProcessorService.getMaskFromList(
+      [
+        -1, -2, -1,
+        -2, 12, -2,
+        -1, -2, -1
+      ]);
+    this.isAverage = false;
+    this.filterImage();
+  }
+
+  explainKernelDialog() {
+// https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(KernelExplainedDialogComponent, {width: '90%', height: '90%'})
+          .afterClosed()
+          .subscribe();
+    });
   }
 }
