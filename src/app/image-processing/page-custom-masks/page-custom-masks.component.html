@@ -9,16 +9,20 @@
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
   <div class="filtering-container">
-    <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel'"
-                       [inputA]="inputA || '9 pixel values'"
-                       [inputB]="inputB || 'Corresponding mask values'"
-                       [inputC]="inputC || 'Sum all products'"
-                       [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
-                       [output]="output || 'Destination pixel value'"
-                       [kernelInputA]="kernelInputA"
-                       [kernelInputB]="customMask"
-                       [editKernelB]="true"
-                       (complete)="completeDestinationImage()"></app-algorithm-box>
+    <div class="overlap-container">
+      <app-button-icon-fab class="overlap-b place-button-top-right"
+                           (click)="explainKernelDialog()">info</app-button-icon-fab>
+      <app-algorithm-box class="overlap-a" [title]="'Apply Custom Filter On Each Pixel'"
+                         [inputA]="inputA || '9 pixel values'"
+                         [inputB]="inputB || 'Corresponding mask values'"
+                         [inputC]="inputC || 'Sum all products'"
+                         [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
+                         [output]="output || 'Destination pixel value'"
+                         [kernelInputA]="kernelInputA"
+                         [kernelInputB]="customMask"
+                         [editKernelB]="true"
+                         (complete)="completeDestinationImage()"></app-algorithm-box>
+    </div>
     <div class="shortcuts-container">
       <button mat-raised-button class="content-title button-padding" (click)="activateSmoothMask()">Smooth</button>
       <button mat-raised-button class="content-title button-padding" (click)="activateGaussianMask()">Gaussian</button>

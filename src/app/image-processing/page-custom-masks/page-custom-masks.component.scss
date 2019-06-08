@@ -25,3 +25,8 @@
   grid-gap: 8px;
   align-items: center;
 }
+
+.place-button-top-right {
+  place-self: start end;
+  margin: -5%;
+}

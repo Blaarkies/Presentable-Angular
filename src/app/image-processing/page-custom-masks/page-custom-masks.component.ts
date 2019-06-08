@@ -4,6 +4,8 @@ import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
+import { MatDialog } from '@angular/material';
+import { KernelExplainedDialogComponent } from 'src/app/image-processing/page-custom-masks/kernel-explained-dialog/kernel-explained-dialog.component';
 
 @Component({
              selector: 'app-page-custom-masks',
@@ -36,7 +38,8 @@ export class PageCustomMasksComponent {
            : value * nearPixels.length / this.customMask.pixels.length;
   };
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     this.customMask = this.pixelProcessorService.getMaskFromString(
       `111
       111
@@ -142,5 +145,15 @@ export class PageCustomMasksComponent {
       ]);
     this.isAverage = false;
     this.filterImage();
+  }
+
+  explainKernelDialog() {
+// https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(KernelExplainedDialogComponent, {width: '90%', height: '90%'})
+          .afterClosed()
+          .subscribe();
+    });
   }
 }
