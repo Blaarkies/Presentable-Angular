@@ -1,22 +1,39 @@
-<div class="tri-container">
+<div class="pixels-and-sliders-container">
 
-  <app-image-display #source
-                     [sourceImage]="sourceImage"
-                     [mask]="pointMask"
-                     [title]="'Source Image'"
-                     (pixelClick)="setVisibility($event)"
-                     (pixelHover)="setHoveredPixel($event)"
-                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+  <div class="image-a">
+    <app-image-display #source
+                       [sourceImage]="sourceImage"
+                       [mask]="pointMask"
+                       [title]="'Source Image'"
+                       (pixelClick)="setVisibility($event)"
+                       (pixelHover)="setHoveredPixel($event)"
+                       (mouseleave)="setHoveredPixel(null)"></app-image-display>
+  </div>
 
-  <app-algorithm-box [title]="'Invert Each Pixel Value'"
-                     [inputA]="inputB || 'Colour depth value'"
-                     [inputB]="inputA || 'Source pixel value'"
-                     [calculation]="calculationText || sourceImage.colorDepth + ' - Source pixel'"
-                     [output]="output || 'Destination pixel value'"
-                     (complete)="completeDestinationImage()"></app-algorithm-box>
+  <div class="image-b">
+    <app-algorithm-box [title]="'Convert To Black And White'"
+                       [inputA]="inputA || 'Source pixel'"
+                       [inputB]="inputB || 'Threshold value'"
+                       [calculation]="calculationText || 'Source pixel > ' + thresholdValue"
+                       [output]="output || 'Destination pixel value'"
+                       (complete)="completeDestinationImage()"></app-algorithm-box>
+  </div>
 
-  <app-image-display #result
-                     [sourceImage]="resultImage"
-                     [highlightPixel]="hoverPixel"
-                     [title]="'Result Image'"></app-image-display>
+  <div class="footer-b slider-under-image">
+    <div class="content-subtitle">Threshold Value</div>
+    <mat-slider color="primary"
+                [value]="thresholdValue"
+                [min]="0"
+                [max]="sourceImage.colorDepth"
+                [step]="1"
+                (input)="setThresholdValueSlider($event)">
+    </mat-slider>
+  </div>
+
+  <div class="image-c">
+    <app-image-display #result
+                       [sourceImage]="resultImage"
+                       [highlightPixel]="hoverPixel"
+                       [title]="'Result Image'"></app-image-display>
+  </div>
 </div>

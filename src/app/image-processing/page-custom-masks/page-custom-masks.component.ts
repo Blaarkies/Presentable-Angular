@@ -20,6 +20,7 @@ export class PageCustomMasksComponent {
   customMask: Mask;
   inputA: string;
   inputB: string;
+  inputC: string;
   output: string;
   calculationText: string;
 
@@ -85,6 +86,7 @@ export class PageCustomMasksComponent {
     if (!pixel) {
       this.inputA
         = this.inputB
+        = this.inputC
         = this.kernelInputA
         = this.output
         = this.calculationText
@@ -96,6 +98,10 @@ export class PageCustomMasksComponent {
     let nearMask = Mask.fromPixels(nearPixels);
 
     this.kernelInputA = nearMask;
+
+    this.inputC = nearPixels.map((p, i) => ({a: p.value, b: this.customMask.pixels[i].value}))
+                            .map(pair => `(${pair.a}×${pair.b})`)
+                            .join('+');
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;

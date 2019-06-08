@@ -29,7 +29,6 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
   sharpenPower = 1;
   sharpSlider$ = new Subject<number>();
 
-  grayPointValue: number;
   hoverPixel: Pixel;
   showMask: boolean;
 
@@ -51,7 +50,6 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
       22532342
       22255522`, 7);
 
-    this.grayPointValue = this.sourceImage.colorDepth / 2;
     this.setSharpImageAndResults();
 
     let updateDuration = 100;

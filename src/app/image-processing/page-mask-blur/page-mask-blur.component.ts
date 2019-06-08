@@ -24,6 +24,7 @@ export class PageMaskBlurComponent {
   hoverPixel: Pixel;
   kernelInputA: Mask;
   kernelInputB: Mask;
+  inputC: string;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.averageMask = this.pixelProcessorService.getMaskFromString(
@@ -62,6 +63,7 @@ export class PageMaskBlurComponent {
         = this.calculationText
         = this.kernelInputA
         = this.kernelInputB
+        = this.inputC
         = null;
       return;
     }
@@ -80,6 +82,9 @@ export class PageMaskBlurComponent {
 
     this.kernelInputA = centerMask;
     this.kernelInputB = surroundingMaskPixels;
+
+    this.inputC = nearPixels.map(p => p.value)
+                            .join('+');
 
     let sumOfValues = sum(nearPixels, c => c.value);
     this.output = this.resultImage.pixels[pixel.index].value.toString();

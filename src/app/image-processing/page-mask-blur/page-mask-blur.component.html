@@ -19,6 +19,7 @@ in the algorithm box, show the 8 input pixels in their relative positions (not j
   <app-algorithm-box [title]="'Blur Each Pixel Value'"
                      [inputA]="kernelInputA || 'Source pixel value'"
                      [inputB]="kernelInputB || '8 neighbour pixel values'"
+                     [inputC]="inputC || 'Sum all values'"
                      [calculation]="calculationText || 'sum / count'"
                      [output]="output || 'Destination pixel value'"
                      [kernelInputA]="kernelInputA"

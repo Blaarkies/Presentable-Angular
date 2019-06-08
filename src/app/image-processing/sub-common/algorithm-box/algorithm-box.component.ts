@@ -11,6 +11,7 @@ export class AlgorithmBoxComponent {
   @Input() title: string;
   @Input() inputA: string;
   @Input() inputB: string;
+  @Input() inputC: string;
   @Input() calculation: string;
   @Input() output: string;
   @Input() kernelInputA: Mask = null;

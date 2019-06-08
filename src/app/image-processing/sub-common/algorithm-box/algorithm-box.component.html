@@ -32,6 +32,15 @@
         </div>
       </div>
 
+      <ng-container *ngIf="inputC">
+        <div class="algorithm-box-container fit-content">
+          <div class="code-subtitle">{{inputC}}</div>
+        </div>
+        <div class="center-label-container">
+          <div class="center-label-connector"></div>
+        </div>
+      </ng-container>
+
       <div class="algorithm-box-container">
         <app-button-icon-fab class="animate-mat-icon-rotate"
                              (buttonClick)="onCompleteDestinationImage()">settings

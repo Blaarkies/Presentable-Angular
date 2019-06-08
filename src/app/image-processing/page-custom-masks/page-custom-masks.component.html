@@ -1,11 +1,3 @@
-<!--
-add shortcut buttons next to the kernel
-- Average blur
-- Gaussian blur
-- Laplace unsharp
-- Sobel
--->
-
 <div class="tri-container">
 
   <app-image-display #source
@@ -20,6 +12,7 @@ add shortcut buttons next to the kernel
     <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel'"
                        [inputA]="inputA || '9 pixel values'"
                        [inputB]="inputB || 'Corresponding mask values'"
+                       [inputC]="inputC || 'Sum all products'"
                        [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
                        [output]="output || 'Destination pixel value'"
                        [kernelInputA]="kernelInputA"
