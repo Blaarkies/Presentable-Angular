@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 
 @Component({
              selector: 'app-algorithm-box',
@@ -19,9 +19,14 @@ export class AlgorithmBoxComponent {
   @Input() editKernelB = false;
 
   @Output() complete = new EventEmitter<void>();
+  @Output() pixelHover = new EventEmitter<MaskPixel>();
 
   onCompleteDestinationImage() {
     this.complete.emit();
+  }
+
+  onPixelHover(pixel: MaskPixel): void {
+    this.pixelHover.emit(pixel);
   }
 
 }

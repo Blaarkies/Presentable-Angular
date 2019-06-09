@@ -1,11 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
-import { Mask } from 'src/app/image-processing/interfaces/mask';
+import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
-import { MatDialog } from '@angular/material';
-import { KernelExplainedDialogComponent } from 'src/app/image-processing/page-custom-masks/kernel-explained-dialog/kernel-explained-dialog.component';
 
 @Component({
              selector: 'app-page-custom-masks',
@@ -22,13 +20,18 @@ export class PageCustomMasksComponent {
   customMask: Mask;
   inputA: string;
   inputB: string;
-  inputC: string;
+  inputC: {
+    display: string;
+    kernelPixel: MaskPixel;
+    highlight: boolean;
+  }[];
   output: string;
   calculationText: string;
 
   isAverage = true;
-  hoverPixel: Pixel;
+  pressedPixel: Pixel;
   kernelInputA: Mask;
+  hoveredMaskPixel: MaskPixel;
 
   customFilter = nearPixels => {
     let divisor = sum(nearPixels, c => (c.maskValue));
@@ -38,8 +41,7 @@ export class PageCustomMasksComponent {
            : value * nearPixels.length / this.customMask.pixels.length;
   };
 
-  constructor(private pixelProcessorService: PixelProcessorService,
-              private dialog: MatDialog) {
+  constructor(private pixelProcessorService: PixelProcessorService) {
     this.customMask = this.pixelProcessorService.getMaskFromString(
       `111
       111
@@ -75,17 +77,20 @@ export class PageCustomMasksComponent {
   }
 
   setVisibility(pixel: Pixel) {
+    if (this.pressedPixel) {
+      return;
+    }
+
     this.filterImage();
     this.resultImageDisplayer.setVisibility(pixel);
   }
 
-  completeDestinationImage() {
-    this.filterImage();
-    this.resultImageDisplayer.completeDestinationImage();
-  }
-
   setHoveredPixel(pixel: Pixel) {
-    this.hoverPixel = pixel;
+    if (this.pressedPixel) {
+      return;
+    }
+
+    this.resultImageDisplayer.highlightPixel = pixel;
     if (!pixel) {
       this.inputA
         = this.inputB
@@ -98,19 +103,38 @@ export class PageCustomMasksComponent {
     }
 
     let nearPixels = this.sourceImage.getMaskedPixels(this.customMask, pixel);
-    let nearMask = Mask.fromPixels(nearPixels);
+    let nearMask = Mask.fromPixels(nearPixels, pixel);
 
     this.kernelInputA = nearMask;
 
-    this.inputC = nearPixels.map((p, i) => ({a: p.value, b: this.customMask.pixels[i].value}))
-                            .map(pair => `(${pair.a}×${pair.b})`)
-                            .join('+');
+    this.inputC = nearPixels.map((p, i) => {
+      let kernelPixel = this.customMask.pixels[i];
+      return {
+        display: `(${p.value}×${kernelPixel.value})`,
+        kernelPixel: kernelPixel,
+        highlight: false
+      };
+    });
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
     this.calculationText = this.isAverage ? `${sumOfValues} / ${sumOfMaskValues}` : `${sumOfValues}`;
 
     this.output = this.resultImage.pixels[pixel.index].value.toString();
+  }
+
+  setPressedPixel(pixel: Pixel) {
+    if (this.pressedPixel == pixel) {
+      this.pressedPixel = this.hoveredMaskPixel = null;
+      return;
+    }
+
+    this.pressedPixel = pixel;
+  }
+
+  completeDestinationImage() {
+    this.filterImage();
+    this.resultImageDisplayer.completeDestinationImage();
   }
 
   setIsAverageSlider(checked: boolean) {
@@ -147,13 +171,15 @@ export class PageCustomMasksComponent {
     this.filterImage();
   }
 
-  explainKernelDialog() {
-// https://github.com/angular/material2/issues/5268
-    // TODO: work-around for expression change on dialog factory
-    setTimeout(() => {
-      this.dialog.open(KernelExplainedDialogComponent, {width: '90%', height: '90%'})
-          .afterClosed()
-          .subscribe();
-    });
+  setHoveredMaskPixel(pixel: MaskPixel) {
+    this.hoveredMaskPixel = pixel;
+    this.kernelInputA
+        .pixels
+        .forEach(p => p.highlight = p.isSamePosition(pixel));
+    this.customMask
+        .pixels
+        .forEach(p => p.highlight = p.isSamePosition(pixel));
+    this.inputC
+        .forEach(product => product.highlight = product.kernelPixel.isSamePosition(this.hoveredMaskPixel));
   }
 }

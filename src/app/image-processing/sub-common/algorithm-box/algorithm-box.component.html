@@ -8,7 +8,8 @@
         <div class="left-label-container" *ngIf="inputA || kernelInputA">
           <div class="code-subtitle label" *ngIf="kernelInputA; else normalA">
             <app-mask-editor [mask]="kernelInputA"
-                             [disabled]="true"></app-mask-editor>
+                             [disabled]="true"
+                             (pixelHover)="onPixelHover($event)"></app-mask-editor>
           </div>
           <ng-template #normalA>
             <div class="code-subtitle label">{{inputA}}</div>
@@ -34,7 +35,7 @@
 
       <ng-container *ngIf="inputC">
         <div class="algorithm-box-container fit-content">
-          <div class="code-subtitle">{{inputC}}</div>
+          <ng-content select="[inputC]"></ng-content>
         </div>
         <div class="center-label-container">
           <div class="center-label-connector"></div>

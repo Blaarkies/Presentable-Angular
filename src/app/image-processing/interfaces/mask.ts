@@ -2,15 +2,29 @@ import { Pixel } from 'src/app/image-processing/interfaces/image';
 import { flatMap, getArrayRange } from 'src/app/common/utils';
 
 export class MaskPixel {
+
   x: number;
   y: number;
-  value? = 1;
+  value?: number;
+  highlight?: boolean;
 
-
-  constructor(width: number, index: number, value: number = 1) {
-    this.x = index % width;
-    this.y = Math.floor(index / width);
+  constructor(x: number, y: number, value: number = 1, highlight: boolean = false) {
+    this.x = x;
+    this.y = y;
     this.value = value;
+    this.highlight = highlight;
+  }
+
+  static fromPixel(pixel: Pixel, imageWidth: number, value: number = 1) {
+    let x = pixel.index % imageWidth;
+    let y = Math.floor(pixel.index / imageWidth);
+    return new this(x, y, value);
+  }
+
+  isSamePosition(other: MaskPixel): boolean {
+    return other
+      && other.x == this.x
+      && other.y == this.y;
   }
 
 }
@@ -23,34 +37,29 @@ export class Mask {
     this.pixels = pixels || <MaskPixel[]>[{x: 0, y: 0}];
   }
 
-  static fromPixels(pixels: Pixel[]) {
+  static fromPixels(pixels: Pixel[], centerPixel?: Pixel, fullSize: number = 3) {
     let maskSize = Mask.getMaskShapeSize(pixels);
 
     let maskPixels = <MaskPixel[]>flatMap(
       getArrayRange(maskSize.height)
+        .map(i => i - 1)
         .map(y => getArrayRange(maskSize.width)
-          .map(x => <MaskPixel>{
-                 x: x,
-                 y: y
-               }
-          )));
+          .map(i => i - 1)
+          .map(x => new MaskPixel(x, y))));
     pixels.forEach((p, i) => maskPixels[i].value = p.value);
 
     let fullMaskPixels = <MaskPixel[]>flatMap(
-      getArrayRange(3)
-        .map(y => getArrayRange(3)
-          .map(x => <MaskPixel>{
-                 x: x,
-                 y: y,
-                 value: null
-               }
-          )))
+      getArrayRange(fullSize)
+        .map(i => i - 1)
+        .map(y => getArrayRange(fullSize)
+          .map(i => i - 1)
+          .map(x => new MaskPixel(x, y, null))))
       .map(blank => maskPixels.find(p => blank.x == p.x && blank.y == p.y) || blank);
 
     return new Mask(fullMaskPixels);
   }
 
-  private static getMaskShapeSize(pixels) {
+  private static getMaskShapeSize(pixels: Pixel[]): MaskShapeSize {
     return pixels.reduce((sum, c) => {
       if (sum.pixels[0]
         && sum.pixels[0].index < c.index
@@ -72,4 +81,10 @@ export class Mask {
                          });
   }
 
+}
+
+interface MaskShapeSize {
+  width: number;
+  height: number;
+  pixels: Pixel[];
 }

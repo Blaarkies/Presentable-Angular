@@ -1,7 +1,9 @@
-<div class="overlap-a custom-mask-container">
+<div class="custom-mask-container">
   <div *ngFor="let pixel of mask.pixels"
        class="overlap-container mask-pixel cursor-pointer mat-elevation-z1"
-       [class.transparent]="pixel.value == null">
+       [class.transparent]="pixel.value == null"
+       [class.highlight-code-viewing]="pixel.highlight"
+       (mouseenter)="onPixelHover(pixel)">
     <div class="overlap-a">{{pixel.value}}</div>
     <div *ngIf="!disabled"
          class="overlap-b adjuster-buttons-container">

@@ -20,7 +20,8 @@
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
          (click)="onPixelClick(pixel)"
-         (mouseenter)="onPixelHover(pixel)">
+         (mouseenter)="onPixelHover(pixel)"
+         (press)="onPixelPress(pixel)">
       <span>{{pixel.value}}</span>
     </div>
   </div>
@@ -45,7 +46,8 @@
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
          (click)="onPixelClick(pixel)"
-         (mouseenter)="onPixelHover(pixel)">
+         (mouseenter)="onPixelHover(pixel)"
+         (press)="onPixelPress(pixel)">
       <span>{{pixel.value}}</span>
     </div>
   </div>
