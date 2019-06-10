@@ -21,6 +21,13 @@ export class ImageDisplayComponent {
   @Output() pixelHover = new EventEmitter<Pixel>();
   @Output() pixelPress = new EventEmitter<Pixel>();
 
+  _pressedPixel: Pixel;
+
+  set pressedPixel(pixel: Pixel) {
+    this._pressedPixel = pixel;
+    setTimeout(_ => this._pressedPixel = null, 1000);
+  }
+
   setMaskVisibility(pixel: Pixel): void {
     if (this.lockHighlights) {
       return;
@@ -54,6 +61,7 @@ export class ImageDisplayComponent {
 
   onPixelPress(pixel: Pixel): void {
     this.pixelPress.emit(pixel);
+    this.pressedPixel = pixel;
   }
 
   setVisibility(pixel: Pixel) {

@@ -12,17 +12,22 @@ export class MaskEditorComponent {
   @Input() disabled = false;
 
   @Output() pixelHover = new EventEmitter<MaskPixel>();
+  @Output() change = new EventEmitter<void>();
 
   plusPixelValue(pixel: MaskPixel): void {
     pixel.value++;
+    this.change.emit();
   }
 
   minusPixelValue(pixel: MaskPixel): void {
     pixel.value--;
+    this.change.emit();
   }
 
   onPixelHover(pixel: MaskPixel): void {
-    this.pixelHover.emit(pixel);
+    if (pixel.value != null) {
+      this.pixelHover.emit(pixel);
+    }
   }
 
 }

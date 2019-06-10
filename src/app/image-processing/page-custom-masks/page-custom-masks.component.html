@@ -23,7 +23,8 @@
                        [editKernelB]="true"
                        (complete)="completeDestinationImage()"
                        (pixelHover)="setHoveredMaskPixel($event)"
-                       (mouseleave)="setHoveredMaskPixel(null)">
+                       (mouseleave)="setHoveredMaskPixel(null)"
+                       (kernelInputBChange)="updateKernels()">
 
       <div inputC class="code-subtitle break-word">
         <div *ngIf="!inputC; else brackets">Sum all products</div>

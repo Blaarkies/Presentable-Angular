@@ -5,7 +5,6 @@ import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { interval, Subject } from 'rxjs';
 import { sample, takeUntil } from 'rxjs/operators';
-import { sum } from 'src/app/common/utils';
 import { MatSliderChange } from '@angular/material';
 
 @Component({
@@ -25,11 +24,11 @@ export class PagePixelManipulationComponent implements OnInit {
   pointMask: Mask;
   inputA: string;
   inputB: string;
+  outputB: string;
   output: string;
   calculationText: string;
 
   hoverPixel: Pixel;
-
   thresholdValue: number;
   thresholdSlider$ = new Subject<number>();
 
@@ -85,13 +84,21 @@ export class PagePixelManipulationComponent implements OnInit {
     this.hoverPixel = pixel;
 
     if (!pixel) {
-      this.inputA = this.inputB = this.output = this.calculationText = null;
+      this.inputA
+        = this.inputB
+        = this.outputB
+        = this.output
+        = this.calculationText
+        = null;
       return;
     }
 
+    let isOverThreshold = pixel.value > this.thresholdValue;
+
     this.inputA = pixel.value.toString();
     this.inputB = this.thresholdValue.toString();
-    this.output = (pixel.value > this.thresholdValue ? 7 : 0).toString();
+    this.outputB = isOverThreshold ? 'Yes' : 'No';
+    this.output = (isOverThreshold ? 7 : 0).toString();
     this.calculationText = `${pixel.value} > ${this.thresholdValue}`;
   }
 

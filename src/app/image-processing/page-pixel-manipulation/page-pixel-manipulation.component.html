@@ -14,9 +14,15 @@
     <app-algorithm-box [title]="'Convert To Black And White'"
                        [inputA]="inputA || 'Source pixel'"
                        [inputB]="inputB || 'Threshold value'"
-                       [calculation]="calculationText || 'Source pixel > ' + thresholdValue"
+                       [calculation]="calculationText || 'If (pixel > ' + thresholdValue + ')\nNo  = 0\nYes = 7'"
                        [output]="output || 'Destination pixel value'"
-                       (complete)="completeDestinationImage()"></app-algorithm-box>
+                       [outputB]="true"
+                       (complete)="completeDestinationImage()">
+      <div outputB class="code-subtitle break-word">
+        <div *ngIf="!outputB; else brackets">Comparison check</div>
+        <ng-template #brackets>{{outputB}}</ng-template>
+      </div>
+    </app-algorithm-box>
   </div>
 
   <div class="footer-b slider-under-image">

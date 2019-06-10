@@ -14,12 +14,14 @@ export class AlgorithmBoxComponent {
   @Input() inputC: string;
   @Input() calculation: string;
   @Input() output: string;
+  @Input() outputB: string;
   @Input() kernelInputA: Mask = null;
   @Input() kernelInputB: Mask = null;
   @Input() editKernelB = false;
 
   @Output() complete = new EventEmitter<void>();
   @Output() pixelHover = new EventEmitter<MaskPixel>();
+  @Output() kernelInputBChange = new EventEmitter<void>();
 
   onCompleteDestinationImage() {
     this.complete.emit();
@@ -29,4 +31,7 @@ export class AlgorithmBoxComponent {
     this.pixelHover.emit(pixel);
   }
 
+  kernelInputBChanged() {
+    this.kernelInputBChange.emit();
+  }
 }

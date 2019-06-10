@@ -40,21 +40,33 @@ export class Mask {
   static fromPixels(pixels: Pixel[], centerPixel?: Pixel, fullSize: number = 3) {
     let maskSize = Mask.getMaskShapeSize(pixels);
 
-    let maskPixels = <MaskPixel[]>flatMap(
+    let maskPixels = flatMap(
       getArrayRange(maskSize.height)
-        .map(i => i - 1)
         .map(y => getArrayRange(maskSize.width)
-          .map(i => i - 1)
-          .map(x => new MaskPixel(x, y))));
-    pixels.forEach((p, i) => maskPixels[i].value = p.value);
+          .map(x => [x, y])))
+      .map(([x, y], i) => ({pixel: pixels[i], x, y}));
+
+    let halfSize = Math.floor(fullSize / 2);
+    let centerPixelInMask = centerPixel
+                            ? maskPixels.find(p => p.pixel.index == centerPixel.index)
+                            : {x: halfSize, y: halfSize};
+    let offset = {
+      x: halfSize - centerPixelInMask.x,
+      y: halfSize - centerPixelInMask.y
+    };
+
+    maskPixels = maskPixels.map(p => new MaskPixel(p.x + offset.x, p.y + offset.y, p.pixel.value));
 
     let fullMaskPixels = <MaskPixel[]>flatMap(
       getArrayRange(fullSize)
-        .map(i => i - 1)
         .map(y => getArrayRange(fullSize)
-          .map(i => i - 1)
           .map(x => new MaskPixel(x, y, null))))
-      .map(blank => maskPixels.find(p => blank.x == p.x && blank.y == p.y) || blank);
+      .map(blank => maskPixels.find(p => p.isSamePosition(blank)) || blank);
+
+    fullMaskPixels.forEach(p => {
+      p.x -= 1;
+      p.y -= 1;
+    });
 
     return new Mask(fullMaskPixels);
   }

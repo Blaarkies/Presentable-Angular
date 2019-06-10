@@ -19,6 +19,7 @@
          [class.highlight-mask]="pixel.maskVisible"
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
+         [class.bright-shine]="pixel == _pressedPixel"
          (click)="onPixelClick(pixel)"
          (mouseenter)="onPixelHover(pixel)"
          (press)="onPixelPress(pixel)">

@@ -19,12 +19,17 @@ in the algorithm box, show the 8 input pixels in their relative positions (not j
   <app-algorithm-box [title]="'Blur Each Pixel Value'"
                      [inputA]="kernelInputA || 'Source pixel value'"
                      [inputB]="kernelInputB || '8 neighbour pixel values'"
-                     [inputC]="inputC || 'Sum all values'"
+                     [inputC]="true"
                      [calculation]="calculationText || 'sum / count'"
                      [output]="output || 'Destination pixel value'"
                      [kernelInputA]="kernelInputA"
                      [kernelInputB]="kernelInputB"
-                     (complete)="completeDestinationImage()"></app-algorithm-box>
+                     (complete)="completeDestinationImage()">
+    <div inputC class="code-subtitle break-word">
+      <div *ngIf="!inputC; else brackets">Sum all values</div>
+      <ng-template #brackets>{{inputC}}</ng-template>
+    </div>
+  </app-algorithm-box>
 
   <app-image-display #result
                      [sourceImage]="resultImage"

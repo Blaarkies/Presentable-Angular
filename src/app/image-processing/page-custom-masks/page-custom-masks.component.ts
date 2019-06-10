@@ -102,19 +102,25 @@ export class PageCustomMasksComponent {
       return;
     }
 
+    this.updateOutputs(pixel);
+  }
+
+  private updateOutputs(pixel: Pixel) {
     let nearPixels = this.sourceImage.getMaskedPixels(this.customMask, pixel);
     let nearMask = Mask.fromPixels(nearPixels, pixel);
 
     this.kernelInputA = nearMask;
 
-    this.inputC = nearPixels.map((p, i) => {
-      let kernelPixel = this.customMask.pixels[i];
-      return {
-        display: `(${p.value}×${kernelPixel.value})`,
-        kernelPixel: kernelPixel,
-        highlight: false
-      };
-    });
+    this.inputC = nearMask.pixels
+                          .filter(pA => pA.value != null)
+                          .map(pA => {
+                            let kernelPixel = this.customMask.pixels.find(pB => pB.isSamePosition(pA));
+                            return {
+                              display: `(${pA.value}×${kernelPixel.value})`,
+                              kernelPixel: kernelPixel,
+                              highlight: false
+                            };
+                          });
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
@@ -124,12 +130,15 @@ export class PageCustomMasksComponent {
   }
 
   setPressedPixel(pixel: Pixel) {
+    if (!this.pressedPixel) {
+      this.pressedPixel = pixel;
+      return;
+    }
+
     if (this.pressedPixel == pixel) {
       this.pressedPixel = this.hoveredMaskPixel = null;
       return;
     }
-
-    this.pressedPixel = pixel;
   }
 
   completeDestinationImage() {
@@ -148,6 +157,7 @@ export class PageCustomMasksComponent {
       111
       111`);
     this.isAverage = true;
+    this.updateKernels();
     this.filterImage();
   }
 
@@ -157,6 +167,7 @@ export class PageCustomMasksComponent {
       242
       121`);
     this.isAverage = true;
+    this.updateKernels();
     this.filterImage();
   }
 
@@ -168,18 +179,30 @@ export class PageCustomMasksComponent {
         -1, -2, -1
       ]);
     this.isAverage = false;
+    this.updateKernels();
     this.filterImage();
   }
 
   setHoveredMaskPixel(pixel: MaskPixel) {
     this.hoveredMaskPixel = pixel;
+    if (!(this.kernelInputA && this.customMask && this.inputC)) {
+      return;
+    }
     this.kernelInputA
         .pixels
         .forEach(p => p.highlight = p.isSamePosition(pixel));
+
     this.customMask
         .pixels
         .forEach(p => p.highlight = p.isSamePosition(pixel));
+
     this.inputC
-        .forEach(product => product.highlight = product.kernelPixel.isSamePosition(this.hoveredMaskPixel));
+        .forEach(product => product.highlight = product.kernelPixel.isSamePosition(pixel));
+  }
+
+  updateKernels() {
+    let hoveredPixel = this.resultImageDisplayer.highlightPixel;
+    this.updateOutputs(hoveredPixel);
+    this.setHoveredMaskPixel(null);
   }
 }

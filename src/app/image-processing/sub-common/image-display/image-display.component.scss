@@ -96,3 +96,15 @@ $color-mask-secondary-shadow: transparentize(black, 0.7);
   @extend .card-title-padding;
   text-align: center;
 }
+
+.bright-shine {
+  animation: spotlight 1s both ease-in-out;
+}
+
+@keyframes spotlight {
+  50% {
+    background-color: white;
+    color: white;
+    filter: brightness(1.4);
+  }
+}

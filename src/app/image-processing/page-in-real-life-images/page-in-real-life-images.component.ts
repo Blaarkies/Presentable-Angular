@@ -37,7 +37,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
   userClickTab(): void {
     this.userClicked = true;
     of(null)
-      .pipe(delay(1000 * 30), takeUntil(this.unsubscribe$))
+      .pipe(delay(1000 * 60), takeUntil(this.unsubscribe$))
       .subscribe(_ => this.userClicked = false);
   }
 }

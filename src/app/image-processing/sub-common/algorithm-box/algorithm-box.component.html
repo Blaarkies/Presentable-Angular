@@ -22,7 +22,8 @@
           <div class="right-label-container" *ngIf="inputB || kernelInputB">
             <div class="code-subtitle label" *ngIf="kernelInputB; else normalB">
               <app-mask-editor [mask]="kernelInputB"
-                               [disabled]="!editKernelB"></app-mask-editor>
+                               [disabled]="!editKernelB"
+                               (change)="kernelInputBChanged()"></app-mask-editor>
             </div>
             <ng-template #normalB>
               <div class="code-subtitle label">{{inputB}}</div>
@@ -48,6 +49,15 @@
         </app-button-icon-fab>
         <div class="code-title">{{calculation}}</div>
       </div>
+
+      <ng-container *ngIf="outputB">
+        <div class="center-label-container">
+          <div class="center-label-connector"></div>
+        </div>
+        <div class="algorithm-box-container fit-content">
+          <ng-content select="[outputB]"></ng-content>
+        </div>
+      </ng-container>
 
       <div class="center-label-container">
         <div class="center-label-connector"></div>
