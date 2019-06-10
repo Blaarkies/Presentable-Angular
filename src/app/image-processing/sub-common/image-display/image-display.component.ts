@@ -15,11 +15,24 @@ export class ImageDisplayComponent {
   @Input() showNegativeValues: boolean;
   @Input() title: string;
   @Input() showTitle: boolean = true;
+  @Input() lockHighlights: boolean = false;
 
   @Output() pixelClick = new EventEmitter<Pixel>();
   @Output() pixelHover = new EventEmitter<Pixel>();
+  @Output() pixelPress = new EventEmitter<Pixel>();
+
+  _pressedPixel: Pixel;
+
+  set pressedPixel(pixel: Pixel) {
+    this._pressedPixel = pixel;
+    setTimeout(_ => this._pressedPixel = null, 1000);
+  }
 
   setMaskVisibility(pixel: Pixel): void {
+    if (this.lockHighlights) {
+      return;
+    }
+
     let image = this.sourceImage;
     image.pixels.forEach(pix => pix.maskVisible = false);
 
@@ -32,19 +45,28 @@ export class ImageDisplayComponent {
            .maskVisible = true);
   }
 
-  onPixelClick(pixel: Pixel) {
+  onPixelClick(pixel: Pixel): void {
     this.pixelClick.emit(pixel);
   }
 
-  onPixelHover(pixel: Pixel) {
+  onPixelHover(pixel: Pixel): void {
+    if (this.lockHighlights) {
+      return;
+    }
+
     this.pixelHover.emit(pixel);
 
     this.setMaskVisibility(pixel);
   }
 
+  onPixelPress(pixel: Pixel): void {
+    this.pixelPress.emit(pixel);
+    this.pressedPixel = pixel;
+  }
+
   setVisibility(pixel: Pixel) {
     let destinationPixel = this.sourceImage.pixels[pixel.index];
-    destinationPixel.visible = !destinationPixel.visible;
+    destinationPixel.visible = true;
   }
 
   completeDestinationImage(durationPerPixel: number = 100) {
@@ -53,4 +75,5 @@ export class ImageDisplayComponent {
         .filter(pix => !pix.visible)
         .forEach((pix, i) => setTimeout(_ => pix.visible = true, i * durationPerPixel));
   }
+
 }

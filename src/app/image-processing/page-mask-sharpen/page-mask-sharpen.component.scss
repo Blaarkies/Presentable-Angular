@@ -3,8 +3,14 @@
 .slider-under-image {
   width: 90%;
   border-radius: 16px;
-  background-color: ghostwhite;
+  background-color: white;
   @extend .mat-elevation-z1;
+
+  padding: 16px 8px 0;
+
+  .slider {
+    width: 100%;
+  }
 }
 
 .pixels-and-sliders-container {

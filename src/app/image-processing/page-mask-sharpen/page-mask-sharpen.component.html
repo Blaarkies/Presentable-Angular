@@ -3,7 +3,7 @@
   <div class="image-a">
     <app-image-display #source
                        [sourceImage]="sourceImage"
-                       [mask]="sharpMask"
+                       [mask]="pointMask"
                        [title]="'Source Image'"
                        (pixelHover)="setHoveredPixel($event)"
                        (mouseleave)="setHoveredPixel(null)"></app-image-display>
@@ -13,7 +13,8 @@
     <div class="overlap-container">
 
       <app-button-icon-fab class="overlap-b place-button-top-right"
-                           (click)="showMask = !showMask">info</app-button-icon-fab>
+                           (click)="showMask = !showMask">info
+      </app-button-icon-fab>
       <app-image-display class="overlap-a transition-transparency"
                          #sharp
                          [class.transparent-more]="showMask"
@@ -23,19 +24,26 @@
                          [title]="'Sharpening Guide'"></app-image-display>
       <app-mask-editor class="overlap-b animate-fade-in center-mask-editor"
                        [mask]="sharpMask"
+                       [disabled]="true"
                        *ngIf="showMask"></app-mask-editor>
     </div>
 
   </div>
 
-  <mat-slider class="footer-b slider-under-image"
-              color="primary"
-              [value]="sharpenPower"
-              [min]="0"
-              [max]="1"
-              [step]="0.01"
-              (input)="setSharpnessPowerSlider($event)">
-  </mat-slider>
+  <div class="footer-b slider-under-image">
+    <div class="code-subtitle align-text-center">
+      {{inputA || 'Source'}} + {{inputB || 'Sharpening'}} = {{output || 'Result'}}
+    </div>
+
+    <mat-slider class="slider"
+                color="primary"
+                [value]="sharpenPower"
+                [min]="0"
+                [max]="1"
+                [step]="0.01"
+                (input)="setSharpnessPowerSlider($event)">
+    </mat-slider>
+  </div>
 
   <div class="image-c">
     <app-image-display #result

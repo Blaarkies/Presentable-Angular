@@ -30,7 +30,7 @@ export class PageNeedForPixelsComponent implements OnDestroy {
       24567755
       45676765`, 7);
 
-    interval(1000 * 7.5)
+    interval(1000 * 10)
       .pipe(
         filter(_ => !this.userClicked),
         tap(_ => this.filtersSwapIndex = (this.filtersSwapIndex + 1) % 5),
@@ -46,7 +46,7 @@ export class PageNeedForPixelsComponent implements OnDestroy {
   userClickTab(): void {
     this.userClicked = true;
     of(null)
-      .pipe(delay(1000 * 15), takeUntil(this.unsubscribe$))
+      .pipe(delay(1000 * 30), takeUntil(this.unsubscribe$))
       .subscribe(_ => this.userClicked = false);
   }
 

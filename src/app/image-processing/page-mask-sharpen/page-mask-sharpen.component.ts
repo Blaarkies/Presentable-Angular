@@ -25,6 +25,10 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
   sumImage: Image;
 
   sharpMask: Mask;
+  pointMask: Mask;
+  inputA: string;
+  inputB: string;
+  output: string;
 
   sharpenPower = 1;
   sharpSlider$ = new Subject<number>();
@@ -33,6 +37,7 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
   showMask: boolean;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
+    this.pointMask = new Mask();
     this.sharpMask = this.pixelProcessorService.getMaskFromList(
       [
         -1, -2, -1,
@@ -106,6 +111,19 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
 
   setHoveredPixel(pixel: Pixel) {
     this.hoverPixel = pixel;
+
+    if (!pixel) {
+      this.inputA
+        = this.inputB
+        = this.output
+        = null;
+      return;
+    }
+
+    let pixelIndex = pixel.index;
+    this.inputA = pixel.value.toString();
+    this.inputB = this.sharpImage.pixels[pixelIndex].value.toString();
+    this.output = this.sumImage.pixels[pixelIndex].value.toString();
   }
 
   setSharpnessPowerSlider($event: MatSliderChange) {

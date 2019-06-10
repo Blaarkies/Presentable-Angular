@@ -4,25 +4,40 @@
                      [sourceImage]="sourceImage"
                      [mask]="customMask"
                      [title]="'Source Image'"
+                     [lockHighlights]="pressedPixel"
                      (pixelClick)="setVisibility($event)"
                      (pixelHover)="setHoveredPixel($event)"
-                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+                     (mouseleave)="setHoveredPixel(null)"
+                     (pixelPress)="setPressedPixel($event)">
+  </app-image-display>
 
   <div class="filtering-container">
-    <div class="overlap-container">
-      <app-button-icon-fab class="overlap-b place-button-top-right"
-                           (click)="explainKernelDialog()">info</app-button-icon-fab>
-      <app-algorithm-box class="overlap-a" [title]="'Apply Custom Filter On Each Pixel'"
-                         [inputA]="inputA || '9 pixel values'"
-                         [inputB]="inputB || 'Corresponding mask values'"
-                         [inputC]="inputC || 'Sum all products'"
-                         [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
-                         [output]="output || 'Destination pixel value'"
-                         [kernelInputA]="kernelInputA"
-                         [kernelInputB]="customMask"
-                         [editKernelB]="true"
-                         (complete)="completeDestinationImage()"></app-algorithm-box>
-    </div>
+    <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel'"
+                       [inputA]="inputA || '9 pixel values'"
+                       [inputB]="inputB || 'Corresponding mask values'"
+                       [inputC]="true"
+                       [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
+                       [output]="output || 'Destination pixel value'"
+                       [kernelInputA]="kernelInputA"
+                       [kernelInputB]="customMask"
+                       [editKernelB]="true"
+                       (complete)="completeDestinationImage()"
+                       (pixelHover)="setHoveredMaskPixel($event)"
+                       (mouseleave)="setHoveredMaskPixel(null)"
+                       (kernelInputBChange)="updateKernels()">
+
+      <div inputC class="code-subtitle break-word">
+        <div *ngIf="!inputC; else brackets">Sum all products</div>
+
+        <ng-template #brackets>
+          <ng-container *ngFor="let bracket of inputC; let isLast = last;">
+            <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
+            <span *ngIf="!isLast">+</span>
+          </ng-container>
+        </ng-template>
+      </div>
+    </app-algorithm-box>
+
     <div class="shortcuts-container">
       <button mat-raised-button class="content-title button-padding" (click)="activateSmoothMask()">Smooth</button>
       <button mat-raised-button class="content-title button-padding" (click)="activateGaussianMask()">Gaussian</button>
@@ -38,7 +53,6 @@
 
   <app-image-display #result
                      [sourceImage]="resultImage"
-                     [highlightPixel]="hoverPixel"
                      [showNegativeValues]="!isAverage"
                      [title]="'Result Image'"></app-image-display>
 </div>

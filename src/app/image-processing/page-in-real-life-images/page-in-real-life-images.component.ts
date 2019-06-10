@@ -17,7 +17,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
   bulletNumber: number = 1;
 
   constructor() {
-    interval(1000 * 7.5)
+    interval(1000 * 10)
       .pipe(
         filter(_ => !this.userClicked),
         tap(_ => this.logoSwapIndex = (this.logoSwapIndex + 1) % 3),
@@ -37,7 +37,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
   userClickTab(): void {
     this.userClicked = true;
     of(null)
-      .pipe(delay(1000 * 15), takeUntil(this.unsubscribe$))
+      .pipe(delay(1000 * 60), takeUntil(this.unsubscribe$))
       .subscribe(_ => this.userClicked = false);
   }
 }

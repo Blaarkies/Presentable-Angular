@@ -35,11 +35,7 @@ export class PixelProcessorService {
                                let [x, y] = getXYFromIndex(width, i);
                                let xOffset = (width - 1) / 2;
                                let yOffset = (height - 1) / 2;
-                               return (<MaskPixel>{
-                                 x: x - xOffset,
-                                 y: y - yOffset,
-                                 value: parseInt(c)
-                               });
+                               return new MaskPixel(x - xOffset, y - yOffset, parseInt(c));
                              });
 
     return new Mask(pixels);
@@ -61,11 +57,7 @@ export class PixelProcessorService {
       let [x, y] = getXYFromIndex(width, i);
       let xOffset = (width - 1) / 2;
       let yOffset = (height - 1) / 2;
-      return (<MaskPixel>{
-        x: x - xOffset,
-        y: y - yOffset,
-        value: c
-      });
+      return new MaskPixel(x - xOffset, y - yOffset, c);
     });
 
     return new Mask(pixels);

@@ -69,18 +69,17 @@ export class PageMaskBlurComponent {
     }
 
     let nearPixels = this.sourceImage.getMaskedPixels(this.averageMask, pixel);
-    let selectedPixelIndex = nearPixels.findIndex(p => p.index == pixel.index);
-    let nearMask = Mask.fromPixels(nearPixels);
+    let nearMask = Mask.fromPixels(nearPixels, pixel);
 
-    let centerMask = <Mask>clone(nearMask);
-    centerMask.pixels
-              .filter((p, i) => i !== selectedPixelIndex)
-              .forEach(p => p.value = null);
+    let leftMask = <Mask>clone(nearMask);
+    leftMask.pixels
+            .filter(p => !(p.x == 0 && p.y == 0))
+            .forEach(p => p.value = null);
 
     let surroundingMaskPixels = nearMask;
-    surroundingMaskPixels.pixels[selectedPixelIndex].value = null;
+    surroundingMaskPixels.pixels.find(p => p.x == 0 && p.y == 0).value = null;
 
-    this.kernelInputA = centerMask;
+    this.kernelInputA = leftMask;
     this.kernelInputB = surroundingMaskPixels;
 
     this.inputC = nearPixels.map(p => p.value)
