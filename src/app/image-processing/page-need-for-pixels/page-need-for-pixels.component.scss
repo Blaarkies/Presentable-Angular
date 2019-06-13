@@ -35,7 +35,7 @@ $image-lenna-max-scale: 50;
   100% {
     transform: scale($image-lenna-max-scale);
     image-rendering: pixelated;
-    filter: grayscale(1);
+    filter: grayscale(1) contrast(1.4);;
   }
 }
 
@@ -84,11 +84,10 @@ $image-lenna-max-scale: 50;
 .invisible-background {
   ::ng-deep {
     .pixel-with-number {
-      background: unset;
+      background-color: unset !important;
     }
 
     .pixel-numbers-container {
-
       grid-template-columns: repeat(8, auto);
       grid-template-rows: repeat(8, auto);
       height: 600px;

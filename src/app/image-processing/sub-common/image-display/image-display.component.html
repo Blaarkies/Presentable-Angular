@@ -2,6 +2,14 @@
 
   <div class="image-title">{{title}}</div>
 
+  <ng-container *ngTemplateOutlet="imageGrid"></ng-container>
+</mat-card>
+
+<ng-template #pixelsOnly>
+  <ng-container *ngTemplateOutlet="imageGrid"></ng-container>
+</ng-template>
+
+<ng-template #imageGrid>
   <div class="pixel-numbers-container" (mouseleave)="setMaskVisibility(null)">
     <div *ngFor="let pixel of sourceImage.pixels; let i = index"
          class="code-subtitle
@@ -9,43 +17,13 @@
                hover-code-highlight
                cursor-pointer
                transition-on-opacity"
-         [ngClass]="showNegativeValues
-                     ? (pixel.value < -7) ? 'pixel-negative-color--7'
-                                          : (pixel.value > 7) ? 'pixel-negative-color-7'
-                                                               : 'pixel-negative-color-' + pixel.value
-                     : (pixel.value < 0) ? 'pixel-color-0'
-                                         : (pixel.value > 7)  ? 'pixel-color-7'
-                                                              : 'pixel-color-' + pixel.value"
+         [style.background-color]="showNegativeValues
+            ? 'hsl(' + (180 + (pixel.value / (pixelStats.range / 2)) * 60) + ',100%,50%)'
+            : 'hsl(0,0%, ' + (pixel.value / 7)*100 + '%)'"
          [class.highlight-mask]="pixel.maskVisible"
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
          [class.bright-shine]="pixel == _pressedPixel"
-         (click)="onPixelClick(pixel)"
-         (mouseenter)="onPixelHover(pixel)"
-         (press)="onPixelPress(pixel)">
-      <span>{{pixel.value}}</span>
-    </div>
-  </div>
-</mat-card>
-
-<ng-template #pixelsOnly>
-  <div class="pixel-numbers-container" (mouseleave)="setMaskVisibility(null)">
-    <div *ngFor="let pixel of sourceImage.pixels; let i = index"
-         class="code-subtitle
-               pixel-with-number
-               hover-code-highlight
-               cursor-pointer
-               transition-on-opacity"
-         [ngClass]="showNegativeValues
-                     ? (pixel.value < -7) ? 'pixel-negative-color--7'
-                                          : (pixel.value > 7) ? 'pixel-negative-color-7'
-                                                               : 'pixel-negative-color-' + pixel.value
-                     : (pixel.value < 0) ? 'pixel-color-0'
-                                         : (pixel.value > 7)  ? 'pixel-color-7'
-                                                              : 'pixel-color-' + pixel.value"
-         [class.highlight-mask]="pixel.maskVisible"
-         [class.opacity-0]="!pixel.visible"
-         [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
          (click)="onPixelClick(pixel)"
          (mouseenter)="onPixelHover(pixel)"
          (press)="onPixelPress(pixel)">

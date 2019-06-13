@@ -5,64 +5,51 @@
     <div class="content-subtitle">
 
       <div class="bi-container">
-        <div class="left-label-container" *ngIf="inputA || kernelInputA">
-          <div class="code-subtitle label" *ngIf="kernelInputA; else normalA">
-            <app-mask-editor [mask]="kernelInputA"
-                             [disabled]="true"
-                             (pixelHover)="onPixelHover($event)"></app-mask-editor>
+        <div class="left-label-container" *ngIf="inputATemplate">
+          <div class="code-subtitle label">
+            <ng-container *ngTemplateOutlet="inputATemplate"></ng-container>
           </div>
-          <ng-template #normalA>
-            <div class="code-subtitle label">{{inputA}}</div>
-          </ng-template>
-
           <div class="left-label-connector"></div>
         </div>
 
-        <div class="right-label-container" *ngIf="inputB">
-          <div class="right-label-container" *ngIf="inputB || kernelInputB">
-            <div class="code-subtitle label" *ngIf="kernelInputB; else normalB">
-              <app-mask-editor [mask]="kernelInputB"
-                               [disabled]="!editKernelB"
-                               (change)="kernelInputBChanged()"></app-mask-editor>
+        <div class="right-label-container" *ngIf="inputBTemplate">
+          <div class="right-label-container">
+            <div class="code-subtitle label">
+              <ng-container *ngTemplateOutlet="inputBTemplate"></ng-container>
             </div>
-            <ng-template #normalB>
-              <div class="code-subtitle label">{{inputB}}</div>
-            </ng-template>
-
             <div class="right-label-connector"></div>
           </div>
         </div>
       </div>
 
-      <ng-container *ngIf="inputC">
+      <div class="center-label-container" *ngIf="inputCTemplate">
         <div class="algorithm-box-container fit-content">
-          <ng-content select="[inputC]"></ng-content>
+          <ng-container *ngTemplateOutlet="inputCTemplate"></ng-container>
         </div>
-        <div class="center-label-container">
-          <div class="center-label-connector"></div>
-        </div>
-      </ng-container>
-
-      <div class="algorithm-box-container">
-        <app-button-icon-fab class="animate-mat-icon-rotate"
-                             (buttonClick)="onCompleteDestinationImage()">settings
-        </app-button-icon-fab>
-        <div class="code-title">{{calculation}}</div>
+        <div class="center-label-connector"></div>
       </div>
-
-      <ng-container *ngIf="outputB">
-        <div class="center-label-container">
-          <div class="center-label-connector"></div>
-        </div>
-        <div class="algorithm-box-container fit-content">
-          <ng-content select="[outputB]"></ng-content>
-        </div>
-      </ng-container>
 
       <div class="center-label-container">
+        <div class="algorithm-box-container">
+          <app-button-icon-fab class="animate-mat-icon-rotate"
+                               (buttonClick)="onCompleteDestinationImage()">settings
+          </app-button-icon-fab>
+          <div class="code-title">{{calculation}}</div>
+        </div>
         <div class="center-label-connector"></div>
+      </div>
+
+      <div class="center-label-container" *ngIf="outputBTemplate">
+        <div class="algorithm-box-container fit-content">
+          <ng-container *ngTemplateOutlet="outputBTemplate"></ng-container>
+        </div>
+        <div class="center-label-connector"></div>
+      </div>
+
+      <div class="center-label-container">
         <div class="code-subtitle label">{{output}}</div>
       </div>
+
     </div>
   </mat-card-content>
 </mat-card>

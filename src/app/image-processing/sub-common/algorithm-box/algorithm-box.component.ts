@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 
 @Component({
@@ -9,29 +9,17 @@ import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 export class AlgorithmBoxComponent {
 
   @Input() title: string;
-  @Input() inputA: string;
-  @Input() inputB: string;
-  @Input() inputC: string;
+  @Input() inputATemplate: TemplateRef<any>;
+  @Input() inputBTemplate: TemplateRef<any>;
+  @Input() inputCTemplate: TemplateRef<any>;
   @Input() calculation: string;
+  @Input() outputBTemplate: TemplateRef<any>;
   @Input() output: string;
-  @Input() outputB: string;
-  @Input() kernelInputA: Mask = null;
-  @Input() kernelInputB: Mask = null;
-  @Input() editKernelB = false;
 
   @Output() complete = new EventEmitter<void>();
-  @Output() pixelHover = new EventEmitter<MaskPixel>();
-  @Output() kernelInputBChange = new EventEmitter<void>();
 
   onCompleteDestinationImage() {
     this.complete.emit();
   }
 
-  onPixelHover(pixel: MaskPixel): void {
-    this.pixelHover.emit(pixel);
-  }
-
-  kernelInputBChanged() {
-    this.kernelInputBChange.emit();
-  }
 }

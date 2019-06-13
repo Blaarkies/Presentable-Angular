@@ -12,16 +12,26 @@
 
   <div class="image-b">
     <app-algorithm-box [title]="'Convert To Black And White'"
-                       [inputA]="inputA || 'Source pixel'"
-                       [inputB]="inputB || 'Threshold value'"
                        [calculation]="calculationText || 'If (pixel > ' + thresholdValue + ')\nNo  = 0\nYes = 7'"
                        [output]="output || 'Destination pixel value'"
-                       [outputB]="true"
-                       (complete)="completeDestinationImage()">
-      <div outputB class="code-subtitle break-word">
-        <div *ngIf="!outputB; else brackets">Comparison check</div>
-        <ng-template #brackets>{{outputB}}</ng-template>
-      </div>
+                       (complete)="completeDestinationImage()"
+                       [inputATemplate]="inputATemplate"
+                       [inputBTemplate]="inputBTemplate"
+                       [outputBTemplate]="outputBTemplate">
+      <ng-template #inputATemplate>
+        <ng-container *ngIf="inputA; else textInputA">{{inputA}}</ng-container>
+        <ng-template #textInputA>Source pixel</ng-template>
+      </ng-template>
+
+      <ng-template #inputBTemplate>
+        <ng-container *ngIf="inputB; else textInputB">{{inputB}}</ng-container>
+        <ng-template #textInputB>Threshold value</ng-template>
+      </ng-template>
+
+      <ng-template #outputBTemplate>
+        <ng-container *ngIf="outputB; else textOutputB">{{outputB}}</ng-container>
+        <ng-template #textOutputB>Comparison check</ng-template>
+      </ng-template>
     </app-algorithm-box>
   </div>
 
@@ -43,3 +53,5 @@
                        [title]="'Result Image'"></app-image-display>
   </div>
 </div>
+
+

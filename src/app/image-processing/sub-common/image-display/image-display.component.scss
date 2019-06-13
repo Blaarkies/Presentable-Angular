@@ -23,32 +23,9 @@ $size-pixel: 60px;
   }
 }
 
-$color-depth: 7;
-@mixin pixel-color-depths {
-  @for $i from 0 through $color-depth {
-    .pixel-color-#{$i} {
-      background-color: hsl(0, 0, ($i / $color-depth) * 100);
-    }
-  }
-}
-
-@include pixel-color-depths;
-
-$negative-color-depth: ($color-depth * 2);
-@mixin pixel-negative-color-depths {
-  @for $i from 0 through $negative-color-depth {
-    .pixel-negative-color-#{$i - ($negative-color-depth / 2)} {
-      background-color: hsl(-($i / $negative-color-depth) * 120, 100, 50);
-    }
-  }
-}
-
-@include pixel-negative-color-depths;
-
 .transition-on-opacity {
   transition: opacity 500ms ease-in-out;
 }
-
 
 $color-mask-highlight: transparentize(green, 0.1);
 $color-mask-shadow: transparentize(black, 0.7);
