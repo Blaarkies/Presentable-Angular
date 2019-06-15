@@ -6,7 +6,8 @@
 }
 
 .slider-under-image {
-  width: 90%;
+  width: 100%;
+  justify-self: center;
   border-radius: 16px;
   background-color: white;
   @extend .mat-elevation-z1;

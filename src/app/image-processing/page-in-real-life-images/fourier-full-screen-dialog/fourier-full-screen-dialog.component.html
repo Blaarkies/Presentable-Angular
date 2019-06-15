@@ -1,0 +1,45 @@
+<div class="overlap-container">
+  <app-button-icon-fab class="overlap-b place-button-right"
+                       color="warn"
+                       (buttonClick)="onNoClick()">clear
+  </app-button-icon-fab>
+
+  <mat-card class="overlap-a mat-card-remove-box">
+    <div class="page-title card-title-padding align-text-center">Fourier Transform</div>
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="Transform">
+          <div class="fourier-container">
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-normal.jpg');"></div>
+            <mat-icon class="center-arrow">arrow_forward</mat-icon>
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-map.jpg');"></div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Sharpen">
+          <div class="fourier-container">
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-sharp-map.jpg');"></div>
+            <mat-icon class="center-arrow">arrow_forward</mat-icon>
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-sharp-result.jpg');"></div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Blur">
+          <div class="fourier-container">
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-blur-map.jpg');"></div>
+            <mat-icon class="center-arrow">arrow_forward</mat-icon>
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-blur-result.jpg');"></div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Custom">
+          <div class="fourier-container">
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-special-map.jpg');"></div>
+            <mat-icon class="center-arrow">arrow_forward</mat-icon>
+            <div class="large-image" style="background-image: url('assets/fourier/fourier-special-result.jpg');"></div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

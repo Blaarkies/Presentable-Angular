@@ -11,6 +11,7 @@ import { MaskEditorComponent } from 'src/app/image-processing/sub-common/mask-ed
 import { PageMaskSharpenComponent } from './page-mask-sharpen/page-mask-sharpen.component';
 import { PageInRealLifeImagesComponent } from './page-in-real-life-images/page-in-real-life-images.component';
 import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
+import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-in-real-life-images/fourier-full-screen-dialog/fourier-full-screen-dialog.component';
 
 @NgModule({
             imports: [
@@ -28,8 +29,11 @@ import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-medi
               ImageDisplayComponent,
               AlgorithmBoxComponent,
               MaskEditorComponent,
+              FourierFullScreenDialogComponent,
             ],
-            entryComponents: []
+            entryComponents: [
+              FourierFullScreenDialogComponent,
+            ]
           })
 export class ImageProcessingModule {
 }

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 class DialogData {
@@ -9,7 +9,7 @@ class DialogData {
              templateUrl: './website-info-dialog.component.html',
              styleUrls: ['./website-info-dialog.component.scss']
            })
-export class WebsiteInfoDialogComponent implements OnInit {
+export class WebsiteInfoDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<WebsiteInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -17,9 +17,6 @@ export class WebsiteInfoDialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  ngOnInit() {
   }
 
 }

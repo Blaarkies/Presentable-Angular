@@ -1,17 +1,14 @@
-<mat-dialog-content>
+<div class="overlap-container">
+  <app-button-icon-fab class="overlap-b place-button-right"
+                       color="warn"
+                       (buttonClick)="onNoClick()">clear
+  </app-button-icon-fab>
 
-  <mat-card class="mat-card-remove-box">
-    <div class="page-title card-title-padding">
-      Go to this link to join in...
-    </div>
-    <mat-card-content>
-      <div class="page-title align-text-center">
-        Blaarkies.com
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <div class="overlap-a">
+    <div class="page-title">To find out more, go to</div>
+    <div class="page-title align-text-center">Blaarkies.com</div>
 
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
+    <div class="qr-image" style="background-image: url('assets/qr-blaarkies.svg');"></div>
+  </div>
+
+</div>

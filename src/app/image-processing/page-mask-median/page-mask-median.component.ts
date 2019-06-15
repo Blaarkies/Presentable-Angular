@@ -53,8 +53,8 @@ export class PageMaskMedianComponent {
     this.sourceImage = this.pixelProcessorService.getImageFromString(
      `00050000
       70660204
-      06666050
-      06666007
+      06776050
+      06756007
       00660044
       60000144
       00500044

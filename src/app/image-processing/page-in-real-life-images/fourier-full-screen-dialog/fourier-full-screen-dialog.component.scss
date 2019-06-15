@@ -1,14 +1,12 @@
+@import '../page-in-real-life-images.component';
+
+.large-image {
+  height: 800px;
+}
+
 .mat-card-remove-box {
   box-shadow: unset;
   padding: unset;
-}
-
-.qr-image {
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  height: 600px;
-  background-position: center;
 }
 
 .place-button-right {
