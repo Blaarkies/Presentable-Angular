@@ -64,6 +64,14 @@ $large-size: 60px;
     }
   }
 
+  &.warn {
+    background-color: purple;
+
+    mat-icon {
+      color: white;
+    }
+  }
+
   &.link {
     background-color: white;
 

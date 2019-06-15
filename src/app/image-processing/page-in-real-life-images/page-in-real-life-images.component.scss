@@ -29,7 +29,8 @@
   grid-gap: 16px;
 }
 
-.large-image-padding {
+.tab-content {
+  height: 400px;
   padding: 16px;
 }
 
@@ -66,6 +67,11 @@
   display: grid;
   grid-template-rows: auto;
   row-gap: 16px;
+}
+
+.place-button-corner-top {
+  place-self: start end;
+  transform: translate(-10%, -50%);
 }
 
 :host-context(.is-presentation-mode) {

@@ -13,7 +13,8 @@
     <div class="overlap-container">
 
       <app-button-icon-fab class="overlap-b place-button-top-right"
-                           (click)="showMask = !showMask">info
+                           (click)="showMask = !showMask">
+        info
       </app-button-icon-fab>
       <app-image-display class="overlap-a transition-transparency"
                          #sharp
@@ -22,10 +23,10 @@
                          [highlightPixel]="hoverPixel"
                          [showNegativeValues]="true"
                          [title]="'Sharpening Guide'"></app-image-display>
-      <app-mask-editor class="overlap-b animate-fade-in center-mask-editor"
+      <app-mask-editor *ngIf="showMask"
+                       class="overlap-b animate-fade-in center-mask-editor"
                        [mask]="sharpMask"
-                       [disabled]="true"
-                       *ngIf="showMask"></app-mask-editor>
+                       [disabled]="true"></app-mask-editor>
     </div>
 
   </div>

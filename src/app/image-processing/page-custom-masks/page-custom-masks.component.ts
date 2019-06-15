@@ -5,6 +5,12 @@ import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
 
+interface MaskProduct {
+  display: string;
+  kernelPixel: MaskPixel;
+  highlight: boolean;
+}
+
 @Component({
              selector: 'app-page-custom-masks',
              templateUrl: './page-custom-masks.component.html',
@@ -18,13 +24,7 @@ export class PageCustomMasksComponent {
   resultImage: Image;
 
   customMask: Mask;
-  inputA: string;
-  inputB: string;
-  inputC: {
-    display: string;
-    kernelPixel: MaskPixel;
-    highlight: boolean;
-  }[];
+  products: MaskProduct[];
   output: string;
   calculationText: string;
 
@@ -92,9 +92,7 @@ export class PageCustomMasksComponent {
 
     this.resultImageDisplayer.highlightPixel = pixel;
     if (!pixel) {
-      this.inputA
-        = this.inputB
-        = this.inputC
+      this.products
         = this.kernelInputA
         = this.output
         = this.calculationText
@@ -111,9 +109,9 @@ export class PageCustomMasksComponent {
 
     this.kernelInputA = nearMask;
 
-    this.inputC = nearMask.pixels
-                          .filter(pA => pA.value != null)
-                          .map(pA => {
+    this.products = nearMask.pixels
+                            .filter(pA => pA.value != null)
+                            .map(pA => {
                             let kernelPixel = this.customMask.pixels.find(pB => pB.isSamePosition(pA));
                             return {
                               display: `(${pA.value}×${kernelPixel.value})`,
@@ -149,6 +147,7 @@ export class PageCustomMasksComponent {
   setIsAverageSlider(checked: boolean) {
     this.isAverage = checked;
     this.filterImage();
+    this.resultImageDisplayer.setPixelStats();
   }
 
   activateSmoothMask() {
@@ -164,7 +163,7 @@ export class PageCustomMasksComponent {
   activateGaussianMask() {
     this.customMask = this.pixelProcessorService.getMaskFromString(
       `121
-      242
+      282
       121`);
     this.isAverage = true;
     this.updateKernels();
@@ -181,11 +180,12 @@ export class PageCustomMasksComponent {
     this.isAverage = false;
     this.updateKernels();
     this.filterImage();
+    this.resultImageDisplayer.setPixelStats();
   }
 
   setHoveredMaskPixel(pixel: MaskPixel) {
     this.hoveredMaskPixel = pixel;
-    if (!(this.kernelInputA && this.customMask && this.inputC)) {
+    if (!(this.kernelInputA && this.customMask && this.products)) {
       return;
     }
     this.kernelInputA
@@ -196,12 +196,15 @@ export class PageCustomMasksComponent {
         .pixels
         .forEach(p => p.highlight = p.isSamePosition(pixel));
 
-    this.inputC
+    this.products
         .forEach(product => product.highlight = product.kernelPixel.isSamePosition(pixel));
   }
 
   updateKernels() {
     let hoveredPixel = this.resultImageDisplayer.highlightPixel;
+    if (!hoveredPixel) {
+      return;
+    }
     this.updateOutputs(hoveredPixel);
     this.setHoveredMaskPixel(null);
   }

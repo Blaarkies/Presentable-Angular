@@ -1,11 +1,3 @@
-<!--
-add some way to show which kernel items gets multiplied by pixel on image
-- lock a pixel so that the pointer can be used?
-- have an animation play?
-
-in the algorithm box, show the 8 input pixels in their relative positions (not just a flat line string)
--->
-
 <div class="tri-container">
 
   <app-image-display #source
@@ -17,18 +9,31 @@ in the algorithm box, show the 8 input pixels in their relative positions (not j
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
   <app-algorithm-box [title]="'Blur Each Pixel Value'"
-                     [inputA]="kernelInputA || 'Source pixel value'"
-                     [inputB]="kernelInputB || '8 neighbour pixel values'"
-                     [inputC]="true"
                      [calculation]="calculationText || 'sum / count'"
                      [output]="output || 'Destination pixel value'"
-                     [kernelInputA]="kernelInputA"
-                     [kernelInputB]="kernelInputB"
-                     (complete)="completeDestinationImage()">
-    <div inputC class="code-subtitle break-word">
-      <div *ngIf="!inputC; else brackets">Sum all values</div>
-      <ng-template #brackets>{{inputC}}</ng-template>
-    </div>
+                     (complete)="completeDestinationImage()"
+                     [inputATemplate]="inputATemplate"
+                     [inputBTemplate]="inputBTemplate"
+                     [inputCTemplate]="inputCTemplate">
+    <ng-template #inputATemplate>
+      <app-mask-editor *ngIf="kernelInputA; else textInputA"
+                       [mask]="kernelInputA"
+                       [disabled]="true"></app-mask-editor>
+      <ng-template #textInputA>Source pixel value</ng-template>
+    </ng-template>
+
+    <ng-template #inputBTemplate>
+      <app-mask-editor *ngIf="kernelInputB; else textInputB"
+                       [mask]="kernelInputB"
+                       [disabled]="true"></app-mask-editor>
+      <ng-template #textInputB>8 neighbour pixel values</ng-template>
+    </ng-template>
+
+    <ng-template #inputCTemplate>
+      <ng-container *ngIf="inputC; else textInputC">{{inputC}}</ng-container>
+      <ng-template #textInputC>Sum all values</ng-template>
+    </ng-template>
+
   </app-algorithm-box>
 
   <app-image-display #result

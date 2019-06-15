@@ -1,5 +1,5 @@
 <div class="custom-mask-container">
-  <div *ngFor="let pixel of mask.pixels"
+  <div *ngFor="let pixel of mask?.pixels"
        class="overlap-container mask-pixel cursor-pointer mat-elevation-z1"
        [class.transparent]="pixel.value == null"
        [class.highlight-code-viewing]="pixel.highlight"

@@ -1,13 +1,18 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
+
+interface PixelStats {
+  range: number;
+  mean: number;
+}
 
 @Component({
              selector: 'app-image-display',
              templateUrl: './image-display.component.html',
              styleUrls: ['./image-display.component.scss']
            })
-export class ImageDisplayComponent {
+export class ImageDisplayComponent implements OnInit {
 
   @Input() sourceImage: Image;
   @Input() mask: Mask = new Mask();
@@ -22,10 +27,25 @@ export class ImageDisplayComponent {
   @Output() pixelPress = new EventEmitter<Pixel>();
 
   _pressedPixel: Pixel;
-
   set pressedPixel(pixel: Pixel) {
     this._pressedPixel = pixel;
     setTimeout(_ => this._pressedPixel = null, 1000);
+  }
+
+  pixelStats: PixelStats;
+
+  ngOnInit(): void {
+    this.setPixelStats();
+  }
+
+  public setPixelStats() {
+    let pixelValues = this.sourceImage.pixels.map(p => p.value);
+    let min = Math.min(...pixelValues);
+    let max = Math.max(...pixelValues);
+    this.pixelStats = {
+      range: max - min,
+      mean: (max + min) / 2,
+    };
   }
 
   setMaskVisibility(pixel: Pixel): void {

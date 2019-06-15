@@ -1,0 +1,24 @@
+@import 'styles/styles';
+
+.filtering-container {
+  display: grid;
+  grid-gap: 16px;
+}
+
+.slider-under-image {
+  width: 100%;
+  justify-self: center;
+  border-radius: 16px;
+  background-color: white;
+  @extend .mat-elevation-z1;
+
+  padding: 16px 8px 0;
+
+  .slider {
+    width: 100%;
+  }
+}
+
+.break-word {
+  word-break: break-word;
+}

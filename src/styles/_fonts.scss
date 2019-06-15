@@ -79,8 +79,7 @@ $presentation-mode-size-multiplier: 1.5;
   font-style: oblique;
 }
 
-
-::ng-deep .is-presentation-mode {
+:root .is-presentation-mode {
   $presentation-mode-size-page-title: $size-page-title * $presentation-mode-size-multiplier;
   $presentation-mode-size-page-subtitle: $size-page-subtitle * $presentation-mode-size-multiplier;
   $presentation-mode-size-content-title: $size-content-title * $presentation-mode-size-multiplier;

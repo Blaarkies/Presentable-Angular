@@ -37,14 +37,14 @@ export class PagePixelManipulationComponent implements OnInit {
 
     // This is the character "e"
     this.sourceImage = this.pixelProcessorService.getImageFromString(
-      `22355422
+      `12365422
       23543462
       25322253
       36222363
-      36255542
-      25222222
-      22532342
-      22265522`, 7);
+      36277642
+      25221211
+      12532342
+      11265522`, 7);
     this.thresholdValue = Math.round(this.sourceImage.colorDepth / 2);
     this.setThresholdImage();
 

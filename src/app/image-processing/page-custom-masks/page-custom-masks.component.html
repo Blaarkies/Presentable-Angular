@@ -13,29 +13,38 @@
 
   <div class="filtering-container">
     <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel'"
-                       [inputA]="inputA || '9 pixel values'"
-                       [inputB]="inputB || 'Corresponding mask values'"
-                       [inputC]="true"
                        [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
                        [output]="output || 'Destination pixel value'"
-                       [kernelInputA]="kernelInputA"
-                       [kernelInputB]="customMask"
-                       [editKernelB]="true"
                        (complete)="completeDestinationImage()"
-                       (pixelHover)="setHoveredMaskPixel($event)"
                        (mouseleave)="setHoveredMaskPixel(null)"
-                       (kernelInputBChange)="updateKernels()">
+                       [inputATemplate]="inputATemplate"
+                       [inputBTemplate]="inputBTemplate"
+                       [inputCTemplate]="inputCTemplate">
+      <ng-template #inputATemplate>
+        <app-mask-editor *ngIf="kernelInputA; else textInputA"
+                         [mask]="kernelInputA"
+                         [disabled]="true"
+                         (pixelHover)="setHoveredMaskPixel($event)"></app-mask-editor>
+        <ng-template #textInputA>9 pixel values</ng-template>
+      </ng-template>
 
-      <div inputC class="code-subtitle break-word">
-        <div *ngIf="!inputC; else brackets">Sum all products</div>
+      <ng-template #inputBTemplate>
+        <app-mask-editor [mask]="customMask"
+                         (change)="updateKernels()"></app-mask-editor>
+      </ng-template>
 
-        <ng-template #brackets>
-          <ng-container *ngFor="let bracket of inputC; let isLast = last;">
-            <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
-            <span *ngIf="!isLast">+</span>
-          </ng-container>
-        </ng-template>
-      </div>
+      <ng-template #inputCTemplate>
+        <div class="code-subtitle break-word">
+          <div *ngIf="!products; else brackets">Sum all products</div>
+
+          <ng-template #brackets>
+            <ng-container *ngFor="let bracket of products; let isLast = last;">
+              <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
+              <span *ngIf="!isLast">+</span>
+            </ng-container>
+          </ng-template>
+        </div>
+      </ng-template>
     </app-algorithm-box>
 
     <div class="shortcuts-container">
