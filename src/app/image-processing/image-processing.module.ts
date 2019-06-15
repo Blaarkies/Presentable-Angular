@@ -10,6 +10,7 @@ import { PageCustomMasksComponent } from './page-custom-masks/page-custom-masks.
 import { MaskEditorComponent } from 'src/app/image-processing/sub-common/mask-editor/mask-editor.component';
 import { PageMaskSharpenComponent } from './page-mask-sharpen/page-mask-sharpen.component';
 import { PageInRealLifeImagesComponent } from './page-in-real-life-images/page-in-real-life-images.component';
+import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
 
 @NgModule({
             imports: [
@@ -20,12 +21,13 @@ import { PageInRealLifeImagesComponent } from './page-in-real-life-images/page-i
               PageNeedForPixelsComponent,
               PagePixelManipulationComponent,
               PageMaskBlurComponent,
-              ImageDisplayComponent,
-              AlgorithmBoxComponent,
               PageCustomMasksComponent,
-              MaskEditorComponent,
+              PageMaskMedianComponent,
               PageMaskSharpenComponent,
               PageInRealLifeImagesComponent,
+              ImageDisplayComponent,
+              AlgorithmBoxComponent,
+              MaskEditorComponent,
             ],
             entryComponents: []
           })

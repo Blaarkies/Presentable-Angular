@@ -17,6 +17,7 @@ import { PageMaskBlurComponent } from 'src/app/image-processing/page-mask-blur/p
 import { PageCustomMasksComponent } from 'src/app/image-processing/page-custom-masks/page-custom-masks.component';
 import { PageMaskSharpenComponent } from 'src/app/image-processing/page-mask-sharpen/page-mask-sharpen.component';
 import { PageInRealLifeImagesComponent } from 'src/app/image-processing/page-in-real-life-images/page-in-real-life-images.component';
+import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
       {path: 'mask-blur', data: {title: 'Blur Between The Lines'}, component: PageMaskBlurComponent},
       {path: 'mask-custom', data: {title: 'The Kernel'}, component: PageCustomMasksComponent},
       {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageMaskSharpenComponent},
+      {path: 'mask-median', data: {title: 'Pixels Are Like Onions'}, component: PageMaskMedianComponent},
       {path: 'in-real-life', data: {title: 'In Real Life'}, component: PageInRealLifeImagesComponent},
       {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
     ]

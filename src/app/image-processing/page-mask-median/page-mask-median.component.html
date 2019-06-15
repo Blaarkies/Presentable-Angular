@@ -1,0 +1,60 @@
+<div class="tri-container">
+
+  <app-image-display #source
+                     [sourceImage]="sourceImage"
+                     [mask]="medianMask"
+                     [title]="'Source Image'"
+                     [lockHighlights]="pressedPixel"
+                     (pixelClick)="setVisibility($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"
+                     (pixelPress)="setPressedPixel($event)">
+  </app-image-display>
+
+  <div class="filtering-container">
+    <app-algorithm-box [title]="'Find Median Value For Each Pixel'"
+                       [calculation]="calculationText || 'Pick by percentile'"
+                       [output]="output || 'Destination pixel value'"
+                       (complete)="completeDestinationImage()"
+                       [inputATemplate]="inputATemplate"
+                       [inputBTemplate]="inputBTemplate"
+                       [inputCTemplate]="inputCTemplate">
+      <ng-template #inputATemplate>
+        <app-mask-editor *ngIf="maskSelection; else textInputA"
+                         [mask]="maskSelection"
+                         [disabled]="true"></app-mask-editor>
+        <ng-template #textInputA>9 pixel values</ng-template>
+      </ng-template>
+
+      <ng-template #inputBTemplate>{{percentile}}th percentile</ng-template>
+
+      <ng-template #inputCTemplate>
+        <div class="code-subtitle break-word">
+          <div *ngIf="!pixelValues; else brackets">Order by value</div>
+
+          <ng-template #brackets>
+            <ng-container *ngFor="let bracket of pixelValues; let isLast = last;">
+              <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
+              <span *ngIf="!isLast">, </span>
+            </ng-container>
+          </ng-template>
+        </div>
+      </ng-template>
+    </app-algorithm-box>
+
+    <div class="slider-under-image">
+      <mat-slider class="slider"
+                  color="primary"
+                  [value]="percentile"
+                  [min]="1"
+                  [max]="100"
+                  [step]="1"
+                  (input)="setPercentileSlider($event)">
+      </mat-slider>
+    </div>
+  </div>
+
+  <app-image-display #result
+                     [sourceImage]="resultImage"
+                     [title]="'Result Image'"></app-image-display>
+</div>
