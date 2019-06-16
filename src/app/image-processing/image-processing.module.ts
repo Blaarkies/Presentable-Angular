@@ -12,6 +12,7 @@ import { PageMaskSharpenComponent } from './page-mask-sharpen/page-mask-sharpen.
 import { PageInRealLifeImagesComponent } from './page-in-real-life-images/page-in-real-life-images.component';
 import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
 import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-in-real-life-images/fourier-full-screen-dialog/fourier-full-screen-dialog.component';
+import { SeeingWifiDialogComponent } from 'src/app/image-processing/page-in-real-life-images/seeing-wifi-dialog/seeing-wifi-dialog.component';
 
 @NgModule({
             imports: [
@@ -30,9 +31,11 @@ import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-
               AlgorithmBoxComponent,
               MaskEditorComponent,
               FourierFullScreenDialogComponent,
+              SeeingWifiDialogComponent,
             ],
             entryComponents: [
               FourierFullScreenDialogComponent,
+              SeeingWifiDialogComponent,
             ]
           })
 export class ImageProcessingModule {
