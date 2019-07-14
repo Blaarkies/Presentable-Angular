@@ -1,0 +1,28 @@
+<div class="fourier-waves-container">
+
+  <app-image-display #source
+                     [sourceImage]="sourceImage"
+                     [mask]="pointMask"
+                     [title]="'Source Image'"
+                     (pixelClick)="selectRowAsFourierInput($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+
+  <div class="fourier-view">
+    <div class="dismantled-image-containment">
+      <div *ngFor="let pixel of pixelsToDisplay"
+           class="code-title pixel-box"
+           [style.transform]="'translate(0, '+ (100 - 100 * (pixel.value / sourceImage.colorDepth)) +'%)'">
+      </div>
+    </div>
+
+
+    <div class="wave-display">
+      <canvas #wave></canvas>
+    </div>
+
+  </div>
+
+</div>
+
+

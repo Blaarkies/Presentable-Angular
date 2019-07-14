@@ -18,6 +18,8 @@ import { PageCustomMasksComponent } from 'src/app/image-processing/page-custom-m
 import { PageMaskSharpenComponent } from 'src/app/image-processing/page-mask-sharpen/page-mask-sharpen.component';
 import { PageInRealLifeImagesComponent } from 'src/app/image-processing/page-in-real-life-images/page-in-real-life-images.component';
 import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
+import { PageFourierIntroComponent } from 'src/app/image-processing/page-fourier-intro/page-fourier-intro.component';
+import { PageFourierWavesComponent } from 'src/app/image-processing/page-fourier-waves/page-fourier-waves.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,8 @@ const routes: Routes = [
       {path: 'mask-custom', data: {title: 'The Kernel'}, component: PageCustomMasksComponent},
       {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageMaskSharpenComponent},
       {path: 'mask-median', data: {title: 'Pixels Are Like Onions'}, component: PageMaskMedianComponent},
+      {path: 'fourier-intro', data: {title: 'Stranger Pixels'}, component: PageFourierIntroComponent},
+      {path: 'fourier-waves', data: {title: 'The Sound of Pixels'}, component: PageFourierWavesComponent},
       {path: 'in-real-life', data: {title: 'In Real Life'}, component: PageInRealLifeImagesComponent},
       {path: 'questions', data: {title: 'Questions'}, component: PageQuestionsComponent},
     ]

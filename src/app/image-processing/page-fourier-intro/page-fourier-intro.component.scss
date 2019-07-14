@@ -1,0 +1,29 @@
+@import 'styles/styles';
+
+.large-image {
+  height: 800px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.mat-card-remove-box {
+  box-shadow: unset;
+  padding: unset;
+}
+
+.place-button-right {
+  place-self: start end;
+  transform: translate(-10%, 0%);
+}
+
+.fourier-container {
+  display: grid;
+  grid-template-columns: auto max-content auto;
+  grid-gap: 6px;
+
+  .center-arrow {
+    place-self: center;
+    font-size: $size-content-title;
+  }
+}
