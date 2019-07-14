@@ -4,6 +4,8 @@ import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
+import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
              selector: 'app-page-mask-blur',
@@ -26,7 +28,8 @@ export class PageMaskBlurComponent {
   kernelInputB: Mask;
   inputC: string;
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     this.averageMask = this.pixelProcessorService.getMaskFromString(
       `111
       111
@@ -90,5 +93,21 @@ export class PageMaskBlurComponent {
     this.calculationText = `${sumOfValues} / ${nearPixels.length}`;
   }
 
+  openFullscreenExampleDialog() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(FullscreenDualImageDialogComponent, {
+        width: '98%',
+        height: '95%',
+        data: {
+          title: 'Smoothing',
+          styleClass: 'filter-blur'
+        }
+      })
+          .afterClosed()
+          .subscribe();
+    });
+  }
 
 }

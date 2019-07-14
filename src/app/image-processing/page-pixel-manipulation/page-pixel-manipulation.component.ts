@@ -5,7 +5,9 @@ import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { interval, Subject } from 'rxjs';
 import { sample, takeUntil } from 'rxjs/operators';
-import { MatSliderChange } from '@angular/material';
+import { MatDialog, MatSliderChange } from '@angular/material';
+import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-in-real-life-images/fourier-full-screen-dialog/fourier-full-screen-dialog.component';
+import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
 
 @Component({
              selector: 'app-page-pixel-manipulation',
@@ -32,7 +34,8 @@ export class PagePixelManipulationComponent implements OnInit {
   thresholdValue: number;
   thresholdSlider$ = new Subject<number>();
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     this.pointMask = new Mask();
 
     // This is the character "e"
@@ -104,5 +107,22 @@ export class PagePixelManipulationComponent implements OnInit {
 
   setThresholdValueSlider($event: MatSliderChange) {
     this.thresholdSlider$.next($event.value);
+  }
+
+  openFullscreenExampleDialog() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(FullscreenDualImageDialogComponent, {
+        width: '98%',
+        height: '95%',
+        data: {
+          title: 'Smoothing',
+          styleClass: 'filter-black-and-white'
+        }
+      })
+          .afterClosed()
+          .subscribe();
+    });
   }
 }

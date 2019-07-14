@@ -1,0 +1,28 @@
+@import '../../page-in-real-life-images/page-in-real-life-images.component';
+
+.large-image {
+  height: 800px;
+}
+
+.mat-card-remove-box {
+  box-shadow: unset;
+  padding: unset;
+}
+
+.place-button-right {
+  place-self: start end;
+  transform: translate(-10%, 0%);
+}
+
+// TODO: fix this mess
+.filter-invert {
+  filter: invert(1);
+}
+
+.filter-blur {
+  filter: blur(10px);
+}
+
+.filter-black-and-white {
+  filter: grayscale(1) contrast(30);
+}

@@ -4,9 +4,10 @@ import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
-import { MatSliderChange } from '@angular/material';
+import { MatDialog, MatSliderChange } from '@angular/material';
 import { interval, Subject } from 'rxjs';
 import { sample, takeUntil } from 'rxjs/operators';
+import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
 
 interface MaskProduct {
   display: string;
@@ -44,7 +45,8 @@ export class PageMaskMedianComponent {
     return nearPixels.sort((a, b) => a.value - b.value)[indexOnPercentile].value;
   };
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     this.medianMask = this.pixelProcessorService.getMaskFromString(
       `111
       111
@@ -159,6 +161,23 @@ export class PageMaskMedianComponent {
 
   setPercentileSlider($event: MatSliderChange): void {
     this.percentileSlider$.next($event.value);
+  }
+
+  openFullscreenExampleDialog() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(FullscreenDualImageDialogComponent, {
+        width: '98%',
+        height: '95%',
+        data: {
+          title: 'Smoothing',
+          styleClass: 'filter-median'
+        }
+      })
+          .afterClosed()
+          .subscribe();
+    });
   }
 
 }

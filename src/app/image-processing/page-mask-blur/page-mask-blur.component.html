@@ -8,33 +8,39 @@
                      (pixelHover)="setHoveredPixel($event)"
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
-  <app-algorithm-box [title]="'Blur Each Pixel Value'"
-                     [calculation]="calculationText || 'sum / count'"
-                     [output]="output || 'Destination pixel value'"
-                     (complete)="completeDestinationImage()"
-                     [inputATemplate]="inputATemplate"
-                     [inputBTemplate]="inputBTemplate"
-                     [inputCTemplate]="inputCTemplate">
-    <ng-template #inputATemplate>
-      <app-mask-editor *ngIf="kernelInputA; else textInputA"
-                       [mask]="kernelInputA"
-                       [disabled]="true"></app-mask-editor>
-      <ng-template #textInputA>Source pixel value</ng-template>
-    </ng-template>
+  <div class="overlap-container">
+    <app-button-icon-fab class="overlap-b place-button-corner-top"
+                         (buttonClick)="openFullscreenExampleDialog()">aspect_ratio
+    </app-button-icon-fab>
 
-    <ng-template #inputBTemplate>
-      <app-mask-editor *ngIf="kernelInputB; else textInputB"
-                       [mask]="kernelInputB"
-                       [disabled]="true"></app-mask-editor>
-      <ng-template #textInputB>8 neighbour pixel values</ng-template>
-    </ng-template>
+    <app-algorithm-box class="overlap-a"
+                       [title]="'Blur Each Pixel Value'"
+                       [calculation]="calculationText || 'sum / count'"
+                       [output]="output || 'Destination pixel value'"
+                       (complete)="completeDestinationImage()"
+                       [inputATemplate]="inputATemplate"
+                       [inputBTemplate]="inputBTemplate"
+                       [inputCTemplate]="inputCTemplate">
+      <ng-template #inputATemplate>
+        <app-mask-editor *ngIf="kernelInputA; else textInputA"
+                         [mask]="kernelInputA"
+                         [disabled]="true"></app-mask-editor>
+        <ng-template #textInputA>Source pixel value</ng-template>
+      </ng-template>
 
-    <ng-template #inputCTemplate>
-      <ng-container *ngIf="inputC; else textInputC">{{inputC}}</ng-container>
-      <ng-template #textInputC>Sum all values</ng-template>
-    </ng-template>
+      <ng-template #inputBTemplate>
+        <app-mask-editor *ngIf="kernelInputB; else textInputB"
+                         [mask]="kernelInputB"
+                         [disabled]="true"></app-mask-editor>
+        <ng-template #textInputB>8 neighbour pixel values</ng-template>
+      </ng-template>
 
-  </app-algorithm-box>
+      <ng-template #inputCTemplate>
+        <ng-container *ngIf="inputC; else textInputC">{{inputC}}</ng-container>
+        <ng-template #textInputC>Sum all values</ng-template>
+      </ng-template>
+    </app-algorithm-box>
+  </div>
 
   <app-image-display #result
                      [sourceImage]="resultImage"

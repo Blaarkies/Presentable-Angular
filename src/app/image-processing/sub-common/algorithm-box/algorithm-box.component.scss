@@ -14,7 +14,7 @@ $margin-amount-connectors: 20%;
 
 .label-container {
   display: grid;
-  grid-template-rows: auto max-content;
+  grid-template-rows: max-content auto;
 }
 
 .left-label-container {
@@ -27,7 +27,8 @@ $margin-amount-connectors: 20%;
 
   .left-label-connector {
     border-right: 5px solid $color-connectors;
-    height: $height-connector;
+    min-height: $height-connector;
+    height: 100%;
     transform: skew($rotate-amount-connectors);
     margin-right: $margin-amount-connectors;
   }
@@ -43,7 +44,8 @@ $margin-amount-connectors: 20%;
 
   .right-label-connector {
     border-left: 5px solid $color-connectors;
-    height: $height-connector;
+    min-height: $height-connector;
+    height: 100%;
     transform: skew(-$rotate-amount-connectors);
     margin-left: $margin-amount-connectors;
   }

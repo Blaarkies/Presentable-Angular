@@ -1,0 +1,26 @@
+<div class="overlap-container">
+  <app-button-icon-fab class="overlap-b place-button-right"
+                       color="warn"
+                       (buttonClick)="onNoClick()">clear
+  </app-button-icon-fab>
+
+  <div class="overlap-a mat-card-remove-box">
+    <div class="page-title card-title-padding align-text-center">{{data.title}}</div>
+
+    <div class="bi-container">
+      <div class="large-image" style="background-image: url('assets/lenna-example.jpg');"></div>
+      <div *ngIf="data.styleClass == 'filter-sharpen'; else (data.styleClass == 'filter-median' ? median : normal)"
+           class="large-image" style="background-image: url('assets/lenna-sharpened.jpg');"></div>
+
+      <ng-template #median>
+        <div class="large-image" style="background-image: url('assets/lenna-median.jpg');"
+             [ngClass]="data.styleClass"></div>
+      </ng-template>
+
+      <ng-template #normal>
+        <div class="large-image" style="background-image: url('assets/lenna-example.jpg');"
+             [ngClass]="data.styleClass"></div>
+      </ng-template>
+    </div>
+  </div>
+</div>
