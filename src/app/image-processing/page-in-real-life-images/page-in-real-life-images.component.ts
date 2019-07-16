@@ -14,7 +14,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
   unsubscribe$ = new Subject<void>();
 
   logoSwapIndex = 0;
-  fourierSwapIndex = 0;
+  astroSwapIndex = 0;
   userClicked = false;
   bulletNumber: number = 1;
 
@@ -24,7 +24,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
         filter(_ => !this.userClicked),
         tap(_ => this.logoSwapIndex = (this.logoSwapIndex + 1) % 3),
         delay(300),
-        tap(_ => this.fourierSwapIndex = (this.fourierSwapIndex + 1) % 4),
+        tap(_ => this.astroSwapIndex = (this.astroSwapIndex + 1) % 4),
         takeUntil(this.unsubscribe$)
       )
       .subscribe();

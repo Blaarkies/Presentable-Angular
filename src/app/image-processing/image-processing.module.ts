@@ -15,6 +15,7 @@ import { SeeingWifiDialogComponent } from 'src/app/image-processing/page-in-real
 import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
 import { PageFourierIntroComponent } from 'src/app/image-processing/page-fourier-intro/page-fourier-intro.component';
 import { PageFourierWavesComponent } from 'src/app/image-processing/page-fourier-waves/page-fourier-waves.component';
+import { SineWaveComponent } from './sub-common/sine-wave/sine-wave.component';
 
 @NgModule({
             imports: [
@@ -36,6 +37,7 @@ import { PageFourierWavesComponent } from 'src/app/image-processing/page-fourier
               MaskEditorComponent,
               SeeingWifiDialogComponent,
               FullscreenDualImageDialogComponent,
+              SineWaveComponent,
             ],
             entryComponents: [
               SeeingWifiDialogComponent,

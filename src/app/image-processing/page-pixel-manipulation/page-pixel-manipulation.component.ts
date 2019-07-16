@@ -6,7 +6,6 @@ import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image
 import { interval, Subject } from 'rxjs';
 import { sample, takeUntil } from 'rxjs/operators';
 import { MatDialog, MatSliderChange } from '@angular/material';
-import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-in-real-life-images/fourier-full-screen-dialog/fourier-full-screen-dialog.component';
 import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
 
 @Component({

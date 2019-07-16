@@ -2,13 +2,14 @@
 
   <app-image-display #source
                      [sourceImage]="sourceImage"
-                     [mask]="pointMask"
+                     [mask]="rowMask"
                      [title]="'Source Image'"
+                     [lockHighlights]="lockHighlights"
                      (pixelClick)="selectRowAsFourierInput($event)"
                      (pixelHover)="setHoveredPixel($event)"
                      (mouseleave)="setHoveredPixel(null)"></app-image-display>
 
-  <div class="fourier-view">
+  <div class="fourier-view scrollbar-primary" *ngIf="selectedRow !== undefined">
     <div class="dismantled-image-containment">
       <div *ngFor="let pixel of pixelsToDisplay"
            class="code-title pixel-box"
@@ -16,11 +17,15 @@
       </div>
     </div>
 
+    <app-sine-wave style="margin-top: -111px;
+    z-index: 9;"
+                   [fourierComponents]="fourierComponents" *ngIf="fourierComponents?.length > 0"
+                   [strokeStyle]="'cyan'"></app-sine-wave>
 
-    <div class="wave-display">
-      <canvas #wave></canvas>
-    </div>
-
+    <ng-container *ngFor="let wave of fourierComponents; let i = index">
+      <app-sine-wave [fourierComponents]="[wave]"
+                     [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"></app-sine-wave>
+    </ng-container>
   </div>
 
 </div>

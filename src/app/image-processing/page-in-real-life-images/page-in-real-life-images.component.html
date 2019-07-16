@@ -1,75 +1,7 @@
 <div class="bi-container" (click)="bulletNumber = bulletNumber + 1">
 
   <div class="bi-vertical-container">
-    <div class="overlap-container">
-<!--      <app-button-icon-fab class="overlap-b place-button-corner-top"-->
-<!--                           (buttonClick)="openFourierFullScreenDialog();"-->
-<!--                           (click)="$event.stopPropagation();">-->
-<!--        aspect_ratio-->
-<!--      </app-button-icon-fab>-->
-
-      <mat-card class="overlap-a summary-fadeable" [class.show]="bulletNumber > 1">
-        <div class="content-title card-title-padding">Fourier Transform</div>
-        <mat-card-content>
-          <ul class="content-subtitle">
-            <li>Converts image to frequency domain</li>
-            <li>Here pixels define the specific sharpness of the image</li>
-            <li>Manipulating these pixels will change the image properties</li>
-            <li>Convert the image back to the spatial domain to get results</li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-    <mat-card class="summary-fadeable" [class.show]="bulletNumber > 2">
-      <mat-card-content>
-
-        <mat-tab-group [selectedIndex]="fourierSwapIndex" class="move-tabs-to-bottom"
-                       (click)="userClickTab(); $event.stopPropagation();">
-          <mat-tab label="Transform">
-            <div class="content-title">Spatial Domain To Frequency Domain</div>
-            <div class="tab-content fourier-container">
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-normal.jpg');"></div>
-              <mat-icon class="center-arrow">arrow_forward</mat-icon>
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-map.jpg');"></div>
-            </div>
-          </mat-tab>
-
-          <mat-tab label="Sharpen">
-            <div class="content-title">Highpass Filter (Edge Detection)</div>
-            <div class="tab-content fourier-container">
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-sharp-map.jpg');"></div>
-              <mat-icon class="center-arrow">arrow_forward</mat-icon>
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-sharp-result.jpg');"></div>
-            </div>
-          </mat-tab>
-
-          <mat-tab label="Blur">
-            <div class="content-title">Lowpass Filter (Blur)</div>
-            <div class="tab-content fourier-container">
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-blur-map.jpg');"></div>
-              <mat-icon class="center-arrow">arrow_forward</mat-icon>
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-blur-result.jpg');"></div>
-            </div>
-          </mat-tab>
-
-          <mat-tab label="Custom">
-            <div class="content-title">Custom Filter</div>
-            <div class="tab-content fourier-container">
-              <div class="large-image" style="background-image: url('assets/fourier/fourier-special-map.jpg');"></div>
-              <mat-icon class="center-arrow">arrow_forward</mat-icon>
-              <div class="large-image"
-                   style="background-image: url('assets/fourier/fourier-special-result.jpg');"></div>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
-
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div class="bi-vertical-container">
-    <mat-card class="space-for-tab-header summary-fadeable" [class.show]="bulletNumber > 3">
+    <mat-card class="space-for-tab-header summary-fadeable" [class.show]="bulletNumber > 1">
       <mat-card-content>
 
         <mat-tab-group [selectedIndex]="logoSwapIndex" class="move-tabs-to-bottom"
@@ -113,7 +45,7 @@
       </mat-card-content>
     </mat-card>
 
-    <div class="padding-for-corner-button overlap-container summary-fadeable" [class.show]="bulletNumber > 3">
+    <div class="padding-for-corner-button overlap-container summary-fadeable" [class.show]="bulletNumber > 2">
       <app-button-icon-fab class="overlap-b place-button-corner-top"
                            (buttonClick)="openSeeingWifiDialog()">aspect_ratio
       </app-button-icon-fab>
@@ -131,7 +63,38 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
 
+  <div class="bi-vertical-container">
+    <mat-card class="space-for-tab-header summary-fadeable" [class.show]="bulletNumber > 3">
+      <mat-card-content>
+
+        <mat-tab-group [selectedIndex]="astroSwapIndex" class="move-tabs-to-bottom"
+                       (click)="userClickTab(); $event.stopPropagation();">
+          <mat-tab label="Nebula">
+            <div class="content-title">Cat's Eye Nebula</div>
+            <div class="large-tab-content">
+              <div class="extra-large-image" style="background-image: url('assets/image-processing/cat.jpg');"></div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Pillars">
+            <div class="content-title">Pillars of Creation</div>
+            <div class="large-tab-content">
+              <div class="extra-large-image" style="background-image: url('assets/image-processing/pillars.jpg');"></div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Veil">
+            <div class="content-title">Veil Nebula</div>
+            <div class="large-tab-content">
+              <div class="extra-large-image" style="background-image: url('assets/image-processing/veil.jpg');"></div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+
+      </mat-card-content>
+    </mat-card>
   </div>
 
 </div>
