@@ -11,7 +11,11 @@ import { MaskEditorComponent } from 'src/app/image-processing/sub-common/mask-ed
 import { PageMaskSharpenComponent } from './page-mask-sharpen/page-mask-sharpen.component';
 import { PageInRealLifeImagesComponent } from './page-in-real-life-images/page-in-real-life-images.component';
 import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
-import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-in-real-life-images/fourier-full-screen-dialog/fourier-full-screen-dialog.component';
+import { SeeingWifiDialogComponent } from 'src/app/image-processing/page-in-real-life-images/seeing-wifi-dialog/seeing-wifi-dialog.component';
+import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
+import { PageFourierIntroComponent } from 'src/app/image-processing/page-fourier-intro/page-fourier-intro.component';
+import { PageFourierWavesComponent } from 'src/app/image-processing/page-fourier-waves/page-fourier-waves.component';
+import { SineWaveComponent } from './sub-common/sine-wave/sine-wave.component';
 
 @NgModule({
             imports: [
@@ -23,16 +27,21 @@ import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-
               PagePixelManipulationComponent,
               PageMaskBlurComponent,
               PageCustomMasksComponent,
-              PageMaskMedianComponent,
               PageMaskSharpenComponent,
+              PageMaskMedianComponent,
+              PageFourierIntroComponent,
+              PageFourierWavesComponent,
               PageInRealLifeImagesComponent,
               ImageDisplayComponent,
               AlgorithmBoxComponent,
               MaskEditorComponent,
-              FourierFullScreenDialogComponent,
+              SeeingWifiDialogComponent,
+              FullscreenDualImageDialogComponent,
+              SineWaveComponent,
             ],
             entryComponents: [
-              FourierFullScreenDialogComponent,
+              SeeingWifiDialogComponent,
+              FullscreenDualImageDialogComponent,
             ]
           })
 export class ImageProcessingModule {

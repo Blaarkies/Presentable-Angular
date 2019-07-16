@@ -46,8 +46,13 @@
     </mat-slider>
   </div>
 
-  <div class="image-c">
-    <app-image-display #result
+  <div class="image-c overlap-container">
+    <app-button-icon-fab class="overlap-b place-button-corner-top"
+                         (buttonClick)="openFullscreenExampleDialog()">aspect_ratio
+    </app-button-icon-fab>
+
+    <app-image-display class="overlap-a"
+                       #result
                        [sourceImage]="sumImage"
                        [highlightPixel]="hoverPixel"
                        [title]="'Result Image'"></app-image-display>

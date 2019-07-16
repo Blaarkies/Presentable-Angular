@@ -12,35 +12,42 @@
   </app-image-display>
 
   <div class="filtering-container">
-    <app-algorithm-box [title]="'Find Median Value For Each Pixel'"
-                       [calculation]="calculationText || 'Pick by percentile'"
-                       [output]="output || 'Destination pixel value'"
-                       (complete)="completeDestinationImage()"
-                       [inputATemplate]="inputATemplate"
-                       [inputBTemplate]="inputBTemplate"
-                       [inputCTemplate]="inputCTemplate">
-      <ng-template #inputATemplate>
-        <app-mask-editor *ngIf="maskSelection; else textInputA"
-                         [mask]="maskSelection"
-                         [disabled]="true"></app-mask-editor>
-        <ng-template #textInputA>9 pixel values</ng-template>
-      </ng-template>
+    <div class="overlap-container">
+      <app-button-icon-fab class="overlap-b place-button-corner-top"
+                           (buttonClick)="openFullscreenExampleDialog()">aspect_ratio
+      </app-button-icon-fab>
 
-      <ng-template #inputBTemplate>{{percentile}}th percentile</ng-template>
+      <app-algorithm-box class="overlap-a"
+        [title]="'Find Median Value For Each Pixel'"
+                         [calculation]="calculationText || 'Pick by percentile'"
+                         [output]="output || 'Destination pixel value'"
+                         (complete)="completeDestinationImage()"
+                         [inputATemplate]="inputATemplate"
+                         [inputBTemplate]="inputBTemplate"
+                         [inputCTemplate]="inputCTemplate">
+        <ng-template #inputATemplate>
+          <app-mask-editor *ngIf="maskSelection; else textInputA"
+                           [mask]="maskSelection"
+                           [disabled]="true"></app-mask-editor>
+          <ng-template #textInputA>9 pixel values</ng-template>
+        </ng-template>
 
-      <ng-template #inputCTemplate>
-        <div class="code-subtitle break-word">
-          <div *ngIf="!pixelValues; else brackets">Order by value</div>
+        <ng-template #inputBTemplate>{{percentile}}th percentile</ng-template>
 
-          <ng-template #brackets>
-            <ng-container *ngFor="let bracket of pixelValues; let isLast = last;">
-              <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
-              <span *ngIf="!isLast">, </span>
-            </ng-container>
-          </ng-template>
-        </div>
-      </ng-template>
-    </app-algorithm-box>
+        <ng-template #inputCTemplate>
+          <div class="code-subtitle break-word">
+            <div *ngIf="!pixelValues; else brackets">Order by value</div>
+
+            <ng-template #brackets>
+              <ng-container *ngFor="let bracket of pixelValues; let isLast = last;">
+                <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
+                <span *ngIf="!isLast">, </span>
+              </ng-container>
+            </ng-template>
+          </div>
+        </ng-template>
+      </app-algorithm-box>
+    </div>
 
     <div class="slider-under-image">
       <mat-slider class="slider"

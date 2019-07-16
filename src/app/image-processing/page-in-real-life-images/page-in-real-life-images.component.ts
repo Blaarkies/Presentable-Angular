@@ -2,8 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { interval, of, Subject } from 'rxjs';
 import { delay, filter, takeUntil, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
-import { JpegExplainedDialogComponent } from 'src/app/compression-crash-course/compression-showcase/page-in-real-life-compression/jpeg-explained-dialog/jpeg-explained-dialog.component';
-import { FourierFullScreenDialogComponent } from 'src/app/image-processing/page-in-real-life-images/fourier-full-screen-dialog/fourier-full-screen-dialog.component';
+import { SeeingWifiDialogComponent } from 'src/app/image-processing/page-in-real-life-images/seeing-wifi-dialog/seeing-wifi-dialog.component';
 
 @Component({
              selector: 'app-page-in-real-life-images',
@@ -15,7 +14,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
   unsubscribe$ = new Subject<void>();
 
   logoSwapIndex = 0;
-  fourierSwapIndex = 0;
+  astroSwapIndex = 0;
   userClicked = false;
   bulletNumber: number = 1;
 
@@ -25,7 +24,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
         filter(_ => !this.userClicked),
         tap(_ => this.logoSwapIndex = (this.logoSwapIndex + 1) % 3),
         delay(300),
-        tap(_ => this.fourierSwapIndex = (this.fourierSwapIndex + 1) % 4),
+        tap(_ => this.astroSwapIndex = (this.astroSwapIndex + 1) % 4),
         takeUntil(this.unsubscribe$)
       )
       .subscribe();
@@ -44,11 +43,11 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
       .subscribe(_ => this.userClicked = false);
   }
 
-  openFourierFullScreenDialog() {
+  openSeeingWifiDialog() {
     // https://github.com/angular/material2/issues/5268
     // TODO: work-around for expression change on dialog factory
     setTimeout(() => {
-      this.dialog.open(FourierFullScreenDialogComponent, {width: '98%', height: '95%'})
+      this.dialog.open(SeeingWifiDialogComponent, {width: '98%', height: '95%'})
           .afterClosed()
           .subscribe();
     });

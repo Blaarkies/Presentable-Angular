@@ -1,0 +1,49 @@
+.fourier-waves-container {
+  display: grid;
+
+  grid-template-columns: auto auto;
+  place-items: center;
+
+  // @formatter:off
+  //grid-template-areas: 'image-a  image-b  image-c'
+  //                     'footer-a footer-b footer-c';
+  //
+  //.image-a {grid-area: image-a;}
+  //.image-b {grid-area: image-b;}
+  //.image-c {grid-area: image-c;}
+  //.footer-a {grid-area: footer-a;}
+  //.footer-b {grid-area: footer-b;}
+  //.footer-c {grid-area: footer-c;}
+  // @formatter:on
+
+}
+
+.fourier-view {
+  overflow: hidden;
+  width: 480px;
+  overflow-y: scroll;
+  height: 90%;
+
+  background-color: black;
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: max-content;
+  grid-gap: 8px;
+
+  .dismantled-image-containment {
+    padding-top: 32px;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: left;
+
+    overflow: hidden;
+    height: 60px;
+
+    .pixel-box {
+      width: 60px;
+      height: 60px;
+      background-color: green;
+      outline: 1px solid lime;
+    }
+  }
+}

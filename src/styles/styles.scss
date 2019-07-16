@@ -199,6 +199,12 @@ html, body {
   }
 }
 
+// TODO: clean me
+.place-button-corner-top {
+  place-self: start end;
+  transform: translate(-10%, -50%);
+}
+
 .is-presentation-mode {
   background-image: repeating-linear-gradient(
       45deg,

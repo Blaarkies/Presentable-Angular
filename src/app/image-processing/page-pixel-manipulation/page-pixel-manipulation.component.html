@@ -10,8 +10,13 @@
                        (mouseleave)="setHoveredPixel(null)"></app-image-display>
   </div>
 
-  <div class="image-b">
-    <app-algorithm-box [title]="'Convert To Black And White'"
+  <div class="image-b overlap-container">
+    <app-button-icon-fab class="overlap-b place-button-corner-top"
+                         (buttonClick)="openFullscreenExampleDialog()">aspect_ratio
+    </app-button-icon-fab>
+
+    <app-algorithm-box class="overlap-a"
+                       [title]="'Convert To Black And White'"
                        [calculation]="calculationText || 'If (pixel > ' + thresholdValue + ')\nNo  = 0\nYes = 7'"
                        [output]="output || 'Destination pixel value'"
                        (complete)="completeDestinationImage()"

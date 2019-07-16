@@ -4,9 +4,10 @@ import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { roundToDecimalPlace, sum } from 'src/app/common/utils';
-import { MatSliderChange } from '@angular/material';
+import { MatDialog, MatSliderChange } from '@angular/material';
 import { interval, Subject } from 'rxjs';
 import { sample, takeUntil } from 'rxjs/operators';
+import { FullscreenDualImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-dual-image-dialog/fullscreen-dual-image-dialog.component';
 
 @Component({
              selector: 'app-page-mask-sharpen',
@@ -36,7 +37,8 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
   hoverPixel: Pixel;
   showMask: boolean;
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     this.pointMask = new Mask();
     this.sharpMask = this.pixelProcessorService.getMaskFromList(
       [
@@ -128,6 +130,23 @@ export class PageMaskSharpenComponent implements OnDestroy, AfterViewInit {
 
   setSharpnessPowerSlider($event: MatSliderChange) {
     this.sharpSlider$.next($event.value);
+  }
+
+  openFullscreenExampleDialog() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(FullscreenDualImageDialogComponent, {
+        width: '98%',
+        height: '95%',
+        data: {
+          title: 'Smoothing',
+          styleClass: 'filter-sharpen'
+        }
+      })
+          .afterClosed()
+          .subscribe();
+    });
   }
 
 }
