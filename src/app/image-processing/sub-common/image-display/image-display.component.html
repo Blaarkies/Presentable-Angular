@@ -24,6 +24,7 @@
          [class.opacity-0]="!pixel.visible"
          [class.highlight-secondary-mask]="pixel.index === highlightPixel?.index"
          [class.bright-shine]="pixel == _pressedPixel"
+         [class.dim-pixel]="dimOtherPixels && pixel.index !== highlightPixel?.index"
          (click)="onPixelClick(pixel)"
          (mouseenter)="onPixelHover(pixel)"
          (press)="onPixelPress(pixel)">

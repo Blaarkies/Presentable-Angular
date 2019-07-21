@@ -19,14 +19,12 @@ export class PageFourierWavesComponent implements OnInit {
   unsubscribe$ = new Subject<void>();
 
   sourceImage: Image;
-  resultImage: Image;
 
   rowMask: Mask;
   selectedRow: number;
   pixelsToDisplay: Pixel[];
 
   fourierComponents: FourierComponent[] = [];
-  lockHighlights: boolean;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     // This is the character "e"
@@ -44,40 +42,28 @@ export class PageFourierWavesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.selectRowAsFourierInput(this.sourceImage.pixels[0]);
+    // setTimeout(_ => this.setSelectedRowAsFourierInput(this.sourceImage.pixels[9]), 100);
   }
 
-  selectRowAsFourierInput(pixel: Pixel) {
+  setSelectedRowAsFourierInput(pixel: Pixel) {
+    this.imageDisplayer.setMaskVisibility(pixel, true);
+
+
     let imageWidth = this.sourceImage.imageWidth;
     this.selectedRow = getXYFromIndex(imageWidth, pixel.index)[1];
     this.pixelsToDisplay = this.sourceImage.pixels
                                .slice(this.selectedRow * imageWidth, (this.selectedRow + 1) * imageWidth);
 
     this.fourierComponents = null;
-    let reals = [0].concat(this.pixelsToDisplay.map(p => p.value - 4))
-                   .concat(0);
+    let reals = this.pixelsToDisplay.map(p => p.value);
+
     setTimeout(() => {
       let transform = Fourier.Transform(reals);
-      // console.log('reals = ', reals);
-      // console.log('reals transformed to = ', transform);
       let cycles = Fourier.getCyclesFromData(transform);
-      // console.log('cycles = ', cycles);
-      // let inverse = Fourier.InverseTransform(cycles);
-      // console.log('inverse = ', clone(inverse));
-      // let step1 = Fourier.totalValue(0, cycles);
-      // console.log('step1 = ', step1);
 
       this.fourierComponents = cycles
         .map(c => new FourierComponent(c.freq, c.amp, c.phase * (Math.PI / 180)));
-
-
     });
-
-    this.lockHighlights = true;
-  }
-
-  setHoveredPixel(pixel: Pixel) {
-    this.lockHighlights = false;
   }
 }
 

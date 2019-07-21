@@ -19,23 +19,20 @@
 }
 
 .fourier-view {
+  border-radius: 6px;
   overflow: hidden;
-  width: 480px;
-  overflow-y: scroll;
-  height: 90%;
 
-  background-color: black;
+  background-color: #333;
   display: grid;
-  grid-auto-flow: row;
-  grid-auto-rows: max-content;
+  grid-template: max-content / auto auto;
   grid-gap: 8px;
 
   .dismantled-image-containment {
-    padding-top: 32px;
     display: grid;
     grid-auto-flow: column;
-    justify-content: left;
+    justify-content: right;
 
+    background-color: black;
     overflow: hidden;
     height: 60px;
 
@@ -46,4 +43,20 @@
       outline: 1px solid lime;
     }
   }
+}
+
+.sum-wave {
+  z-index: 1;
+  justify-self: right;
+  transform: translate(30px);
+}
+
+.visual-row {
+  padding-top: 32px;
+  background-color: black;
+  overflow-x: hidden;
+}
+
+.single-wave {
+  background-color: black;
 }

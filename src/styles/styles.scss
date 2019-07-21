@@ -188,6 +188,10 @@ html, body {
   display: grid;
   grid-template-areas: 'overlap';
 
+  .overlap {
+    grid-area: overlap;
+  }
+
   .overlap-a {
     grid-area: overlap;
     z-index: 1;

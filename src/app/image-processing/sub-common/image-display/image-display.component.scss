@@ -85,3 +85,7 @@ $color-mask-secondary-shadow: transparentize(black, 0.7);
     filter: brightness(1.4);
   }
 }
+
+.dim-pixel {
+  filter: blur(2px) brightness(0.5);
+}

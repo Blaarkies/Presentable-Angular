@@ -4,27 +4,35 @@
                      [sourceImage]="sourceImage"
                      [mask]="rowMask"
                      [title]="'Source Image'"
-                     [lockHighlights]="lockHighlights"
-                     (pixelClick)="selectRowAsFourierInput($event)"
-                     (pixelHover)="setHoveredPixel($event)"
-                     (mouseleave)="setHoveredPixel(null)"></app-image-display>
+                     [lockHighlights]="selectedRow !== undefined"
+                     [dimOtherPixels]="selectedRow !== undefined"
+                     (pixelClick)="setSelectedRowAsFourierInput($event)">
+  </app-image-display>
 
-  <div class="fourier-view scrollbar-primary" *ngIf="selectedRow !== undefined">
-    <div class="dismantled-image-containment">
-      <div *ngFor="let pixel of pixelsToDisplay"
-           class="code-title pixel-box"
-           [style.transform]="'translate(0, '+ (100 - 100 * (pixel.value / sourceImage.colorDepth)) +'%)'">
+  <div class="fourier-view" *ngIf="selectedRow !== undefined">
+    <div class="overlap-container visual-row">
+      <div class="overlap dismantled-image-containment">
+        <div *ngFor="let pixel of pixelsToDisplay"
+             class="code-title pixel-box"
+             [style.transform]="'translate(0, '+ (100 - 100 * (pixel.value / sourceImage.colorDepth)) +'%)'">
+        </div>
       </div>
+
+      <app-sine-wave class="overlap sum-wave"
+                     [fourierComponents]="fourierComponents"
+                     *ngIf="fourierComponents?.length > 0"
+                     [strokeStyle]="'cyan'"
+                     [pixelCount]="pixelsToDisplay.length"
+                     [isSumWave]="true"></app-sine-wave>
     </div>
 
-    <app-sine-wave style="margin-top: -111px;
-    z-index: 9;"
-                   [fourierComponents]="fourierComponents" *ngIf="fourierComponents?.length > 0"
-                   [strokeStyle]="'cyan'"></app-sine-wave>
+    <div></div>
 
     <ng-container *ngFor="let wave of fourierComponents; let i = index">
-      <app-sine-wave [fourierComponents]="[wave]"
-                     [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"></app-sine-wave>
+      <app-sine-wave class="single-wave"
+                     [fourierComponents]="[wave]"
+                     [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"
+                     [pixelCount]="pixelsToDisplay.length"></app-sine-wave>
     </ng-container>
   </div>
 

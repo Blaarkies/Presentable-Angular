@@ -1,1 +1,3 @@
-<canvas #wave width="{{(pixelCount + 2) * cellSize}}" height="{{cellSize * (fourierComponents?.length > 1 ? 2 : 1)}}"></canvas>
+<canvas #wave
+        width="{{pixelCount * cellSize + (isSumWave ? 0 : 50)}}"
+        height="{{cellSize * 2}}"></canvas>
