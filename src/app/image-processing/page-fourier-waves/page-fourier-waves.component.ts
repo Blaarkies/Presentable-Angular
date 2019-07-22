@@ -23,8 +23,8 @@ export class PageFourierWavesComponent implements OnInit {
   rowMask: Mask;
   selectedRow: number;
   pixelsToDisplay: Pixel[];
-
   fourierComponents: FourierComponent[] = [];
+  bulletNumber: number = 1;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     // This is the character "e"
@@ -42,7 +42,7 @@ export class PageFourierWavesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // setTimeout(_ => this.setSelectedRowAsFourierInput(this.sourceImage.pixels[9]), 100);
+    setTimeout(_ => this.setSelectedRowAsFourierInput(this.sourceImage.pixels[9]), 100);
   }
 
   setSelectedRowAsFourierInput(pixel: Pixel) {

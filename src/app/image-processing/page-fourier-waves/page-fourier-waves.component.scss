@@ -1,31 +1,40 @@
-.fourier-waves-container {
+@import 'styles/styles';
+
+.fourier-waves-page-container {
   display: grid;
 
   grid-template-columns: auto auto;
   place-items: center;
-
-  // @formatter:off
-  //grid-template-areas: 'image-a  image-b  image-c'
-  //                     'footer-a footer-b footer-c';
-  //
-  //.image-a {grid-area: image-a;}
-  //.image-b {grid-area: image-b;}
-  //.image-c {grid-area: image-c;}
-  //.footer-a {grid-area: footer-a;}
-  //.footer-b {grid-area: footer-b;}
-  //.footer-c {grid-area: footer-c;}
-  // @formatter:on
-
 }
 
 .fourier-view {
   border-radius: 6px;
   overflow: hidden;
 
-  background-color: #333;
+  width: min-content;
+  background-color: #333333;
   display: grid;
   grid-template: max-content / auto auto;
-  grid-gap: 8px;
+  // @formatter:off
+  grid-template-areas:
+    'visual-row visual-row'
+    'lowpass    highpass';
+  // @formatter:on
+  //grid-gap: 8px;
+
+  .lowpass {
+    grid-area: lowpass;
+  }
+
+  .highpass {
+    grid-area: highpass;
+  }
+
+  .lowpass, .highpass {
+    display: grid;
+    grid-gap: 8px;
+    padding: 16px;
+  }
 
   .dismantled-image-containment {
     display: grid;
@@ -52,6 +61,9 @@
 }
 
 .visual-row {
+  grid-area: visual-row;
+  justify-self: center;
+
   padding-top: 32px;
   background-color: black;
   overflow-x: hidden;
@@ -59,4 +71,12 @@
 
 .single-wave {
   background-color: black;
+  padding: 8px 8px 8px 16px;
+  border-radius: 12px;
+}
+
+:host-context(.is-presentation-mode) {
+  .fourier-fadeable {
+    @extend .fadeable;
+  }
 }

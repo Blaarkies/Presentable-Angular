@@ -29,7 +29,7 @@ export class PageInRealLifeImagesComponent implements OnDestroy {
       )
       .subscribe();
 
-    setTimeout(_ => this.bulletNumber++, 0);
+    setTimeout(_ => this.bulletNumber++);
   }
 
   ngOnDestroy(): void {
