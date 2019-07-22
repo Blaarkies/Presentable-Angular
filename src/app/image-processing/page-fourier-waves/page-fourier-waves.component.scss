@@ -8,7 +8,8 @@
 }
 
 .fourier-view {
-  border-radius: 6px;
+  padding: 8px;
+  border-radius: 12px;
   overflow: hidden;
 
   width: min-content;
@@ -20,7 +21,6 @@
     'visual-row visual-row'
     'lowpass    highpass';
   // @formatter:on
-  //grid-gap: 8px;
 
   .lowpass {
     grid-area: lowpass;
@@ -43,11 +43,11 @@
 
     background-color: black;
     overflow: hidden;
-    height: 60px;
+    height: 120px; //60px;
 
     .pixel-box {
       width: 60px;
-      height: 60px;
+      height: 120px; //60px;
       background-color: green;
       outline: 1px solid lime;
     }
@@ -57,16 +57,38 @@
 .sum-wave {
   z-index: 1;
   justify-self: right;
-  transform: translate(30px);
+  transform: translate(30px, 8px);
+}
+
+.black-background-container {
+  background-color: black;
+  padding: 16px;
+  border-radius: 12px;
+
+  display: grid;
+  grid-template-columns: max-content auto;
 }
 
 .visual-row {
   grid-area: visual-row;
   justify-self: center;
 
-  padding-top: 32px;
-  background-color: black;
-  overflow-x: hidden;
+  .graph-number-axis {
+    color: white;
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    z-index: 1;
+    font-size: 26px;
+    height: 120px;
+    font-family: monospace;
+    user-select: none;
+  }
+
+  .pixels-as-a-graph {
+    background-color: black;
+    height: 120px;
+    overflow: hidden;
+  }
 }
 
 .single-wave {
@@ -80,3 +102,10 @@
     @extend .fadeable;
   }
 }
+
+.place-button-corner-top {
+  place-self: start end;
+  transform: translate(-10%, -50%);
+}
+
+

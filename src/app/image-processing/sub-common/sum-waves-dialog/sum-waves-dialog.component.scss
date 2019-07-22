@@ -1,0 +1,60 @@
+.mat-card-remove-box {
+  box-shadow: unset;
+  padding: unset;
+}
+
+.place-button-right {
+  place-self: start end;
+  transform: translate(-10%, 0%);
+}
+
+.waves-container {
+  display: grid;
+  grid-gap: 8px;
+  place-content: center;
+  grid-template: auto / max-content auto;
+}
+
+.single-wave {
+  background-color: black;
+  padding: 8px 8px 8px 16px;
+  border-radius: 12px;
+
+  width: max-content;
+  zoom: 1.5;
+}
+
+.vertical-line {
+  background: linear-gradient(90deg, transparent, cyan, transparent);
+  height: 100%;
+  width: 10px;
+  top: 0;
+  position: absolute;
+
+  pointer-events: none;
+}
+
+.dialog-container {
+  display: grid;
+}
+
+.cursor-mask-container {
+  overflow: hidden;
+  position: relative;
+  justify-self: center;
+}
+
+.cursor-mask {
+  z-index: 1;
+}
+
+.equals-graph {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+.graph-icon {
+  font-family: monospace;
+  font-size: 100px;
+  align-self: center;
+}

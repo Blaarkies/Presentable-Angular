@@ -1,0 +1,30 @@
+<div class="overlap-container">
+  <app-button-icon-fab class="overlap-b place-button-right"
+                       color="warn"
+                       (buttonClick)="onNoClick()">clear
+  </app-button-icon-fab>
+
+  <div class="overlap-a mat-card-remove-box dialog-container">
+    <div class="page-title card-title-padding align-text-center">How to add sine waves</div>
+    <div class="overlap-container cursor-mask-container">
+      <div class="overlap cursor-mask" (mousemove)="onMoveCursor($event)"></div>
+      <div class="overlap waves-container">
+        <div class="graph-icon"></div>
+        <app-sine-wave class="single-wave"
+                       [fourierComponents]="[waves[0]]"
+                       [strokeStyle]="'deeppink'"></app-sine-wave>
+        <div class="graph-icon">+</div>
+        <app-sine-wave class="single-wave"
+                       [fourierComponents]="[waves[1]]"
+                       [strokeStyle]="'yellow'"></app-sine-wave>
+        <div class="graph-icon">=</div>
+        <app-sine-wave class="single-wave"
+                       style="transform: scale(0.9, 1) translate(5%);"
+                       [fourierComponents]="waves"
+                       [strokeStyle]="'lime'"></app-sine-wave>
+      </div>
+
+      <div #verticalLine class="overlap vertical-line"></div>
+    </div>
+  </div>
+</div>

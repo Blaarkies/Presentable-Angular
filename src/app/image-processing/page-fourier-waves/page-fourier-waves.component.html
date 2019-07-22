@@ -9,51 +9,52 @@
                      (pixelClick)="setSelectedRowAsFourierInput($event)">
   </app-image-display>
 
-  <div class="fourier-view fourier-fadeable" [class.show]="bulletNumber > 1">
-    <div class="overlap-container visual-row">
-      <div class="overlap dismantled-image-containment">
-        <div *ngFor="let pixel of pixelsToDisplay"
-             class="code-title pixel-box"
-             [style.transform]="'translate(0, '+ (100 - 100 * (pixel.value / sourceImage.colorDepth)) +'%)'">
+  <div class="overlap-container fourier-fadeable" [class.show]="bulletNumber > 1">
+
+    <app-button-icon-fab class="overlap place-button-corner-top"
+                         (buttonClick)="openSineWaveAdditionDialog()"
+                         (click)="$event.stopPropagation();">help_outline
+    </app-button-icon-fab>
+
+    <div class="overlap fourier-view">
+      <div class="black-background-container visual-row">
+        <div class="graph-number-axis">6420</div>
+        <div class="overlap-container pixels-as-a-graph">
+
+          <div class="overlap dismantled-image-containment">
+            <div *ngFor="let pixel of pixelsToDisplay"
+                 class="code-title pixel-box"
+                 [style.transform]="'translate(0, '+ (100 - 100 * (pixel.value / sourceImage.colorDepth)) +'%)'">
+            </div>
+          </div>
+
+          <app-sine-wave class="overlap sum-wave fourier-fadeable" [class.show]="bulletNumber > 4"
+                         [fourierComponents]="fourierComponents"
+                         *ngIf="fourierComponents?.length > 0"
+                         [strokeStyle]="'cyan'"
+                         [pixelCount]="pixelsToDisplay.length"
+                         [isSumWave]="true"></app-sine-wave>
         </div>
       </div>
 
-      <div class="overlap"
-      style="
-    color: white;
-    text-orientation: upright;
-    writing-mode: vertical-lr;
-    z-index: 1;
-    font-size: 17px;
-    font-family: monospace;
-">
-        741
+      <div class="lowpass fourier-fadeable" [class.show]="bulletNumber > 2">
+        <ng-container *ngFor="let wave of fourierComponents?.slice(0,4); let i = index">
+          <app-sine-wave class="single-wave"
+                         [fourierComponents]="[wave]"
+                         [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"
+                         [pixelCount]="pixelsToDisplay.length"></app-sine-wave>
+        </ng-container>
       </div>
 
-      <app-sine-wave class="overlap sum-wave fourier-fadeable" [class.show]="bulletNumber > 4"
-                     [fourierComponents]="fourierComponents"
-                     *ngIf="fourierComponents?.length > 0"
-                     [strokeStyle]="'cyan'"
-                     [pixelCount]="pixelsToDisplay.length"
-                     [isSumWave]="true"></app-sine-wave>
-    </div>
+      <div class="highpass fourier-fadeable" [class.show]="bulletNumber > 3">
+        <ng-container *ngFor="let wave of fourierComponents?.slice(4); let i = index">
+          <app-sine-wave class="single-wave"
+                         [fourierComponents]="[wave]"
+                         [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"
+                         [pixelCount]="pixelsToDisplay.length"></app-sine-wave>
+        </ng-container>
+      </div>
 
-    <div class="lowpass fourier-fadeable" [class.show]="bulletNumber > 2">
-      <ng-container *ngFor="let wave of fourierComponents?.slice(0,4); let i = index">
-        <app-sine-wave class="single-wave"
-                       [fourierComponents]="[wave]"
-                       [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"
-                       [pixelCount]="pixelsToDisplay.length"></app-sine-wave>
-      </ng-container>
-    </div>
-
-    <div class="highpass fourier-fadeable" [class.show]="bulletNumber > 3">
-      <ng-container *ngFor="let wave of fourierComponents?.slice(4); let i = index">
-        <app-sine-wave class="single-wave"
-                       [fourierComponents]="[wave]"
-                       [strokeStyle]="'hsl(' + (180 + (i%2 == 0 ? i*10 : (i*10 - 60) )) + ', 100%, 50%)'"
-                       [pixelCount]="pixelsToDisplay.length"></app-sine-wave>
-      </ng-container>
     </div>
   </div>
 

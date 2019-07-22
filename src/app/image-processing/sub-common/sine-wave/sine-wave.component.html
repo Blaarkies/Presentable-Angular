@@ -1,4 +1,4 @@
 <canvas #wave
         width="{{pixelCount * cellSize + (isSumWave ? 0 : 50)}}"
-        height="{{cellSize * 2}}"
+        height="{{isSumWave ? 120 * 2 : cellSize * 2}}"
         [class.black-background]="!isSumWave"></canvas>
