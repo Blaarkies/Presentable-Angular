@@ -21,6 +21,7 @@ export class ImageDisplayComponent implements OnInit {
   @Input() title: string;
   @Input() showTitle: boolean = true;
   @Input() lockHighlights: boolean = false;
+  @Input() dimOtherPixels: boolean = false;
 
   @Output() pixelClick = new EventEmitter<Pixel>();
   @Output() pixelHover = new EventEmitter<Pixel>();
@@ -48,8 +49,8 @@ export class ImageDisplayComponent implements OnInit {
     };
   }
 
-  setMaskVisibility(pixel: Pixel): void {
-    if (this.lockHighlights) {
+  setMaskVisibility(pixel: Pixel, overrideLock: boolean = false): void {
+    if (this.lockHighlights && !overrideLock) {
       return;
     }
 

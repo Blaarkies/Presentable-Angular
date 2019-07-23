@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
-import { Subject } from 'rxjs';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { getXYFromIndex } from 'src/app/common/utils';
 import { FourierComponent } from 'src/app/image-processing/sub-common/sine-wave/sine-wave.component';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
+import { SumWavesDialogComponent } from 'src/app/image-processing/sub-common/sum-waves-dialog/sum-waves-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
              selector: 'app-page-fourier-waves',
@@ -16,19 +17,16 @@ export class PageFourierWavesComponent implements OnInit {
 
   @ViewChild('source') imageDisplayer: ImageDisplayComponent;
 
-  unsubscribe$ = new Subject<void>();
-
   sourceImage: Image;
-  resultImage: Image;
-
   rowMask: Mask;
+
   selectedRow: number;
   pixelsToDisplay: Pixel[];
-
   fourierComponents: FourierComponent[] = [];
-  lockHighlights: boolean;
+  bulletNumber: number = 1;
 
-  constructor(private pixelProcessorService: PixelProcessorService) {
+  constructor(private pixelProcessorService: PixelProcessorService,
+              private dialog: MatDialog) {
     // This is the character "e"
     this.sourceImage = this.pixelProcessorService.getImageFromString(
       `12365422
@@ -44,40 +42,41 @@ export class PageFourierWavesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.selectRowAsFourierInput(this.sourceImage.pixels[0]);
+    // setTimeout(_ => this.setSelectedRowAsFourierInput(this.sourceImage.pixels[9]), 100);
   }
 
-  selectRowAsFourierInput(pixel: Pixel) {
+  setSelectedRowAsFourierInput(pixel: Pixel) {
+    this.imageDisplayer.setMaskVisibility(pixel, true);
+
+
     let imageWidth = this.sourceImage.imageWidth;
     this.selectedRow = getXYFromIndex(imageWidth, pixel.index)[1];
     this.pixelsToDisplay = this.sourceImage.pixels
                                .slice(this.selectedRow * imageWidth, (this.selectedRow + 1) * imageWidth);
 
     this.fourierComponents = null;
-    let reals = [0].concat(this.pixelsToDisplay.map(p => p.value - 4))
-                   .concat(0);
+    let reals = this.pixelsToDisplay.map(p => p.value);
+
     setTimeout(() => {
       let transform = Fourier.Transform(reals);
-      // console.log('reals = ', reals);
-      // console.log('reals transformed to = ', transform);
       let cycles = Fourier.getCyclesFromData(transform);
-      // console.log('cycles = ', cycles);
-      // let inverse = Fourier.InverseTransform(cycles);
-      // console.log('inverse = ', clone(inverse));
-      // let step1 = Fourier.totalValue(0, cycles);
-      // console.log('step1 = ', step1);
 
       this.fourierComponents = cycles
         .map(c => new FourierComponent(c.freq, c.amp, c.phase * (Math.PI / 180)));
-
-
     });
-
-    this.lockHighlights = true;
   }
 
-  setHoveredPixel(pixel: Pixel) {
-    this.lockHighlights = false;
+  openSineWaveAdditionDialog() {
+    // https://github.com/angular/material2/issues/5268
+    // TODO: work-around for expression change on dialog factory
+    setTimeout(() => {
+      this.dialog.open(SumWavesDialogComponent, {
+        width: '98%',
+        height: '95%',
+      })
+          .afterClosed()
+          .subscribe();
+    });
   }
 }
 

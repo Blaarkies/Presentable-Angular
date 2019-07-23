@@ -1,49 +1,111 @@
-.fourier-waves-container {
+@import 'styles/styles';
+
+.fourier-waves-page-container {
   display: grid;
 
   grid-template-columns: auto auto;
   place-items: center;
-
-  // @formatter:off
-  //grid-template-areas: 'image-a  image-b  image-c'
-  //                     'footer-a footer-b footer-c';
-  //
-  //.image-a {grid-area: image-a;}
-  //.image-b {grid-area: image-b;}
-  //.image-c {grid-area: image-c;}
-  //.footer-a {grid-area: footer-a;}
-  //.footer-b {grid-area: footer-b;}
-  //.footer-c {grid-area: footer-c;}
-  // @formatter:on
-
 }
 
 .fourier-view {
+  padding: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  width: 480px;
-  overflow-y: scroll;
-  height: 90%;
 
-  background-color: black;
+  width: min-content;
+  background-color: #333333;
   display: grid;
-  grid-auto-flow: row;
-  grid-auto-rows: max-content;
-  grid-gap: 8px;
+  grid-template: max-content / auto auto;
+  // @formatter:off
+  grid-template-areas:
+    'visual-row visual-row'
+    'lowpass    highpass';
+  // @formatter:on
+
+  .lowpass {
+    grid-area: lowpass;
+  }
+
+  .highpass {
+    grid-area: highpass;
+  }
+
+  .lowpass, .highpass {
+    display: grid;
+    grid-gap: 8px;
+    padding: 16px;
+  }
 
   .dismantled-image-containment {
-    padding-top: 32px;
     display: grid;
     grid-auto-flow: column;
-    justify-content: left;
+    justify-content: right;
 
+    background-color: black;
     overflow: hidden;
-    height: 60px;
+    height: 120px; //60px;
 
     .pixel-box {
       width: 60px;
-      height: 60px;
+      height: 120px; //60px;
       background-color: green;
       outline: 1px solid lime;
     }
   }
 }
+
+.sum-wave {
+  z-index: 1;
+  justify-self: right;
+  transform: translate(30px, 8px);
+}
+
+.black-background-container {
+  background-color: black;
+  padding: 16px;
+  border-radius: 12px;
+
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+.visual-row {
+  grid-area: visual-row;
+  justify-self: center;
+
+  .graph-number-axis {
+    color: white;
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    z-index: 1;
+    font-size: 26px;
+    height: 120px;
+    font-family: monospace;
+    user-select: none;
+  }
+
+  .pixels-as-a-graph {
+    background-color: black;
+    height: 120px;
+    overflow: hidden;
+  }
+}
+
+.single-wave {
+  background-color: black;
+  padding: 8px 8px 8px 16px;
+  border-radius: 12px;
+}
+
+:host-context(.is-presentation-mode) {
+  .fourier-fadeable {
+    @extend .fadeable;
+  }
+}
+
+.place-button-corner-top {
+  place-self: start end;
+  transform: translate(-10%, -50%);
+}
+
+
