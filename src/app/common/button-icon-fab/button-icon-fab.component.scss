@@ -16,6 +16,7 @@ $medium-size: 40px;
 $large-size: 60px;
 .icon-container {
   display: grid;
+  overflow: hidden;
 
   border-radius: 50%;
   border: none;
