@@ -17,7 +17,7 @@
 
     <app-algorithm-box class="overlap-a"
                        [title]="'Convert To Black And White'"
-                       [calculation]="calculationText || 'If (pixel > ' + thresholdValue + ')\nNo  = 0\nYes = 7'"
+                       [calculation]="calculationText || 'If (pixel > ' + thresholdValue + ')\nYes = 7\nNo  = 0'"
                        [output]="output || 'Destination pixel value'"
                        (complete)="completeDestinationImage()"
                        [inputATemplate]="inputATemplate"

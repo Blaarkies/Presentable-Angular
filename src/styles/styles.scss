@@ -135,11 +135,9 @@ html, body {
 .bi-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 16px;
+  place-items: center;
 
-  > .item {
-    margin: auto;
-  }
+  column-gap: 16px;
 }
 
 .tri-container {

@@ -1,8 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { Image } from 'src/app/image-processing/interfaces/image';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { interval, of, Subject } from 'rxjs';
 import { delay, filter, takeUntil, tap } from 'rxjs/operators';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
              selector: 'app-intro',
@@ -11,13 +12,13 @@ import { delay, filter, takeUntil, tap } from 'rxjs/operators';
            })
 export class PageNeedForPixelsComponent implements OnDestroy {
 
+  @ViewChild('tabGroup') tabGroup: MatTabGroup;
+
   unsubscribe$ = new Subject<void>();
 
   sourceImage: Image;
   showPixels: boolean;
-
   filtersSwapIndex = 0;
-  userClicked = false;
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.sourceImage = this.pixelProcessorService.getImageFromString(
@@ -30,10 +31,18 @@ export class PageNeedForPixelsComponent implements OnDestroy {
       24567755
       45676765`, 7);
 
+    this.rollTabs();
+  }
+
+  private rollTabs() {
     interval(1000 * 10)
       .pipe(
-        filter(_ => !this.userClicked),
-        tap(_ => this.filtersSwapIndex = (this.filtersSwapIndex + 1) % 5),
+        tap(_ => {
+          this.filtersSwapIndex = (this.filtersSwapIndex + 1) % 5;
+          if (this.filtersSwapIndex == 0) {
+            this.unsubscribe$.next();
+          }
+        }),
         takeUntil(this.unsubscribe$)
       )
       .subscribe();
@@ -44,10 +53,14 @@ export class PageNeedForPixelsComponent implements OnDestroy {
   }
 
   userClickTab(): void {
-    this.userClicked = true;
+    this.unsubscribe$.next();
+
     of(null)
       .pipe(delay(1000 * 30), takeUntil(this.unsubscribe$))
-      .subscribe(_ => this.userClicked = false);
+      .subscribe(_ => {
+        this.filtersSwapIndex = this.tabGroup.selectedIndex;
+        this.rollTabs();
+      });
   }
 
 }

@@ -1,0 +1,43 @@
+<div class="overlap-container">
+  <app-button-icon-fab class="overlap-b place-button-right"
+                       color="warn"
+                       (buttonClick)="onNoClick()">clear
+  </app-button-icon-fab>
+
+  <div class="overlap-a mat-card-remove-box">
+    <div class="page-title card-title-padding align-text-center">{{data.title}}</div>
+
+    <ng-container *ngIf="false;
+    else (data.styleClass == 'computer-vision')
+    ? computer_vision
+    : (data.styleClass == 'object-recognition')
+      ? object_recognition
+      : (data.styleClass == 'face-detection')
+        ? face_detection
+        : (data.styleClass == 'indoor-gps')
+        ? indoor_gps
+        : null">
+    </ng-container>
+
+      <ng-template #computer_vision>
+        <div class="large-image"
+             style="background-image: url('assets/image-processing/computer_vision.jpg');"></div>
+      </ng-template>
+
+      <ng-template #object_recognition>
+        <div class="large-image"
+             style="background-image: url('assets/image-processing/object_recognition.jpg');"></div>
+      </ng-template>
+
+      <ng-template #face_detection>
+        <div class="large-image"
+             style="background-image: url('assets/image-processing/face_detection.jpg');"></div>
+      </ng-template>
+
+      <ng-template #indoor_gps>
+        <div class="large-image"
+             style="background-image: url('assets/image-processing/indoor_gps.jpg');"></div>
+      </ng-template>
+
+  </div>
+</div>

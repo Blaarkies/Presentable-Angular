@@ -7,14 +7,13 @@
 
 .slider-under-image {
   width: 100%;
-  justify-self: center;
+  text-align: center;
+  padding: 8px;
   border-radius: 16px;
   background-color: white;
   @extend .mat-elevation-z1;
 
-  padding: 16px 8px 0;
-
-  .slider {
+  mat-slider {
     width: 100%;
   }
 }

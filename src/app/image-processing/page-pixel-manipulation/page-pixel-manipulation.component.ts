@@ -116,7 +116,7 @@ export class PagePixelManipulationComponent implements OnInit {
         width: '98%',
         height: '95%',
         data: {
-          title: 'Smoothing',
+          title: 'Black and White',
           styleClass: 'filter-black-and-white'
         }
       })

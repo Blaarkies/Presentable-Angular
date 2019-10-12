@@ -5,7 +5,7 @@
   text-align: center;
   padding: 8px;
   border-radius: 16px;
-  background-color: ghostwhite;
+  background-color: white;
   @extend .mat-elevation-z1;
 
   mat-slider {
@@ -18,7 +18,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto max-content;
   grid-gap: 8px;
-  justify-items: center;
+  place-items: center;
 
   // @formatter:off
   grid-template-areas: 'image-a  image-b  image-c'

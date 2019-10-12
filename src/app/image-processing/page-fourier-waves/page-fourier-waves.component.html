@@ -9,7 +9,7 @@
                      (pixelClick)="setSelectedRowAsFourierInput($event)">
   </app-image-display>
 
-  <div class="overlap-container fourier-fadeable" [class.show]="bulletNumber > 1">
+  <div class="overlap-container fourier-fadeable" [class.show]="bulletNumber > 1" *ngIf="fourierComponents?.length > 0">
 
     <app-button-icon-fab class="overlap place-button-corner-top"
                          (buttonClick)="openSineWaveAdditionDialog()"

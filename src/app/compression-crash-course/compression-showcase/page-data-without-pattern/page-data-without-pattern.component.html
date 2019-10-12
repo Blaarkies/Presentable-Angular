@@ -1,29 +1,25 @@
 <div class="bi-container">
 
-  <div class="item">
-    <app-entropy-card [data]="highEntropyData" [charLimit]="charLimit"></app-entropy-card>
-  </div>
+  <app-entropy-card [data]="highEntropyData" [charLimit]="charLimit"></app-entropy-card>
 
-  <div class="item">
-    <mat-card>
-      <div class="content-title card-title-padding">Characters Used</div>
-      <mat-card-content class="content-subtitle">
-        <div *ngFor="let line of charactersUsed.displayLines">{{line}}</div>
-      </mat-card-content>
+  <mat-card>
+    <div class="content-title card-title-padding">Characters Used</div>
+    <mat-card-content class="content-subtitle">
+      <div *ngFor="let line of charactersUsed.displayLines">{{line}}</div>
+    </mat-card-content>
 
-      <mat-card-footer class="mat-card-fix-footer-padding">
-        <div class="footer-container content-text">
+    <mat-card-footer class="mat-card-fix-footer-padding">
+      <div class="footer-container content-text">
 
-          <div>Characters used</div>
-          <div>{{charactersUsed.value.length}}</div>
+        <div>Characters used</div>
+        <div>{{charactersUsed.value.length}}</div>
 
-          <div>Fraction of ASCII table</div>
-          <div>
-            <app-progress-bar [value]="asciiFraction"></app-progress-bar>
-          </div>
+        <div>Fraction of ASCII table</div>
+        <div>
+          <app-progress-bar [value]="asciiFraction"></app-progress-bar>
         </div>
+      </div>
 
-      </mat-card-footer>
-    </mat-card>
-  </div>
+    </mat-card-footer>
+  </mat-card>
 </div>

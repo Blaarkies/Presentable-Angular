@@ -17,6 +17,7 @@ import { PageFourierIntroComponent } from 'src/app/image-processing/page-fourier
 import { PageFourierWavesComponent } from 'src/app/image-processing/page-fourier-waves/page-fourier-waves.component';
 import { SineWaveComponent } from './sub-common/sine-wave/sine-wave.component';
 import { SumWavesDialogComponent } from 'src/app/image-processing/sub-common/sum-waves-dialog/sum-waves-dialog.component';
+import { FullscreenUnoImageDialogComponent } from 'src/app/image-processing/sub-common/fullscreen-uno-image-dialog/fullscreen-uno-image-dialog.component';
 
 @NgModule({
             imports: [
@@ -38,12 +39,14 @@ import { SumWavesDialogComponent } from 'src/app/image-processing/sub-common/sum
               MaskEditorComponent,
               SeeingWifiDialogComponent,
               FullscreenDualImageDialogComponent,
+              FullscreenUnoImageDialogComponent,
               SumWavesDialogComponent,
               SineWaveComponent,
             ],
             entryComponents: [
               SeeingWifiDialogComponent,
               FullscreenDualImageDialogComponent,
+              FullscreenUnoImageDialogComponent,
               SumWavesDialogComponent,
             ]
           })

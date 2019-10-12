@@ -57,7 +57,7 @@ export class PageFourierWavesComponent implements OnInit {
     this.fourierComponents = null;
     let reals = this.pixelsToDisplay.map(p => p.value);
 
-    setTimeout(() => {
+    setTimeout(_ => {
       let transform = Fourier.Transform(reals);
       let cycles = Fourier.getCyclesFromData(transform);
 
