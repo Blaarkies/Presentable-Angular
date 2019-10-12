@@ -1,19 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { getArrayRange } from 'src/app/common/utils';
-
-export class FourierComponent {
-
-  frequency: number;
-  magnitude: number;
-  phase: number;
-
-
-  constructor(frequency: number, magnitude: number, phase: number) {
-    this.frequency = frequency;
-    this.magnitude = magnitude;
-    this.phase = phase;
-  }
-}
+import { FourierComponent } from 'src/app/image-processing/sub-common/sine-wave/fourier.component';
 
 @Component({
              selector: 'app-sine-wave',
@@ -29,19 +16,20 @@ export class SineWaveComponent implements AfterViewInit {
   @Input() cellSize: number = 60;
   @Input() pixelCount: number = 8;
   @Input() isSumWave: boolean = false;
-
   @Input() fourierComponents: FourierComponent[] = [];
+  @Input() drawVerticalAt: number;
 
   ngAfterViewInit(): void {
     this.setWave();
   }
 
-  private setWave() {
+  setWave() {
     let canvas: HTMLCanvasElement = this.waveCanvas.nativeElement;
     if (canvas == null || !canvas.getContext) {
       return;
     }
     const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let graphLabelWidth = 50;
     let graphWidth = canvas.width - graphLabelWidth;
@@ -75,6 +63,27 @@ export class SineWaveComponent implements AfterViewInit {
     outputWave.forEach(([x, y]) => ctx.lineTo(x, y));
     ctx.stroke();
 
+    if (this.drawVerticalAt != null) {
+      ctx.beginPath();
+      ctx.lineWidth = this.lineWidth;
+      ctx.strokeStyle = 'cyan';
+
+      let xAtVertical = this.drawVerticalAt * graphWidth + graphLabelWidth;
+      if (this.fourierComponents.length > 1) {
+        xAtVertical -= graphLabelWidth;
+        xAtVertical *= 1.105
+      }
+      let indexAtVertical = Math.round((outputWave.length - 1) * this.drawVerticalAt);
+      if (outputWave[indexAtVertical] == undefined) {
+        console.log(indexAtVertical);
+        return;
+      }
+      let sinewaveAtVertical = outputWave[indexAtVertical][1];
+      ctx.lineTo(xAtVertical, height * 0.5);
+      ctx.lineTo(xAtVertical, sinewaveAtVertical);
+      ctx.stroke();
+    }
+
     if (this.fourierComponents.length === 1) {
       this.drawCartesianDetails(ctx, graphLabelWidth, canvas, displayFraction, scale);
     }
@@ -93,13 +102,9 @@ export class SineWaveComponent implements AfterViewInit {
       let list = sineWaveSamplePoints[0];
       scaleToMaxAmplitude = this.getMaxScaleFactor(list);
       sumWaves = sineWaveSamplePoints[0]
-        .map(point => [
-          point[0],
-          point[1] / scaleToMaxAmplitude
-        ])
-        .map(point => [
-          point[0] * graphWidth + graphLabelWidth,
-          point[1] * (displayHeight * 0.5) + (height * 0.5)
+        .map(([x, y]) => [
+          x * graphWidth + graphLabelWidth,
+          (y / scaleToMaxAmplitude) * (displayHeight * 0.5) + (height * 0.5)
         ]);
     } else {
       let sumOfAllSamplePoints = getArrayRange(resolution)
@@ -110,13 +115,9 @@ export class SineWaveComponent implements AfterViewInit {
         ]);
       scaleToMaxAmplitude = this.getMaxScaleFactor(sumOfAllSamplePoints);
       sumWaves = sumOfAllSamplePoints
-        .map(point => [
-          point[0],
-          point[1] / scaleToMaxAmplitude
-        ])
-        .map(point => [
-          point[0] * canvas.width,
-          point[1] * (height * 0.5) + (height * 0.5)
+        .map(([x, y]) => [
+          x * canvas.width,
+          (y / scaleToMaxAmplitude) * (height * 0.5) + (height * 0.5)
         ]);
     }
     return [sumWaves, scaleToMaxAmplitude];

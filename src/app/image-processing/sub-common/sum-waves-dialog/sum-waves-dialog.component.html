@@ -10,21 +10,25 @@
       <div class="overlap cursor-mask" (mousemove)="onMoveCursor($event)"></div>
       <div class="overlap waves-container">
         <div class="graph-icon"></div>
-        <app-sine-wave class="single-wave"
+        <app-sine-wave #firstWave
+                        class="single-wave"
+                       [drawVerticalAt]="verticalAt"
                        [fourierComponents]="[waves[0]]"
                        [strokeStyle]="'deeppink'"></app-sine-wave>
         <div class="graph-icon">+</div>
-        <app-sine-wave class="single-wave"
+        <app-sine-wave #secondWave
+                       class="single-wave"
+                       [drawVerticalAt]="verticalAt"
                        [fourierComponents]="[waves[1]]"
                        [strokeStyle]="'yellow'"></app-sine-wave>
         <div class="graph-icon">=</div>
-        <app-sine-wave class="single-wave"
+        <app-sine-wave #sumWave
+                       class="single-wave"
                        style="transform: scale(0.9, 1) translate(5%);"
+                       [drawVerticalAt]="verticalAt"
                        [fourierComponents]="waves"
                        [strokeStyle]="'lime'"></app-sine-wave>
       </div>
-
-      <div #verticalLine class="overlap vertical-line"></div>
     </div>
   </div>
 </div>
