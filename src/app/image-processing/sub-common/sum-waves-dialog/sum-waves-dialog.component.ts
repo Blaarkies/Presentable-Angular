@@ -28,7 +28,7 @@ export class SumWavesDialogComponent implements OnDestroy {
     let updateDuration = 10;
     this.movementThrottler$
         .pipe(sample(interval(updateDuration)), takeUntil(this.unsubscribe$))
-        .subscribe(move => {
+        .subscribe((move: MouseEvent & any) => {
           this.verticalAt = move.offsetX / move.target.scrollWidth;
           this.verticalAt = this.verticalAt * 1.25 - 0.23;
           this.firstWave.setWave();

@@ -12,11 +12,11 @@ interface MaskProduct {
 }
 
 @Component({
-             selector: 'app-page-custom-masks',
-             templateUrl: './page-custom-masks.component.html',
-             styleUrls: ['./page-custom-masks.component.scss']
+             selector: 'app-page-kernel',
+             templateUrl: './page-kernel.component.html',
+             styleUrls: ['./page-kernel.component.scss']
            })
-export class PageCustomMasksComponent {
+export class PageKernelComponent {
 
   @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
 
