@@ -20,6 +20,7 @@ $margin-amount-connectors: 20%;
 .left-label-container {
   @extend .label-container;
   place-items: end;
+  place-self: end;
 
   .label {
     @extend .value-as-label;
@@ -37,6 +38,7 @@ $margin-amount-connectors: 20%;
 .right-label-container {
   @extend .label-container;
   place-items: start;
+  place-self: end start;
 
   .label {
     @extend .value-as-label;

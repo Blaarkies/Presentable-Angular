@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 
 @Component({
              selector: 'app-algorithm-box',

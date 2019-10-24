@@ -75,7 +75,6 @@ export class SineWaveComponent implements AfterViewInit {
       }
       let indexAtVertical = Math.round((outputWave.length - 1) * this.drawVerticalAt);
       if (outputWave[indexAtVertical] == undefined) {
-        console.log(indexAtVertical);
         return;
       }
       let sinewaveAtVertical = outputWave[indexAtVertical][1];

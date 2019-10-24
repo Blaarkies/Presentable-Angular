@@ -1,14 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { Mask, MaskPixel } from 'src/app/image-processing/interfaces/mask';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { sum } from 'src/app/common/utils';
+import { Subject } from 'rxjs';
+import { sampleTime, takeUntil } from 'rxjs/operators';
 
 interface MaskProduct {
   display: string;
   kernelPixel: MaskPixel;
   highlight: boolean;
+  imagePixel?: MaskPixel;
 }
 
 @Component({
@@ -16,9 +19,11 @@ interface MaskProduct {
              templateUrl: './page-kernel.component.html',
              styleUrls: ['./page-kernel.component.scss']
            })
-export class PageKernelComponent {
+export class PageKernelComponent implements OnDestroy {
 
   @ViewChild('result') resultImageDisplayer: ImageDisplayComponent;
+
+  unsubscribe$ = new Subject<void>();
 
   sourceImage: Image;
   resultImage: Image;
@@ -31,6 +36,7 @@ export class PageKernelComponent {
   isAverage = true;
   pressedPixel: Pixel;
   kernelInputA: Mask;
+  kernelResult: Mask;
   hoveredMaskPixel: MaskPixel;
 
   customFilter = nearPixels => {
@@ -40,6 +46,13 @@ export class PageKernelComponent {
            ? value / (divisor || nearPixels.length)
            : value * nearPixels.length / this.customMask.pixels.length;
   };
+  show3d: any;
+  rotateX: number;
+  rotateY: number;
+  private lastX: number;
+  private lastY: number;
+  private panMove$ = new Subject();
+
 
   constructor(private pixelProcessorService: PixelProcessorService) {
     this.customMask = this.pixelProcessorService.getMaskFromString(
@@ -58,6 +71,18 @@ export class PageKernelComponent {
       22255522`, 7);
 
     this.filterImage();
+    this.resetRotation();
+
+    this.panMove$
+        .pipe(
+          sampleTime(100),
+          takeUntil(this.unsubscribe$),
+        )
+        .subscribe(event => this.adjustRotation(event));
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
   }
 
   private filterImage() {
@@ -94,6 +119,7 @@ export class PageKernelComponent {
     if (!pixel) {
       this.products
         = this.kernelInputA
+        = this.kernelResult
         = this.output
         = this.calculationText
         = null;
@@ -112,13 +138,23 @@ export class PageKernelComponent {
     this.products = nearMask.pixels
                             .filter(pA => pA.value != null)
                             .map(pA => {
-                            let kernelPixel = this.customMask.pixels.find(pB => pB.isSamePosition(pA));
-                            return {
-                              display: `(${pA.value}×${kernelPixel.value})`,
-                              kernelPixel: kernelPixel,
-                              highlight: false
-                            };
-                          });
+                              let kernelPixel = this.customMask.pixels.find(pB => pB.isSamePosition(pA));
+                              return {
+                                display: `(${pA.value}×${kernelPixel.value})`,
+                                kernelPixel: kernelPixel,
+                                highlight: false,
+                                imagePixel: pA,
+                              };
+                            });
+
+    this.kernelResult = Mask.fromPixels(nearPixels, pixel);
+    this.kernelResult.pixels
+        .filter(p => p.value != null)
+        .forEach(p => {
+          let kernelPixel = this.customMask.pixels.find(pB => pB.isSamePosition(p));
+          p.value *= kernelPixel.value;
+        });
+
 
     let sumOfValues = sum(nearPixels, c => c.value * c.maskValue);
     let sumOfMaskValues = sum(nearPixels, c => c.maskValue) || nearPixels.length;
@@ -192,6 +228,10 @@ export class PageKernelComponent {
         .pixels
         .forEach(p => p.highlight = p.isSamePosition(pixel));
 
+    this.kernelResult
+        .pixels
+        .forEach(p => p.highlight = p.isSamePosition(pixel));
+
     this.customMask
         .pixels
         .forEach(p => p.highlight = p.isSamePosition(pixel));
@@ -207,5 +247,29 @@ export class PageKernelComponent {
     }
     this.updateOutputs(hoveredPixel);
     this.setHoveredMaskPixel(null);
+  }
+
+  adjustRotation($event) {
+    // 3d rotation does not match up with axis on screen.
+    // X is mapped to the negative of Y movement
+    // Y is mapped to the X movement
+    this.rotateX = this.lastX - $event.deltaY / 2;
+    this.rotateY = this.lastY + $event.deltaX / 2;
+  }
+
+  resetRotation() {
+    this.rotateX = -19;
+    this.rotateY = -50;
+
+    this.setLastRotation();
+  }
+
+  setLastRotation() {
+    this.lastX = this.rotateX;
+    this.lastY = this.rotateY;
+  }
+
+  onPan($event) {
+    this.panMove$.next($event);
   }
 }

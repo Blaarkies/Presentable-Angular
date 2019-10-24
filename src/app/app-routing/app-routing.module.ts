@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    data: {title: 'Presentable Angular', image: '../assets/logo-dashboard.jpg'}
+    data: {title: 'Blaarkies', image: '../assets/logo-dashboard.jpg'}
   },
   {
     path: 'compression-crash-course',
@@ -68,9 +68,7 @@ const routes: Routes = [
               RouterModule.forRoot(routes),
               CommonModule
             ],
-            exports: [
-              RouterModule
-            ],
+            exports: [RouterModule],
             declarations: []
           })
 export class AppRoutingModule {
