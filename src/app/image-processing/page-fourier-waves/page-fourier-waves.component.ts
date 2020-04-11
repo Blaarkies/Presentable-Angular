@@ -3,10 +3,10 @@ import { Image, Pixel } from 'src/app/image-processing/interfaces/image';
 import { PixelProcessorService } from 'src/app/image-processing/pixel-processor.service';
 import { Mask } from 'src/app/image-processing/interfaces/mask';
 import { getXYFromIndex } from 'src/app/common/utils';
-import { FourierComponent } from 'src/app/image-processing/sub-common/sine-wave/sine-wave.component';
 import { ImageDisplayComponent } from 'src/app/image-processing/sub-common/image-display/image-display.component';
 import { SumWavesDialogComponent } from 'src/app/image-processing/sub-common/sum-waves-dialog/sum-waves-dialog.component';
 import { MatDialog } from '@angular/material';
+import { FourierComponent } from 'src/app/image-processing/sub-common/sine-wave/fourier.component';
 
 @Component({
              selector: 'app-page-fourier-waves',
@@ -57,7 +57,7 @@ export class PageFourierWavesComponent implements OnInit {
     this.fourierComponents = null;
     let reals = this.pixelsToDisplay.map(p => p.value);
 
-    setTimeout(() => {
+    setTimeout(_ => {
       let transform = Fourier.Transform(reals);
       let cycles = Fourier.getCyclesFromData(transform);
 

@@ -1,55 +1,54 @@
 <div class="bi-container" (click)="showPixels = true">
-  <div class="item">
 
-    <mat-card>
-      <mat-card-content>
+  <mat-card>
+    <mat-card-content>
 
-        <mat-tab-group class="move-tabs-to-bottom space-for-tab-header"
-                       [selectedIndex]="filtersSwapIndex"
-                       (click)="userClickTab(); $event.stopPropagation();">
-          <mat-tab label="Normal">
-            <div class="content-title card-title-padding">No Effects</div>
-            <div class="image-container">
-              <div class="image" style="background-image: url('assets/lenna-example.jpg');"></div>
-            </div>
-          </mat-tab>
+      <mat-tab-group #tabGroup
+                     class="move-tabs-to-bottom space-for-tab-header"
+                     [selectedIndex]="filtersSwapIndex"
+                     (click)="userClickTab(); $event.stopPropagation();">
+        <mat-tab label="Normal">
+          <div class="content-title card-title-padding">No Effects</div>
+          <div class="image-container">
+            <div class="image" style="background-image: url('assets/lenna-example.jpg');"></div>
+          </div>
+        </mat-tab>
 
-          <mat-tab label="Binarize">
-            <div class="content-title card-title-padding">Black and White</div>
-            <div class="image-container">
-              <div class="image filter-black-and-white"
-                   style="background-image: url('assets/lenna-example.jpg');"></div>
-            </div>
-          </mat-tab>
+        <mat-tab label="Binarize">
+          <div class="content-title card-title-padding">Black and White</div>
+          <div class="image-container">
+            <div class="image filter-black-and-white"
+                 style="background-image: url('assets/lenna-example.jpg');"></div>
+          </div>
+        </mat-tab>
 
-          <mat-tab label="Blur">
-            <div class="content-title card-title-padding">Smoothed</div>
-            <div class="image-container">
-              <div class="image filter-blur" style="background-image: url('assets/lenna-example.jpg');"></div>
-            </div>
-          </mat-tab>
+        <mat-tab label="Blur">
+          <div class="content-title card-title-padding">Smoothed</div>
+          <div class="image-container">
+            <div class="image filter-blur" style="background-image: url('assets/lenna-example.jpg');"></div>
+          </div>
+        </mat-tab>
 
-          <mat-tab label="Sharpen">
-            <div class="content-title card-title-padding">Sharpened</div>
-            <div class="image-container">
-              <div class="image" style="background-image: url('assets/lenna-sharpened.jpg');"></div>
-            </div>
-          </mat-tab>
+        <mat-tab label="Sharpen">
+          <div class="content-title card-title-padding">Sharpened</div>
+          <div class="image-container">
+            <div class="image" style="background-image: url('assets/lenna-sharpened.jpg');"></div>
+          </div>
+        </mat-tab>
 
-          <mat-tab label="Invert">
-            <div class="content-title card-title-padding">Inverted</div>
-            <div class="image-container">
-              <div class="image filter-invert" style="background-image: url('assets/lenna-example.jpg');"></div>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
+        <mat-tab label="Invert">
+          <div class="content-title card-title-padding">Inverted</div>
+          <div class="image-container">
+            <div class="image filter-invert" style="background-image: url('assets/lenna-example.jpg');"></div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
 
-      </mat-card-content>
-    </mat-card>
+    </mat-card-content>
+  </mat-card>
 
-  </div>
 
-  <div class="item animate-fade-in display-none" [class.display-unset]="showPixels">
+  <div class="animate-fade-in display-none" [class.display-unset]="showPixels">
 
     <mat-card>
       <mat-card-content>

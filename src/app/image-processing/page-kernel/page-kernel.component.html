@@ -1,0 +1,143 @@
+<ng-template #arrow>
+  <svg viewBox="0 -4 50 8">
+    <defs>
+      <marker id="head" orient="auto" markerWidth="5" markerHeight="3" refX="0.1" refY="1.5">
+        <path d="M0,0 V3 L3,1.5 Z" fill="#c34bc3"/>
+      </marker>
+    </defs>
+
+    <path marker-end="url(#head)" stroke-width="2" stroke="#c34bc3" d="M2,0 42,0"/>
+  </svg>
+</ng-template>
+
+<ng-template #arrowGroup>
+  <div class="arrows-container">
+    <div *ngFor="let a of [1,2,3,4,5,6,7,8,9]" class="arrow">
+      <div class="rotate-to-z">
+        <ng-container *ngTemplateOutlet="arrow"></ng-container>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #scene3d>
+  <div class="scene" #sceneContainer (click)="$event.stopPropagation(); $event.stopImmediatePropagation()">
+    <div class="box-3d" [ngStyle]="show3d && sceneContainer.scrollHeight !== 0
+    ? {transform: 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)'} : ''">
+
+      <div class="layer1">
+        <h1>Result</h1>
+        <app-mask-editor [mask]="kernelResult"
+                         [disabled]="true"
+                         (pixelHover)="setHoveredMaskPixel($event)"></app-mask-editor>
+      </div>
+
+      <div class="line1" *ngIf="kernelInputA">
+        <h1>=</h1>
+        <ng-container *ngTemplateOutlet="arrowGroup"></ng-container>
+      </div>
+
+      <div class="layer2">
+        <h1>Source</h1>
+        <app-mask-editor [mask]="kernelInputA"
+                         [disabled]="true"
+                         (pixelHover)="setHoveredMaskPixel($event)"></app-mask-editor>
+      </div>
+
+      <div class="line2" *ngIf="kernelInputA">
+        <h1>X</h1>
+        <ng-container *ngTemplateOutlet="arrowGroup"></ng-container>
+      </div>
+
+      <div class="layer3">
+        <h1>Kernel</h1>
+        <app-mask-editor [mask]="customMask"
+                         (change)="updateKernels()"></app-mask-editor>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div class="tri-container user-no-select">
+
+  <app-image-display [sourceImage]="sourceImage"
+                     [mask]="customMask"
+                     [title]="'Source Image'"
+                     [lockHighlights]="pressedPixel"
+                     (pixelClick)="setVisibility($event)"
+                     (pixelHover)="setHoveredPixel($event)"
+                     (mouseleave)="setHoveredPixel(null)"
+                     (pixelPress)="setPressedPixel($event)">
+  </app-image-display>
+
+  <div class="filtering-container">
+    <div class="image-b overlap-container">
+      <app-button-icon-fab class="overlap-b place-button-corner-top corner-button-fix"
+                           (buttonClick)="show3d = !show3d">aspect_ratio
+      </app-button-icon-fab>
+
+      <mat-card *ngIf="show3d" (panmove)="onPan($event)" (panend)="setLastRotation()">
+        <mat-card-content>
+          <div class="kernel-sandwich-container">
+            <ng-container *ngTemplateOutlet="scene3d" class="scene"></ng-container>
+            <mat-hint>Drag to rotate</mat-hint>
+            <button mat-button (click)="resetRotation()">RESET</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <app-algorithm-box [title]="'Apply Custom Filter On Each Pixel'" *ngIf="!show3d"
+                         [calculation]="calculationText || (isAverage ? 'sum / count' : 'sum')"
+                         [output]="output || 'Destination pixel value'"
+                         (complete)="completeDestinationImage()"
+                         (mouseleave)="setHoveredMaskPixel(null)"
+                         [inputATemplate]="inputATemplate"
+                         [inputBTemplate]="inputBTemplate"
+                         [inputCTemplate]="inputCTemplate">
+        <ng-template #inputATemplate>
+          <app-mask-editor *ngIf="kernelInputA; else textInputA"
+                           [mask]="kernelInputA"
+                           [disabled]="true"
+                           (pixelHover)="setHoveredMaskPixel($event)"></app-mask-editor>
+          <ng-template #textInputA>9 pixel values</ng-template>
+        </ng-template>
+
+        <ng-template #inputBTemplate>
+          <app-mask-editor [mask]="customMask"
+                           (change)="updateKernels()"></app-mask-editor>
+        </ng-template>
+
+        <ng-template #inputCTemplate>
+          <div class="code-subtitle break-word">
+            <div *ngIf="!products; else brackets">Sum all products</div>
+
+            <ng-template #brackets>
+              <ng-container *ngFor="let bracket of products; let isLast = last;">
+                <span [class.highlight-code-viewing]="bracket.highlight">{{bracket.display}}</span>
+                <span *ngIf="!isLast">+</span>
+              </ng-container>
+            </ng-template>
+          </div>
+        </ng-template>
+      </app-algorithm-box>
+
+    </div>
+
+    <div class="shortcuts-container">
+      <button mat-raised-button class="content-title button-padding" (click)="activateSmoothMask()">Smooth</button>
+      <button mat-raised-button class="content-title button-padding" (click)="activateGaussianMask()">Gaussian</button>
+      <button mat-raised-button class="content-title button-padding" (click)="activateSharpenMask()">Sharpen</button>
+      <div class="slider-background">
+        <app-toggle-slider [isChecked]="isAverage"
+                           [tooltipText]="'Toggles calculation between sum and average'"
+                           [label]="'Average'"
+                           (change)="setIsAverageSlider($event)"></app-toggle-slider>
+      </div>
+    </div>
+  </div>
+
+  <app-image-display #result
+                     [sourceImage]="resultImage"
+                     [showNegativeValues]="!isAverage"
+                     [title]="'Result Image'"></app-image-display>
+</div>

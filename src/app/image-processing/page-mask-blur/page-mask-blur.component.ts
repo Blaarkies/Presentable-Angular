@@ -36,14 +36,14 @@ export class PageMaskBlurComponent {
       111`);
 
     this.sourceImage = this.pixelProcessorService.getImageFromString(
-      `00007270
-      00007270
-      00707270
-      00007270
-      00000000
-      00007777
-      00007777
-      00007777`, 7);
+      `00077700
+      00700070
+      07000070
+      07000070
+      07077700
+      07000000
+      00700000
+      00077700`, 7);
 
     let averageFilter = nearPixels => sum(nearPixels, c => c.value) / nearPixels.length;
 

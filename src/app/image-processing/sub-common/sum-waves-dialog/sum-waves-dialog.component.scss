@@ -24,16 +24,6 @@
   zoom: 1.5;
 }
 
-.vertical-line {
-  background: linear-gradient(90deg, transparent, cyan, transparent);
-  height: 100%;
-  width: 10px;
-  top: 0;
-  position: absolute;
-
-  pointer-events: none;
-}
-
 .dialog-container {
   display: grid;
 }

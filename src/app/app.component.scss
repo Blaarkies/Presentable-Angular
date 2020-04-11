@@ -8,7 +8,7 @@
 
 .toolbar-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto max-content;
 }
 
 .settings-and-page-id {

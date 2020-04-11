@@ -30,6 +30,8 @@ import { FeedbackDialogComponent } from 'src/app/common/feedback-dialog/feedback
 import { ToggleSliderComponent } from './toggle-slider/toggle-slider.component';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { ButtonIconFabComponent } from './button-icon-fab/button-icon-fab.component';
+import { IntroDialogComponent } from 'src/app/common/special-dialogs/intro-dialog/intro-dialog.component';
+import { OutroDialogComponent, } from 'src/app/common/special-dialogs/outro-dialog/outro-dialog.component';
 
 @NgModule({
             imports: [
@@ -90,6 +92,8 @@ import { ButtonIconFabComponent } from './button-icon-fab/button-icon-fab.compon
               WebsiteInfoDialogComponent,
               FeedbackDialogComponent,
               SettingsDialogComponent,
+              IntroDialogComponent,
+              OutroDialogComponent,
             ],
             declarations: [
               ProgressBarComponent,
@@ -99,6 +103,8 @@ import { ButtonIconFabComponent } from './button-icon-fab/button-icon-fab.compon
               FeedbackDialogComponent,
               ToggleSliderComponent,
               SettingsDialogComponent,
+              IntroDialogComponent,
+              OutroDialogComponent,
               ButtonIconFabComponent,
             ]
           })

@@ -14,7 +14,7 @@ import { PageSummaryCompressionComponent } from 'src/app/compression-crash-cours
 import { PageNeedForPixelsComponent } from 'src/app/image-processing/page-need-for-pixels/page-need-for-pixels.component';
 import { PagePixelManipulationComponent } from 'src/app/image-processing/page-pixel-manipulation/page-pixel-manipulation.component';
 import { PageMaskBlurComponent } from 'src/app/image-processing/page-mask-blur/page-mask-blur.component';
-import { PageCustomMasksComponent } from 'src/app/image-processing/page-custom-masks/page-custom-masks.component';
+import { PageKernelComponent } from 'src/app/image-processing/page-kernel/page-kernel.component';
 import { PageMaskSharpenComponent } from 'src/app/image-processing/page-mask-sharpen/page-mask-sharpen.component';
 import { PageInRealLifeImagesComponent } from 'src/app/image-processing/page-in-real-life-images/page-in-real-life-images.component';
 import { PageMaskMedianComponent } from 'src/app/image-processing/page-mask-median/page-mask-median.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    data: {title: 'Presentable Angular', image: '../assets/logo-dashboard.jpg'}
+    data: {title: 'Blaarkies', image: '../assets/logo-dashboard.jpg'}
   },
   {
     path: 'compression-crash-course',
@@ -51,7 +51,7 @@ const routes: Routes = [
       {path: 'need-for-pixels', data: {title: 'The Need For Pixels'}, component: PageNeedForPixelsComponent},
       {path: 'pixel-manipulation', data: {title: 'How To Train Your Pixel'}, component: PagePixelManipulationComponent},
       {path: 'mask-blur', data: {title: 'Blur Between The Lines'}, component: PageMaskBlurComponent},
-      {path: 'mask-custom', data: {title: 'The Kernel'}, component: PageCustomMasksComponent},
+      {path: 'mask-custom', data: {title: 'The Kernel'}, component: PageKernelComponent},
       {path: 'mask-sharp', data: {title: 'Keeping It Sharp'}, component: PageMaskSharpenComponent},
       {path: 'mask-median', data: {title: 'Pixels Are Like Onions'}, component: PageMaskMedianComponent},
       {path: 'fourier-intro', data: {title: 'Stranger Pixels'}, component: PageFourierIntroComponent},
@@ -68,9 +68,7 @@ const routes: Routes = [
               RouterModule.forRoot(routes),
               CommonModule
             ],
-            exports: [
-              RouterModule
-            ],
+            exports: [RouterModule],
             declarations: []
           })
 export class AppRoutingModule {

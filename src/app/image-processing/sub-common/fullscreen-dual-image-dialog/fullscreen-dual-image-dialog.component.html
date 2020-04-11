@@ -9,6 +9,7 @@
 
     <div class="bi-container">
       <div class="large-image" style="background-image: url('assets/lenna-example.jpg');"></div>
+
       <div *ngIf="data.styleClass == 'filter-sharpen'; else (data.styleClass == 'filter-median' ? median : normal)"
            class="large-image" style="background-image: url('assets/lenna-sharpened.jpg');"></div>
 

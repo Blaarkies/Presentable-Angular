@@ -4,7 +4,8 @@
     <mat-card class="space-for-tab-header summary-fadeable" [class.show]="bulletNumber > 1">
       <mat-card-content>
 
-        <mat-tab-group [selectedIndex]="logoSwapIndex" class="move-tabs-to-bottom"
+        <mat-tab-group #logoTabGroup
+                       [selectedIndex]="logoSwapIndex" class="move-tabs-to-bottom"
                        (click)="userClickTab(); $event.stopPropagation();">
           <mat-tab label="Usage">
             <div class="content-title">Applying blur with Paint.Net</div>
@@ -54,10 +55,10 @@
         <div class="content-title card-title-padding">Other Applications of Image Processing</div>
         <mat-card-content>
           <ul class="content-subtitle">
-            <li>Computer Vision in use on self driving cars</li>
-            <li>Object Recognition</li>
-            <li>Face Detection</li>
-            <li>Image-based indoor positioning system</li>
+            <li><a class="cursor-pointer hover-code-highlight" (click)="$event.stopPropagation(); openComputerVisionDialog()">Computer Vision in use on self driving cars</a></li>
+            <li><a class="cursor-pointer hover-code-highlight" (click)="$event.stopPropagation(); openObjectRecognitionDialog()">Object Recognition</a></li>
+            <li><a class="cursor-pointer hover-code-highlight" (click)="$event.stopPropagation(); openFaceDetectionDialog()">Face Detection</a></li>
+            <li><a class="cursor-pointer hover-code-highlight" (click)="$event.stopPropagation(); openIndoorGpsDialog()">Image-based indoor positioning system</a></li>
             <li>Image Analysis Problems in Astronomy</li>
           </ul>
         </mat-card-content>
@@ -69,7 +70,8 @@
     <mat-card class="space-for-tab-header summary-fadeable" [class.show]="bulletNumber > 3">
       <mat-card-content>
 
-        <mat-tab-group [selectedIndex]="astroSwapIndex" class="move-tabs-to-bottom"
+        <mat-tab-group #astroTabGroup
+                       [selectedIndex]="astroSwapIndex" class="move-tabs-to-bottom"
                        (click)="userClickTab(); $event.stopPropagation();">
           <mat-tab label="Nebula">
             <div class="content-title">Cat's Eye Nebula</div>
