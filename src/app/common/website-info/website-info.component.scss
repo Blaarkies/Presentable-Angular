@@ -1,6 +1,6 @@
 @import 'styles/styles';
 
-.social-container {
+.contact-container {
   width: 100%;
 
   display: grid;
@@ -8,7 +8,7 @@
   grid-gap: 16px;
 }
 
-.social-media-button {
+.contact-media-button {
   width: 100%;
 
   display: grid;
@@ -18,7 +18,7 @@
 }
 
 @media #{$mediaQ-small-desktop} {
-  .social-media-button {
+  .contact-media-button {
     justify-items: center;
     grid-template-columns: auto;
   }
@@ -28,6 +28,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     height: 100px;
+    width: 60px;
 }
 
 .worms-overflow-fix {

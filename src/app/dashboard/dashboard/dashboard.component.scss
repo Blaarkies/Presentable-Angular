@@ -4,7 +4,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-areas: 'social subject empty';
+  grid-template-areas: 'contact subject empty';
 
   .empty-container {
     grid-area: empty;
@@ -15,8 +15,8 @@
   padding-top: 28px;
 }
 
-.social-container {
-  grid-area: social;
+.contact-container {
+  grid-area: contact;
 
   width: 100%;
   display: grid;
@@ -45,7 +45,7 @@
 
 @media #{$mediaQ-small-desktop} {
   .dashboard-container {
-    grid-template-areas: 'social subject';
+    grid-template-areas: 'contact subject';
     grid-template-columns: max-content auto;
   }
 }
