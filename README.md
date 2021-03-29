@@ -1,9 +1,9 @@
 <h1>Presentable Angular</h1>
 <a href="https://blaarkies.com/">
-Demo
+Demo - Blaarkies.com
 </a>
 
-<p>An Angular 6 app built for use in showcasing subject for the purpose of presentation talks. 
+<p>An Angular 6 app built for use in showcasing subjects for the purpose of presentation talks. 
   Instead of static slide-shows, you can show the audience what the action looks like...whether that be 
 data compression algorithms, image processing visuals or even the nature of photons in physical sciences
 </p>

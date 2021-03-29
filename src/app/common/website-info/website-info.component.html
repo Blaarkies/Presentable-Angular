@@ -12,10 +12,20 @@
   <div class="contact-media-button">
     <app-button-icon-fab [color]="'link'" [size]="'large'">
       <a href="https://twitter.com/Blaarkies">
-        <div class="button-image" style="background-image: url('assets/twitter-circle.svg');"></div>
+        <!-- 'twitt' instead of 'twitter' - ad blockers catch 'twitter' as a social button to block-->
+        <div class="button-image" style="background-image: url('assets/twitt-circle.svg');"></div>
       </a>
     </app-button-icon-fab>
     <div class="code-subtitle">@Blaarkies</div>
+  </div>
+
+  <div class="contact-media-button">
+    <app-button-icon-fab [color]="'link'" [size]="'large'">
+      <a href="https://reactjs-games.blaarkies.com/limbless-lizard">
+        <div class="button-image fix-react-icon-align" style="background-image: url('assets/react-icon.png');"></div>
+      </a>
+    </app-button-icon-fab>
+    <div class="code-subtitle">ReactJS Games</div>
   </div>
 
   <div class="contact-media-button">
@@ -26,7 +36,16 @@
         </a>
       </app-button-icon-fab>
     </div>
-    <div class="code-subtitle">Play a Game</div>
+    <div class="code-subtitle fix-worms-left-padding">Play Worms Game</div>
+  </div>
+
+  <div class="contact-media-button">
+    <app-button-icon-fab [color]="'link'" [size]="'large'">
+      <a href="https://control-value-accessor.blaarkies.com/">
+        <div class="button-image" style="background-image: url('assets/logo-angular.png');"></div>
+      </a>
+    </app-button-icon-fab>
+    <div class="code-subtitle">Custom Angular Inputs</div>
   </div>
 
   <br>
